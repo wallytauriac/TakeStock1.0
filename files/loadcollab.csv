@@ -1,0 +1,9 @@
+Collaborations,
+Collab_id, INTEGER,10,PRIMARY KEY,,,1,
+Collab_type, TEXT,20,,,,,
+Collab_count, INTEGER,8,,,,,
+Collab_value, FLOAT,10,,,,,
+Collab_description, VARCHAR,255,,,,,
+Player_number, INTEGER,8,,,,,
+Partner_number, INTEGER,8,,,,,
+Club_number, INTEGER,8,,,,;

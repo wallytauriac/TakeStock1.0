@@ -1,0 +1,51 @@
+id,type,description,amount
+1,inc,Loss Job with severance,16000
+2,exp,Salary garnish for child support assessment,-600
+3,exp,Loss job due to firing,0
+4,exp,Travel expense,-1000
+5,exp,Budget cut - last salary increase is revoked,0
+6,inc,Salary raise,3200
+7,inc,Travel allowance,1000
+8,inc,Time for a job review,0
+9,inc,Tax Refund,3000
+10,exp,Food expense,-500
+11,inc,Hazard pay,7000
+12,inc,Time for a salary review,0
+13,exp,Income Taxes,-1350
+14,inc,Annual Benefits,1500
+15,inc,Salary Bonus,5500
+16,inc,Gross annual increase,10500
+17,exp,Demotion requested by management - 1 level,0
+18,inc,Congratulations: Promotion granted with new pay scale,0
+19,inc,Loss Job with severance,8000
+20,exp,Salary garnish for child support assessment,1200
+21,exp,Loss job due to firing,0
+22,exp,Travel expense,-2500
+23,exp,Budget cut - last salary increase is revoked,0
+24,inc,Salary raise,6000
+25,inc,Travel allowance,1500
+26,inc,Time for a job review,0
+27,inc,Tax Refund ,2500
+28,exp,Food expense,-700
+29,inc,Hazard pay,9000
+30,inc,Time for a salary review,0
+31,exp,Income Taxes,-1500
+32,inc,Annual Benefits,3000
+33,inc,Salary Bonus,7500
+34,inc,Gross annual increase,20000
+35,inc,Loss Job with severance,8000
+36,exp,Salary garnish for child support assessment,1200
+37,exp,Loss job due to firing,0
+38,exp,Travel expense,-2500
+39,exp,Budget cut - last salary increase is revoked,0
+40,inc,Salary raise,6000
+41,inc,Travel allowance,1500
+42,inc,Time for a job review,0
+43,inc,Tax Refund ,2500
+44,exp,Food expense,-700
+45,inc,Hazard pay,9000
+46,inc,Time for a salary review,0
+47,exp,Income Taxes,-1500
+48,inc,Annual Benefits,3000
+49,inc,Salary Bonus,7500
+50,inc,Gross annual increase,20000
