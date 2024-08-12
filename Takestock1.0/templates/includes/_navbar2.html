@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-sm bg-dark fixed-top" style="max-height: 25px;">
+
+      <table style="color:white; width: 100%; border-style: none; height: 13px;">
+          <tr style="border-style: none;">
+      <td style="border-style: none; height: 13px">
+        <ul class="navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link " href="/">Home </a>
+          </li>
+          {% if not session.logged_in %}
+          <li class="nav-item "><a class="nav-link " href="/login">Login</a></li>
+          <li class="nav-item "><a class="nav-link " href="/addMember">Register</a></li>
+          {% endif %}
+
+          {% if session.logged_in %}
+            <li class="nav-item "><a class="nav-link " href="{{url_for('game_dash', username = session.username)}}">Dashboard</a></li>
+          {% endif %}
+          <li class="nav-item "><a class="nav-link " href="/logout">Logout</a></li>
+        </ul>
+      </td>
+      <td style="text-align: right; vertical-align: middle; border-style: none; height: 13px;">PAGE NAME: <span style="color: yellow;">{{ page_name }}</span></td>
+      </tr></table>
+    </nav><br>

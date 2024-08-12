@@ -1,0 +1,51 @@
+id,type,description,amount
+1,inc,Scholarship Funding,16000
+2,inc,Work Study grant,8000
+3,exp,Loan Payment,-8000
+4,inc,Student grant,1000
+5,exp,School Tuition,-8000
+6,exp,Dormatory Fees,-2000
+7,inc,Student Loan,1000
+8,exp,Apartment rent,-1800
+9,inc,Summer work,2500
+10,exp,Book tuition,-1000
+11,exp,Travel expenses,-1200
+12,inc,Special aid,800
+13,inc,Evening work pay,500
+14,inc,Congratulations: New Degree,1000
+15,exp,Scholarship Funding,-16000
+16,exp,Work Study grant,-8000
+17,inc,Loan Payment,8000
+18,inc,Student grant,-1000
+19,inc,School Tuition,8000
+20,inc,Dormatory Fees,2000
+21,exp,Student Loan,-1000
+22,inc,Apartment rent,1800
+23,exp,Summer work,-2500
+24,inc,Book tuition,1000
+25,inc,Travel expenses,1200
+26,exp,Special aid,-800
+27,exp,Evening work pay,-500
+28,inc,Scholarship Funding,8000
+29,inc,Work Study grant,4000
+30,exp,Loan Payment,-4000
+31,inc,Student grant,500
+32,exp,School Tuition,-4000
+33,exp,Dormatory Fees,-1000
+34,exp,Student Loan,500
+35,exp,Apartment rent,-900
+36,inc,Summer work,1250
+37,exp,Book tuition,-500
+38,exp,Travel expenses,-600
+39,inc,Special aid,400
+40,inc,Evening work pay,250
+41,inc,Scholarship Funding,4000
+42,inc,Work Study grant,2000
+43,exp,Loan Payment,-2000
+44,inc,Student grant,250
+45,exp,School Tuition,-2000
+46,exp,Dormatory Fees,-500
+47,inc,Student Loan,250
+48,exp,Travel expenses,-450
+49,inc,Special aid,625
+50,exp,Evening work pay,-250

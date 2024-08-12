@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:50px auto;
+}
+.buttonx {
+    position: absolute;
+    top:50%;
+}
+.button {
+    background-color:#0a0a23;
+    color: #fff;
+    border:none;
+    border-radius:5px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+    padding-right:2px;
+    min-height:30px;
+    min-width: 120px;
+}
+.button:hover {
+      background-color:#002ead;
+      transition: 0.5s;
+}
+.button:focus {
+    outline-color: transparent;
+    outline-style:solid;
+    box-shadow: 0 0 0 4px #5a01a7;
+}
+    .outer-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 20px;
+    }
+    .inner-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 1000px;
+        background-color: gold;
+    }
+    .jumbotron {
+        background-color: gold;
+        width: 100%;
+        padding: 20px;
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: green;
+        padding: 20px;
+    }
+    .table-container {
+        flex: 1;
+        margin-right: 20px;
+    }
+    .video-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 3px solid black;
+        padding: 20px;
+        text-align: center;
+        font-size: 16px;
+    }
+    div, span, p {
+        font-size: 20px;
+    }
+    .custom-table th, .custom-table td {
+        padding: 0;
+        margin: 0;
+        width: 50%;
+        height: 10%;
+        font-size: 14px;
+        border: 1px solid black;
+    }
+    .custom-cell {
+        height: 10px;
+        padding: 0;
+        margin: 0;
+    }
+    .custom-row {
+        height: fit-content;
+    }
+    .jumbotron p, .jumbotron span {
+        margin-bottom: 0;
+        padding: 0;
+    }
+    .h-10 {
+        height: 10% !important;
+    }
+    .text-black {
+        color: black;
+    }
+    .player-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px 0;
+    }
+    .player-info div {
+        flex: 1;
+        text-align: center;
+    }
+    .clear {
+        display: none;
+        clear: left;
+        content: "";
+    }
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+}

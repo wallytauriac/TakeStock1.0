@@ -1,0 +1,2 @@
+class banker:
+    pass

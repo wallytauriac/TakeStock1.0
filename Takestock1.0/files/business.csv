@@ -1,0 +1,30 @@
+id,district,business,buy,partner,club,value
+1,Entertainment,Amuze Park,70000,35000,7000,100
+2,Entertainment,Vacation Resort,60000,30000,6000,50
+3,Entertainment,Rest & Recreation Park,50000,25000,5000,45
+4,Entertainment,Pizza Place,30000,15000,3000,10
+5,Entertainment,Bowling Lanes,40000,20000,4000,15
+6,Entertainment,Golf Gallery,35000,17500,3500,10
+7,Entertainment,Movie Theater,45000,22500,4500,10
+8,Entertainment,Mummy Museum,20000,10000,1000,30
+9,Investment Ally,Oil & Gas Stock Office,300000,150000,15000,100
+10,Investment Ally,Robotics Office,500000,250000,25000,500
+11,Investment Ally,Gold Bullion Office,100000,50000,5000,1000
+12,Investment Ally,Paper Trade Office,90000,45000,4500,10
+13,Investment Ally,Utility Trade Office,40000,20000,2000,40
+14,Investment Ally,Auto Dealer,70000,35000,3500,35
+15,Investment Ally,Airline Port,50000,25000,2500,25
+16,Wall St,Mutual Funds Center,300000,150000,15000,100
+17,Wall St,Diamonds R Us Center,300000,150000,15000,100
+18,Wall St,Commodities Trade Center,300000,150000,15000,100
+19,Wall St,Security Bonds Center,150000,75000,7500,50
+20,Wall St,Silver Trade Center,150000,75000,7500,75
+21,Wall St,Certificate of Deposit Center,150000,75000,7500,100
+22,Wall St,Money Market Center,150000,75000,7500,100
+23,Market St,Wally Mart,80000,40000,4000,100
+24,Market St,Sport Center,80000,40000,4000,100
+25,Market St,McRonald's Restaurant,80000,40000,4000,100
+26,Market St,Ashconn Furniture Store,80000,40000,4000,100
+27,Market St,Home Tool Shed Store,80000,40000,4000,100
+28,Market St,Famous Foot Shoes Store,80000,40000,4000,100
+29,Market St,Shears Hardware Store,80000,40000,4000,100

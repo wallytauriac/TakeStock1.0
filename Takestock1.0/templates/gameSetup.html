@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div class="container jumbotron" style="background-color: #f2deee ">
+		<div class="text-black">
+		<h1><strong>Welcome {{username}}</strong></h1>
+
+		<h2 class = "text-center">Game Setup Page</h2>
+		</div>
+
+	<div class="jumbotron" style="background-color: #efd7b6; ">
+		<div class="form-group">
+			 {% from "includes/_formhelpers.html" import render_field %}
+	<form method="POST" action="">
+		<table class="table table-borderless">
+			<tr><td>
+			<div class="form-group">
+				{{render_field(form.player_count, class="form-control")}}
+			</div></td><td>
+			<div class="form-group">
+				{{render_field(form.game_ID, class="form-control")}}
+			</div>
+			</td></tr>
+		</table>
+	<table  class="table table-borderless">
+		<tr>
+
+			<td>
+
+				<label for="{{ form.glevel.id }}">{{ form.glevel.label }}</label>
+				<select name="{{ form.glevel.name }}" id="{{ form.glevel.id }}">
+
+                  <option value="GP">Guru Play</option>
+				  <option value="CP">Challenger Play</option>
+				  <option value="EP">Easy Play</option>
+
+  </select>
+
+			</td>
+			<td>
+				<label for="{{ form.ggoal.id }}">{{ form.ggoal.label }}</label>
+				<select name="{{ form.ggoal.name }}" id="{{ form.ggoal.id }}">
+				  <option value="CA">Career Achievement</option>
+				  <option value="MA">Money Achievement</option>
+				  <option value="IA">Investment Achievement</option>
+				  <option value="AA">Acquisitions Achievement</option>
+				</select>
+			</td>
+
+		</tr>
+	</table>
+	</form>
+		</div>
+		<table class="table">
+  		<thead>
+   	 <tr>
+      <th scope="col">PLAYERS NAME</th>
+      <th scope="col">PLAYERS NUMBER</th>
+      <th scope="col">PLAYERS STATUS</th>
+    </tr>
+  </thead>
+  <tbody>
+  		{% for player in players %}
+    		<tr>
+				<td>{{ player.username }}</td>
+				<td>{{ player.player_number }}</td>
+				<td>{{ player.status }}</td>
+			</tr>
+
+        {% endfor %}
+  </tbody>
+		</table>
+	</div>
+		<table  class="table table-borderless">
+			<tr><td>
+				<button class="nav-item"><a class="btn btn-primary" href="{{url_for('game_setup')}}">Setup</a></button>
+			</td><td>
+				<button class="nav-item"><a class="btn btn-primary" href="{{url_for('ts_sub1_bp.game_action')}}">Start Game</a></button>
+				</td>
+				<td style="background-color: green;">
+					<h3 style="background-color: tan;">GAME RULES</h3>
+					<ul style="text-align: left;">
+						<li>Players status must be READY</li>
+						<li>Number of players must match player count</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+</div>
+{% endblock %}

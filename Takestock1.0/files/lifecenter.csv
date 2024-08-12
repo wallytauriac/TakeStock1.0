@@ -1,0 +1,51 @@
+id,type,description,amount
+1,inc,Recent Inheritance,30000
+2,inc,Win Sweepstakes,25000
+3,exp,Property Taxes,-5000
+4,inc,Tax Refund,1000
+5,exp,Lost $100 bill,-100
+6,inc,Insurance claim,3000
+7,inc,Lawsuit claim,5000
+8,inc,Wedding gifts,2500
+9,exp,Traffic ticket,-500
+10,exp,Tax Payment,-1500
+11,exp,Car Payment,-500
+12,inc,House sale profit,55000
+13,inc,Tax Over-payment,2200
+14,inc,Recent Inheritance,150000
+15,inc,Win Sweepstakes,125000
+16,exp,Property Taxes,-25000
+17,inc,Tax Refund,5000
+18,exp,Lost $500,-500
+19,inc,Insurance claim,15000
+20,inc,Lawsuit claim,25000
+21,inc,Recent Inheritance,30000
+22,inc,Win Sweepstakes,25000
+23,exp,Property Taxes,-5000
+24,inc,Tax Refund,1000
+25,exp,Lost $100 bill,-100
+26,inc,Insurance claim,3000
+27,inc,Lawsuit claim,5000
+28,inc,Wedding gifts,2500
+29,exp,Traffic ticket,-500
+30,exp,Tax Payment,-1500
+31,exp,Car Payment,-500
+32,inc,House sale profit,55000
+33,inc,Tax Over-payment,2200
+34,inc,Recent Inheritance,150000
+35,inc,Win Sweepstakes,125000
+36,exp,Property Taxes,-25000
+37,inc,Tax Refund,5000
+38,exp,Lost $500,-500
+39,inc,Insurance claim,15000
+40,inc,Lawsuit claim,25000
+41,inc,Recent Inheritance,300000
+42,inc,Win Sweepstakes,250000
+43,exp,Property Taxes,-50000
+44,inc,Tax Refund,10000
+45,exp,Lost $100 bill,-1000
+46,inc,Insurance claim,30000
+47,inc,Lawsuit claim,50000
+48,inc,Wedding gifts,25000
+49,exp,Traffic ticket,-5000
+50,exp,Tax Payment,-15000

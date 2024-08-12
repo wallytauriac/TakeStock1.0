@@ -1,0 +1,127 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div class="container jumbotron" style="background-color: #f2deee ">
+		<div class="text-black">
+		<h1><strong>Welcome {{username}}</strong></h1>
+
+		<h2 class = "text-center">Game Lobby Page</h2>
+		</div>
+
+		<table style="width:100%; font-size: 20px;" class="text-white table-hover table-bordered table-dark table-striped">
+  <tr>
+    <th class="text-center " height="50"><strong>GAME LEVEL</strong></th>
+    <th class="text-center " height="50"><strong>SELECT CODE</strong></th>
+    <th class="text-center " height="50"><strong>DESC</strong></th>
+  </tr>
+	<tr>
+		<td class="text-left" height="50">Guru Play</td>
+		<td class="text-center" height="50">GP</td>
+		<td class="text-left" height="50">Complex game goals</td>
+	</tr>
+		<tr>
+		<td class="text-left" height="50">Challenger Play</td>
+		<td class="text-center" height="50">CP</td>
+		<td class="text-left" height="50">Acquired acquisition goals</td>
+	</tr>
+		<tr>
+		<td class="text-left" height="50">Easy Play</td>
+		<td class="text-center" height="50">EP</td>
+		<td class="text-left" height="50">Money target achieved</td>
+	</tr>
+	</table>
+
+	<div class="jumbotron" style="background-color: #efd7b6; ">
+	<h2 class = "text-center">Game Goals</h2>
+	<br>
+	<table style="width:100%; font-size: 20px;" class="text-white table-hover table-bordered table-dark table-striped">
+  <tr>
+    <th class="text-center " height="50"><strong>GAME GOAL</strong></th>
+    <th class="text-center " height="50"><strong>SELECT CODE</strong></th>
+    <th class="text-center " height="50"><strong>DESC</strong></th>
+  </tr>
+	<tr>
+		<td class="text-left" height="50">Career Achievement</td>
+		<td class="text-center" height="50">CA</td>
+		<td class="text-left" height="50">Game over when player career level 3-times higher.</td>
+	</tr>
+		<tr>
+		<td class="text-left" height="50">Money Achievement</td>
+		<td class="text-center" height="50">MA</td>
+		<td class="text-left" height="50">Game over when player money is 3 million more.</td>
+	</tr>
+		<tr>
+		<td class="text-left" height="50">Investment Achievement</td>
+		<td class="text-center" height="50">IA</td>
+		<td class="text-left" height="50">Game over when player investments 3-times higher.</td>
+	</tr>
+	<tr>
+		<td class="text-left" height="50">Acquisitions Achievement</td>
+		<td class="text-center" height="50">AA</td>
+		<td class="text-left" height="50">Game over when player acquisitions value 3-times higher.</td>
+	</tr>
+	</table>
+		<br>
+		<div class="form-group">
+			 {% from "includes/_formhelpers.html" import render_field %}
+	<form method="POST" action="">
+		<table>
+			<tr><td>
+			<div class="form-group">
+				{{render_field(form.player_count, class_="form-control")}}
+			</div></td>><td>
+			<div class="form-group">
+				{{render_field(form.status, class_="form-control")}}
+			</div>
+			</td>></tr>
+			<tr><td>
+			<div class="form-group">
+				{{render_field(form.start_date, class_="form-control")}}
+			</div></td>><td>
+			<div class="form-group">
+				{{render_field(form.game_ID, class_="form-control")}}
+			</div>
+			</td>></tr>
+			<tr><td>
+			<div class="form-group">
+				{{render_field(form.population, class_="form-control")}}
+			</div></td>><td>
+			<div class="form-group">
+				{{render_field(form.pop_chg, class_="form-control")}}
+			</div>
+			</td>></tr>
+		</table>>
+	<table>
+		<tr>
+
+			<td>
+
+				<label for="{{ form.glevel.id }}">{{ form.glevel.label }}</label>
+				<select name="{{ form.glevel.name }}" id="{{ form.glevel.id }}">
+
+                  <option value="GP">Guru Play</option>
+				  <option value="CP">Challenger Play</option>
+				  <option value="EP">Easy Play</option>
+
+  </select>
+
+			</td>
+			<td>
+				<label for="{{ form.ggoal.id }}">{{ form.ggoal.label }}</label>
+				<select name="{{ form.ggoal.name }}" id="{{ form.ggoal.id }}">
+				  <option value="CA">Career Achievement</option>
+				  <option value="MA">Money Achievement</option>
+				  <option value="IA">Investment Achievement</option>
+				  <option value="AA">Acquisitions Achievement</option>
+				</select>
+			</td>
+
+		</tr>
+
+	</table>
+				<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+		</div>
+
+</div>
+{% endblock %}

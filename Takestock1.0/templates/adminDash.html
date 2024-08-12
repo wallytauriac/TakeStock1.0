@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div class="container jumbotron" style="background-color: #bcf2cf">
+		 <h1><small>Welcome Administrator</small><span class="font-italic font-weight-bold" style="color: #0d5125"> {{session.username}}</span></h1>
+
+		<div class="form-group">
+			<a href = "{{url_for('viewDetails')}}"><button type ="button" class="btn btn-outline-secondary btn-lg" style="background-color: white">View details</button></a>
+		</div>
+	</div>
+{% endblock %}

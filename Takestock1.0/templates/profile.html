@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div class="container jumbotron" style=" background-color: #becde5;">
+		<h1><strong>View User Profile Data</strong></h1>
+		<ul style="text-align:Left;">
+		<li style="font-size: 25px"><strong style="font-variant: small-caps; ">Name</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['name']}}</li>
+		<br>
+		<li style="font-size: 25px"><strong style="font-variant: small-caps;">Username</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['username']}}</li>
+		<br>
+		<li style="font-size: 25px"><strong style="font-variant: small-caps;">Play Role</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['role']}}</li>
+		<br>
+		<li style="font-size: 25px"><strong style="font-variant: small-caps;">Email</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['email']}}</li>
+		<br></ul>
+		<div>
+		  <button class="nav-item "><a class="btn btn-primary" href="{{url_for('game_dash')}}">Create Game Playbook</a></button>
+          <button class="nav-item "><a class="btn btn-primary" href="{{url_for('user_connect')}}">Connect to Game</a></button>
+		</div>
+	</div>
+{% endblock %}
+
