@@ -1,0 +1,8 @@
+Requests,
+REQ_id, INTEGER,10,PRIMARY KEY,,,1,
+Player_number, INTEGER,8,,,,,
+REQ_type, TEXT,20,,,,,
+REQ_description, VARCHAR,255,,,,,
+REQ_status, VARCHAR,255,,,,,,
+REQ_amount, INTEGER,8,,,,,,
+REQ_count, INTEGER,8,,,,,;

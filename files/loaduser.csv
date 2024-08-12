@@ -1,0 +1,6 @@
+User,
+User_id, INTEGER,10,,,,,,
+Email_id, VARCHAR,255,,,,,,
+Full_name, VARCHAR,255,,,,,,
+Status, VARCHAR,255,,,,,,
+Password, VARCHAR,255,,,,,,

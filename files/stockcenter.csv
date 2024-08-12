@@ -1,0 +1,51 @@
+id,type,description,count
+1,inc,Money Market Shares,1000
+2,inc,Certificate of Deposit Shares,3000
+3,inc,Silver Trade Shares,1200
+4,exp,Oil Stock Loss,-1000
+5,inc,Security Bonds,500
+6,exp,Robotics Stock Loss,-500
+7,inc,Commodities Trade Shares,600
+8,exp,Diamond Investment Loss,-2500
+9,inc,Diamond Shares gain,1500
+10,exp,CD Investment Loss,-200
+11,inc,Mutual Funds,5000
+12,inc,Oil Stock Share gain,500
+13,exp,Silver Trade Loss,-200
+14,inc,Stock split request (2 for one on all stocks owned),2
+15,inc,Robotics Stockss gain,1000
+16,inc,Gold Bullions gain,1000
+17,inc,Paper Stockss gain,1000
+18,inc,Utility Stockss gain,1000
+19,inc,Auto Stockss gain,1000
+20,inc,Airline Stocks gain,1000
+21,exp,Gold Bullion stock loss,-200
+22,exp,Paper Stocks loss,-200
+23,exp,Utility Stocks loss,-200
+24,exp,Auto Stocks loss,-200
+25,exp,Airline Stocks loss,-200
+26,inc,Money Market Shares,1000
+27,inc,Certificate of Deposit Shares,3000
+28,inc,Silver Trade Shares,1200
+29,exp,Oil Stock Loss,-1000
+30,inc,Security Bonds,500
+31,exp,Robotics Stock Loss,-500
+32,inc,Commodities Trade Shares,600
+33,exp,Diamond Investment Loss,-2500
+34,inc,Diamond Shares gain,1500
+35,exp,CD Investment Loss,-200
+36,inc,Mutual Funds,5000
+37,inc,Oil Stock Share gain,500
+38,exp,Silver Trade Loss,-200
+39,inc,Stock split request (2 for one on all stocks owned),2
+40,inc,Robotics Stockss gain,1000
+41,inc,Gold Bullions gain,1000
+42,inc,Paper Stockss gain,1000
+43,inc,Utility Stockss gain,1000
+44,inc,Auto Stockss gain,1000
+45,inc,Airline Stocks gain,1000
+46,exp,Gold Bullion stock loss,-200
+47,exp,Paper Stocks loss,-200
+48,exp,Utility Stocks loss,-200
+49,exp,Auto Stocks loss,-200
+50,exp,Airline Stocks loss,-200

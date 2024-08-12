@@ -1,0 +1,8 @@
+Responses,
+REP_id, INTEGER,10,PRIMARY KEY,,,1,
+Player_number, INTEGER,8,,,,,
+REP_type, TEXT,20,,,,,
+REP_description, VARCHAR,255,,,,,
+REP_status, VARCHAR,255,,,,,,
+REP_amount, FLOAT,10,,,,,
+REP_count, INTEGER,8,,,,,
