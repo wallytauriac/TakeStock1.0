@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Take$tock</title>
+	<link rel="stylesheet" href="{{url_for('static', filename = 'assets/bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename = 'assets/bootstrap/css/bootstrap-reboot.min.css')}}">
+
+</head>
+<body background="/static/Take$tock City 2.PNG" style="background-repeat: no-repeat; background-size: cover;background-position: center; background-attachment: fixed;">
+	{% include 'includes/_navbar.html' %}
+	<br><br>
+	<div style="text-align: center;">
+		<img src="/static/Game_Logo_2.png" height="100px" width="100%"  >
+		{% block body %}{% endblock %}
+	</div>
+
+	<div class="container">
+		<!-- Write your comments here  -->
+		{% include 'includes/_messages.html' %}
+	</div>
+	<script src = "{{url_for('static', filename = 'assets/bootstrap/js/jquery.min.js')}}"></script>
+	<script src = "{{url_for('static', filename = 'assets/bootstrap/js/bootstrap.min.js')}}"></script>
+</body>
+</html>

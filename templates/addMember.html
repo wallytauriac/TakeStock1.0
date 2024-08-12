@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container jumbotron text-center">
+	<h1><strong>Enter User Profile Data</strong></h1>
+  <div class="font-italic">
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="addMember">
+    <div class="form-group">
+      {{render_field(form.name, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.username, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.password, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.confirm, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.email, class_="form-control")}}
+    </div>
+    <div class="form-group">
+        <select name="roles">
+          <option value="{{roles[0]}}" selected>{{roles[0]}}</option>
+          {% for role in roles[1:] %}
+            <option value="{{role}}">{{role}}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <p><input type="submit" class="btn btn-primary" value="Register"></p>
+  </form>
+  </div>
+</div>
+{% endblock %}

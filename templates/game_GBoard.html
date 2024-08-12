@@ -1,0 +1,76 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="outer-container">
+    <div class="inner-container">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="javascript:history.back()" >Return</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="javascript:history.back()" >City Tour</a>
+                </td>
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1><strong>Game Captain: {{data.user_captain}}</strong></h1>
+            </div>
+
+            <div class="container">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div class="custom-table">
+                        <div class="player-info">
+                            <div style="background-color: gold;">GAME ID: <span>{{ data.game_ID }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                        <div class="player-info">
+                            <div style="background-color: gold;">POPULATION: <span>{{ data.population }}</span></div>
+                            <div style="background-color: yellow;">POP CHG: <span>{{ data.pop_chg }}</span></div>
+                        </div>
+                        <div class="player-info">
+                            <div style="background-color: gold;">TOTAL SPENT: <span>{{ data.total_spending }}</span></div>
+                            <div style="background-color: yellow;">TOTAL EARNED: <span>{{ data.total_earnings }}</span></div>
+                        </div>
+
+                        <table class="table-container" style="border: 3px solid black; width: 50%; float:left; background-color:white; color: black;">
+                            <thead>
+                         <tr>
+                          <th scope="col" style="padding: 0px;">PLAYER</th>
+                          <th scope="col" style="padding: 0px;">CASH</th>
+                          <th scope="col" style="padding: 25px;">PROPERTY</th>
+                          <th scope="col" style="padding: 25px;">STOCKS</th>
+                          <th scope="col" style="padding: 25px;">BUS. COUNT</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                            {% for option in options %}
+                                <tr>
+                                    <td style="background-color: gold; border-color: white">{{ option.opt_plyr }}</td>
+                                    <td style="background-color: gold;">{{ option.opt_cash }}</td>
+                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_prop }}</td>
+                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_stck }}</td>
+                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_busc }}</td>
+                                </tr>
+
+                            {% endfor %}
+                      </tbody>
+                            </table>
+                     </div>
+
+                    <div class="video-container" style="width: 45%; verticle-align: top; float:right;">
+                        <video style="width: 100%; height: 500px; background-color: darkred;" controls autoplay>
+                            <source src="/static/Takestock_Intro.mp4" type="video/mp4">
+                            <source src="movie.ogg" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

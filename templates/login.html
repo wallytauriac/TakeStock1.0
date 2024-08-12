@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container jumbotron text-center">
+	<h1><strong>Login OR Register New Account</strong></h1>
+	<form action="login" method="POST">
+		<div class="form-group">
+			<label style="font-size: 20px;" class="font-italic">Username</label>
+			<input type="text" name="username" class = "form-control" value="{{request.form.username}}">
+		</div>
+		<div class="form-group">
+			<label style="font-size: 20px;" class="font-italic">Password</label>
+			<input type="password" name="password" class = "form-control" value="{{request.form.password}}">
+		</div>
+		<div class="form-group">
+			<label for="role">Game Role:</label>
+
+			<select name="role" id="role" required>
+			  <option value="" disabled selected>Select your role</option>
+			  <option value="{{request.form.role}}">Host</option>
+			  <option value="{{request.form.role}}">Player</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-primary">Login</button>
+	</form> 
+	</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container jumbotron text-center">
+	<h1><strong>Game Connect/Start</strong></h1>
+    <div class="font-weight-normal">
+    {% from "includes/_formhelpers.html" import render_field %}
+    <ul style="text-align:Left;">
+		<li style="font-size: 25px"><strong style="font-variant: small-caps; ">Name</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['name']}}</li>
+		<br>
+		<li style="font-size: 25px"><strong style="font-variant: small-caps;">Username</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['username']}}</li>
+		<br>
+		<li style="font-size: 25px"><strong style="font-variant: small-caps;">Player Role</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['role']}}</li>
+	    <li style="font-size: 25px"><strong style="font-variant: small-caps;">Player Number</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['player_number']}}</li>
+    </ul>
+  <form method="POST" action="{{ url_for('gameConnect', username=result['username']) }}">
+    <div class="form-group">
+      {{render_field(form.status, class="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.game_ID, class="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.salary, class="form-control")}}
+    </div>
+    <p><input type="submit" class="btn btn-primary" value="Update"></p>
+  </form>
+        <div>
+          {% if result['role'] == 'Host' %}
+            <button class="nav-item "><a class="btn btn-primary" href="{{url_for('game_setup')}}">Setup Game</a></button>
+          {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
