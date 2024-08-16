@@ -1,0 +1,51 @@
+code,id,type,short_description,long_description,amount
+JC,1,inc,Loss Job with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,16000
+JC,2,exp,Salary garnish for child support assessment,This is an event beyond our control. The government has issued a lien against your wages. Your pay will be lacking this amount.,-600
+JC,3,exp,Loss job due to firing,Due to an oversight we are under command to let you go. You're fired.,-1
+JC,4,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-1000
+JC,5,exp,Budget cut - last salary increase is revoked,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise",-500
+JC,6,inc,Salary raise,After a salary review it was decided to grant you a raise. Congratulations!,3200
+JC,7,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1000
+JC,8,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted.,1
+JC,9,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,3000
+JC,10,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-500
+JC,11,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,7000
+JC,12,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise. Congratulations!,2000
+JC,13,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1350
+JC,14,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",1500
+JC,15,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,5500
+JC,16,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary.,10500
+JC,17,exp,Demotion requested by management - 1 level,It is unfortunate and we are saddened that we must demote you from your current job position one level.,-1
+JC,18,inc,Congratulations: Promotion granted with new pay scale,We congratulate you on your promotion and raise due this pay season. Your job level increases by one and your salary increases by the amount shown.,2000
+JC,19,inc,Loss Job with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,8000
+JC,20,exp,Salary garnish for child support assessment,This is an event beyond our control. The government has issued a lien against your wages. Your pay will be lacking this amount.,-1200
+JC,21,exp,Loss job due to firing,Due to an oversight we are under command to let you go. You're fired.,-1
+JC,22,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-2500
+JC,23,exp,Budget cut - last salary increase is revoked,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise.",-500
+JC,24,inc,Salary raise,After a salary review it was decided to grant you a raise. Congratulations!,6000
+JC,25,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1500
+JC,26,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted.,1
+JC,27,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,2500
+JC,28,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-700
+JC,29,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,9000
+JC,30,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise. Congratulations!,2000
+JC,31,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1500
+JC,32,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",3000
+JC,33,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,7500
+JC,34,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary.,20000
+JC,35,inc,Loss Job with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,8000
+JC,36,exp,Salary garnish for child support assessment,This is an event beyond our control. The government has issued a lien against your wages. Your pay will be lacking this amount.,-1200
+JC,37,exp,Loss job due to firing,Due to an oversight we are under command to let you go. You're fired.,-1
+JC,38,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-2500
+JC,39,exp,Budget cut - last salary increase is revoked,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise.",-1000
+JC,40,inc,Salary raise,After a salary review it was decided to grant you a raise. Congratulations!,6000
+JC,41,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1500
+JC,42,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted.,1
+JC,43,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,2500
+JC,44,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-700
+JC,45,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,9000
+JC,46,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise. Congratulations!,1500
+JC,47,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1500
+JC,48,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",3000
+JC,49,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,7500
+JC,50,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary.,20000

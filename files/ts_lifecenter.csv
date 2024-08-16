@@ -1,0 +1,51 @@
+code,id,type,short_description,long_description,amount
+LC2,1,inc,Recent Inheritance,A rich family recently passed and included you in the will. The inheritance is a one-time cash gift.,30000
+LC2,2,inc,Win Sweepstakes,Your recent entry into a sweepstakes resulted in a large return. The sweepstakes is larger than expected.,25000
+LC2,3,exp,Property Taxes,"It is nice to have property in your portfolio, but it is not nice when taxes are due.",-5000
+LC2,4,inc,Tax Refund,It is always nice when you don't owe taxes. When there is a refund that is always good.,1000
+LC2,5,exp,Lost $100 bill,Somehow you were trying to get some money out and some of it fell to the ground behind you. You lost some money.,-100
+LC2,6,inc,Insurance claim,Recent bad weather caused damages to your house. But good thing you had insurance coverage. You received a refund.,3000
+LC2,7,inc,Lawsuit claim,It was good that you were entered into a community suit against a large company that paid on a class action suit.,5000
+LC2,8,inc,Wedding gifts,Several of your guests provided gift funds at your favorite store for you to select your gifts.,2500
+LC2,9,exp,Traffic ticket,The officer issued you a ticket for running a red light.,-500
+LC2,10,exp,Tax Payment,Last time you got a refund but this time you have to pay those taxes.,-1500
+LC2,11,exp,Car Payment,It is time to pay your monthly car note.,-500
+LC2,12,inc,House sale profit,Records indicate that you recently sold a house but did not receive the profit due to delays in the closing process.,55000
+LC2,13,inc,Tax Over-payment,You over payed your taxes this year. Here is a refund for your excess payment.,2200
+LC2,14,inc,Recent Inheritance,Another family member insisted that their lawyer find you and deliver to you a large sum of money as inheritance.,150000
+LC2,15,inc,Win Sweepstakes,Your recent entry into a sweepstakes resulted in a large return. The sweepstakes is larger than expected.,125000
+LC2,16,exp,Property Taxes,"It is nice to have property in your portfolio, but it is not nice when taxes are due.",-25000
+LC2,17,inc,Tax Refund,It is always nice when you don't owe taxes. When there is a refund that is always good.,5000
+LC2,18,exp,Lost $500,Somehow you were trying to get some money out and some of it fell to the ground behind you. You lost some money.,-500
+LC2,19,inc,Insurance claim,Recent bad weather caused damages to your house. But good thing you had insurance coverage. You received a refund.,15000
+LC2,20,inc,Lawsuit claim,It was good that you were entered into a community suit against a large company that paid on a class action suit.,25000
+LC2,21,inc,Recent Inheritance,A rich family recently passed and included you in the will. The inheritance is a one-time cash gift.,30000
+LC2,22,inc,Win Sweepstakes,Your recent entry into a sweepstakes resulted in a large return. The sweepstakes is larger than expected.,25000
+LC2,23,exp,Property Taxes,"It is nice to have property in your portfolio, but it is not nice when taxes are due.",-5000
+LC2,24,inc,Tax Refund,It is always nice when you don't owe taxes. When there is a refund that is always good.,1000
+LC2,25,exp,Lost $100 bill,Somehow you were trying to get some money out and some of it fell to the ground behind you. You lost some money.,-100
+LC2,26,inc,Insurance claim,Recent bad weather caused damages to your house. But good thing you had insurance coverage. You received a refund.,3000
+LC2,27,inc,Lawsuit claim,It was good that you were entered into a community suit against a large company that paid on a class action suit.,5000
+LC2,28,inc,Wedding gifts,Several of your guests provided gift funds at your favorite store for you to select your gifts.,2500
+LC2,29,exp,Traffic ticket,The officer issued you a ticket for running a red light.,-500
+LC2,30,exp,Tax Payment,Last time you got a refund but this time you have to pay those taxes.,-1500
+LC2,31,exp,Car Payment,It is time to pay your monthly car note.,-500
+LC2,32,inc,House sale profit,Records indicate that you recently sold a house but did not receive the profit due to delays in the closing process.,55000
+LC2,33,inc,Tax Over-payment,You over paid your taxes this year. Here is a refund for your excess payment.,2200
+LC2,34,inc,Recent Inheritance,A rich family recently passed and included you in the will. The inheritance is a one-time cash gift.,150000
+LC2,35,inc,Win Sweepstakes,Your recent entry into a sweepstakes resulted in a large return. The sweepstakes is larger than expected.,125000
+LC2,36,exp,Property Taxes,"It is nice to have property in your portfolio, but it is not nice when taxes are due.",-25000
+LC2,37,inc,Tax Refund,It is always nice when you don't owe taxes. When there is a refund that is always good.,5000
+LC2,38,exp,Lost $500,Somehow you were trying to get some money out and some of it fell to the ground behind you. You lost some money.,-500
+LC2,39,inc,Insurance claim,Recent bad weather caused damages to your house. But good thing you had insurance coverage. You received a refund.,15000
+LC2,40,inc,Lawsuit claim,It was good that you were entered into a community suit against a large company that paid on a class action suit.,25000
+LC2,41,inc,Recent Inheritance,A rich family recently passed and included you in the will. The inheritance is a one-time cash gift.,300000
+LC2,42,inc,Win Sweepstakes,Your recent entry into a sweepstakes resulted in a large return. The sweepstakes is larger than expected.,250000
+LC2,43,exp,Property Taxes,"It is nice to have property in your portfolio, but it is not nice when taxes are due.",-50000
+LC2,44,inc,Tax Refund,It is always nice when you don't owe taxes. When there is a refund that is always good.,10000
+LC2,45,exp,Lost $100 bill,Somehow you were trying to get some money out and some of it fell to the ground behind you. You lost some money.,-1000
+LC2,46,inc,Insurance claim,Recent bad weather caused damages to your house. But good thing you had insurance coverage. You received a refund.,30000
+LC2,47,inc,Lawsuit claim,It was good that you were entered into a community suit against a large company that paid on a class action suit.,50000
+LC2,48,inc,Wedding gifts,Several of your guests provided gift funds at your favorite store for you to select your gifts.,25000
+LC2,49,exp,Traffic ticket,The officer issued you a ticket for running a red light and damaging another vehicle.,-5000
+LC2,50,exp,Tax Payment,Last time you got a refund but this time you have to pay those taxes. Looks like you had a good year with income.,-15000

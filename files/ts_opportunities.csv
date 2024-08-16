@@ -1,0 +1,53 @@
+CODE,id,Type,OWN_code,Short_Description,Long_Description,INVITES,Amount,Count
+OPP,1,inc,need,Stock Sell,You need to sell all the Stocks you own to generate some capital.,,25000,0
+OPP,2,exp,need,Food Shelter,The Food Shelter needs food supplies due to their inventory is low.,,-5000,0
+OPP,3,exp,want,"80"" TV with wall mount and back lights","It is time you purchase a new 80"" TV with wall mount and back lights just because.",,-2500,0
+OPP,4,exp,opp,oNg Stock,oNg Stock shares received as employee for pennies on the dollar.,,-50,50
+OPP,5,exp,opp,Travel: Safe House,Take some timeout and spend it by traveling to the Safe House by train. You are being invited to the Life Cycle Center.,Life Cycle,-50,0
+OPP,6,exp,need,Food Shelter,The Food Shelter needs food supplies due to their inventory is low.,,-5000,0
+OPP,7,exp,opp,Travel: Stock Center,You have been invited to travel to the Stock Center and spend time in the Stock Cycle.,Stock Cycle,-50,0
+OPP,8,inc,need,Stock Sell,You need to sell all the Stocks you own to generate some capital.,,10000,0
+OPP,9,exp,need,Homeless Shelter,The Homeless Shelter is in need of Bed supplies. They have encountered an increase in people.,,-7500,0
+OPP,10,exp,need,Washer and Dryer,Purchase a new washer and dryer. The old machine colors do not match the walls.,,-2500,0
+OPP,11,inc,opp,Salary increase,It is totally unexpected. But here is a salary increase.,,5000,0
+OPP,12,exp,opp,Travel: Wally Mart,Let us spend a day shopping at Wally Mart. Take a ride on the train. Your next move will be a shopping spree in the Shopping cycle zone.,Shopping Cycle,-50,0
+OPP,13,exp,need,Animal Shelter,The Animal Shelter needs supplies. Thank you for your contribution.,,-3500,0
+OPP,14,exp,opp,Travel: Learning Center,Please accept our invitation to travel to the Learning Center. Your travel will be by train. And once you arrive you will be ushered into the College Cycle zone.,College Cycle,-50,0
+OPP,15,inc,need,Stock Sell,Sorry about this. You need to sell all the Stocks you own to generate some capital.,,50000,0
+OPP,16,inc,need,Property Sell,Sorry for the inconvenience. You need to sell all the properties you own to generate some capital. You can keep your residence.,,100000,0
+OPP,17,exp,opp,oNg Stock,Hurry. Do not miss out on this deal. oNg Stocks can be purchased for $1 per share.,,-100,100
+OPP,18,exp,opp,Property Insurance,Property warranty Insurance is available for your purchase.,,-3000,0
+OPP,19,exp,need,Society Club,The Society Club needs your help. Thank you for your contribution.,,-1000,0
+OPP,20,exp,need,Food Bank,The Food Bank needs your help. Thank you for your useful contribution.,,-500,0
+OPP,21,exp,opp,Travel: Job Center,You have been invited to travel to the Job Center located in the Opportunity Center. And then you will be ushered to spend time in the Job Cycle zone.,Job Cycle,-50,0
+OPP,22,exp,opp,Travel: College,Please accept our invitation to travel to the College Campus. Your travel will be by train. And once you arrive you will be ushered into the College Cycle zone.,College Cycle,-50,0
+OPP,23,exp,opp,Travel: Opportunity Center,You have been invited to travel to the Job Center located in the Opportunity Center. And then you will be ushered to spend time in the Job Cycle zone.,Job Cycle,-50,0
+OPP,24,exp,need,Homeless Shelter,The Homeless Shelter is in need of Bed supplies. They have encountered an increase in people.,,-1000,0
+OPP,25,exp,opp,Travel: Opportunity Center,You have been invited to travel to the Job Center located in the Opportunity Center. And then you will be ushered to spend time in the Job Cycle zone.,Job Cycle,-50,0
+OPP,26,inc,opp,Cash OUT,Cash out. Sell all properties and stock for a nominal price so you can maintain your extravagant lifestyle.,,150000,0
+OPP,27,inc,opp,Cash OUT,Cash out. Sell all properties and stock for a nominal price so you can maintain your extravagant lifestyle.,,300000,0
+OPP,28,inc,need,ROI,Return on Investments you made recently. ,,5000,0
+OPP,29,exp,need,Neighborhood park,We are raising money for the new neighborhood park. Thanks for your contribution.,,-2500,0
+OPP,30,exp,want,Car Purchase,Good deal on this car that needs some fix up.,,-2200,0
+OPP,31,exp,opp,Promotion,Receive promotion starting next pay cycle. This promotion request will increase your job level. The fee is to catch a cab to your office for confirmation.,,-50,1
+OPP,32,exp,opp,Travel: Safe House,Take some timeout and spend it by traveling to the Safe House by train. You are being invited to the Life Cycle Center.,Life Cycle,-50,0
+OPP,33,inc,need,Insurance claim refund,Weather conditions required an Insurance claim. The refund has been received.,,8000,0
+OPP,34,exp,opp,Travel: Stock Center,You have been invited to travel to the Stock Center and spend time in the Stock Cycle. You will be taken to the Stock Cycle zone upon your arrival.,Stock Cycle,-50,0
+OPP,35,exp,want,Travel: Amuze,Here is your ticket purchase for the Amuze Park. Hold these tickets for later use.,Shopping Cycle,-500,5
+OPP,36,exp,want,Vacation Resort: Tickets,One week vacation at Vacation Resort with family for later use.,,-1410,5
+OPP,37,exp,want,Rest & Recreation Park: Tickets,Weekend family adventure at Rest & Recreation Park. Purchase and hold for later.,,-525,0
+OPP,38,exp,want,Travel: Pizza Place,A trip by cab to the Pizza Place with your family for food and fun.,Shopping Cycle,-75,5
+OPP,39,exp,want,Bowling Lanes: Tickets,Night of bowling at the Bowling Lanes for family. Enjoy the train ride to and from the lanes.,,-200,5
+OPP,40,exp,want,Golf Gallery: Tickets,Putting at the Golf Gallery for the family. Enjoy the train ride to and from the facilities.,,-235,5
+OPP,41,exp,want,Movie Theater: Tickets,Enjoy the Family outing at the Movie Theater eating and drinking and watching a movie.,,-215,5
+OPP,42,exp,want,Mummy Museum: Tickets,This should be a great evening of Family night at the Mummy Museum. Enjoy the evening train ride going and coming.,,-215,0
+OPP,43,exp,want,Thanksgiving Travel,Thanksgiving family flight to visit family using the Airline.,,-1125,0
+OPP,44,exp,opp,Travel: Safe House,Take some timeout and spend it by traveling to the Safe House by train. You are being invited to the Life Cycle Center.,Life Cycle,-50,0
+OPP,45,exp,want,Travel: Opportunity Center,Travel to the Opportunity Center by Portal and return.,,-150,0
+OPP,46,exp,opp,Travel: McRonald's Restaurant,Take a ride by cab and Travel to McRonald's to eat. While at the location their are shopping opportunities for you.,Shopping Cycle,-80,0
+OPP,47,exp,opp,Travel: Famous Foot Shoes,Take a ride by cab to the Shoe Store and then shop for some shoes and maybe some clothing to go with the shoes.,Shopping Cycle,-150,0
+OPP,48,exp,opp,Travel: Audrey's Furniture,Take a ride to the Furniture Store and shop. Purchase a bedroom set. But do not stop there you have a chance to get some other furniture items.,Shopping Cycle,-3500,0
+OPP,49,exp,opp,Travel: Tool Shed,Purchase a power tool from the Tool Shed Store. Travel there by cab and spend some additional time window shopping. You might find some other useful items.,Shopping Cycle,-250,0
+OPP,50,exp,opp,Travel: Mummy Museum,"Take a cab ride to the Museum and visit on a date for two. But while you are there, you might want to do a little nearby shopping.",Shopping Cycle,-300,2
+OPP,51,exp,want,Travel: Sport Center,You have been needing a new tennis racket. Travel there by cab and spend some additional time window shopping. You might find some other useful items.,Shopping Cycle,-250,1
+OPP,52,exp,want,Travel: Airline Business Office,Take some time off and buy a round trip to somewhere to relax and recoup.,Shopping Cycle,-500,1

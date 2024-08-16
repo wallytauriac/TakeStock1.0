@@ -1,0 +1,57 @@
+from flask import Flask, render_template, flash, redirect, url_for, request, session, logging
+from passlib.hash import sha256_crypt
+from flask_mysqldb import MySQL
+from ts_validation import ChangePasswordForm, AddMemberForm, EditForm, GameForm, GameLevelForm
+
+
+class DB_Mgr:
+    def __init__(self, obj):
+        self.mysql = obj
+
+    def get_player_record(self, username):
+        cur = self.mysql.connection.cursor()
+        q = cur.execute('SELECT * FROM players WHERE username = %s', [username])
+        result = cur.fetchone()
+        cur.close()
+        return result, q
+
+    def validate_password(self, data, password_candidate, username):
+        password = data['password']
+        status = "NOK"
+        if sha256_crypt.verify(password_candidate, password):
+            session['logged_in'] = True
+            session['username'] = username
+            session['role'] = data['role']
+            session['player_number'] = 1
+            session['player_round'] = 1
+            session['player_move'] = 1
+            status = "OK"
+        return status
+
+    def update_password(self, username, form):
+        status = "NOK"
+        new = form.new_password.data
+        entered = form.old_password.data
+        cur = self.mysql.connection.cursor()
+        cur.execute("SELECT password FROM players WHERE username = %s", [username])
+        old = (cur.fetchone())['password']
+        cur.close()
+        if sha256_crypt.verify(entered, old):
+            cur.execute("UPDATE players SET password = %s WHERE username = %s", (sha256_crypt.encrypt(new), username))
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        return status
+
+    def get_game_players(self, game_ID):
+        status = "NOK"
+        try:
+            cur = self.mysql.connection.cursor()
+            cur.execute("SELECT username FROM players WHERE game_ID = %s", [game_ID])
+            users = cur.fetchall()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"Database error: {e}")
+            users = []
+        return status, users

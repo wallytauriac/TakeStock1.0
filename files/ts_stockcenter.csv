@@ -1,0 +1,51 @@
+code,id,type,short_description,long_description,count,amount
+SC,1,inc,Money Market Shares,For fifty cents on the dollar you can buy these money market shares. A deal of a life time.,1000,500
+SC,2,inc,Certificate of Deposit Shares,These shares are worth a dollar per share. Today you can purchase them for $1000.,3000,1000
+SC,3,inc,Silver Trade Shares,These shares are going fast. Act now. You can buy for pennies on the dollar.,1200,200
+SC,4,exp,Oil Stock Loss,"The company declared bankruptcy and will be liquidating some of its assets. You are assessed for liquidation of as much as 1000 shares of OnG stocks, if owned.",-1000,0
+SC,5,inc,Security Bonds,Security Bonds are available for bulk price.,500,500
+SC,6,exp,Robotics Stock Loss,If you own Robotics stocks you must yield 500 shares due to a company reorganization.,-500,0
+SC,7,inc,Commodities Trade Shares,You can make a great deal today on Commodities trading. Buy these shares for cheap.,600,100
+SC,8,exp,Diamond Investment Loss,Diamonds hit a big slump in sales and a shipment was sunk in a nearby skirmish. You only lose if you owned some shares.,-2500,
+SC,9,inc,Diamond Shares gain,"Whether you own some shares are not, here is a great opportunity to buy into the market.",1500,1000
+SC,10,exp,CD Investment Loss,The bank underwriting this certificate suffered a reorganization. Its strength is compromised. You lose some shares.,-200,
+SC,11,inc,Mutual Funds,You can buy a bundle of mutual funds today for cheap.,5000,500
+SC,12,inc,Oil Stock Share gain,Increase you OnG stocks for less than the market.,500,100
+SC,13,exp,Silver Trade Loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,14,inc,Stock split request (2 for one on all stocks owned),This company has declared a stock split. Two for one on all of this company's stock owned.,2,
+SC,15,inc,Robotics Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,16,inc,Gold Bullions gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,17,inc,Paper Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,18,inc,Utility Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,19,inc,Auto Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,20,inc,Airline Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,21,exp,Gold Bullion stock loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,22,exp,Paper Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,23,exp,Utility Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,24,exp,Auto Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,25,exp,Airline Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,26,inc,Money Market Shares,For fifty cents on the dollar you can buy these money market shares. A deal of a life time.,1000,500
+SC,27,inc,Certificate of Deposit Shares,These shares are worth a dollar per share. Today you can purchase them for $1000.,3000,100
+SC,28,inc,Silver Trade Shares,These shares are going fast. Act now. You can buy for pennies on the dollar.,1200,200
+SC,29,exp,Oil Stock Loss,"The company declared bankruptcy and will be liquidating some of its assets. You are assessed for liquidation of as much as 1000 shares of OnG stocks, if owned.",-1000,
+SC,30,inc,Security Bonds,Security Bonds are available for bulk price.,500,100
+SC,31,exp,Robotics Stock Loss,If you own Robotics stocks you must yield 500 shares due to a company reorganization.,-500,
+SC,32,inc,Commodities Trade Shares,You can make a great deal today on Commodities trading. Buy these shares for cheap.,600,300
+SC,33,exp,Diamond Investment Loss,Diamonds hit a big slump in sales and a shipment was sunk in a nearby skirmish. You only lose if you owned some shares.,-2500,
+SC,34,inc,Diamond Shares gain,"Whether you own some shares are not, here is a great opportunity to buy into the market.",1500,1200
+SC,35,exp,CD Investment Loss,The bank underwriting this certificate suffered a reorganization. Its strength is compromised. You lose some shares.,-200,
+SC,36,inc,Mutual Funds,You can buy a bundle of mutual funds today for cheap.,5000,500
+SC,37,inc,Oil Stock Share gain,Increase your OnG stocks for less than the market.,500,100
+SC,38,exp,Silver Trade Loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,39,inc,Stock split request (2 for one on all stocks owned),This company has declared a stock split. Two for one on all of this company's stock owned.,2,
+SC,40,inc,Robotics Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,41,inc,Gold Bullions gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,42,inc,Paper Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,43,inc,Utility Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,44,inc,Auto Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,45,inc,Airline Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
+SC,46,exp,Gold Bullion stock loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,47,exp,Paper Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,48,exp,Utility Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,49,exp,Auto Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
+SC,50,exp,Airline Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,
