@@ -1,18 +1,47 @@
-invest_id,invest_type,invest_count,invest_cost,sale_value,invest_description,player_number
-1,PPTY,0,0.00,0.00,Mansion 1,1
-2,COMM,,,,Silver,1
-3,STCK,,,,OnG,1
-4,BUS,,,,Wally Mart,2
-5,OTHR,,,,Amuze Park Tickets,2
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
+id,Address,District,Property,BLDG_type,PPTY_type,Price,mkt_value
+1,912.72,Residential,Red Oaks Condos - Bldg 1,Condo,House,100000,135000
+2,960.48,Residential,Red Oaks Condos - Bldg 2,Condo,House,100000,135000
+3,1104.100,Residential,Red Oaks Condos - Bldg 3,Condo,House,100000,135000
+4,816.100,Residential,Red Barn Appartments - Bldg 1,Apartment,Rent,1000,1350
+5,912.50,Residential,Red Barn Appartments - Bldg 2,Apartment,Rent,1000,1350
+6,912.48,Residential,Red Barn Appartments - Bldg 3,Apartment,Rent,1000,1350
+7,1200.50,Residential,Twin Towers Condos - Bldg 1,Condo,House,100000,135000
+8,1229.60,Residential,Twin Towers Condos - Bldg 2,Condo,House,100000,135000
+9,1248.70,Residential,Twin Towers Annex Apartments,Apartment,Rent,2500,3375
+10,720.20,Residential,Blue Bay Condos - Bldg 1,Condo,House,100000,135000
+11,758.25,Residential,Blue Bay Condos - Bldg 2,Condo,House,100000,135000
+12,787.120,Residential,Mansion 1,Mansion,House,10000000,13500000
+13,845.100,Residential,Mansion 2,Mansion,House,10000000,13500000
+14,730.317,Residential,Blue Window Condos Bldg 1,Condo,House,500000,675000
+15,816.216,Residential,Blue Window Condos Bldg 2,Condo,House,500000,675000
+16,883.288,Residential,Grey Box Apartments,Apartment,Rent,4000,5400
+17,1018.216,Business,Circle Condo Center,Condo,House,200000,270000
+18,336.936,Business,Opportunities Center,Building,Education,100000000,135000000
+19,528.504,Business,Audrey's Furniture,Building,Retail,10000000,13500000
+20,595.605,Business,McRonald's Restaurant,Building,Retail,10000000,13500000
+21,653.576,Business,Tool Shed,Building,Retail,10000000,13500000
+22,720.504,Business,Famous Foot Shoes,Building,Retail,10000000,13500000
+23,432.648,Business,Safe House,Building,Office,50000000,67500000
+24,518.763,Business,Trans Way Ticket Office,Building,Office,10000000,13500000
+25,720.648,Business,Museum,Building,Amusement,10000000,13500000
+26,672.763,Entertainment,Rest & Recreation,Building,Amusement,10000000,13500000
+27,768.763,Entertainment,Bowling,Building,Amusement,10000000,13500000
+28,835.720,Entertainment,Pizza Place,Building,Amusement,10000000,13500000
+29,893.720,Entertainment,Amuze,Building,Amusement,10000000,13500000
+30,768.835,Entertainment,Vacation Resort,Building,Amusement,10000000,13500000
+31,605.864,Business,oNg Business Office,Building,Office,20000000,27000000
+32,691.936,Business,Robotics Business Office,Building,Office,20000000,27000000
+33,787.1008,Business,Gold Bullion Office,Building,Office,20000000,27000000
+34,701.778,Business,Paper Business Office,Building,Office,20000000,27000000
+35,749.821,Business,Utility Business Office,Building,Office,20000000,27000000
+36,816.864,Business,Auto Business Dealership,Building,Office,20000000,27000000
+37,883.1008,Business,Aitline Business Office,Building,Office,20000000,27000000
+38,269.979,Business,TakeStock College,Building,Education,50000000,67500000
+39,240.979,Business,Sport Center,Building,Retail,20000000,27000000
+40,336.763,Business,Wally Mart,Building,Retail,20000000,27000000
+41,480.720,Business,Train Station Downtown,Building,Office,20000000,27000000
+42,1056.288,Residential,Train Station Residential,Building,Apartment,20000000,27000000
+43,240.619,Stock Market,Silver Trade Bldg,Building,Retail,20000000,27000000
+44,192.576,Stock Market,Diamond's R Us,Building,Retail,20000000,27000000
+45,240.504,Stock Market,CoD Bldg,Building,Retail,20000000,27000000
+46,182.590,Stock Market,Money Trade Center,Building,Retail,20000000,27000000

@@ -69,7 +69,7 @@ CREATE TABLE `address` (
 Drop Table business;
 CREATE TABLE `business` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `district` varchar(20) DEFAULT NULL,
+  `Street` varchar(20) DEFAULT NULL,
   `business` varchar(100) DEFAULT NULL,
   `buy` decimal(10,0) DEFAULT 0,
   `partner` decimal(10,0) DEFAULT 0,
@@ -95,7 +95,7 @@ CREATE TABLE `jobcenter` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(10) DEFAULT NULL,
   `short_description` varchar(100) DEFAULT NULL,
-  `long_description` varchar(200) DEFAULT NULL,
+  `long_description` varchar(500) DEFAULT NULL,
   `amount` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -105,7 +105,7 @@ CREATE TABLE `learncenter` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(10) DEFAULT NULL,
   `short_description` varchar(100) DEFAULT NULL,
-  `long_description` varchar(200) DEFAULT NULL,
+  `long_description` varchar(500) DEFAULT NULL,
   `amount` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -115,7 +115,7 @@ CREATE TABLE `lifecenter` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(10) DEFAULT NULL,
   `short_description` varchar(100) DEFAULT NULL,
-  `long_description` varchar(200) DEFAULT NULL,
+  `long_description` varchar(500) DEFAULT NULL,
   `amount` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -125,7 +125,7 @@ CREATE TABLE `stockcenter` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(10) DEFAULT NULL,
   `short_description` varchar(100) DEFAULT NULL,
-  `long_description` varchar(200) DEFAULT NULL,
+  `long_description` varchar(500) DEFAULT NULL,
   `count` decimal(10,0) DEFAULT NULL,
   `amount` decimal(12,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -149,8 +149,8 @@ Create TABLE `opportunities` (
   `type` varchar(10) DEFAULT NULL,
   `OWN_code` char(5) DEFAULT " ",
   `short_description` varchar(100) DEFAULT NULL,
-  `long_description` varchar(200) DEFAULT NULL,
-  `INVITES`  varchar(10) DEFAULT NULL,
+  `long_description` varchar(500) DEFAULT NULL,
+  `INVITES`  varchar(30) DEFAULT " ",
   `amount` decimal(12,0) DEFAULT NULL,
   `count` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
