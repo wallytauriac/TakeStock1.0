@@ -1,4 +1,5 @@
 from ts_database import *
+from ts_game import *
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from datetime import datetime, date
 from wtforms import Form
@@ -6,6 +7,7 @@ from functools import wraps
 import re
 
 ts_page_bp = Blueprint('ts_page_bp', __name__, template_folder="templates")
+db = DB_Mgr(mysql)
 
 def is_logged_in(f):
     @wraps(f)
@@ -16,7 +18,7 @@ def is_logged_in(f):
         return f(*args, **kwargs)
     return decorated_function
 
-def render_game_card(session):
+def render_game_card(session, game_id):
     # Set game card settings
     data = {}
     # Build the game card data dictionary
@@ -31,7 +33,13 @@ def render_game_card(session):
                                    "The second is a property purchase opportunity.  "
                                    "The third is a stock deal. If all are declined, then you lose money, "
                                    "a consultant fee of $3,000.")
+        if data['player_number'] == 1 and data['player_round'] == 1:
+            gc = GameBoard(app, game_id)
+            ga = Game_Action()
+            data['gc'] = gc.get_game_data()
+            data['ga'] = ga.get_action_items()
         return data
+
     except Exception as e:
         return f"An error occurred in render game card build: {e}"
 

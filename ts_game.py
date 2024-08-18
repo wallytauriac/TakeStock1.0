@@ -1,13 +1,11 @@
 from datetime import date, timedelta, datetime
 from decimal import Decimal
-
+import mysql
 import mysql.connector
 import random
-from random import randint, random
 from typing import Dict, Any, Optional, Tuple, Set
 from mysql.connector import Error
 from ts_database import *
-
 
 class PriceIndex:
     """
@@ -101,12 +99,13 @@ class GameBoard:
     def load_data(self) -> Optional[Dict[str, Any]]:
         # Loads data from the MySQL table into memory.
         # Returns: Game variables as a dictionary or None if no data is fetched
-        conn = mysql.connector.connect(**self.db_config)
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute(f"SELECT * FROM {self.table_name} WHERE game_ID = %s", (self.game_ID,))
-        data = cursor.fetchone()
-        cursor.close()
-        conn.close()
+        status, data = db.get_game_card(self.game_ID)
+        # conn = mysql.connector.connect(**self.db_config)
+        # cursor = conn.cursor(dictionary=True)
+        # cursor.execute(f"SELECT * FROM {self.table_name} WHERE game_ID = %s", (self.game_ID,))
+        # data = cursor.fetchone()
+        # cursor.close()
+        # conn.close()
         print(f"Fetched data: {data}")  # Debugging line
         return data
 
@@ -278,7 +277,6 @@ class Game_Action:
         self.initialize_travel()
         self.initialize_economy()
         self.initialize_index()
-        self.initialize_action_type()
 
     def initialize_move_attributes(self):
         self.move_type = "SP"
@@ -289,15 +287,23 @@ class Game_Action:
         self.travel = "N"
 
     def initialize_economy(self):
-        self.economy_ID = 25
+        self.position_ID = random.randint(1, 50)
 
     def initialize_index(self):
-        self.index_ID = random.randint(1, 50)
+        self.index_ID = 25
 
-    def initialize_action_type(self):
-        self.action_type = [{}]
+    def get_action_items(self):
+        ga = {
+            'move_type' : self.move_type,
+            'move_gain' : self.move_gain,
+            'move_loss' : self.move_loss,
+            'travel' : self.travel,
+            'position_ID' : self.position_ID,
+            'index_ID' : self.index_ID
+        }
+        return ga
 
-    # Setter methods for individual attributes
+       # Setter methods for individual attributes
     def set_move_type(self, move_type):
         self.move_type = move_type
 
@@ -310,14 +316,11 @@ class Game_Action:
     def set_travel(self, travel):
         self.travel = travel
 
-    def set_economy_ID(self, economy_ID):
-        self.economy_ID = economy_ID
+    def set_position_ID(self, position_ID):
+        self.position_ID = position_ID
 
     def set_index_ID(self, index_ID):
         self.index_ID = index_ID
-
-    def set_action_type(self, action_type):
-        self.action_type = action_type
 
     # Method to update multiple attributes at once
     def update_attributes(self, **kwargs):

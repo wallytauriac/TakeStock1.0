@@ -91,6 +91,16 @@ class DB_Mgr:
         status = "OK"
         return status, result
 
+    def get_game_card(self, game_ID):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        q = cur.execute(    f"SELECT * FROM game WHERE game_ID = %s", (game_ID,))
+        result = cur.fetchone()
+        cur.close()
+        status = "OK"
+        return status, result
+
+
     def update_game(self, form):
         glevel = form.glevel.data
         ggoal = form.ggoal.data

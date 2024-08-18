@@ -45,6 +45,7 @@ def gamePass(username):
         session['player_number'] += 1
     elif str(pn) == str(pc):
         session['player_move'] += 1
+        session['player_round'] += 1
         session['player_number'] = 1
 
     event_number = randint(1, 50)
@@ -79,10 +80,12 @@ def gameAction(username):
     if q>0:
         status, players = db.get_players_game_card(result["game_ID"])
         if status == "OK":
-            data = render_game_card(session)
+            data = render_game_card(session, result["game_ID"])
             pc = render_player_card(players, session['player_number'])
             user = pc['username']
             session['user'] = pc['username']
+            data['pc'] = pc
+            session['data'] = data
         else:
             flash("Failed to retrieve player details", "error")
             return redirect(url_for('gameAction', data=data, page_name=page_name, user=user))
