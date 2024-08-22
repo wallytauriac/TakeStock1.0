@@ -34,14 +34,34 @@ def render_game_card(session, game_id):
                                    "The third is a stock deal. If all are declined, then you lose money, "
                                    "a consultant fee of $3,000.")
         if data['player_number'] == 1 and data['player_round'] == 1:
-            gc = GameBoard(app, game_id)
+            gc = GameBoard(game_id)
             ga = Game_Action()
             data['gc'] = gc.get_game_data()
+            data['ga'] = ga.get_action_items()
+        else:
+            # Set indexes
+            ga = Game_Action()
             data['ga'] = ga.get_action_items()
         return data
 
     except Exception as e:
         return f"An error occurred in render game card build: {e}"
+
+def process_end_of_round(session):
+    """
+        # Reset Stock Index
+        # Check the round for Salary Pay every 3rd round
+        # Check for 10th round to collect taxes
+        # Check every 5th round to collect insurance
+        # Population growth, total spending and earnings
+
+    """
+    data = session.get('data')
+    ga = session.get('ga')
+    gc = session.get('gc')
+    print("Data=>", data)
+    print("GA=>", ga)
+    print("GC=>", gc)
 
 def render_player_card(players, player_number):
     # Process Players card

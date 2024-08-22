@@ -1,81 +1,81 @@
-CODE,id,Type,Short_Description,Long_Description,INVITES,Amount,Count,,,,
-SC2,1,exp,On Sale,Bedroom set various colors and styles,Audrey's Furniture,-3500,5,,,,
-SC2,2,exp,On Sale,Armoirs cabinet of various colors and styles,Audrey's Furniture,-1000,1,,,,
-SC2,3,exp,On Sale,Cloth or Leather chairs of various colors and styles,Audrey's Furniture,-500,1,,,,
-SC2,4,exp,On Sale,Cloth or leather sofas with end tables,Audrey's Furniture,-950,3,,,,
-SC2,5,exp,On Sale,Pendulum clocks of various designs,Audrey's Furniture,-800,1,,,,
-SC2,6,exp,On Sale,Office space desks in different styles,Audrey's Furniture,-700,2,,,,
-SC2,7,exp,On Sale,Kitchen or Dining room tables of various colorsd and styles,Audrey's Furniture,-900,5,,,,
-SC2,8,inc,Raffle Item,Single bed with desk set,Audrey's Furniture,1200,3,,,,
-SC2,9,exp,Specials,Burger Family Meal,McRonald's Restaurant,-75,5,,,,
-SC2,10,exp,Specials,Chicken Family Meal,McRonald's Restaurant,-75,5,,,,
-SC2,11,exp,Specials,Sandwich and Soup Family Meal,McRonald's Restaurant,-75,5,,,,
-SC2,12,exp,Specials,"Family Treats - Cookies, Shakes, and Soda",McRonald's Restaurant,-75,5,,,,
-SC2,13,exp,Specials,Coffee and Breakfast Family Meal,McRonald's Restaurant,-75,5,,,,
-SC2,14,inc,Sweepstake,Sunday Family Brunch Meals for a year,McRonald's Restaurant,1000,50,,,,
-SC2,15,exp,On Sale,Hand power tools,Tool Shed,-300,5,,,,
-SC2,16,exp,On Sale,Plumber Tool Set,Tool Shed,-500,5,,,,
-SC2,17,exp,On Sale,Carpenter Tool Set,Tool Shed,-300,5,,,,
-SC2,18,exp,On Sale,Auto Repair Tool Set,Tool Shed,-300,5,,,,
-SC2,19,exp,On Sale,Painter Tool Set,Tool Shed,-300,5,,,,
-SC2,20,exp,On Sale,Lawn Care Tool Set,Tool Shed,-500,5,,,,
-SC2,21,inc,Raffle Item,Power Drill Set,Tool Shed,1000,6,,,,
-SC2,22,exp,On Sale,A pair of Nikee Shoes,Famous Foot Shoes,-100,1,,,,
-SC2,23,exp,On Sale,A pair of Spikee Shoes,Famous Foot Shoes,-200,1,,,,
-SC2,24,exp,On Sale,A pair of Dopee Shoes,Famous Foot Shoes,-300,1,,,,
-SC2,25,exp,On Sale,A pair of Timeless Shoes,Famous Foot Shoes,-100,1,,,,
-SC2,26,exp,On Sale,A pair of PayMore Shoes,Famous Foot Shoes,-100,1,,,,
-SC2,27,exp,On Sale,Two pairs any combination,Famous Foot Shoes,-150,2,,,,
-SC2,28,exp,On Sale,Three pair of shoes made by Yo Moma,Famous Foot Shoes,-150,3,,,,
-SC2,29,inc,Sweepstake,10 pairs of shoes made by Diddly Daddy,Famous Foot Shoes,500,10,,,,
-SC2,30,exp,Specials,Family Pizza Meal with soda,Pizza Place,-200,5,,,,
-SC2,31,exp,Specials,Family Sicili style pizza with Cola,Pizza Place,-250,5,,,,
-SC2,32,exp,Specials,All you can eat Family Dinner,Pizza Place,-300,5,,,,
-SC2,33,exp,Specials,Family Pizza and Pie with Soda,Pizza Place,-250,5,,,,
-SC2,34,exp,Specials,"Family Meal with pizza, soda, and dessert",Pizza Place,-200,5,,,,
-SC2,35,inc,Sweepstake,Family outing - all you can eat - 10 times,Pizza Place,800,10,,,,
-SC2,36,exp,Specials,Video games - all day,Amuze,-100,1,,,,
-SC2,37,exp,Specials,Bowling all day,Amuze,-100,1,,,,
-SC2,38,exp,Specials,Pool & Ping Pong all day,Amuze,-100,1,,,,
-SC2,39,exp,Specials,Lazer Gun Battle all day,Amuze,-100,1,,,,
-SC2,40,exp,Specials,Power games all day,Amuze,-100,1,,,,
-SC2,41,exp,Specials,Combo play all day,Amuze,-150,1,,,,
-SC2,42,inc,Sweepstake,Combo play all day for 10 times,Amuze,500,10,,,,
-SC2,43,exp,On Sale,A Sports car,Auto Business Dealership,-35000,1,,,,
-SC2,44,exp,On Sale,A Luzury car,Auto Business Dealership,-50000,1,,,,
-SC2,45,exp,On Sale,An SUV car,Auto Business Dealership,-35000,1,,,,
-SC2,46,exp,On Sale,A Truck,Auto Business Dealership,-35000,1,,,,
-SC2,47,exp,On Sale,A Van,Auto Business Dealership,-35000,1,,,,
-SC2,48,inc,Sweepstake,Future car prototype model,Auto Business Dealership,50000,1,,,,
-SC2,49,exp,Specials,Round trip to Hawaii for two,Airline Business Office,-600,2,,,,
-SC2,50,exp,Specials,Round trip to Hawaii for the family,Airline Business Office,-1200,5,,,,
-SC2,51,exp,Specials,Round trip to Australia for the family,Airline Business Office,-1200,5,,,,
-SC2,52,exp,Specials,Round trip to Europe for the family,Airline Business Office,-1200,5,,,,
-SC2,53,exp,Specials,Round trip to Canada for the family,Airline Business Office,-1200,5,,,,
-SC2,54,inc,Sweepstake,Round trip to Mexico for the family,Airline Business Office,2000,5,,,,
-SC2,55,exp,On Sale,Golf Bag and clubs,Sport Center,-1200,15,,,,
-SC2,56,exp,On Sale,Basket Ball goal and ball,Sport Center,-400,2,,,,
-SC2,57,exp,On Sale,Set of sport outfits (3 shirts and pants with socks),Sport Center,-250,3,,,,
-SC2,58,exp,On Sale,Fishing rods with string and baits,Sport Center,-350,5,,,,
-SC2,59,exp,On Sale,Set of Balls for every sport,Sport Center,-200,10,,,,
-SC2,60,inc,Sweepstake,Sports Jacket,Sport Center,600,2,,,,
-SC2,61,exp,On Sale,Set of dishes and utensils,Wally Mart,-200,1,,,,
-SC2,62,exp,On Sale,Set of towels and bed sheets,Wally Mart,-250,1,,,,
-SC2,63,exp,On Sale,Patio Furniture ,Wally Mart,-350,1,,,,
-SC2,64,exp,On Sale,"Pool table, balls, and sticks",Wally Mart,-700,1,,,,
-SC2,65,exp,On Sale,Television set and mount,Wally Mart,-800,1,,,,
-SC2,66,exp,On Sale,Kitchen pots and pans set,Wally Mart,-300,1,,,,
-SC2,67,inc,Sweepstake,10 bags of grocery,Wally Mart,500,1,,,,
-SC2,68,exp,On invitation,Las Vegas Annual Conference,Airline Business Office,-1500,1,,,,
-SC2,69,exp,On invitation,New Orleans Bowl Game,Airline Business Office,-1000,1,,,,
-SC2,70,,On invitation,Annual World Series Event,Airline Business Office,-1000,1,,,,
-SC2,71,,On invitation,Winter Olympics Events,Airline Business Office,-1000,1,,,,
-SC2,72,,On invitation,Summer Olympics Events,Airline Business Office,-1000,1,,,,
-SC2,73,,On invitation,Florida Music Festival,Airline Business Office,-1000,1,,,,
-SC2,74,,On invitation,Texas Jazz Festival,Airline Business Office,-1000,1,,,,
-SC2,75,,On invitation,New York Symphony Festival,Airline Business Office,-1000,1,,,,
-SC2,76,,On invitation,Montana Fishing Tournament,Airline Business Office,-1000,1,,,,
-SC2,77,,On invitation,Virginia Golf Tournament,Airline Business Office,-1000,1,,,,
-SC2,78,,On invitation,Arizona Balloon Race Event,Airline Business Office,-1000,1,,,,
-SC2,79,,On invitation,Louisiana Swamp Festival,Airline Business Office,-1000,1,,,,
-SC2,80,,On invitation,Maine Lobster Festival,Airline Business Office,-1000,1,,,,
+CODE,id,Type,Short_Description,Long_Description,INVITES,Amount,Count
+SC2,1,exp,On Sale,Bedroom set various colors and styles,Audrey's Furniture,-3500,5
+SC2,2,exp,On Sale,Armoirs cabinet of various colors and styles,Audrey's Furniture,-1000,1
+SC2,3,exp,On Sale,Cloth or Leather chairs of various colors and styles,Audrey's Furniture,-500,1
+SC2,4,exp,On Sale,Cloth or leather sofas with end tables,Audrey's Furniture,-950,3
+SC2,5,exp,On Sale,Pendulum clocks of various designs,Audrey's Furniture,-800,1
+SC2,6,exp,On Sale,Office space desks in different styles,Audrey's Furniture,-700,2
+SC2,7,exp,On Sale,Kitchen or Dining room tables of various colorsd and styles,Audrey's Furniture,-900,5
+SC2,8,inc,Raffle Item,Single bed with desk set,Audrey's Furniture,1200,3
+SC2,9,exp,Specials,Burger Family Meal,McRonald's Restaurant,-75,5
+SC2,10,exp,Specials,Chicken Family Meal,McRonald's Restaurant,-75,5
+SC2,11,exp,Specials,Sandwich and Soup Family Meal,McRonald's Restaurant,-75,5
+SC2,12,exp,Specials,"Family Treats - Cookies, Shakes, and Soda",McRonald's Restaurant,-75,5
+SC2,13,exp,Specials,Coffee and Breakfast Family Meal,McRonald's Restaurant,-75,5
+SC2,14,inc,Sweepstake,Sunday Family Brunch Meals for a year,McRonald's Restaurant,1000,50
+SC2,15,exp,On Sale,Hand power tools,Tool Shed,-300,5
+SC2,16,exp,On Sale,Plumber Tool Set,Tool Shed,-500,5
+SC2,17,exp,On Sale,Carpenter Tool Set,Tool Shed,-300,5
+SC2,18,exp,On Sale,Auto Repair Tool Set,Tool Shed,-300,5
+SC2,19,exp,On Sale,Painter Tool Set,Tool Shed,-300,5
+SC2,20,exp,On Sale,Lawn Care Tool Set,Tool Shed,-500,5
+SC2,21,inc,Raffle Item,Power Drill Set,Tool Shed,1000,6
+SC2,22,exp,On Sale,A pair of Nikee Shoes,Famous Foot Shoes,-100,1
+SC2,23,exp,On Sale,A pair of Spikee Shoes,Famous Foot Shoes,-200,1
+SC2,24,exp,On Sale,A pair of Dopee Shoes,Famous Foot Shoes,-300,1
+SC2,25,exp,On Sale,A pair of Timeless Shoes,Famous Foot Shoes,-100,1
+SC2,26,exp,On Sale,A pair of PayMore Shoes,Famous Foot Shoes,-100,1
+SC2,27,exp,On Sale,Two pairs any combination,Famous Foot Shoes,-150,2
+SC2,28,exp,On Sale,Three pair of shoes made by Yo Moma,Famous Foot Shoes,-150,3
+SC2,29,inc,Sweepstake,10 pairs of shoes made by Diddly Daddy,Famous Foot Shoes,500,10
+SC2,30,exp,Specials,Family Pizza Meal with soda,Pizza Place,-200,5
+SC2,31,exp,Specials,Family Sicili style pizza with Cola,Pizza Place,-250,5
+SC2,32,exp,Specials,All you can eat Family Dinner,Pizza Place,-300,5
+SC2,33,exp,Specials,Family Pizza and Pie with Soda,Pizza Place,-250,5
+SC2,34,exp,Specials,"Family Meal with pizza, soda, and dessert",Pizza Place,-200,5
+SC2,35,inc,Sweepstake,Family outing - all you can eat - 10 times,Pizza Place,800,10
+SC2,36,exp,Specials,Video games - all day,Amuze,-100,1
+SC2,37,exp,Specials,Bowling all day,Amuze,-100,1
+SC2,38,exp,Specials,Pool & Ping Pong all day,Amuze,-100,1
+SC2,39,exp,Specials,Lazer Gun Battle all day,Amuze,-100,1
+SC2,40,exp,Specials,Power games all day,Amuze,-100,1
+SC2,41,exp,Specials,Combo play all day,Amuze,-150,1
+SC2,42,inc,Sweepstake,Combo play all day for 10 times,Amuze,500,10
+SC2,43,exp,On Sale,A Sports car,Auto Business Dealership,-35000,1
+SC2,44,exp,On Sale,A Luzury car,Auto Business Dealership,-50000,1
+SC2,45,exp,On Sale,An SUV car,Auto Business Dealership,-35000,1
+SC2,46,exp,On Sale,A Truck,Auto Business Dealership,-35000,1
+SC2,47,exp,On Sale,A Van,Auto Business Dealership,-35000,1
+SC2,48,inc,Sweepstake,Future car prototype model,Auto Business Dealership,50000,1
+SC2,49,exp,Specials,Round trip to Hawaii for two,Airline Business Office,-600,2
+SC2,50,exp,Specials,Round trip to Hawaii for the family,Airline Business Office,-1200,5
+SC2,51,exp,Specials,Round trip to Australia for the family,Airline Business Office,-1200,5
+SC2,52,exp,Specials,Round trip to Europe for the family,Airline Business Office,-1200,5
+SC2,53,exp,Specials,Round trip to Canada for the family,Airline Business Office,-1200,5
+SC2,54,inc,Sweepstake,Round trip to Mexico for the family,Airline Business Office,2000,5
+SC2,55,exp,On Sale,Golf Bag and clubs,Sport Center,-1200,15
+SC2,56,exp,On Sale,Basket Ball goal and ball,Sport Center,-400,2
+SC2,57,exp,On Sale,Set of sport outfits (3 shirts and pants with socks),Sport Center,-250,3
+SC2,58,exp,On Sale,Fishing rods with string and baits,Sport Center,-350,5
+SC2,59,exp,On Sale,Set of Balls for every sport,Sport Center,-200,10
+SC2,60,inc,Sweepstake,Sports Jacket,Sport Center,600,2
+SC2,61,exp,On Sale,Set of dishes and utensils,Wally Mart,-200,1
+SC2,62,exp,On Sale,Set of towels and bed sheets,Wally Mart,-250,1
+SC2,63,exp,On Sale,Patio Furniture ,Wally Mart,-350,1
+SC2,64,exp,On Sale,"Pool table, balls, and sticks",Wally Mart,-700,1
+SC2,65,exp,On Sale,Television set and mount,Wally Mart,-800,1
+SC2,66,exp,On Sale,Kitchen pots and pans set,Wally Mart,-300,1
+SC2,67,inc,Sweepstake,10 bags of grocery,Wally Mart,500,1
+SC2,68,exp,On invitation,Las Vegas Annual Conference,Airline Business Office,-1500,1
+SC2,69,exp,On invitation,New Orleans Bowl Game,Airline Business Office,-1000,1
+SC2,70,exp,On invitation,Annual World Series Event,Airline Business Office,-1000,1
+SC2,71,exp,On invitation,Winter Olympics Events,Airline Business Office,-1000,1
+SC2,72,exp,On invitation,Summer Olympics Events,Airline Business Office,-1000,1
+SC2,73,exp,On invitation,Florida Music Festival,Airline Business Office,-1000,1
+SC2,74,exp,On invitation,Texas Jazz Festival,Airline Business Office,-1000,1
+SC2,75,exp,On invitation,New York Symphony Festival,Airline Business Office,-1000,1
+SC2,76,exp,On invitation,Montana Fishing Tournament,Airline Business Office,-1000,1
+SC2,77,exp,On invitation,Virginia Golf Tournament,Airline Business Office,-1000,1
+SC2,78,exp,On invitation,Arizona Balloon Race Event,Airline Business Office,-1000,1
+SC2,79,exp,On invitation,Louisiana Swamp Festival,Airline Business Office,-1000,1
+SC2,80,exp,On invitation,Maine Lobster Festival,Airline Business Office,-1000,1

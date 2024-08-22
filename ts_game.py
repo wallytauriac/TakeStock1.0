@@ -83,8 +83,7 @@ Returns:    float: The recalculated value of the current position.
 
 
 class GameBoard:
-    def __init__(self, db_config: Dict[str, Any], game_ID: str):
-        self.db_config = db_config
+    def __init__(self, game_ID: str):
         self.table_name = "game"
         self.game_ID = game_ID
         self.data: Optional[Dict[str, Any]] = self.load_data()
@@ -100,13 +99,7 @@ class GameBoard:
         # Loads data from the MySQL table into memory.
         # Returns: Game variables as a dictionary or None if no data is fetched
         status, data = db.get_game_card(self.game_ID)
-        # conn = mysql.connector.connect(**self.db_config)
-        # cursor = conn.cursor(dictionary=True)
-        # cursor.execute(f"SELECT * FROM {self.table_name} WHERE game_ID = %s", (self.game_ID,))
-        # data = cursor.fetchone()
-        # cursor.close()
-        # conn.close()
-        print(f"Fetched data: {data}")  # Debugging line
+        # print(f"Fetched data: {data}")  # Debugging line
         return data
 
     def get_game_data(self):
@@ -321,6 +314,39 @@ class Game_Action:
 
     def set_index_ID(self, index_ID):
         self.index_ID = index_ID
+
+    def reset_position_ID(self):
+        self.position_ID = random.randint(1, 50)
+        return self.position_ID
+
+    def reset_index_ID(self, index_ID):
+        ndx = [1, 2, -10, 10, -1]
+        nbr = random.choice(ndx)
+        self.index_ID = nbr + index_ID
+        while self.index_ID < 0:
+            self.index_ID = self.index_ID + 3
+        while self.index_ID > 50:
+            self.index_ID = self.index_ID - 3
+        return self.index_ID
+
+    def get_current_position(self):
+        return self.position_ID
+
+    def get_new_position(self):
+        """
+        Moves randomly from the current position one or more rows up or down.
+        Parameters: direction (random -1 or +1) to set the direction
+                    steps (random int): Number of steps to move up or down.
+        Returns:    dict: The new current position.
+        """
+        direction = random.choice([-1, 1])
+        mylist = [0, 1, 2, 3, 3, 5, 2, 7]
+        steps = random.choices(mylist, weights=[5, 5, 2, 1, 1, 4, 1, 1], k=1)
+        # steps = random.randint(0, 7)
+        x = self.position_ID + direction * steps[0]
+        new_position = max(0, min(x, 50 - 1))
+        self.position_ID = new_position
+        return self.position_ID
 
     # Method to update multiple attributes at once
     def update_attributes(self, **kwargs):

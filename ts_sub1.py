@@ -40,12 +40,24 @@ def gamePass(username):
     pn = session.get('player_number')
     pc = session.get('player_count')
     print(f"passed data: {pn} and {pc}")
+    ga = Game_Action()
+    data = session.get('data')
+    data['ga']['position_id'] = ga.get_new_position()
     if str(pn) < str(pc):
         session['player_move'] += 1
         session['player_number'] += 1
-    elif str(pn) == str(pc):
+    elif str(pn) == str(pc) and str(pc) > '1':
         session['player_move'] += 1
         session['player_round'] += 1
+        # ******************************************
+        # End of Round actions
+        # ******************************************
+        # Reset Stock Index
+        # Check the round for Salary Pay every 3rd round
+        # Check for 10th round to collect taxes
+        # Check every 5th round to collect insurance
+        # Population growth, total spending and earnings
+        process_end_of_round(session)
         session['player_number'] = 1
 
     event_number = randint(1, 50)

@@ -107,6 +107,33 @@ def populate_mysql_table(csv_file_path, db_config, table_name):
                     PRIMARY KEY (`id`)
             )
             """
+        elif table_name == "stockcenter":
+            create_table_query = f"""
+            CREATE TABLE IF NOT EXISTS {table_name} (
+                    `code` char(5) DEFAULT "{code}",
+                    `id` int NOT NULL AUTO_INCREMENT,
+                    `type` varchar(10) DEFAULT NULL,
+                    `short_description` varchar(100) DEFAULT NULL,
+                    `long_description` varchar(500) DEFAULT NULL,
+                    `count` decimal(10,0) DEFAULT 0,
+                    `amount` decimal(10,0) DEFAULT NULL,
+                    PRIMARY KEY (`id`)
+            )
+            """
+        elif table_name == "shopping":
+            create_table_query = f"""
+            CREATE TABLE IF NOT EXISTS {table_name} (
+                    `code` char(5) DEFAULT "{code}",
+                    `id` int NOT NULL AUTO_INCREMENT,
+                    `type` varchar(10) DEFAULT NULL,
+                    `short_description` varchar(100) DEFAULT NULL,
+                    `long_description` varchar(500) DEFAULT NULL,
+                    `INVITES` varchar(30) DEFAULT " ",
+                    `amount` decimal(14,0) DEFAULT NULL,
+                    `count` decimal(14,0) DEFAULT 0,
+                    PRIMARY KEY (`id`)
+            )
+            """
         else:
             create_table_query = f"""
             CREATE TABLE IF NOT EXISTS {table_name} (
@@ -142,6 +169,16 @@ def populate_mysql_table(csv_file_path, db_config, table_name):
             insert_query = f"""
             INSERT INTO {table_name} ({', '.join(columns)})
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+        elif table_name == "stockcenter":
+            insert_query = f"""
+            INSERT INTO {table_name} ({', '.join(columns)})
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+        elif table_name == "shopping":
+            insert_query = f"""
+            INSERT INTO {table_name} ({', '.join(columns)})
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
             """
         else:
             insert_query = f"""
@@ -181,9 +218,9 @@ db_config = {
     'host': '127.0.0.1',
     'database': 'takestock1.0'
 }
-code = "OPP"
-table_name = 'opportunities'
-load_file = 'C:/Users/wally/Documents/Python/Demo/Takestock1.0/files/ts_opportunities.csv'
+code = "SC2"
+table_name = 'shopping'
+load_file = 'C:/Users/wally/Documents/Python/Demo/Takestock1.0/files/ts_shopping.csv'
 populate_mysql_table(load_file, db_config, table_name)
 
 if __name__ == "__main__":

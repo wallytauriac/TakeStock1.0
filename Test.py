@@ -1,46 +1,21 @@
-from flask import Flask, url_for
+data = {'data1':1, 'data2':2, 'data3':3}
+a = {'a1':10, 'a2':20, 'a3':30}
+b = {'b1':100, 'b2':200, 'b3':300}
 
-app = Flask(__name__)
+data['a'] = a
+data['b'] = b
 
-def flatten_dict(d, parent_key='', sep='_'):
-    items = []
-    for k, v in d.items():
-        new_key = f"{parent_key}{sep}{k}" if parent_key else k
-        if isinstance(v, dict):
-            items.extend(flatten_dict(v, new_key, sep=sep).items())
-        else:
-            items.append((new_key, v))
-    return dict(items)
+print(data)
+print(data['data1'])
+data['a']['a1'] = 15
+for key, value in data['a'].items():
+    print(key,value)
+print(data['a']['a1'])
+aa = data['a']
+aa['a2'] = 25
+data['a'] = aa
+print(aa)
+print(data)
 
-nested_dict = {
-    'a': 1,
-    'b': {
-        'c': 2,
-        'd': {
-            'e': 3
-        }
-    }
-}
-def unflatten_dict(d, sep='_'):
-    result_dict = {}
-    for key, value in d.items():
-        parts = key.split(sep)
-        d = result_dict
-        for part in parts[:-1]:
-            if part not in d:
-                d[part] = {}
-            d = d[part]
-        d[parts[-1]] = value
-    return result_dict
-"""
-flattened_dict = {
-    'a': 1,
-    'b_c': 2,
-    'b_d_e': 3
-}
-"""
-print(nested_dict)
-flattened_dict = flatten_dict(nested_dict)
-print(flattened_dict)
-original_dict = unflatten_dict(flattened_dict)
-print(original_dict)
+if __name__ == "__main__":
+    print('bye')
