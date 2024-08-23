@@ -2,7 +2,8 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 from passlib.hash import sha256_crypt
 from flask_mysqldb import MySQL
 from ts_validation import ChangePasswordForm, AddMemberForm, EditForm, GameForm, GameLevelForm
-
+app = Flask(__name__)
+mysql = MySQL(app)  # Properly initialize MySQL with the Flask app
 
 class DB_Mgr:
     def __init__(self, obj):
@@ -218,6 +219,16 @@ class DB_Mgr:
         stat = "OK"
         return stat, q
 
+    def get_table_data(self, table_name):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        q = cur.execute(f"SELECT * FROM {table_name}")
+        b = cur.fetchall()
+        cur.close()
+        status = "OK"
+        return status, b
+
+"""
 # test class
 # Initialize Flask app
 app = Flask(__name__)
@@ -263,3 +274,4 @@ if __name__ == "__main__":
                 print("Failed to retrieve player details")
         else:
             print("DB error")
+"""

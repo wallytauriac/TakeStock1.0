@@ -6,7 +6,7 @@ import random
 from typing import Dict, Any, Optional, Tuple, Set
 from mysql.connector import Error
 from ts_database import *
-
+db = DB_Mgr(mysql)
 class PriceIndex:
     """
     The PriceIndex class interacts with a MySQL table representing a Price index.
@@ -27,8 +27,7 @@ Parameters:
             table_name (str): Name of the MySQL table to load.
     """
 
-    def __init__(self, db_config, table_name):
-        self.db_config = db_config
+    def __init__(self, table_name):
         self.table_name = table_name
         self.data = self.load_data()
         self.center_row = len(self.data) // 2
@@ -39,12 +38,10 @@ Parameters:
         Loads data from the MySQL table into memory.
         Returns: list of dict: The table data loaded into memory.
         """
-        conn = mysql.connector.connect(**self.db_config)
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute(f"SELECT * FROM {self.table_name}")
-        data = cursor.fetchall()
-        cursor.close()
-        conn.close()
+        status, data = db.get_table_data(self.table_name)
+        if status == "NOK":
+            print("Error Condition: Load Data for SPBC tables failed...")
+            exit(1)
         return data
 
     def get_center_row(self) -> dict:
@@ -54,10 +51,10 @@ Parameters:
         """
         return self.data[self.center_row]
 
-    def get_current_position(self) -> dict:
+    def get_starting_position(self) -> dict:
         return self.data[self.current_position]
 
-    def move_randomly(self) -> dict:
+    def get_new_position(self) -> dict:
         """
         Moves randomly from the current position one or more rows up or down.
         Parameters: direction (random -1 or +1) to set the direction
@@ -73,6 +70,11 @@ Parameters:
         self.current_position = new_position
         return self.data[self.current_position]
 
+    def get_product_value(self, row, choice):
+
+        value = row[choice]
+        return value
+
     def recalculate_value(self) -> float:
         """
         Recalculates the value of the current position.
@@ -80,6 +82,7 @@ Returns:    float: The recalculated value of the current position.
         """
         current_row = self.data[self.current_position]
         return sum(value for value in current_row.values() if isinstance(value, (int, float)))
+
 
 
 class GameBoard:
@@ -99,7 +102,9 @@ class GameBoard:
         # Loads data from the MySQL table into memory.
         # Returns: Game variables as a dictionary or None if no data is fetched
         status, data = db.get_game_card(self.game_ID)
-        # print(f"Fetched data: {data}")  # Debugging line
+        if status == "NOK":
+            print("Error Condition: Load Data for Game Board failed...")
+            exit(1)
         return data
 
     def get_game_data(self):

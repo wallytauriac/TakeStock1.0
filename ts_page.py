@@ -89,18 +89,16 @@ def render_game_settings(form, result):
     return form
 
 def render_sp_options():
+    """
+    Get SPBC Selections
+    'STOCKS', 'PROPERTY', 'BUSINESS', 'COMMODITY' Tables & Objects
+    """
     options = []
+
     ctgy = ['STOCKS', 'PROPERTY', 'BUSINESS', 'COMMODITY']
     type = ['STCK', 'PPTY', 'BUS', 'COMM']
-    desc = ['Airline   (Count=100)',
-            'Personal House',
-            'Partnership (Wally Mart)',
-            'Diamond Necklace'
-            ]
-    invest = ['$    100',
-              '$100,000',
-              '$ 50,000',
-              '$  2,000']
+    desc, invest = build_sp_options()
+
     d = {}
     for i in range(4):
         d['opt_ctgy'] = ctgy[i]
@@ -109,15 +107,57 @@ def render_sp_options():
         d['opt_invest'] = invest[i]
         options.append(d)
         d = {}
-        if i == 0 or i==1 or i==2:
-            d['opt_ctgy'] = " "
-            d['opt_type'] = " * "
-            d['opt_desc'] = " * "
-            d['opt_invest'] = " * "
-            options.append(d)
-            d = {}
+
 
     return options
+
+def build_sp_options():
+    desc = []
+    invest = []
+    # Stock Offer
+    stocks = ["oNg", "robotics", "gold", "paper", "utility", "auto", "airline"]
+    comm = ["Mutual", "Diamonds", "Grain", "Security", "Silver", "Certificates", "Money"]
+    count = [100, 50, 10, 25]
+    sc = random.choice(stocks)
+    cc = random.choice(count)
+    pi_stck = PriceIndex("stocks")
+    row = pi_stck.get_starting_position()
+    row1 = pi_stck.get_new_position()
+    session['bs'] = row1
+    value = row1[sc]
+    sc = sc.capitalize()
+    desc.append(sc + " Stocks Count=" + str(cc))
+    invest.append("$   " + str(value * cc))
+    # Property Offer
+    pi_ppty = PriceIndex("address")
+    row2 = pi_ppty.get_new_position()
+    session['bs'] = row2
+    b_type = row2['BLDG_type']
+    p_type = row2['PPTY_type']
+    desc.append(b_type + " for " + p_type)
+    price = round(row2['Price'], 0)
+    invest.append("$  " + str(price))
+    # Business Offer
+    pi_bus = PriceIndex("business")
+    row3 = pi_bus.get_new_position()
+    session['bs'] = row3
+    desc.append(row3['business'])
+    invest.append("$  " + str(row3['buy']))
+    # Commodity Offer
+    pi_comm = PriceIndex("commodities")
+    commc = random.choice(comm)
+    row4 = pi_comm.get_new_position()
+    session['bs'] = row4
+    value = row4[commc]
+    if commc == "Certificates" or commc == "Money":
+        value = value * 1000000
+    else:
+        pass
+    cc = random.choice(count)
+    desc.append(commc + " Mkt Share Count=" + str(cc))
+    invest.append("$   " + str(round(value * cc, 0)))
+
+    return desc, invest
 
 def render_bs_options():
     options = []
