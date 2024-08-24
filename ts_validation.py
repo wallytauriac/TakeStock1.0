@@ -1,7 +1,7 @@
 from datetime import date
 from functools import wraps
 from flask import session, flash, redirect, url_for
-from wtforms import Form, PasswordField, StringField, validators, IntegerField, SelectField, DecimalField, DateField
+from wtforms import Form, PasswordField, StringField, validators, IntegerField, SelectField, DecimalField, DateField, FloatField
 from passlib.hash import sha256_crypt
 from wtforms.validators import InputRequired, NumberRange
 
@@ -79,7 +79,7 @@ class GameLevelForm(Form):
 
     population = DecimalField('Town Population',
                               [NumberRange(min=100000, max=2000000, message='Population must be between 100K and 2M')])
-    pop_chg = DecimalField('Population Growth Rate',
+    population_chg = FloatField('Population Growth Rate',
                            [NumberRange(min=0.05, max=0.15, message='Population rate must be between 0.05 and 0.15')])
 
 class GameSetupForm(Form):

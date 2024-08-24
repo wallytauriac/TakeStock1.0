@@ -7,6 +7,7 @@ from typing import Dict, Any, Optional, Tuple, Set
 from mysql.connector import Error
 from ts_database import *
 db = DB_Mgr(mysql)
+
 class PriceIndex:
     """
     The PriceIndex class interacts with a MySQL table representing a Price index.
@@ -110,16 +111,13 @@ class GameBoard:
     def get_game_data(self):
         return self.data
 
-    def get_cpi(self):
-        credits = self.data.get('total_earnings')
-        debits = self.data.get('total_spending')
-        nl = [1, 2, 3]
-        num = random.choice(nl)
-        if credits > 0:
-            cpi = ((debits / credits) / 10) + num
-        else:
-            cpi = 1.00
-        return cpi
+    def put_game_data(self, gc):
+        status = "NOK"
+        status, data = db.put_game_card(gc)
+        if status == "NOK":
+            print("Error Condition: Update Data for Game Board failed...")
+            exit(1)
+        return status
 
     def get_status(self) -> Optional[Any]:
         # Retrieves the status from the loaded data
@@ -139,11 +137,40 @@ class GameBoard:
     def get_move_count(self):
         return self.data.get("move_count")
 
-    def update_gdp(self, value):
+    def update_cpi(self):
+        credits = self.data.get('total_earnings')
+        debits = self.data.get('total_spending')
+        nl = [1, 2, 3]
+        num = random.choice(nl)
+        if credits > 0:
+            cpi = ((debits / credits) / 10) + num
+        else:
+            cpi = 1.00
+        self.data['cpi'] = cpi
+
+    def update_gdp(self):
+        """
+        ○ Calculate difference between spending and earnings by subtraction.
+        Then divide that value by spending to yield -> gdp
+		○ Add gdp + gs_gdp + pop_chg = CPI
+
+        """
+        diff = self.data['total_spending'] - self.data['total_earnings']
+        value = round(diff / self.data['total_spending'], 0)
         self.data['gdp'] = value
 
-    def update_population(self, value):
+    def update_population(self):
+        """
+        o Use random choice to determine population growth and change
+		○ New population: Add choice amount to current population
+		○ Update population change value: (current population / new population) * 100
+        """
+        pop = [20000,10000, 5000, 50000, 2000, 500000, 3500]
+        pop_inc = random.choice(pop)
+        value = pop_inc + self.data['population']
+        chg = round((self.data['population'] / value) * 100, 0)
         self.data['population'] += value
+        self.data['pop_chg'] = chg
 
     def get_game_level(self):
         glevel = self.data.get("game_level", None)
@@ -239,12 +266,10 @@ class Game_Assets:
         Returns: list of dict: The table data loaded into memory.
         Valid Tables: business, jobcenter, lifecenter, learncenter, stockcenter
         """
-        conn = mysql.connector.connect(**self.db_config)
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute(f"SELECT * FROM {self.table_name}")
-        data = cursor.fetchall()
-        cursor.close()
-        conn.close()
+        status, data = db.get_table_data(self.table_name)
+        if status == "NOK":
+            print("Error Condition: Load Data for SPBC tables failed...")
+            exit(1)
         return data
 
     def get_row(self, id):

@@ -20,7 +20,12 @@ def is_logged_in(f):
 
 def render_game_card(session, game_id):
     # Set game card settings
-    data = {}
+    data = session['data']
+    if 'data' in locals():
+            pass
+    else:
+        data = {}
+
     # Build the game card data dictionary
     try:
         data['player_number'] = session.get('player_number')
@@ -38,10 +43,13 @@ def render_game_card(session, game_id):
             ga = Game_Action()
             data['gc'] = gc.get_game_data()
             data['ga'] = ga.get_action_items()
+            print("GC ", data['gc'])
+            print("GA ", data['ga'])
         else:
             # Set indexes
             ga = Game_Action()
             data['ga'] = ga.get_action_items()
+            print("GA ", data['ga'])
         return data
 
     except Exception as e:
@@ -51,17 +59,48 @@ def process_end_of_round(session):
     """
         # Reset Stock Index
         # Check the round for Salary Pay every 3rd round
+        salary + (salary * degree_level * 0.5) + (salary * job_level * 0.7
         # Check for 10th round to collect taxes
+        COH = COH - (COH * 0.01)
         # Check every 5th round to collect insurance
+        COH = COH - (PPTY VALUE * 0.01)
         # Population growth, total spending and earnings
 
     """
     data = session.get('data')
-    ga = session.get('ga')
-    gc = session.get('gc')
-    print("Data=>", data)
-    print("GA=>", ga)
-    print("GC=>", gc)
+    gc = data['gc']
+    game_id = gc['game_ID']
+    gb = GameBoard(game_id)
+    # Population growth, GDP & CPI management
+    gb.update_gdp()
+    gb.update_population()
+    gb.update_cpi()
+    gc = gb.get_game_data()
+    gc.update(session['gc'])
+    status = gb.put_game_data(gc)
+    if status == "OK":
+        data['gc'] = gc
+        session['data'] = data
+    # Rest Stock Index and Position pointer
+    g = Game_Action()
+    ga = g.get_action_items()
+    data['ga'] = ga
+    session['data'] = data
+    # Get the player cards for update
+    # Salary Pay
+    if data['player_round'] % 3 == 0:
+        # Pay salaries to players
+        pass
+    if data['player_round'] % 5 == 0:
+        # Assess Insurance
+        pass
+    if data['player_round'] % 10 == 0:
+        # Assess Taxes
+        pass
+
+    return status
+
+
 
 def render_player_card(players, player_number):
     # Process Players card
@@ -77,13 +116,30 @@ def render_edit_profile(form, result):
     form.role.data = result['role']
     return form
 
-def render_game_settings(form, result):
-    form.status.data = result['status']
-    form.player_count.data = result['player_count']
+def render_game_settings(form):
+    form.status.data = "New"
+    form.player_count.data = 0
     form.start_date.data = date.today()
     form.game_ID.data = "TS" + date.today().strftime("YYYY-MM-DD")
     form.population.data = 500000
-    form.pop_chg = 0.06
+    form.population_chg.data = 0.06
+    form.glevel.data = "EASY"
+    form.ggoal.data = "MA"
+    return form
+
+def render_gametable_settings(form, result):
+    form.status.data = result['status']
+    form.player_count.data = result['player_count']
+    form.start_date.data = result['start_date']
+    form.game_ID.data = result['game_ID']
+    if result['population'] == 0:
+        form.population.data = 500000
+    else:
+        form.population.data = result['population']
+    if result['population_chg'] == 0:
+        form.population_chg.data = 0.06
+    else:
+        form.population_chg.data = result['population_chg']
     form.glevel.data = result['game_level']
     form.ggoal.data = result['game_goal']
     return form
@@ -107,8 +163,6 @@ def render_sp_options():
         d['opt_invest'] = invest[i]
         options.append(d)
         d = {}
-
-
     return options
 
 def build_sp_options():

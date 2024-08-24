@@ -57,7 +57,7 @@ def gamePass(username):
         # Check for 10th round to collect taxes
         # Check every 5th round to collect insurance
         # Population growth, total spending and earnings
-        process_end_of_round(session)
+        status = process_end_of_round(session)
         session['player_number'] = 1
 
     event_number = randint(1, 50)
@@ -92,6 +92,7 @@ def gameAction(username):
     if q>0:
         status, players = db.get_players_game_card(result["game_ID"])
         if status == "OK":
+            session['data'] = data
             data = render_game_card(session, result["game_ID"])
             pc = render_player_card(players, session['player_number'])
             user = pc['username']

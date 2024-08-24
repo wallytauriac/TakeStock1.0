@@ -95,11 +95,33 @@ class DB_Mgr:
     def get_game_card(self, game_ID):
         status = "NOK"
         cur = self.mysql.connection.cursor()
-        q = cur.execute(    f"SELECT * FROM game WHERE game_ID = %s", (game_ID,))
+        q = cur.execute("SELECT * FROM game WHERE game_ID = %s", [game_ID])
         result = cur.fetchone()
         cur.close()
         status = "OK"
         return status, result
+
+    def put_game_card(self, gc):
+        glevel = gc.glevel
+        ggoal = gc.ggoal
+        player_count = gc.player_count
+        status = gc.status
+        total_spending = gc.total_spending
+        total_earnings = gc.total_earnings
+        game_ID = gc.game_ID
+        population = gc.population
+        pop_chg = gc.pop_chg
+        cur = self.mysql.connection.cursor()
+        q = cur.execute("UPDATE game "
+                        "SET game_level = %s, game_goal = %s player_count = %s,"
+                        " status = %s, total_spending = %s, total_earnings = %s"
+                        " population = %s, pop_chg = %s)"
+                        " WHERE game_id = %s", (glevel, ggoal, player_count, status, total_spending, total_earnings,
+                                                population, pop_chg, game_ID))
+        self.mysql.connection.commit()
+        cur.close()
+        status = "OK"
+        return status
 
 
     def update_game(self, form):
@@ -111,20 +133,44 @@ class DB_Mgr:
         start_date = form.start_date.data
         username = session.get('username')
         population = form.population.data
-        pop_chg = form.pop_chg.data
+        population_chg = form.population_chg.data
 
-        status = "NOK"
+        stat = "NOK"
         cur = self.mysql.connection.cursor()
+
         q = cur.execute("UPDATE game "
-                        "SET game_level = %s, game_goal = %s player_count = %s,"
+                        "SET game_level = %s, game_goal = %s, player_count = %s,"
                         " status = %s, start_date = %s, username = %s,"
-                        " population = %s, pop_chg = %s)"
-                        " WHERE game_id = %s", (glevel, ggoal, player_count, status, start_date, username,
-                                                population, pop_chg, game_ID))
+                        " population = %s, population_chg = %s "
+                        " WHERE game_id = %s",
+                        (glevel, ggoal, player_count, status, start_date, username, population, population_chg, game_ID)
+                        )
         self.mysql.connection.commit()
         cur.close()
-        status = "OK"
-        return q, status
+        stat = "OK"
+        return q, stat
+
+    def update_game_from_setup(self, form):
+        glevel = form.glevel.data
+        ggoal = form.ggoal.data
+        player_count = form.player_count.data
+        game_ID = form.game_ID.data
+
+        gdp = 1000000
+
+        stat = "NOK"
+        cur = self.mysql.connection.cursor()
+
+        q = cur.execute("UPDATE game "
+                        "SET game_level = %s, game_goal = %s, player_count = %s,"
+                        " gdp = %s "
+                        " WHERE game_id = %s",
+                        (glevel, ggoal, player_count, gdp, game_ID)
+                        )
+        self.mysql.connection.commit()
+        cur.close()
+        stat = "OK"
+        return q, stat
 
     def add_game(self, form):
         status = "NOK"
@@ -137,12 +183,12 @@ class DB_Mgr:
         start_date = form.start_date.data
         username = session.get('username')
         population = form.population.data
-        pop_chg = form.pop_chg.data
+        population_chg = form.population_chg.data
         gs_gdp = form.population.data * 100
         try:
             q = cur.execute("INSERT INTO game(username, game_ID, player_count, start_date, status, population, pop_chg,"
                             " game_level, game_goal, gs_gdp) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                            (username, game_ID, player_count, start_date, status, population, pop_chg,
+                            (username, game_ID, player_count, start_date, status, population, population_chg,
                              glevel, ggoal, gs_gdp))
             self.mysql.connection.commit()
             cur.close()
@@ -197,6 +243,28 @@ class DB_Mgr:
         cur = self.mysql.connection.cursor()
         q = cur.execute("UPDATE players SET status = %s, game_ID = %s, salary = %s WHERE username = %s",
                         (status, game_ID, salary, username))
+        self.mysql.connection.commit()
+        cur.close()
+        stat = "OK"
+        return stat, q
+
+    def update_gp(self, gp):
+        stat = "NOK"
+        username = gp.username
+        salary = gp.salary
+        cash_on_hand = gp.cash_on_hand
+        property_value = gp.property_value
+        stock_value = gp.stock_value
+        commodity_value = gp.commodity_value
+        business_value = gp.business_value
+        othr_value = gp.othr_value
+
+        cur = self.mysql.connection.cursor()
+        q = cur.execute("UPDATE players SET cash_on_hand = %s, salary = %s, "
+                        " property_value = %s, stock_value = %s, commodity_value = %s, "
+                        " business_value = %s, othr_value = %s WHERE username = %s",
+                        (cash_on_hand, salary, property_value, stock_value, commodity_value,
+                         business_value, othr_value, username))
         self.mysql.connection.commit()
         cur.close()
         stat = "OK"

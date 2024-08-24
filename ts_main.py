@@ -9,7 +9,7 @@ from passlib.hash import sha256_crypt
 from functools import wraps
 from datetime import datetime, date
 from app_factory import create_app, mysql
-from ts_page import ts_page_bp, render_edit_profile, render_game_settings
+from ts_page import ts_page_bp, render_edit_profile, render_game_settings, render_gametable_settings
 from ts_sub1 import ts_sub1_bp
 
 app = create_app()
@@ -200,9 +200,17 @@ def gameDash(username):
     # Initiate game settings
     if form.game_ID.data == " " or form.game_ID.data is None:
         status, result = db.get_game_data(username)
-        form = render_game_settings(form, result)
+        if status == "OK":
+            form = render_gametable_settings(form, result)
+            flash('Game card already exists. Please update by Submit.', 'success')
+        else:
+            form = render_game_settings(form)
+            flash('Game card does not exist. Please complete and Submit.', 'success')
+    else:
+        status = "OK"
+        result = 1
 
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST':
         selected_glevel = request.form.get('game_level')
         selected_ggoal = request.form.get('game_goal')
 
@@ -210,14 +218,16 @@ def gameDash(username):
             if result>0:
                 q, status = db.update_game(form)
                 app.logger.info(q)
+                flash('Game card updated successfully', 'success')
             else:
                 # Insert game row
                 status, q = db.add_game(form)
                 if status == "OK":
                     app.logger.info(q)
-                    flash("You selected: {selected_glevel}", "success")
+                    flash("You selected: {selected_glevel}.", "success")
                     return redirect(url_for('gameDash', username=username, form=form, page_name=page_name))
                 else:
+                    flash('Game card failed insertion.', 'error')
                     return render_template('gameDash.html', form=form, page_name=page_name, username=username)
 
     # Display the game settings
@@ -286,23 +296,24 @@ def gameSetup(username):
     else:
         flash("Failed retrieving game players", "error")
         return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name))
-    if request.method == 'POST' and form.validate():
-        selected_glevel = request.form.get('game_level')
-        selected_ggoal = request.form.get('game_goal')
+    if len(request.args) > 0:
+        if request.method == 'POST' or request.args['method'] == 'POST':
+            selected_glevel = request.form.get('game_level')
+            selected_ggoal = request.form.get('game_goal')
+            username = session['username']
 
-
-        # Update game row
-        form.player_count.data = player_count
-        session['player_count'] = player_count
-        q, status = db.update_game(form)
-        app.logger.info(q)
-
-        if status == "OK":
+            # Update game row
+            form.player_count.data = player_count
+            session['player_count'] = player_count
+            q, status = db.update_game_from_setup(form)
             app.logger.info(q)
-            flash("Game status update was successful", "success")
-            return redirect(url_for('gameSetup', username=username, form=form, players=players, page_name=page_name))
-        else:
-            return render_template('gameSetup.html', form=form, page_name=page_name, username=username)
+
+            if status == "OK":
+                app.logger.info(q)
+                flash("Game status update was successful", "success")
+                return render_template('gameSetup.html', username=username, form=form, players=players, page_name=page_name)
+            else:
+                return render_template('gameSetup.html', form=form, page_name=page_name, username=username)
 
     # Display the game settings
     return render_template('gameSetup.html', username=username, form=form, players=players, page_name=page_name)
