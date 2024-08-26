@@ -17,6 +17,16 @@
 
                     <input type="hidden" name="data" value="{{ data }}">
                     <input type="hidden" name="options" value="{{ options }}">
+                    {% if data['buy_type'] == "bb": %}
+                    <td>
+                    <select class=button name="choice">
+                        <option value="" selected disabled hidden>Choose an investment type</option>
+                        <option value="1">Sale Price</option>
+                        <option value="2">Partnership</option>
+                        <option value="3">Club</option>
+                    </select>
+                    </td>
+                    {% endif %}
                     <button type="submit" class="button">Accept</button>
                 </form>
                 </td>

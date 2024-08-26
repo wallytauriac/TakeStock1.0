@@ -114,14 +114,11 @@ def game_SPlay():
     data['player_move'] = session.get('player_move')
     data['player_round'] = session.get('player_round')
     options = render_sp_options()
+    session['options'] = options
     user = session['user']
-    context = {
-        'data': data,
-        'options': options,
-        'page_name': page_name,
-        'user': user
-    }
+
     print("SPLAY Options: ", options)
+    print("SESSION ", session)
     return render_template('game_SPlay.html', data=data, page_name=page_name, options=options, user=user)
 
 
@@ -132,6 +129,7 @@ def game_BuyProd():
 
     if request.method == 'GET':
         # First Access: Handle `buy_type` from the URL parameter
+        #form = GameBuyForm(request.args)
         buy_type = request.args.get('product')
         if not buy_type:
             return "Error: 'buy_type' is missing", 400  # Ensure buy_type is always provided
@@ -151,29 +149,35 @@ def game_BuyProd():
         # Ensure the JSON strings are properly formatted
         data = json.loads(data_json.replace("'", "\""))
         options = json.loads(options_json.replace("'", "\""))
+        form = GameBuyForm(request.form)
+
         buy_type = request.form.get('buy_type')  # Ensure buy_type persists
+        if buy_type == "bb":
+            data['choice'] = form.choice.data
         data['buy_type'] = buy_type
         print("DATA: ", data)
+        print("OPTIONS: ", options)
         # Populate `dataopt` using the data from the POST request
-        dataopt = render_sale_options(data, options)
+        dataopt = render_sale_options(data)
         print("DATAOPT: ", dataopt)
         page_name = "Product Sale Page"
         dataopt['page_name'] = page_name
+        dataopt['errors'] = form.errors
         return render_template('game_Sale.html', **dataopt)
 
     # Determine which options to render based on buy_type
     if buy_type == 'bs':
         page_name = "Buy Stock Page"
-        options = render_bs_options()
+        options = render_bs_options(session)
     elif buy_type == 'bp':
         page_name = "Buy Property Page"
-        options = render_bp_options()
+        options = render_bp_options(session)
     elif buy_type == 'bb':
         page_name = "Buy Business Page"
-        options = render_bb_options()
+        options = render_bb_options(session)
     elif buy_type == 'bc':
         page_name = "Buy Commodity Page"
-        options = render_bc_options()
+        options = render_bc_options(session)
 
     user = session['user']
     return render_template('game_BuyProd.html', data=data, user=user, page_name=page_name, options=options)

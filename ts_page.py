@@ -177,6 +177,8 @@ def build_sp_options():
     pi_stck = PriceIndex("stocks")
     row = pi_stck.get_starting_position()
     row1 = pi_stck.get_new_position()
+    row1['sc'] = sc
+    row1['cc'] = cc
     session['bs'] = row1
     value = row1[sc]
     sc = sc.capitalize()
@@ -185,7 +187,7 @@ def build_sp_options():
     # Property Offer
     pi_ppty = PriceIndex("address")
     row2 = pi_ppty.get_new_position()
-    session['bs'] = row2
+    session['bp'] = row2
     b_type = row2['BLDG_type']
     p_type = row2['PPTY_type']
     desc.append(b_type + " for " + p_type)
@@ -194,54 +196,44 @@ def build_sp_options():
     # Business Offer
     pi_bus = PriceIndex("business")
     row3 = pi_bus.get_new_position()
-    session['bs'] = row3
+    session['bb'] = row3
     desc.append(row3['business'])
     invest.append("$  " + str(row3['buy']))
     # Commodity Offer
     pi_comm = PriceIndex("commodities")
     commc = random.choice(comm)
     row4 = pi_comm.get_new_position()
-    session['bs'] = row4
-    value = row4[commc]
-    if commc == "Certificates" or commc == "Money":
-        value = value * 1000000
-    else:
-        pass
+    row4['commc'] = commc
     cc = random.choice(count)
+    row4['cc'] = cc
+    session['bc'] = row4
+    if commc == "Certificates" or commc == "Money":
+        value = row4[commc] * 1000000
+    else:
+        value = row4[commc]
     desc.append(commc + " Mkt Share Count=" + str(cc))
-    invest.append("$   " + str(round(value * cc, 0)))
-
+    iv = value * int(cc)
+    iv = round(int(iv), 0)
+    invest.append("$   " + str(iv))
     return desc, invest
 
-def render_bs_options():
+def render_bs_options(session):
     options = []
-    ctgy = ['MESSAGE', 'COST PER SHARE', 'SHARE COUNT', 'TOTAL COST']
+    ctgy = ['MESSAGE', 'SALES OFFER', 'COST PER SHARE', 'SHARE COUNT', 'TOTAL COST']
     desc = ['This stock is available for your purchase at the current cost per share.  '
-            'Remember, a refusal can cost you a consulting fee.)',
-            '$     100',
-            '#     100',
-            '$  10,000'
+            'Remember, a refusal can cost you a consulting fee.)'
             ]
-    d = {}
-    i = 0
-    for i in range(4):
-        d['opt_ctgy'] = ctgy[i]
-        d['opt_desc'] = desc[i]
-        options.append(d)
-        d = {}
+    # Build BS Options Data
+    bs = session['bs']
+    sc_name = bs['sc']
+    desc.append(bs['sc'].capitalize() + " Stock")
+    cps = bs[sc_name]
+    desc.append("$  " + str(cps))  # Cost per Share
+    cnt = bs['cc']
+    desc.append(str(cnt) + " Share(s)")
+    tc = int(cnt) * int(cps)
+    desc.append("$  " + str(tc))
 
-    return options
-
-def render_bp_options():
-    options = []
-    ctgy = ['MESSAGE', 'PROPERTY TYPE', 'ASKING PRICE', 'FEES', 'TOTAL COST']
-    desc = ['Here is an opportunity for you to accept or refuse a property for sale. '
-            'Remember, a refusal can cost you a consulting fee.)',
-            'House',
-            '$ 100,000',
-            '$   1,500',
-            '$ 101,500'
-            ]
     d = {}
     i = 0
     for i in range(5):
@@ -252,17 +244,24 @@ def render_bp_options():
 
     return options
 
-def render_bb_options():
+def render_bp_options(session):
     options = []
-    ctgy = ['MESSAGE', 'BUSINESS TYPE', 'SALE PRICE', 'PARTNERSHIP', 'CLUB PRICE', 'RENT/TICKET VALUE']
-    desc = ['Here is an opportunity for you. Consider this business for sale. '
-            'Remember, a refusal can cost you a consulting fee.)',
-            'Entertainment',
-            '$  70,000',
-            '$  35,000',
-            '$   7,000',
-            '$     100'
+    ctgy = ['MESSAGE', 'SALES OFFER', 'PROPERTY TYPE', 'ASKING PRICE', 'FEES', 'TOTAL COST']
+    desc = ['Here is an opportunity for you to accept or refuse a property for sale. '
+            'Remember, a refusal can cost you a consulting fee.)'
             ]
+    bp = session['bp']
+    desc.append(bp['Property'])
+    type = bp['BLDG_type'] + " for " + bp['PPTY_type']
+    desc.append(type)
+    price = bp['Price']
+    desc.append("  $  " + str(price))
+    calc = float(price) * 0.06
+    fees = int(round(calc, 2))
+    desc.append("  $  " + str(fees))
+    tc = int(float(bp['Price'])) + int(fees)
+    desc.append("  $  " + str(tc))
+
     d = {}
     i = 0
     for i in range(6):
@@ -273,18 +272,23 @@ def render_bb_options():
 
     return options
 
-def render_bc_options():
+def render_bb_options(session):
     options = []
-    ctgy = ['MESSAGE', 'COST PER SHARE', 'SHARE COUNT', 'TOTAL COST']
-    desc = ['This commodity is available for your purchase at the current cost per share.  '
-            'Remember, a refusal can cost you a consulting fee.)',
-            '$     100',
-            '#     100',
-            '$  10,000'
-            ]
+    ctgy = ['MESSAGE', 'BUSINESS NAME', 'SALE PRICE', 'PARTNERSHIP', 'CLUB PRICE', 'RENT/TICKET VALUE']
+    desc = ['Here is an opportunity for you. Consider this business for sale. '
+            'Remember, a refusal can cost you a consulting fee.)'
+           ]
+    bb = session['bb']
+    desc.append(bb['business'])
+    desc.append('$  ' + str(bb['buy']))
+    desc.append('$  ' + str(bb['partner']))
+    desc.append('$  ' + str(bb['club']))
+    desc.append('$  ' + str(bb['value']))
+
+
     d = {}
     i = 0
-    for i in range(4):
+    for i in range(6):
         d['opt_ctgy'] = ctgy[i]
         d['opt_desc'] = desc[i]
         options.append(d)
@@ -292,35 +296,60 @@ def render_bc_options():
 
     return options
 
-def render_sale_options(data, options):
+def render_bc_options(session):
+    options = []
+    ctgy = ['MESSAGE', 'SALE OFFER', 'COST PER SHARE', 'SHARE COUNT', 'TOTAL COST']
+    desc = ['This commodity is available for your purchase at the current cost per share.  '
+            ]
+    # Build BC Options Data
+    bc = session['bc']
+    cc_name = bc['cc']
+    desc.append(bc['commc'] + " Stock")
+    bcv = bc['commc']
+    cps = bc[bcv]
+    desc.append("$  " + str(cps))  # Cost per Share
+    cnt = bc['cc']
+    desc.append(str(cnt) + " Share(s)")
+    if bc['commc'] == "Certificates" or bc['commc'] == "Money":
+        value = float(cps) * 1000000
+    else:
+        value = float(cps)
+    tc = int(cnt) * int(float(value))
+    desc.append("$  " + str(tc))
+
+
+    d = {}
+    i = 0
+    for i in range(5):
+        d['opt_ctgy'] = ctgy[i]
+        d['opt_desc'] = desc[i]
+        options.append(d)
+        d = {}
+
+    return options
+
+def render_sale_options(data):
     user = session['user']
-    ctgy = ['MESSAGE', 'PRODUCT TYPE', 'SHARE COUNT', 'TOTAL COST']
+    options = session['options']
+    ctgy = ['MESSAGE', 'TRANSACTION', 'TOTAL COST']
     desc = ['Your purchase is complete.  This is a cash sale from your cash-on-hand.']
-    if data['buy_type'] == "bs" or data['buy_type'] == "bc":
-        if data['buy_type'] == "bp":
-            desc.append('PROPERTY PURCHASE')
-            rnge = 2
-        else:
-            rnge = 3
-            if data['buy_type'] == "bs":
-                desc.append('STOCK PURCHASE')
-            else:
-                desc.append('COMMODITY PURCHASE')
-        for option in options:
-            if option['opt_ctgy'] == "TOTAL COST":
-                desc.append(option['opt_desc'])
-            if option['opt_ctgy'] == "SHARE COUNT":
-                desc.append(option['opt_desc'])
-    elif data['buy_type'] == "bp":
-        rnge = 2
+    if data['buy_type'] == "bs":
         desc.append('STOCK PURCHASE')
-        for option in options:
-            if option['opt_ctgy'] == "TOTAL COST":
-                desc.append(option['opt_desc'])
+        desc.append(options[0]['opt_invest'])
+    if data['buy_type'] == "bp":
+        desc.append('PROPERTY PURCHASE')
+        desc.append(options[1]['opt_invest'])
+    if data['buy_type'] == "bb":
+        desc.append('BUSINESS PURCHASE')
+        desc.append(options[2]['opt_invest'])
+    if data['buy_type'] == "bc":
+        desc.append('COMMODITY PURCHASE')
+        desc.append(options[3]['opt_invest'])
+
     d = {}
     i = 0
     options = []
-    for i in range(rnge):
+    for i in range(3):
         d['opt_ctgy'] = ctgy[i]
         d['opt_desc'] = desc[i]
         options.append(d)

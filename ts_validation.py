@@ -3,7 +3,7 @@ from functools import wraps
 from flask import session, flash, redirect, url_for
 from wtforms import Form, PasswordField, StringField, validators, IntegerField, SelectField, DecimalField, DateField, FloatField
 from passlib.hash import sha256_crypt
-from wtforms.validators import InputRequired, NumberRange
+from wtforms.validators import InputRequired, NumberRange, ValidationError
 
 
 class ChangePasswordForm(Form):
@@ -108,3 +108,16 @@ class GameConnectForm(Form):
     game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
     choices = [('New', 'New Player'), ('Ready', 'Ready'), ('Paused', 'Paused')]
     status = SelectField('Status', choices=choices)
+
+class GameBuyForm(Form):
+    valid_choices = ['1', '2', '3']
+    choices = [('1', 'Sale Price'),
+               ('2', 'Partnership'),
+               ('3', 'Club')]
+    choice = SelectField('Buy Selection', choices=choices)
+    if choice == None:
+        flash("Please enter a valid choice.", "error")
+
+    def validate_select_field(form, choice):
+        if choice not in form.valid_choices:
+            raise ValidationError('Please select a valid choice.')
