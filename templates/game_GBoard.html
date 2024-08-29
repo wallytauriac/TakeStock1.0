@@ -39,21 +39,21 @@
                         <table class="table-container" style="border: 3px solid black; width: 50%; float:left; background-color:white; color: black;">
                             <thead>
                          <tr>
-                          <th scope="col" style="padding: 0px;">PLAYER</th>
-                          <th scope="col" style="padding: 0px;">CASH</th>
-                          <th scope="col" style="padding: 25px;">PROPERTY</th>
-                          <th scope="col" style="padding: 25px;">STOCKS</th>
-                          <th scope="col" style="padding: 25px;">BUS. COUNT</th>
+                          <th scope="col" style="padding: 5px;">PLAYER</th>
+                          <th scope="col" style="padding: 20px;">CASH</th>
+                          <th scope="col" style="padding: 20px;">PROPERTY</th>
+                          <th scope="col" style="padding: 20px;">STOCKS</th>
+                          <th scope="col" style="padding: 10px;">BUSINESS COUNT</th>
                         </tr>
                       </thead>
                       <tbody>
                             {% for option in options %}
                                 <tr>
-                                    <td style="background-color: gold; border-color: white">{{ option.opt_plyr }}</td>
-                                    <td style="background-color: gold;">{{ option.opt_cash }}</td>
-                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_prop }}</td>
-                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_stck }}</td>
-                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_busc }}</td>
+                                    <td style="background-color: gold; border-color: white; padding: 5px;">{{ option.opt_plyr }}</td>
+                                    <td style="background-color: gold; padding: 20px;">{{ option.opt_cash }}</td>
+                                    <td style="background-color: gold; padding: 20px;">{{ option.opt_prop }}</td>
+                                    <td style="background-color: gold; padding: 20px;">{{ option.opt_stck }}</td>
+                                    <td style="background-color: gold; padding: 10px;">{{ option.opt_busc }}</td>
                                 </tr>
 
                             {% endfor %}
@@ -63,7 +63,7 @@
 
                     <div class="video-container" style="width: 45%; verticle-align: top; float:right;">
                         <video style="width: 100%; height: 500px; background-color: darkred;" controls autoplay>
-                            <source src="/static/Takestock_Intro.mp4" type="video/mp4">
+                            <source src="/static/Takestock_Intro2.mp4" type="video/mp4">
                             <source src="movie.ogg" type="video/ogg">
                             Your browser does not support the video tag.
                         </video>

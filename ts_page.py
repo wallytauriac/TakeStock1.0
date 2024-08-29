@@ -359,8 +359,84 @@ def render_sale_options(data):
         'user': user,
         'options': options
     }
+    print("Sale Options DATAOPT = ", dataopt)
+    print("Session Dictionary: ", session)
+    update_player_game(dataopt)
     return dataopt
 
+def update_player_game(dataopt):
+    """
+    update the game table (gc dictionary)
+    -> Spending and Expenditure adjustments
+    -> Update counts
+    ->
+    update the player's table (pc and options dictionary)
+    -> Cash-on-Hand adjustments
+    -> Product count adjustments
+    -> Investment table insert(s)
+    """
+    invest_data = {
+        'invest_type': " ",
+        'invest_count': 0,
+        'invest_amount': 0.00,
+        'invest_description': " ",
+        'player_number': 0,
+        'invest_value': 0.00
+    }
+    # Unload data dictionary from the dataopt nested dictionary
+    data1 = dataopt['data']
+    buy_type = data1['buy_type']
+    # Unload options dictionary from dataopt nested dictionary
+    options1 = dataopt['options']
+    # Unload product type from the sessions nested dictionary
+    product_data = session[buy_type]
+    # Unload data dictionary from the sessions nested dictionary
+    data2 = session['data']
+    # Unload game card from the data nested dictionary
+    gc = data2['gc']
+    # Unload options from the session nested dictionary
+    options2 = session['options']
+    invest_data['player_number'] = data1['player_number']
+    if buy_type == "bs":
+        invest_card = build_invest_card(invest_data, product_data['sc'], options2[0]['opt_desc'], options2[0]['opt_invest'])
+        invest_card['invest_type'] = "STCK"
+    if buy_type == "bp":
+        invest_card = build_invest_card(invest_data, product_data['Property'], options2[1]['opt_desc'], options2[1]['opt_invest'])
+        invest_card['invest_type'] = "PPTY"
+    if buy_type == "bb":
+        invest_card = build_invest_card(invest_data, product_data['business'], options2[2]['opt_desc'], options2[2]['opt_invest'])
+        invest_card['invest_type'] = "BUS"
+    if buy_type == "bc":
+        invest_card = build_invest_card(invest_data, product_data['commc'], options2[3]['opt_desc'], options2[3]['opt_invest'])
+        invest_card['invest_type'] = "COMM"
+
+    status = db.insert_investments_from_sale(invest_card)
+    if status == "OK":
+        flash("Investment saved successfully", "success")
+
+    status = db.update_game_player(invest_card['invest_amount'], gc, dataopt)
+    if status == "OK":
+        flash("Game/Player saved successfully", "success")
+
+def build_invest_card(invest_data, product, opt1, opt2):
+    invest_data['invest_description'] = product
+    n = opt1
+    a = opt2
+    invest_data['invest_count'] = int(re.sub(r'\D', '', n))
+    invest_data['invest_amount'] = float(re.sub(r'\D', '', a))
+    invest_data['invest_value'] = round(float(invest_data['invest_amount']) * 1.12, 0)
+    print("INVEST DATA= ", invest_data)
+    return invest_data
+
+"""
+    # Assigning each nested dictionary to a separate variable
+        bb_dict = session_dict.get('bb', {})
+        bc_dict = session_dict.get('bc', {})
+        bp_dict = session_dict.get('bp', {})
+        bs_dict = session_dict.get('bs', {})
+        data_dict = session_dict.get('data', {})
+        options_list = session_dict.get('options', [])
+"""
 
 def render_rp_options():
     options = []
@@ -389,14 +465,8 @@ def render_tp_options():
     options = []
     ctgy = ['STOCKS', 'PROPERTY', 'BUSINESS']
     type = ['STCK', 'PPTY', 'BUS']
-    desc = ['Airline   (Count=100)',
-            'Personal House',
-            'Partnership (Wally Mart)'
-            ]
-    invest = ['$    100',
-              '$100,000',
-              '$ 50,000'
-            ]
+    desc, invest = build_tp_options()
+
     d = {}
     for i in range(3):
         d['opt_ctgy'] = ctgy[i]
@@ -405,34 +475,156 @@ def render_tp_options():
         d['opt_invest'] = invest[i]
         options.append(d)
         d = {}
-        if i == 0 or i==1:
-            d['opt_ctgy'] = " "
-            d['opt_type'] = " * "
-            d['opt_desc'] = " * "
-            d['opt_invest'] = " * "
-            options.append(d)
-            d = {}
 
     return options
 
-def render_gb_options():
-    options = []
-    plyr = [' 1 ', ' 2 ', ' 3 ']
-    cash = ['$ 12,500', '$ 18,500', '$121,000']
-    prop = ['$   50,000',
-            '$   50,000',
-            '$   50,000'
-            ]
-    stck = ['   1,000',
-              '   1,000',
-              '   1,000'
-            ]
-    busc = ['   3',
-            '   2',
-            '   1'
-            ]
+def build_tp_options():
+    desc = []
+    invest = []
+    # Stock Offer
+    stocks = ["oNg", "robotics", "gold", "paper", "utility", "auto", "airline"]
+    count = [100, 50, 10, 25]
+    sc = random.choice(stocks)
+    cc = random.choice(count)
+    pi_stck = PriceIndex("stocks")
+    row = pi_stck.get_starting_position()
+    row1 = pi_stck.get_new_position()
+    row1['sc'] = sc
+    row1['cc'] = cc
+    session['bs'] = row1
+    value = row1[sc]
+    sc = sc.capitalize()
+    desc.append(sc + " Stocks Count=" + str(cc))
+    invest.append("$   " + str(value * cc))
+    # Property Offer
+    pi_ppty = PriceIndex("address")
+    row2 = pi_ppty.get_new_position()
+    session['bp'] = row2
+    b_type = row2['BLDG_type']
+    p_type = row2['PPTY_type']
+    desc.append(b_type + " for " + p_type)
+    price = round(row2['Price'], 0)
+    invest.append("$  " + str(price))
+    # Business Offer
+    pi_bus = PriceIndex("business")
+    row3 = pi_bus.get_new_position()
+    session['bb'] = row3
+    desc.append(row3['business'])
+    invest.append("$  " + str(row3['buy']))
+
+    return desc, invest
+
+def render_tpsale_options(data):
+    user = session['user']
+    options = session['options']
+    ctgy = ['MESSAGE', 'ITEM 1', 'TOTAL COST 1', 'ITEM 2', 'TOTAL COST 2', 'ITEM 3', 'TOTAL COST 3']
+    desc = ['Your purchase is complete.  This is a cash sale from your cash-on-hand.']
+
+    desc.append('STOCK PURCHASE')
+    desc.append(options[0]['opt_invest'])
+
+    desc.append('PROPERTY PURCHASE')
+    desc.append(options[1]['opt_invest'])
+
+    desc.append('BUSINESS PURCHASE')
+    desc.append(options[2]['opt_invest'])
+
     d = {}
-    for i in range(3):
+    i = 0
+    options = []
+    for i in range(7):
+        d['opt_ctgy'] = ctgy[i]
+        d['opt_desc'] = desc[i]
+        options.append(d)
+        d = {}
+    dataopt = {
+        'data': data,
+        'user': user,
+        'options': options
+    }
+    print("TPSale Options DATAOPT = ", dataopt)
+    print("Session Dictionary: ", session)
+    #update_tp_player_game(dataopt)
+    return dataopt
+
+def update_tp_player_game(dataopt):
+    """
+    update the game table (gc dictionary)
+    -> Spending and Expenditure adjustments
+    -> Update counts
+    ->
+    update the player's table (pc and options dictionary)
+    -> Cash-on-Hand adjustments
+    -> Product count adjustments
+    -> Investment table insert(s)
+    """
+    invest_data = {
+        'invest_type': " ",
+        'invest_count': 0,
+        'invest_amount': 0.00,
+        'invest_description': " ",
+        'player_number': 0,
+        'invest_value': 0.00
+    }
+    total_amount = 0
+    # Unload data dictionary from the dataopt nested dictionary
+    data1 = dataopt['data']
+    buy_type = data1['buy_type']
+    # Unload options dictionary from dataopt nested dictionary
+    options1 = dataopt['options']
+    # Unload product type from the sessions nested dictionary
+    product_data = session[buy_type]
+    # Unload data dictionary from the sessions nested dictionary
+    data2 = session['data']
+    # Unload game card from the data nested dictionary
+    gc = data2['gc']
+    # Unload options from the session nested dictionary
+    options2 = session['options']
+    product_data = session['bs']
+    invest_card = build_invest_card(invest_data, product_data['sc'], options2[0]['opt_desc'], options2[0]['opt_invest'])
+    invest_card['invest_type'] = "STCK"
+    total_amount = total_amount + invest_card['invest_amount']
+    status = db.insert_investments_from_sale(invest_card)
+    product_data = session['bp']
+    invest_card = build_invest_card(invest_data, product_data['Property'], options2[1]['opt_desc'], options2[1]['opt_invest'])
+    invest_card['invest_type'] = "PPTY"
+    total_amount = total_amount + invest_card['invest_amount']
+    status = db.insert_investments_from_sale(invest_card)
+    product_data = session['bb']
+    invest_card = build_invest_card(invest_data, product_data['business'], options2[2]['opt_desc'], options2[2]['opt_invest'])
+    invest_card['invest_type'] = "BUS"
+    total_amount = total_amount + invest_card['invest_amount']
+    status = db.insert_investments_from_sale(invest_card)
+    data1['buy_type'] = "spb"
+    if status == "OK":
+        flash("Investment saved successfully", "success")
+
+    status = db.update_game_player(total_amount, gc, data1)
+    if status == "OK":
+        flash("Game/Player saved successfully", "success")
+
+
+def render_gb_options(game_ID):
+    status, players = db.get_players_game_card(game_ID, allcolumn="Y")
+    print("Player Cards= ", players)
+    options = []
+    plyr = []
+    cash = []
+    prop = []
+    stck = []
+    busc = []
+    y = 0
+    for player in players:
+        plyr.append(str(player['player_number']))
+        cash.append("$  " + str(player['cash_on_hand']))
+        prop.append("$  " + str(player['property_value']))
+        stck.append("$  " + str(player['stock_value']))
+        busc.append("$  " + str(player['business_value']))
+        y += 1
+
+    i = 0
+    d = {}
+    for i in range(y):
         d['opt_plyr'] = plyr[i]
         d['opt_cash'] = cash[i]
         d['opt_prop'] = prop[i]

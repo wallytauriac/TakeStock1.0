@@ -89,8 +89,13 @@ def gameAction(username):
     }
     user = None
     result, q = db.get_player_record(username)
+
     if q>0:
         status, players = db.get_players_game_card(result["game_ID"])
+        for player in players:
+            if player['player_number'] == session['player_number']:
+                if player['cash_on_hand'] == 0.00:
+                    stat = db.update_player2(player)
         if status == "OK":
             session['data'] = data
             data = render_game_card(session, result["game_ID"])
@@ -215,24 +220,80 @@ def game_TPlay():
     data['player_round'] = session.get('player_round')
     options = render_tp_options()
     user = session['user']
-    print(options)
+    session['options'] = options
+    print(session)
     return render_template('game_TPlay.html', options=options, page_name=page_name, user=user, data=data)
+
+@ts_sub1_bp.route('/game_tpbuy', methods=['GET', 'POST'])
+def game_TPBuy():
+    dataopt = {}  # Initialize dataopt early
+
+    # Populate `data` dictionary
+    data = {
+        'player_number': session.get('player_number'),
+        'player_move': session.get('player_move'),
+        'player_round': session.get('player_round'),
+    }
+
+    if request.method == 'POST':
+        # Process the POST request
+        data_json = request.form.get('data')
+        options_json = request.form.get('options')
+        # Ensure the JSON strings are properly formatted
+        data = json.loads(data_json.replace("'", "\""))
+        options = json.loads(options_json.replace("'", "\""))
+
+        print("DATA: ", data)
+        print("OPTIONS: ", options)
+        # Populate `dataopt` using the data from the POST request
+        dataopt = render_tpsale_options(data)
+        print("DATAOPT: ", dataopt)
+        page_name = "Triple Sale Page"
+        dataopt['page_name'] = page_name
+
+        return render_template('game_TPSale.html', **dataopt)
+
+    # Determine which options to render based on buy_type
+
+    options = render_bs_options(session)
+
+    options = render_bp_options(session)
+
+    options = render_bb_options(session)
+    page_name = "Triple Sale Page"
+    user = session['user']
+    return render_template('game_TPBuyProd.html', data=data, user=user, page_name=page_name, options=options)
+
+@ts_sub1_bp.route('/game_tpsale', methods=['GET', 'POST'])
+# @is_logged_in
+def game_TPSale():
+
+    username = session.get('username')
+    flash("Your Game and Play Card have been updated successfully!", "success")
+    user = session['user']
+    return gamePass(username)
+
 
 @ts_sub1_bp.route('/game_g_board', methods=['GET', 'POST'])
 # @is_logged_in
 def game_GBoard():
     page_name = "Game Board Page"
+    username = session['user']
+    result, q = db.get_player_record(username)
+    status, result2 = db.get_game_card(result["game_ID"])
+    print("Game Card= ", result2)
+    print(status)
     data = {}
-    data['game_ID'] = session.get('game_ID')
+    data['game_ID'] = result['game_ID']
     data['player_move'] = session.get('player_move')
     data['player_round'] = session.get('player_round')
     # get game table data to complete loading the data dictionary
-    data['population'] = "10,004,000"
-    data['pop_chg'] = "2%"
-    data['total_spending'] = "$  1,000,300    "
-    data['total_earnings'] = "$  2,600,000    "
+    data['population'] = result2['population']
+    data['pop_chg'] = result2['population_chg']
+    data['total_spending'] = result2['total_spending']
+    data['total_earnings'] = result2['total_earnings']
     data['user_captain'] = session.get('username')
-    options = render_gb_options()
+    options = render_gb_options(data['game_ID'])
     print(options)
     return render_template('game_GBoard.html', options=options, page_name=page_name, data=data)
 

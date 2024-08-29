@@ -1,3 +1,6 @@
+import random
+from random import randint, choice
+
 from flask import Flask, render_template, flash, redirect, url_for, request, session, logging
 from passlib.hash import sha256_crypt
 from flask_mysqldb import MySQL
@@ -70,11 +73,14 @@ class DB_Mgr:
             print(f"Database error: {e}")
         return status
 
-    def get_players_game_card(self, game_ID):
+    def get_players_game_card(self, game_ID, allcolumn="N"):
         status = "NOK"
         try:
             cur = self.mysql.connection.cursor()
-            cur.execute("SELECT username, player_number, status FROM players where game_ID = %s", [game_ID])
+            if allcolumn == "N":
+                cur.execute("SELECT username, player_number, status FROM players where game_ID = %s", [game_ID])
+            else:
+                cur.execute("SELECT * FROM players where game_ID = %s", [game_ID])
             players = cur.fetchall()
             cur.close()
             status = "OK"
@@ -172,6 +178,87 @@ class DB_Mgr:
         stat = "OK"
         return q, stat
 
+    def update_game_player(self, amount, gc, dataopt):
+        stat = "NOK"
+        username = dataopt['user']
+        data = dataopt['data']
+        buy_type = data['buy_type']
+        game_ID = gc['game_ID']
+        round_count = data['player_round']
+        move_count = data['player_move']
+        total_spending = float(gc['total_spending']) + float(amount)
+        player_number = data['player_number']
+        cash_on_hand = 0
+        cur = self.mysql.connection.cursor()
+        q = cur.execute("UPDATE game "
+                        "SET round_count = %s, move_count = %s, total_spending = %s "
+                        " WHERE game_id = %s",
+                        (round_count, move_count, total_spending, game_ID)
+                        )
+        self.mysql.connection.commit()
+        q = cur.execute('SELECT * FROM players WHERE username = %s', [username])
+        result = cur.fetchone()
+        if result['cash_on_hand'] > amount:
+            cash_on_hand = result['cash_on_hand'] - amount
+        stck = result['stock_value']
+        ppty = result['property_value']
+        bus = result['business_value']
+        comm = result['commodity_value']
+        othr = result['other_investments']
+        if buy_type == "bs":
+            stck = float(stck) + float(amount)
+        elif buy_type == "bp":
+            ppty = float(ppty) + float(amount)
+        elif buy_type == "bb":
+            bus = float(bus) + float(amount)
+        elif buy_type == "bc":
+            comm = float(comm) + float(amount)
+        else:
+            othr = float(othr) + float(amount)
+
+        sql = ("UPDATE players SET cash_on_hand = %s, stock_value = %s, property_value = %s, business_value = %s, commodity_value = %s, other_investments = %s WHERE game_id = %s and username = %s")
+        val = (cash_on_hand, stck, ppty, bus, comm, othr, game_ID, username)
+        try:
+            cur.execute(sql, val)
+        except Exception as e:
+            print(f"Database error: {e}")
+        self.mysql.connection.commit()
+        cur.close()
+        stat = "OK"
+        return stat
+
+
+
+
+    def insert_investments_from_sale(self, invest_data):
+        # Dictionary passed with data to update
+        stat = "NOK"
+        # Constructing the SQL update statement
+        invest_type = invest_data['invest_type']
+        invest_count = invest_data['invest_count']
+        invest_amount = invest_data['invest_amount']
+        invest_description = invest_data['invest_description']
+        player_number = invest_data['player_number']
+        invest_value = invest_data['invest_value']
+       # insert_clause = ', '.join((f"{keys}" for keys in invest_data.keys()))
+       # insert_clause = ', '.join(
+       #     [f"'{values}'" if i in [0, 3] else f"{values}" for i, values in enumerate(invest_data.values())])
+        cur = self.mysql.connection.cursor()
+
+        sql = (
+            "INSERT INTO investments (invest_type, invest_count, invest_amount, invest_description, player_number,"
+            " invest_value) VALUES(%s, %s, %s, %s, %s, %s)")
+        print("Query ", sql)
+
+        val = (invest_type, invest_count, invest_amount, invest_description, player_number, invest_value)
+        print("Value ", val)
+        cur.execute(sql, val)
+
+        self.mysql.connection.commit()
+        cur.close()
+        stat = "OK"
+        return stat
+
     def add_game(self, form):
         status = "NOK"
         cur = self.mysql.connection.cursor()
@@ -247,6 +334,28 @@ class DB_Mgr:
         cur.close()
         stat = "OK"
         return stat, q
+
+    def update_player2(self, result):
+        stat = "NOK"
+        username = result['username']
+        salary = result['salary']
+        game_ID = result['game_ID']
+        cash_on_hand = result['cash_on_hand']
+        status = "Ready"
+
+        city_addr = "1248.70"
+        choice = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        inheritance = random.choice(choice)
+        salary = float(salary) + 1500.00
+        cash_on_hand = float(cash_on_hand) + float(inheritance * 7500)
+
+        cur = self.mysql.connection.cursor()
+        q = cur.execute("UPDATE players SET status = %s, game_ID = %s, salary = %s, cash_on_hand = %s WHERE username = %s",
+                        (status, game_ID, salary, cash_on_hand, username))
+        self.mysql.connection.commit()
+        cur.close()
+        stat = "OK"
+        return stat
 
     def update_gp(self, gp):
         stat = "NOK"
