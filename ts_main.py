@@ -11,13 +11,14 @@ from datetime import datetime, date
 from app_factory import create_app, mysql
 from ts_page import ts_page_bp, render_edit_profile, render_game_settings, render_gametable_settings
 from ts_sub1 import ts_sub1_bp
+#from Test import test_bp
 
 app = create_app()
 
 # Register Blueprints
 app.register_blueprint(ts_page_bp)
 app.register_blueprint(ts_sub1_bp)
-
+#app.register_blueprint(test_bp)
 db = DB_Mgr(mysql)
 
 

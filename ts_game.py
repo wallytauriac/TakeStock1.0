@@ -6,6 +6,7 @@ import random
 from typing import Dict, Any, Optional, Tuple, Set
 from mysql.connector import Error
 from ts_database import *
+from app_factory import create_app, mysql
 db = DB_Mgr(mysql)
 
 class PriceIndex:

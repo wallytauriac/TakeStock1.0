@@ -3,6 +3,7 @@ from ts_game import *
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from datetime import datetime, date
 from wtforms import Form
+from app_factory import create_app, mysql
 from functools import wraps
 import re
 
@@ -637,33 +638,55 @@ def render_gb_options(game_ID):
 
 def render_pb_options():
     options = []
-    data = {}
-    data['money'] = "$  12,500"
-    data['property'] = "   5   "
-    data['stock'] = "   1,000   "
-    data['busc'] = "   3    "
+    data = {'player_number' : '   0   ',
+            'PROP' : '   0   ',
+            'STCK' : '   0   ',
+            'BUS' : '   0   ',
+            'COMM' : '   0   ',
+            'OTHR' : '   0   '
+            }
+    # Get investment counts
+    status, results = db.get_player_investment_stats(session['player_number'])
+    print("Investment Stats", results)
+    if status == "OK":
+        data['player_number'] = session['player_number']
+        for i in range(len(results)-1):
+            data[results[i]['invest_type']] = "  " + str(results[i]['inv_cnt']) + "  "
+    else:
+        flash("DB error. Investments table read error.", "error")
+    # Get player card data to display other game statistics
+    result2, q = db.get_player_record(session['user'])
+    if q>0:
+        data['money'] = "$  " + str(result2['cash_on_hand'])
+        data['salary'] = "$  " + str(result2['salary'])
+        data['job_level'] = "   " + str(result2['job_level'])
+        data['degree_level'] = "   " + str(result2['degree_level'])
 
-    type = ['PPTY', 'STCK', 'BUS', 'WANT']
-    desc = ['Personal House', 'Airline   (Count=100)', 'Partnership (Wally Mart)', 'Diamond Necklace']
-    inv = ['$  100,000',
-           '$    1,000',
-           '$   50,000',
-           '$    2,000'
-            ]
-    val = ['$  110,000',
-            '$    2,000',
-            '$   70,000',
-            '$    5,000'
-            ]
+        data['property_value'] = "$  " + str(result2['property_value'])
+        data['stock_value'] = "$  " + str(result2['stock_value'])
+        data['business_value'] = "$  " + str(result2['business_value'])
+        data['commodity_value'] = "$  " + str(result2['commodity_value'])
+        data['other_investments'] = "$  " + str(result2['other_investments'])
+    else:
+        flash("DB error. Players table read error.", "error")
 
-    d = {}
-    for i in range(4):
-        d['opt_type'] = type[i]
-        d['opt_desc'] = desc[i]
-        d['opt_inv'] = inv[i]
-        d['opt_val'] = val[i]
-        options.append(d)
+    status, investments = db.get_player_investment_history(session['player_number'])
+    if status == "OK":
+        print("Investments", investments)
+        print("Investments row count: ", len(investments))
         d = {}
+        options = []
+        for item in investments:
+            d['opt_type'] = item['invest_type']
+            d['opt_count'] = str(item['invest_count'])
+            d['opt_desc'] = item['invest_description']
+            d['opt_amt'] = str(item['invest_amount'])
+            d['opt_val'] = str(item['invest_value'])
+            options.append(d)
+            d = {}
+        print("Investment option Detail: ", options)
+    else:
+        flash("DB error. Players table read error.", "error")
 
     return options, data
 

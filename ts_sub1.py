@@ -5,10 +5,12 @@ from ts_validation import *
 from ts_page import *
 from ts_database import *
 from flask_mysqldb import MySQL
+from app_factory import create_app, mysql
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, RadioField, SelectField, IntegerField
 from functools import wraps
 
 ts_sub1_bp = Blueprint('ts_sub1_bp', __name__, template_folder="templates")
+db = DB_Mgr(mysql)
 
 def is_logged_in(f):
     @wraps(f)
@@ -91,7 +93,8 @@ def gameAction(username):
     result, q = db.get_player_record(username)
 
     if q>0:
-        status, players = db.get_players_game_card(result["game_ID"])
+        status, players = db.get_players_game_card(result["game_ID"], allcolumn="Y")
+        print("Action Players: ", players)
         for player in players:
             if player['player_number'] == session['player_number']:
                 if player['cash_on_hand'] == 0.00:
@@ -99,7 +102,9 @@ def gameAction(username):
         if status == "OK":
             session['data'] = data
             data = render_game_card(session, result["game_ID"])
+            print("Game card: ", data)
             pc = render_player_card(players, session['player_number'])
+            print("Player card: ", pc)
             user = pc['username']
             session['user'] = pc['username']
             data['pc'] = pc

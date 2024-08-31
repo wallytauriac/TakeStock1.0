@@ -3,14 +3,56 @@ from random import randint, choice
 
 from flask import Flask, render_template, flash, redirect, url_for, request, session, logging
 from passlib.hash import sha256_crypt
+
 from flask_mysqldb import MySQL
 from ts_validation import ChangePasswordForm, AddMemberForm, EditForm, GameForm, GameLevelForm
-app = Flask(__name__)
-mysql = MySQL(app)  # Properly initialize MySQL with the Flask app
+import mysql
+import mysql.connector
+import random
+from typing import Dict, Any, Optional, Tuple, Set
+from mysql.connector import Error
+
+db_config = {
+    'user': 'root',
+    'password': 'Evenodd!512',
+    'host': 'localhost',
+    'database': 'Takestock1.0'
+}
+
 
 class DB_Mgr:
     def __init__(self, obj):
         self.mysql = obj
+
+    def get_player_investment_stats(self, player_number):
+        status = "NOK"
+
+        cur = self.mysql.connection.cursor()
+        try:
+            q = cur.execute('Select invest_type, count(invest_count) as inv_cnt FROM investments '
+                            'where player_number = %s GROUP BY invest_type', [player_number])
+        except Exception as e:
+            print(f"DB Investment Statistics error: {e}")
+        result = cur.fetchall()
+        cur.close()
+        status = "OK"
+        return status, result
+
+    def get_player_investment_history(self, player_number):
+        status = "NOK"
+        # conn = mysql.connector.connect(**db_config)
+        # cur = conn.cursor(dictionary=True)
+        cur = self.mysql.connection.cursor()
+        try:
+            q = cur.execute('Select * FROM investments '
+                            'where player_number = %s', [player_number])
+            result = cur.fetchall()
+        except Exception as e:
+            print(f"DB Investment History error: {e}")
+
+        cur.close()
+        status = "OK"
+        return status, result
 
     def get_player_record(self, username):
         cur = self.mysql.connection.cursor()
@@ -410,17 +452,37 @@ class DB_Mgr:
 # Initialize Flask app
 app = Flask(__name__)
 
-# MySQL configurations
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Evenodd!512'
-app.config['MYSQL_DB'] = 'takestock1.0'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
 
 mysql = MySQL(app)  # Properly initialize MySQL with the Flask app
-
 # Create an instance of DB_Mgr
 db = DB_Mgr(mysql)
+status, investments = db.get_player_investment_history(session['player_number'])
+
+if status == "OK":
+    for item in investments:
+        print(item)
+    # type = ['PPTY', 'STCK', 'BUS', 'OTHR']
+    # desc = ['Personal House', 'Airline   (Count=100)', 'Partnership (Wally Mart)', 'Diamond Necklace']
+    # inv = ['$  100,000',
+    #        '$    1,000',
+    #        '$   50,000',
+    #        '$    2,000'
+    #        ]
+    # val = ['$  110,000',
+    #        '$    2,000',
+    #        '$   70,000',
+    #        '$    5,000'
+    #        ]
+
+if __name__ == "__main__":
+    with app.app_context():
+        # MySQL configurations
+        app.config['MYSQL_HOST'] = 'localhost'
+        app.config['MYSQL_USER'] = 'root'
+        app.config['MYSQL_PASSWORD'] = 'Evenodd!512'
+        app.config['MYSQL_DB'] = 'takestock1.0'
+        app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # Test the methods directly within the application context
 if __name__ == "__main__":

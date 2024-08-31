@@ -24,23 +24,51 @@
                     <div class="custom-table">
                         <div class="player-info">
                             <div style="background-color: gold;">PLAYER</div>
-                            <div style="background-color: yellow;">MONEY</div>
-                            <div style="background-color: gold;">PROPERTY COUNT</div>
+                            <div style="background-color: yellow;">PROPERTY COUNT</div>
                             <div style="background-color: gold;">STOCK COUNT</div>
-                            <div style="background-color: gold;">BUSINESS COUNT</div>
+                            <div style="background-color: yellow;">BUSINESS COUNT</div>
+                            <div style="background-color: gold;">COMM COUNT</div>
+                            <div style="background-color: yellow;">OTHR INV COUNT</div>
                         </div>
                         <div class="player-info">
                             <div style="background-color: gold;"><span>{{ data.player_number }}</span></div>
-                            <div style="background-color: yellow;"><span>{{ data.money }}</span></div>
-                            <div style="background-color: gold;"><span>{{ data.property }}</span></div>
-                            <div style="background-color: yellow;"><span>{{ data.stock }}</span></div>
-                            <div style="background-color: yellow;"><span>{{ data.busc }}</span></div>
+                            <div style="background-color: yellow;"><span>{{ data.PROP }}</span></div>
+                            <div style="background-color: gold;"><span>{{ data.STCK }}</span></div>
+                            <div style="background-color: yellow;"><span>{{ data.BUS }}</span></div>
+                            <div style="background-color: gold;"><span>{{ data.COMM }}</span></div>
+                            <div style="background-color: yellow;"><span>{{ data.OTHR }}</span></div>
                         </div>
-
+                        <div class="player-info">
+                            <div style="background-color: yellow;">MONEY</div>
+                            <div style="background-color: gold;">SALARY</div>
+                            <div style="background-color: yellow;">JOB LEVEL</div>
+                            <div style="background-color: gold;">DEGREE LEVEL</div>
+                        </div>
+                        <div class="player-info">
+                            <div style="background-color: yellow;"><span>{{ data.money }}</span></div>
+                            <div style="background-color: gold;"><span>{{ data.salary }}</span></div>
+                            <div style="background-color: yellow;"><span>{{ data.job_level }}</span></div>
+                            <div style="background-color: gold;"><span>{{ data.degree_level }}</span></div>
+                        </div>
+                        <div class="player-info">
+                            <div style="background-color: yellow;">PROPERTY VALUE</div>
+                            <div style="background-color: gold;">STOCK VALUE</div>
+                            <div style="background-color: yellow;">BUSINESS VALUE</div>
+                            <div style="background-color: gold;">COMMODITY VALUE</div>
+                            <div style="background-color: yellow;">OTHER INVESTMENTS</div>
+                        </div>
+                        <div class="player-info">
+                            <div style="background-color: yellow;"><span>{{ data.property_value }}</span></div>
+                            <div style="background-color: gold;"><span>{{ data.stock_value }}</span></div>
+                            <div style="background-color: yellow;"><span>{{ data.business_value }}</span></div>
+                            <div style="background-color: gold;"><span>{{ data.commodity_value }}</span></div>
+                            <div style="background-color: yellow;"><span>{{ data.other_investments }}</span></div>
+                        </div>
                         <table class="table-container" style="border: 3px solid black; width: 50%; float:left; background-color:white; color: black;">
                             <thead>
                          <tr>
                           <th scope="col" style="padding: 0px;">TYPE</th>
+                          <th scope="col" style="padding: 0px;">COUNT</th>
                           <th scope="col" style="padding: 0px;">DESCRIPTION</th>
                           <th scope="col" style="padding: 25px;">INVESTED</th>
                           <th scope="col" style="padding: 25px;">VALUE</th>
@@ -50,8 +78,9 @@
                             {% for option in options %}
                                 <tr>
                                     <td style="background-color: gold; border-color: white">{{ option.opt_type }}</td>
+                                    <td style="background-color: gold; border-color: white">{{ option.opt_count }}</td>
                                     <td style="background-color: gold;">{{ option.opt_desc }}</td>
-                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_inv }}</td>
+                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_amt }}</td>
                                     <td style="background-color: gold; padding: 15px;">{{ option.opt_val }}</td>
                                 </tr>
 
