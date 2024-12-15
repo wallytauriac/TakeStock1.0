@@ -2,17 +2,17 @@ import random
 import csv
 
 
-class reviews:
+class Reviews:
 
-    def __init__(self, otype, em):
+    def __init__(self, otype):
         self.otype = otype
-        self.em = em
-        self.file = open("TakeStock.csv", "r")
+        self.em = []
+        self.file = open("C:/Users/wally/Documents/Python/Demo/Takestock1.0/files/TakeStock.csv", "r")
         self.data = list(csv.reader(self.file, delimiter=","))
 
 
-    def load_review(self, obj):
-        data = obj
+    def load_review(self):
+        data = self.data
         #self.em = []
         row = 2
         i = 0
@@ -54,3 +54,6 @@ class reviews:
             self.msg = "No event found"
 
         return self.msg
+
+r = Reviews("JC")
+status = r.load_review()

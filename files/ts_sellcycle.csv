@@ -1,0 +1,3 @@
+code,id,type,short_description,long_description,player_number,amount,count
+SC3,1," "," ",Build from players investments,1,0,0
+SC3,2," "," ","If they have no investments, respond in kind",1,0,0

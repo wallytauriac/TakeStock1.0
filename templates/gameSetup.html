@@ -22,33 +22,39 @@
 			</div>
 			</td></tr>
 		</table>
-	<table  class="table table-borderless">
-		<tr>
+                <table class="centered">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="glevel">Game Level</label>
+                                <select name="glevel" id="glevel" class="form-control" onchange="updateGoals()">
+                                    <option value="" disabled selected>Select a level</option>
+                                    {% for key, value in levels_goals.items() %}
+                                    <option value="{{ key }}">{{ value.name }}</option>
 
-			<td>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </td>
 
-				<label for="{{ form.glevel.id }}">{{ form.glevel.label }}</label>
-				<select name="{{ form.glevel.name }}" id="{{ form.glevel.id }}">
 
-                  <option value="GP">Guru Play</option>
-				  <option value="CP">Challenger Play</option>
-				  <option value="EP">Easy Play</option>
 
-  </select>
+                        <td>
+                            <div class="form-group">
+                                <label for="ggoal">Game Goal</label>
+                                <select name="ggoal" id="ggoal" class="form-control">
+                                    <option value="" disabled selected>Select a level first</option>
+                                    {% for key, value in levels_goals.items() %}
+                                        {% for goalKey, goalValue in value.goals.items() %}
+                                        <option value="{{ goalKey }}" data-level="{{ key }}">{{ goalValue['name'] }}</option>
 
-			</td>
-			<td>
-				<label for="{{ form.ggoal.id }}">{{ form.ggoal.label }}</label>
-				<select name="{{ form.ggoal.name }}" id="{{ form.ggoal.id }}">
-				  <option value="CA">Career Achievement</option>
-				  <option value="MA">Money Achievement</option>
-				  <option value="IA">Investment Achievement</option>
-				  <option value="AA">Acquisitions Achievement</option>
-				</select>
-			</td>
-
-		</tr>
-	</table>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 	</form>
 		</div>
 		<table class="table">
@@ -73,9 +79,9 @@
 	</div>
 		<table  class="table table-borderless">
 			<tr><td>
-				<button class="nav-item"><a class="btn btn-primary" href="{{url_for('game_setup', method='POST')}}">Setup</a></button>
+				<button class="nav-item"><a class="btn btn-primary" href="{{url_for('game_setup', method='POST')}}">Setup Update</a></button>
 			</td><td>
-				<button class="nav-item"><a class="btn btn-primary" href="{{url_for('ts_sub1_bp.game_action')}}">Start Game</a></button>
+				<button class="nav-item"><a class="btn btn-primary" href="{{url_for('ts_sub1_bp.game_pass')}}">Start Game</a></button>
 				</td>
 				<td style="background-color: green;">
 					<h3 style="background-color: tan;">GAME RULES</h3>
@@ -88,4 +94,31 @@
 		</table>
 
 </div>
+<script>
+    function updateGoals() {
+        const levelSelect = document.getElementById('glevel');
+        const goalSelect = document.getElementById('ggoal');
+        const selectedLevel = levelSelect.value;
+
+        // Clear existing goals
+        goalSelect.innerHTML = '<option value="" disabled selected>Select a goal</option>';
+
+        // Add relevant goals
+        {% for key, value in levels_goals.items() %}
+            if (selectedLevel === "{{ key }}") {
+                {% for goalKey, goalValue in value.goals.items() %}
+                    goalSelect.innerHTML += '<option value="{{ goalKey }}">{{ goalValue["name"] }}</option>';
+                {% endfor %}
+            }
+        {% endfor %}
+    }
+
+    window.onload = function() {
+        document.getElementById('glevel').value = "{{ form.glevel.data }}";
+        updateGoals(); // Call updateGoals after setting glevel value
+        document.getElementById('ggoal').value = "{{ form.ggoal.data }}";
+    };
+
+    document.getElementById('glevel').addEventListener('change', updateGoals); // Add event listener for change event
+</script>
 {% endblock %}

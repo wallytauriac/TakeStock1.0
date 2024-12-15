@@ -1,0 +1,54 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="outer-container">
+    <div class="inner-container" style="width: 1200px;">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a style="color: white; cursor: pointer;" class="button" onclick="window.close()" >Close</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.city_Tour')}}" >City Tour</a>
+                </td>
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1><strong>Game Captain: {{data.user_captain}}</strong></h1>
+            </div>
+
+            <div class="container" style="width: 1200px;">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div>
+                        <h3 style="color: yellow;">Game Levels and Goals</h3>
+                    </div>
+                    <div class="custom-table mt-5">
+                        <div class="player-info">
+                            <div style="background-color: gold;">GAME ID: <span>{{ data.game_ID }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                        <div class="row">
+                    {% for row in goals %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header" style="background-color: black; color: yellow;">
+                                {{ row['level'] }}
+                            </div>
+                            <div class="card-body" style="background-color: gold; color: black;">
+                                <h5 class="card-title">{{ row['goal'] }}</h5>
+                                <p class="card-text">{{ row['goal_desc'] }}</p>
+                                <p class="card-text"><small class="text-muted">{{ row['level_desc'] }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

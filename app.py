@@ -9,13 +9,13 @@ from functools import wraps
 from datetime import datetime
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = '528491@JOKER'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Evenodd!512'
 app.config['MYSQL_DB'] = 'takestock1.0'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-
+print(f"APP Factory: {app}")
 mysql = MySQL(app)
 
 def is_logged_in(f):

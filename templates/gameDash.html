@@ -1,127 +1,118 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-	<div class="container jumbotron" style="background-color: #f2deee ">
-		<div class="text-black">
-		<h1><strong>Welcome {{username}}</strong></h1>
+<div class="container jumbotron" style="background-color: #f2deee;">
 
-		<h2 class = "text-center">Game Lobby Page</h2>
-		</div>
+    <div class="text-black">
 
-		<table style="width:100%; font-size: 20px;" class="text-white table-hover table-bordered table-dark table-striped">
-  <tr>
-    <th class="text-center " height="50"><strong>GAME LEVEL</strong></th>
-    <th class="text-center " height="50"><strong>SELECT CODE</strong></th>
-    <th class="text-center " height="50"><strong>DESC</strong></th>
-  </tr>
-	<tr>
-		<td class="text-left" height="50">Guru Play</td>
-		<td class="text-center" height="50">GP</td>
-		<td class="text-left" height="50">Complex game goals</td>
-	</tr>
-		<tr>
-		<td class="text-left" height="50">Challenger Play</td>
-		<td class="text-center" height="50">CP</td>
-		<td class="text-left" height="50">Acquired acquisition goals</td>
-	</tr>
-		<tr>
-		<td class="text-left" height="50">Easy Play</td>
-		<td class="text-center" height="50">EP</td>
-		<td class="text-left" height="50">Money target achieved</td>
-	</tr>
-	</table>
+        <h1><strong>Welcome {{ username }}</strong></h1>
+        <h2 class="text-center">Game Lobby Page</h2>
+    </div>
 
-	<div class="jumbotron" style="background-color: #efd7b6; ">
-	<h2 class = "text-center">Game Goals</h2>
-	<br>
-	<table style="width:100%; font-size: 20px;" class="text-white table-hover table-bordered table-dark table-striped">
-  <tr>
-    <th class="text-center " height="50"><strong>GAME GOAL</strong></th>
-    <th class="text-center " height="50"><strong>SELECT CODE</strong></th>
-    <th class="text-center " height="50"><strong>DESC</strong></th>
-  </tr>
-	<tr>
-		<td class="text-left" height="50">Career Achievement</td>
-		<td class="text-center" height="50">CA</td>
-		<td class="text-left" height="50">Game over when player career level 3-times higher.</td>
-	</tr>
-		<tr>
-		<td class="text-left" height="50">Money Achievement</td>
-		<td class="text-center" height="50">MA</td>
-		<td class="text-left" height="50">Game over when player money is 3 million more.</td>
-	</tr>
-		<tr>
-		<td class="text-left" height="50">Investment Achievement</td>
-		<td class="text-center" height="50">IA</td>
-		<td class="text-left" height="50">Game over when player investments 3-times higher.</td>
-	</tr>
-	<tr>
-		<td class="text-left" height="50">Acquisitions Achievement</td>
-		<td class="text-center" height="50">AA</td>
-		<td class="text-left" height="50">Game over when player acquisitions value 3-times higher.</td>
-	</tr>
-	</table>
-		<br>
-		<div class="form-group">
-			 {% from "includes/_formhelpers.html" import render_field %}
-	<form method="POST" action="">
-		<table>
-			<tr><td>
-			<div class="form-group">
-				{{render_field(form.player_count, class_="form-control")}}
-			</div></td><td>
-			<div class="form-group">
-				{{render_field(form.status, class_="form-control")}}
-			</div>
-			</td></tr>
-			<tr><td>
-			<div class="form-group">
-				{{render_field(form.start_date, class_="form-control")}}
-			</div></td><td>
-			<div class="form-group">
-				{{render_field(form.game_ID, class_="form-control")}}
-			</div>
-			</td></tr>
-			<tr><td>
-			<div class="form-group">
-				{{render_field(form.population, class_="form-control")}}
-			</div></td><td>
-			<div class="form-group">
-				{{render_field(form.population_chg, class_="form-control")}}
-			</div>
-			</td></tr>
-		</table>
-	<table>
-		<tr>
+    <table style="width:100%; font-size: 20px;" class="text-white table-hover table-bordered table-dark table-striped">
+        <tr>
+            <th class="text-center" height="50"><strong>GAME LEVEL</strong></th>
+            <th class="text-center" height="50"><strong>SELECT CODE</strong></th>
+            <th class="text-center" height="50"><strong>DESC</strong></th>
+        </tr>
+        {% for key, value in levels_goals.items() %}
+        <tr>
+            <td class="text-left" height="50">{{ value.name }}</td>
+            <td class="text-center" height="50">{{ key }}</td>
+            <td class="text-left" height="50">{{ value.desc }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
-			<td>
+    <div class="jumbotron" style="background-color: #efd7b6;">
+        <h2 class="text-center">Game Goals</h2>
+        <br>
+        <div class="form-group">
 
-				<label for="{{ form.glevel.id }}">{{ form.glevel.label }}</label>
-				<select name="{{ form.glevel.name }}" id="{{ form.glevel.id }}">
+            <form method="POST" action="">
+                <table class="centered">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="glevel">Game Level</label>
+                                <select name="glevel" id="glevel" class="form-control" onchange="updateGoals()">
+                                    <option value="" disabled selected>Select a level</option>
+                                    {% for key, value in levels_goals.items() %}
+                                    <option value="{{ key }}">{{ value.name }}</option>
 
-                  <option value="GP">Guru Play</option>
-				  <option value="CP">Challenger Play</option>
-				  <option value="EP">Easy Play</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </td>
 
-  </select>
 
-			</td>
-			<td>
-				<label for="{{ form.ggoal.id }}">{{ form.ggoal.label }}</label>
-				<select name="{{ form.ggoal.name }}" id="{{ form.ggoal.id }}">
-				  <option value="CA">Career Achievement</option>
-				  <option value="MA">Money Achievement</option>
-				  <option value="IA">Investment Achievement</option>
-				  <option value="AA">Acquisitions Achievement</option>
-				</select>
-			</td>
 
-		</tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="ggoal">Game Goal</label>
+                                <select name="ggoal" id="ggoal" class="form-control">
+                                    <option value="" disabled selected>Select a level first</option>
+                                    {% for key, value in levels_goals.items() %}
+                                        {% for goalKey, goalValue in value.goals.items() %}
+                                        <option value="{{ goalKey }}" data-level="{{ key }}">{{ goalValue['name'] }}</option>
 
-	</table>
-				<button type="submit" class="btn btn-primary">Submit</button>
-	</form>
-		</div>
-	</div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table mx-auto">
+                    <tr> <td colspan="3"><h3 style="color:black;" class="centered">Game Settings</h3></td></tr>
+                    <tr>
+                        <td>{{ form.player_count.label }} {{ form.player_count(class_="form-control") }}</td>
+                        <td>{{ form.status.label }} {{ form.status(class_="form-control") }}</td>
+                        <td>{{ form.game_ID.label }} {{ form.game_ID(class_="form-control") }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.start_date.label }} {{ form.start_date(class_="form-control") }}</td>
+                        <td>{{ form.population.label }} {{ form.population(class_="form-control") }}</td>
+                        <td>{{ form.population_chg.label }} {{ form.population_chg(class_="form-control") }}</td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                </table>
+                <table class="table mx-auto"><tr><td>
+                        <button type="submit" class="btn btn-primary">Insert/Update</button></td>
+                    <td>
+                        <button type="submit" class="btn btn-primary" formmethod="get" formaction="{{url_for('game_end')}}">End Game</button>
+                </td></tr></table>
+            </form>
+        </div>
+    </div>
 </div>
+
+<script>
+    function updateGoals() {
+        const levelSelect = document.getElementById('glevel');
+        const goalSelect = document.getElementById('ggoal');
+        const selectedLevel = levelSelect.value;
+
+        // Clear existing goals
+        goalSelect.innerHTML = '<option value="" disabled selected>Select a goal</option>';
+
+        // Add relevant goals
+        {% for key, value in levels_goals.items() %}
+            if (selectedLevel === "{{ key }}") {
+                {% for goalKey, goalValue in value.goals.items() %}
+                    goalSelect.innerHTML += '<option value="{{ goalKey }}">{{ goalValue["name"] }}</option>';
+                {% endfor %}
+            }
+        {% endfor %}
+    }
+
+    window.onload = function() {
+        document.getElementById('glevel').value = "{{ form.glevel.data }}";
+        updateGoals(); // Call updateGoals after setting glevel value
+        document.getElementById('ggoal').value = "{{ form.ggoal.data }}";
+    };
+
+    document.getElementById('glevel').addEventListener('change', updateGoals); // Add event listener for change event
+</script>
+
 {% endblock %}

@@ -1,0 +1,57 @@
+id,project,exec_sum,milestones,challenges,people,overview,recap
+1,Business Conference,The conference is aimed at networking with industry leaders and exploring new business opportunities.,"<br>1. Book venue (Completed) 
+<br>2.  Secure keynote speakers (In progress) 
+<br>3. Finalize agenda (Upcoming)",High competition for venues causing some delays. We overcame it.,"<br>>  Jane Doe (Project Manager) 
+<br>>  John Smith (Event Coordinator) ",The project involved a comprehensive event focused on showcasing our latest products and building partnerships.,We secured 3 of 5 keynote speakers and have a tentative agenda ready. Next steps include finalizing the agenda and marketing the event to potential attendees.
+2,Business Operation Review,Comprehensive analysis of current business operations to identify efficiencies and areas for improvement.,"<br>1. Complete initial data collection (Completed) 
+<br>2. Conduct stakeholder interviews (In progress) 
+<br>3. Draft report (Upcoming)",Delays in data collection from some departments due to staff outage at critical times.,"<br>>  Mary Johnson (Lead Analyst) 
+<br>>  Michael Brown (Operations Manager) ",The project focused on evaluating business operations to streamline processes and improve overall efficiency.,We completed initial data collection and started stakeholder interviews. The next step is to draft the report based on findings.
+3,Business Audit,Detailed audit to ensure compliance with financial regulations and internal policies.,"<br>1. Select audit team (Completed)
+<br>2. Conduct preliminary audit (In progress) 
+<br>3. Finalize audit report (Upcoming)",Limited availability of key personnel for interviews.,"<br>>  Linda Green (Chief Auditor) 
+<br>>  David Clark (Financial Analyst)",This project was bent on conducting an in-depth audit to verify compliance and identify any discrepancies.,We selected the audit team and commenced preliminary audits. Next steps include finalizing the audit report.
+4,Development Oversight,Supervising ongoing development projects to ensure alignment with company objectives and timelines.,"<br>1. Review project plans (Completed) 
+<br>2. Monitor progress (In progress) 
+<br>3. Provide feedback (Upcoming)",Some local projects are behind schedule.,"<br>>  Tom Harris (Development Manager) 
+<br>>  Emily White (Project Coordinator)",This project was focused on overseeing development projects to maintain alignment with company goals and ensure timely completion.,The team reviewed project plans and started monitoring progress. The next step is to provide feedback to project teams.
+5,New Venture,Exploring a new business venture aimed at expanding market reach. ,"<br>1. Conduct market research (Completed)
+<br>2. Develop business plan (In progress)
+<br>3. Secure funding (Upcoming) ",Challenges in securing initial funding. ,"<br>>  Susan Lee (Project Lead) 
+<br>>  Kevin Turner (Market Analyst) ",The project directive gave attention to investigating new business opportunities to diversify and grow our market presence. ,Our project team completed market research and are developing the business plan. Next steps include securing funding. 
+6,Meeting with Gov. Officials,Engaging with government officials to discuss regulatory impacts on business operations. ,"<br>1. Schedule meetings (Completed) 
+<br>2. Prepare briefing documents (In progress) 
+<br>3. Conduct meetings (Upcoming) ",Difficulty coordinating schedules with officials. ,"<br>>  Alan Black (Government Liaison) 
+<br>>  Maria Gonzalez (Legal Advisor) ",Strategic meetings aimed at influencing policy and ensuring compliance with new regulations. ,The team scheduled meetings and are preparing briefing documents. The next step is to conduct the meetings. 
+7,Business Seminar,Organizing a seminar to educate and engage with industry professionals. ,"<br>1. Plan seminar content (Completed) 
+<br>2. Send invitations (In progress) 
+<br>3. Host the seminar (Upcoming) ",Low response rate to invitations. ,"<br>>  Emma Davis (Seminar Coordinator) 
+<br>>  Robert Wilson (Content Specialist) ",Hosting a seminar to share insights and foster networking among industry peers. ,We planned seminar content and sent out invitations. The next step is to host the seminar. 
+8,Office Training,Implementing training programs to enhance employee skills and performance. ,"<br>1. Identify training needs (Completed) 
+<br>2. Develop training modules (In progress)
+<br>3. Conduct training sessions (Upcoming) ",Some resistance to new training methods. ,"<br>>  Nancy Carter (Training Manager)
+<br>>  Jason Kelly (HR Specialist) ",Providing training to improve employee skills and operational efficiency. ,The team Identified training needs and are developing training modules. The next step is to conduct training sessions. 
+9,New Office Opening,Overseeing the setup and launch of a new office location. ,"<br>1. Select location (Completed) 
+<br>2. Renovate and furnish (In progress) 
+<br>3. Official opening (Upcoming) ",Delays in renovation work. ,"<br>>  Laura Young (Project Manager)
+<br>>  Daniel Foster (Facilities Coordinator) ",Establishing a new office to expand our physical presence. ,We selected location and started renovation. The next step is the official opening. 
+10,Employment Review,Conducting a comprehensive review of current employment policies and practices. ,"<br>1. Review current policies (Completed) 
+<br>2 Gather employee feedback (In progress) 
+<br>3. Draft updated policies (Upcoming) ",Some employees are reluctant to provide feedback. ,"<br>>  Hannah Moore (HR Director) 
+<br>>  Brian Hughes (Policy Analyst) ",Reviewing and updating employment policies to improve workplace conditions and compliance. ,Our team reviewed current policies and started gathering employee feedback. The next step is to draft updated policies. 
+11,Sales Review Meetings,Regular meetings to assess and strategize sales performance. ,"<br>1. Set meeting schedule (Completed) 
+<br>2. Conduct initial reviews (In progress) 
+<br>3. Develop action plans (Upcoming) ",Difficulty coordinating meeting times. ,"<br>>  Richard Adams (Sales Director) 
+<br>>  Karen Mitchell (Sales Analyst) ",Assessing sales performance and developing strategies to boost sales and revenue. ,We set the meeting schedule and conducted initial reviews. The next step is to develop action plans. 
+12,Land Development,Managing the development of new land acquisitions for business expansion. ,"<br>1. Acquire land (Completed)
+<br>2. Plan development (In progress)
+<br>3. Begin construction (Upcoming) ",Environmental concerns delaying approvals. ,"<br>>  Steven Roberts (Development Manager) 
+<br>>  Michelle Scott (Environmental Consultant) ",Developing new land to support business growth and expansion. ,Our team acquired land and started planning development. The next step is to begin construction. 
+13,Equipment Procurement,Procuring new equipment to enhance operational efficiency. ,"<br>1. Identify equipment needs (Completed)
+<br>2. Source suppliers (In progress)
+<br>3. Finalize purchases (Upcoming) ",Supply chain disruptions affecting delivery times. ,"<br>>  Karen Turner (Procurement Manager)
+<br>>  William Harris (Operations Specialist) ",Procuring the necessary equipment to improve productivity and operational efficiency. ,The team identified equipment needs and started sourcing suppliers. The next step is to finalize purchases. 
+14,Supply Management,Overhauling supply management processes to streamline operations. ,"<br>1. Audit current processes (Completed) 
+<br>2. Implement new systems (In progress) 
+<br>3. Train staff (Upcoming",Integration issues with new systems. ,"<br>>  Patricia Clark (Supply Chain Manager)
+<br>>  James White (IT Specialist) ",Enhancing supply management processes to reduce costs and improve efficiency. ,We completed the audit of current processes and started implementing new systems. The next step is to train the staff. 

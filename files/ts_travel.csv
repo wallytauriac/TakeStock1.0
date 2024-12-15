@@ -1,0 +1,31 @@
+id,ctgy,type,short_description,long_description,cost
+1,Local,Uptown,Entertainment District,A wonderful day or night spot for enjoying family time.,500.00
+2,Local,Uptown,Opportunity District,A part of town that caters to learning opportunities.,500.00
+3,Local,Uptown,Investment District,A place for the money crowd.,500.00
+4,Local,Uptown,Residential District,"An area that includes business, entertainment, and good living.",500.00
+5,Local,Downtown,Business District,Takestock city business area,500.00
+6,Local,Downtown,Wall Street District,Takestock city stock and commodity market area.,500.00
+7,Local,Downtown,Market District,Takestock city business stores for shopping and eating.,500.00
+8,Vacation,Entertainment,New Orleans,"A popular tourist city known for its food, drinking culture, and architecture ",1200.00
+9,Vacation,Entertainment,Chicago,"A welcoming city with many attractions, including museums and nightlife ",1800.00
+10,Vacation,Entertainment,Grand Canyon National Park,A natural wonder carved by the Colorado River over millions of years ,1500.00
+11,Vacation,Entertainment,New York City,"Known as the 'Big Apple', this city has an iconic skyline, world-class museums, and famous landmarks like the Statue of Liberty and Central Park ",3000.00
+12,Vacation,Entertainment,Yellowstone National Park,"A popular destination with mountain landscapes, geysers, hot springs, and forests ",2000.00
+13,Vacation,Entertainment,Las Vegas,"Known as the entertainment capital of the world, this city has casinos, shopping, cuisine, entertainment, and nightlife ",4000.00
+14,Vacation,Entertainment,Washington DC,"A vibrant city with iconic sights, American history, government, food, art, and cultural attractions ",1300.00
+15,Vacation,Entertainment,San Diego,"A popular destination with miles of beaches, year-round good weather, culture, and museums ",1900.00
+16,Vacation,Entertainment,Charleston,"A small town with food, culture, history, and beauty ",1000.00
+17,Vacation,Entertainment,Orlando,A town known for its many places of entertainment,2500.00
+18,Vacation,Rest & Recreation,Carribean Island,Popular islands that provide rest and relaxtion for travelers,3500.00
+19,Vacation,Rest & Recreation,Hawaian Island,Popular destination for beaches and beauty,4500.00
+20,Vacation,Rest & Recreation,Key West,"Popular hub for shopping, dining, and entertainment especially for spring breakers.",2500.00
+21,Visits,Parents,Parents House,Family outing to spend a holiday,2500.00
+22,Visits,Grand Parents,GP House,Family outing to spend a holiday,2500.00
+23,Visits,Family,Hometown,Family outing to spend a holiday,2500.00
+24,Visits,Friends,Friends cabin,Family outing to spend a weekend,2500.00
+25,Visits,Special Invite,Camping trip,Time away from home to be outdoors,2500.00
+26,Visits,Vacation home,Winter home in south,Family time away from home to relax,2500.00
+27,Visits,Vacation home,Summer home in the north,Family time away from home to relax,2500.00
+28,Escursions,Business Conference,Las Vegas,Company sponsored business trip to increase knowledge,2500.00
+29,Escursions,Business Trip,San Francisco,Employer sponsored trip to another company office location,2500.00
+30,Escursions,Club Conference,Houston,Opportunity to meet other club members on the road,2500.00

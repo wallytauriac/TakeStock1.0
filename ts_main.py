@@ -1,6 +1,7 @@
+import time
 from ts_validation import *
 from ts_database import *
-from flask import Blueprint, Flask, render_template, flash, redirect, url_for, request, session, logging
+from flask import Blueprint, Flask, render_template, flash, redirect, url_for, request, session, logging, g, make_response, jsonify
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, RadioField, SelectField, IntegerField
 from wtforms.fields import DateField, DecimalField
@@ -9,18 +10,26 @@ from passlib.hash import sha256_crypt
 from functools import wraps
 from datetime import datetime, date
 from app_factory import create_app, mysql
-from ts_page import ts_page_bp, render_edit_profile, render_game_settings, render_gametable_settings
+from ts_page import ts_page_bp, render_edit_profile, render_game_settings, render_gametable_settings, format_game_settings, process_end_of_game
 from ts_sub1 import ts_sub1_bp
-#from Test import test_bp
+from ts_page2 import *
+from ts_page3 import *
+from ts_sub2 import ts_sub2_bp
+import copy
+
 
 app = create_app()
-
+print(f"APP in main: {app}")
 # Register Blueprints
 app.register_blueprint(ts_page_bp)
 app.register_blueprint(ts_sub1_bp)
+app.register_blueprint(ts_sub2_bp)
 #app.register_blueprint(test_bp)
 db = DB_Mgr(mysql)
 
+@app.before_request
+def before_request():
+    g.mysql = mysql
 
 def is_logged_in(f):
     @wraps(f)
@@ -42,6 +51,14 @@ def is_admin(f):
             return redirect(url_for('login'))
     return wrap
 
+@app.route('/config')
+def config_check():
+    config_data = {
+        "SESSION_PERMANENT": app.config['SESSION_PERMANENT'],
+        "PERMANENT_SESSION_LIFETIME": str(app.config['PERMANENT_SESSION_LIFETIME'])  # Convert timedelta to string
+    }
+    return config_data
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     page_name = "Home"
@@ -57,7 +74,7 @@ def login():
         if q>0:
             status = db.validate_password(result, password_candidate, username)
             if status == "OK":
-                flash('You are logged in', 'success')
+                flash('You are logged into TakeStock!', 'success')
 
                 return redirect(url_for('profile', username=username, result=result, page_name=page_name))
             else:
@@ -69,6 +86,7 @@ def login():
 
     error = 'Please register if you are not a member.'
     return render_template('login.html', error=error, page_name=page_name)
+
 @app.route('/update_password/<string:username>', methods = ['GET', 'POST'])
 def update_password(username):
     page_name = "Update Password"
@@ -104,7 +122,7 @@ def addMember():
         status = db.add_player(form)
         if status == "OK":
             choices.clear()
-            flash('You are added as a new game player!!', 'success')
+            flash('You are now a new game player!!', 'success')
         else:
             return render_template('addMember.html', form=form, page_name=page_name, roles=roles)
         return redirect(url_for('profile', username = username, page_name=page_name, roles=roles))
@@ -198,6 +216,9 @@ def gameDash(username):
         return redirect(url_for('login', username=session['username'], page_name="Login"))
 
     form = GameLevelForm(request.form)
+    levels_goals = format_game_settings()
+    # Set the choices for the levels dynamically using internal codes
+    form.glevel.choices = [(key, value['name']) for key, value in levels_goals.items()]
     # Initiate game settings
     if form.game_ID.data == " " or form.game_ID.data is None:
         status, result = db.get_game_data(username)
@@ -211,9 +232,11 @@ def gameDash(username):
         status = "OK"
         result = 1
 
+    session['glevel'] = form.glevel.data
+    session['ggoal'] = form.ggoal.data
     if request.method == 'POST':
-        selected_glevel = request.form.get('game_level')
-        selected_ggoal = request.form.get('game_goal')
+        selected_level = form.glevel.data
+        selected_goal = form.ggoal.data
 
         if status == "OK":
             if result>0:
@@ -225,14 +248,14 @@ def gameDash(username):
                 status, q = db.add_game(form)
                 if status == "OK":
                     app.logger.info(q)
-                    flash("You selected: {selected_glevel}.", "success")
-                    return redirect(url_for('gameDash', username=username, form=form, page_name=page_name))
+                    flash("You selected: {selected_level}.", "success")
+                    return redirect(url_for('gameDash', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
                 else:
                     flash('Game card failed insertion.', 'error')
-                    return render_template('gameDash.html', form=form, page_name=page_name, username=username)
+                    return render_template('gameDash.html', form=form, page_name=page_name, username=username, levels_goals=levels_goals)
 
     # Display the game settings
-    return render_template('gameDash.html', username=username, form=form, page_name=page_name)
+    return render_template('gameDash.html', username=username, form=form, page_name=page_name, levels_goals=levels_goals)
 
 @app.route('/game_setup', methods=['GET', 'POST'])
 @is_logged_in
@@ -257,6 +280,9 @@ def gameSetup(username):
         return redirect(url_for('login', username=session['username'], page_name="Login"))
 
     form = GameSetupForm(request.form)
+    levels_goals = format_game_settings()
+    # Set the choices for the levels dynamically using internal codes
+    form.glevel.choices = [(key, value['name']) for key, value in levels_goals.items()]
     # Get Game Settings
     status, result = db.get_game_data(username)
 
@@ -267,6 +293,8 @@ def gameSetup(username):
         form.player_count.data = result["player_count"]
         form.glevel.data = result["game_level"]
         form.ggoal.data = result["game_goal"]
+        session['glevel'] = result["game_level"]
+        session['ggoal'] = result["game_goal"]
 
     status, users = db.get_game_players(result["game_ID"])
     if status == "OK":
@@ -286,21 +314,27 @@ def gameSetup(username):
         # Get detailed player information
         form.player_count.data = player_count
         session['player_count'] = player_count
+        session['player_number'] = 0
+        session['player_move'] = 0
+        session['player_round'] = 0
         status, players = db.get_players_game_card(result["game_ID"])
-
+        session['game_ID'] = result["game_ID"]
+        db.pickle_save(result["game_ID"], "session", session, "cookie") # save cookie session
         if status == "OK":
             # print("Player Details:", players)
             pass
         else:
             flash("Failed to retrieve player details", "error")
-            return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name))
+            return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
     else:
         flash("Failed retrieving game players", "error")
-        return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name))
+        return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
     if len(request.args) > 0:
         if request.method == 'POST' or request.args['method'] == 'POST':
             selected_glevel = request.form.get('game_level')
             selected_ggoal = request.form.get('game_goal')
+            session['glevel'] = request.form.get('game_level')
+            session['ggoal'] = request.form.get('game_goal')
             username = session['username']
 
             # Update game row
@@ -308,17 +342,55 @@ def gameSetup(username):
             session['player_count'] = player_count
             q, status = db.update_game_from_setup(form)
             app.logger.info(q)
-
+            db.pickle_save(result["game_ID"], "session", session, "cookie")
             if status == "OK":
                 app.logger.info(q)
                 flash("Game status update was successful", "success")
-                return render_template('gameSetup.html', username=username, form=form, players=players, page_name=page_name)
+                return render_template('gameSetup.html', username=username, form=form, players=players, page_name=page_name, levels_goals=levels_goals)
             else:
-                return render_template('gameSetup.html', form=form, page_name=page_name, username=username)
+                return render_template('gameSetup.html', form=form, page_name=page_name, username=username, levels_goals=levels_goals)
 
     # Display the game settings
-    return render_template('gameSetup.html', username=username, form=form, players=players, page_name=page_name)
+    return render_template('gameSetup.html', username=username, form=form, players=players, page_name=page_name, levels_goals=levels_goals)
 
+@app.route('/game_end', methods=['GET', 'POST'])
+@is_logged_in
+def game_end():
+    # Retrieve the username from the session
+    username = session.get('username')
+    if not username:
+        # Handle the case where the username is not in the session
+        return redirect(url_for('login'))
+    return gameEnd(username)
+
+@app.route('/gameEnd', methods=['GET', 'POST'])
+@is_logged_in
+def gameEnd(username):
+    page_name = "Game Shutdown"
+    tasks = [
+        {"name": "Clear Investment tables", "status": "Pending"},
+        {"name": "Empty Ancillary tables", "status": "Pending"},
+        {"name": "Remove Game table", "status": "Pending"},
+        {"name": "Clear Positions table", "status": "Pending"},
+        {"name": "Refresh each player table", "status": "Pending"}
+    ]
+    session['tasks'] = tasks
+    session['username'] = username
+    return render_template('gameEnd.html', username=username, page_name=page_name, tasks=tasks)
+
+@app.route('/perform_next_task', methods=['GET'])
+def perform_next_task():
+    tasks = session['tasks']
+    username = session['username']
+    page_name = "Game Shutdown"
+    for task in tasks:
+        if task['status'] == 'Pending':
+            time.sleep(2)  # Simulate task execution
+            status = process_end_of_game(username, task)
+            task['status'] = 'Completed'
+            session['tasks'] = tasks
+            break
+    return render_template('gameEnd.html', username=username, page_name=page_name, tasks=tasks)
 
 @app.route('/profile/<string:username>')
 @is_logged_in
@@ -359,7 +431,7 @@ def logout():
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
 
-
+# From terminal window: flask run
 if __name__ == "__main__":
     app.secret_key = '528491@JOKER'
     app.debug = True

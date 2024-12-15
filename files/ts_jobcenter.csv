@@ -1,51 +1,51 @@
-code,id,type,short_description,long_description,amount
-JC,1,inc,Loss Job with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,16000
-JC,2,exp,Salary garnish for child support assessment,This is an event beyond our control. The government has issued a lien against your wages. Your pay will be lacking this amount.,-600
-JC,3,exp,Loss job due to firing,Due to an oversight we are under command to let you go. You're fired.,-1
-JC,4,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-1000
-JC,5,exp,Budget cut - last salary increase is revoked,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise",-500
-JC,6,inc,Salary raise,After a salary review it was decided to grant you a raise. Congratulations!,3200
-JC,7,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1000
-JC,8,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted.,1
-JC,9,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,3000
-JC,10,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-500
-JC,11,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,7000
-JC,12,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise. Congratulations!,2000
-JC,13,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1350
-JC,14,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",1500
-JC,15,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,5500
-JC,16,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary.,10500
-JC,17,exp,Demotion requested by management - 1 level,It is unfortunate and we are saddened that we must demote you from your current job position one level.,-1
-JC,18,inc,Congratulations: Promotion granted with new pay scale,We congratulate you on your promotion and raise due this pay season. Your job level increases by one and your salary increases by the amount shown.,2000
-JC,19,inc,Loss Job with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,8000
-JC,20,exp,Salary garnish for child support assessment,This is an event beyond our control. The government has issued a lien against your wages. Your pay will be lacking this amount.,-1200
-JC,21,exp,Loss job due to firing,Due to an oversight we are under command to let you go. You're fired.,-1
-JC,22,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-2500
-JC,23,exp,Budget cut - last salary increase is revoked,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise.",-500
-JC,24,inc,Salary raise,After a salary review it was decided to grant you a raise. Congratulations!,6000
-JC,25,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1500
-JC,26,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted.,1
-JC,27,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,2500
-JC,28,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-700
-JC,29,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,9000
-JC,30,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise. Congratulations!,2000
-JC,31,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1500
-JC,32,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",3000
-JC,33,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,7500
-JC,34,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary.,20000
-JC,35,inc,Loss Job with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,8000
-JC,36,exp,Salary garnish for child support assessment,This is an event beyond our control. The government has issued a lien against your wages. Your pay will be lacking this amount.,-1200
-JC,37,exp,Loss job due to firing,Due to an oversight we are under command to let you go. You're fired.,-1
-JC,38,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-2500
-JC,39,exp,Budget cut - last salary increase is revoked,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise.",-1000
-JC,40,inc,Salary raise,After a salary review it was decided to grant you a raise. Congratulations!,6000
-JC,41,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1500
-JC,42,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted.,1
-JC,43,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,2500
-JC,44,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-700
-JC,45,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,9000
-JC,46,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise. Congratulations!,1500
-JC,47,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1500
-JC,48,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",3000
-JC,49,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,7500
-JC,50,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary.,20000
+code,id,type,short_description,long_description,amount,COH,Investment,degree_level,house_status,
+LC,1,inc,Scholarship Funding,"The board met recently and determined you qualify for a scholarship. This is not a full scholarship, but it provides a good start for your education.",16000,16000,No,0,OK,
+LC,2,inc,Work Study grant,In the last board meeting your name came up. You have been extended a work study grant. You can use it for tuition and book requirements this year.,8000,8000,No,0,OK,
+LC,3,exp,Loan Payment,Thank you for your promptness in sending us your payment now due for the loan we provided you last fall.,-8000,-8000,No,0,OK,
+LC,4,inc,Student grant,We were not able to extend a semester loan this year but please accept this grant to assist you with current expenses.,1000,1000,No,0,OK,
+LC,5,exp,School Tuition,Your school tuition fees are now due. We were unable to provide you with a loan to cover the full amount. The remainder is now due.,-8000,-8000,No,0,OK,
+LC,6,exp,Dormitory Fees,Thank you for selecting to stay at our fine dormitory. The fee is due now.,-2000,-2000,No,0,OK,
+LC,7,inc,Student Loan,"We were not able to provide you with the full amount of the loan requested. However, here is what we could do for this semester.",1000,1000,LOAN,0,OK,
+LC,8,exp,Apartment rent,We welcome you to our apartment complex for students attending the nearby college. Your fee is enclosed.,-1800,-1800,RENT,0,Check,
+LC,9,inc,Summer work,You have been accepted in our school work/study program. You are entitled to payment in full.,2500,2500,No,0,OK,
+LC,10,exp,Book tuition,We were glad you could find the books you needed for this semester. Your bill is enclosed.,-1000,-1000,No,0,OK,
+LC,11,exp,Travel expenses,In order to participate in the on-the-road training class the fee is enclosed.,-1200,-1200,No,0,OK,
+LC,12,inc,Special aid,All grants and loans have been scheduled this year for other students. But here is a special aid we were able to assign to you as a grant.,800,800,No,0,OK,
+LC,13,inc,Evening work pay,We were glad you could work with us for this weekend evening events. It was appreciated. Please accept our thanks.,500,500,No,0,OK,
+LC,14,inc,Congratulations: New Degree,We are pleased to announce your successful completion of your current degree program.,1,1,No,1,OK,
+LC,15,inc,Scholarship Funding,"The board met recently and determined you qualify for a scholarship. This is not a full scholarship, but it provides a good start for your education.",16000,16000,No,0,OK,
+LC,16,inc,Work Study grant,In the last board meeting your name came up. You have been extended for a work study grant. You can use it for tuition and book requirements this year.,8000,8000,No,0,OK,
+LC,17,exp,Loan Payment,Thank you for your promptness in sending us your payment now due for the loan we provided you last fall.,-8000,-8000,No,0,OK,
+LC,18,inc,Student grant,We were not able to extend a semester loan this year but please accept this grant to assist you with current expenses.,1000,1000,No,0,OK,
+LC,19,exp,School Tuition,Your school tuition fees are now due. We were unable to provide you with a loan to cover the full amount. The remainder is now due.,-8000,-8000,No,0,OK,
+LC,20,exp,Dormitory Fees,Thank you for selecting to stay at our fine dormitory. The fee is due now.,-2000,-2000,No,0,OK,
+LC,21,inc,Student Loan,"We were not able to provide you with the full amount of the loan requested. However, here is what we could do for this semester.",1000,1000,LOAN,0,OK,
+LC,22,exp,Apartment rent,We welcome you to our apartment complex for students attending the nearby college. Your fee is enclosed.,-1800,-1800,RENT,0,Check,
+LC,23,inc,Summer work,You have been accepted in our school work/study program. You are entitled to payment in full.,2500,2500,No,0,OK,
+LC,24,exp,Book tuition,We were glad you could find the books you needed for this semester. Your bill is enclosed.,-1000,-1000,No,0,OK,
+LC,25,exp,Travel expenses,In order to participate in the on-the-road training class the fee is enclosed.,-1200,-1200,No,0,OK,
+LC,26,inc,Special aid,All grants and loans have been scheduled this year for other students. But here is a special aid we were able to assign to you as a grant.,800,800,No,0,OK,
+LC,27,inc,Evening work pay,We were glad you could work with us for this weekend evening events. It was appreciated. Please accept our thanks.,1500,1500,No,0,OK,
+LC,28,inc,Scholarship Funding,"The board met recently and determined you qualify for a scholarship. This is not a full scholarship, but it provides a good start for your education.",8000,8000,No,0,OK,
+LC,29,inc,Work Study grant,In the last board meeting your name came up. You have been extended a work study grant. You can use it for tuition and book requirements this year.,4000,4000,No,0,OK,
+LC,30,exp,Loan Payment,Thank you for your promptness in sending us your payment now due for the loan we provided you last spring.,-4000,-4000,LOAN,0,OK,
+LC,31,inc,Student grant,We were not able to extend a semester loan this year but please accept this grant to assist you with current expenses.,500,500,No,0,OK,
+LC,32,exp,School Tuition,Your school tuition fees are now due. We were unable to provide you with a loan to cover the full amount. The remainder is now due.,-4000,-4000,No,0,OK,
+LC,33,exp,Dormitory Fees,Thank you for selecting to stay at our fine dormitory. The fee is due now.,-1000,-1000,No,0,OK,
+LC,34,inc,Student Loan,"We were not able to provide you with the full amount of the loan requested. However, here is what we could do for this semester.",500,500,LOAN,0,OK,
+LC,35,exp,Apartment rent,We welcome you to our apartment complex for students attending the nearby college. Your fee is enclosed.,-900,-900,RENT,0,OK,
+LC,36,inc,Summer work,You have been accepted in our school work/study program. You are entitled to payment in full.,1250,1250,No,0,OK,
+LC,37,exp,Book tuition,We were glad you could find the books you needed for this semester. Your bill is enclosed.,-500,-500,No,0,OK,
+LC,38,exp,Travel expenses,In order to participate in the on-the-road training class the fee is enclosed.,-600,-600,No,0,OK,
+LC,39,inc,Special aid,All grants and loans have been scheduled this year for other students. But here is a special aid we were able to assign to you as a grant.,400,400,No,0,OK,
+LC,40,inc,Evening work pay,We were glad you could work with us for the last evening events. It was appreciated. Please accept our thanks.,250,250,No,0,OK,
+LC,41,inc,Scholarship Funding,"The board met recently and determined you qualify for a scholarship. This is not a full scholarship, but it provides a good start for your education.",4000,4000,No,0,OK,
+LC,42,inc,Work Study grant,In the last board meeting your name came up. You have been extended a work study grant. You can use it for tuition and book requirements this year.,2000,2000,No,0,OK,
+LC,43,inc,Congratulations: New Degree,We are pleased to announce your successful completion of your current degree program.,1,1,No,1,OK,
+LC,44,inc,Student grant,We were not able to extend a semester loan this year but please accept this grant to assist you with current expenses.,250,250,No,0,OK,
+LC,45,exp,School Tuition,Your school tuition fees are now due. We were unable to provide you with a loan to cover the full amount. The remainder is now due.,-2000,-2000,No,0,OK,
+LC,46,exp,Dormitory Fees,Thank you for selecting to stay at our fine dormitory. The fee is due now.,-500,-500,No,0,OK,
+LC,47,inc,Student Loan,"We were not able to provide you with the full amount of the loan requested. However, here is what we could do for this semester.",250,250,LOAN,0,OK,
+LC,48,exp,Travel expenses,In order to participate in the on-the-road training class the fee is enclosed.,-450,-450,No,0,OK,
+LC,49,inc,Special aid,All grants and loans have been scheduled this year for other students. But here is a special aid we were able to assign to you as a grant.,625,625,No,0,OK,
+LC,50,inc,Evening work pay,We were glad you could work with us for the last evening events. It was appreciated. Please accept our thanks.,250,250,No,0,OK,

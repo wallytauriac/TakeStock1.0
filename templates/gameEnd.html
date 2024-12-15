@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container jumbotron" style="background-color: #f2deee">
+    <div class="text-black">
+        <h1><strong>Thanks for Playing {{username}}</strong></h1>
+        <h2 class="text-center">Game Shutdown Page</h2>
+    </div>
+    <div class="jumbotron" style="background-color: #efd7b6;">
+        <div class="form-group">
+            {% from "includes/_formhelpers.html" import render_field %}
+        </div>
+        <div class="container mt-5">
+            <h1 class="mb-4">End of Game Tasks</h1>
+            <div id="task-status" class="list-group">
+                {% for task in tasks %}
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ task.name }}</span>
+                    <span class="status {% if task.status == 'Completed' %}text-success{% else %}text-danger{% endif %}">
+                        {{ task.status }}
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mx-auto">
+                <span>&nbsp;</span><br>
+                <form action="{{ url_for('perform_next_task') }}" method="get">
+                    <button type="submit" class="btn btn-primary">Proceed</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

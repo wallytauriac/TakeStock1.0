@@ -1,0 +1,88 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="container">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PBoard')}}" target="_blank" >Player Board</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_pass')}}" >Decline Play</a>
+                </td>
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1 style="background-color: green;"><strong>Current Player: {{user}}</strong></h1>
+            </div>
+
+            <div class="inner-container" style="width: 100%">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div class="custom-table">
+                        <div class="player-info">
+                            <div style="background-color: gold;">PLAYER: <span>{{ data.player_number }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group"  style="verticle-align: top;background-color: green;float: left">
+                        <h2 style="background-color: yellow;">{{ title  }}</h2>
+
+                     <form action="{{ url_for('ts_sub2_bp.travel_request_process') }}" method="POST" class="row justify-content-center" id="localForm">
+                        {% for row in locals %}
+                                <div class="col-lg-3 col-md-6 col-sm-12 data-block" style="border: 1px solid black; margin: 10px; padding: 10px; flex: 1; background-color: yellow;">
+                                    <h4>{{ row.short_description }}</h4>
+                                    <p style="display: none">{{ loop.index }}</p>
+                                    <p><strong>Purpose: </strong>{{ row.purpose }}</p>
+                                    <p><strong>Description: </strong>{{ row.long_description }}</p>
+                                    <p><strong>Estimated Price: </strong>${{ row.cost }}</p>
+                                    <h6 style="color: yellow; background-color: green;">Game Points Earned: {{ row.points }}</h6>
+
+                                    <button class="button" type="submit" name="request" value="{{ row.short_description }}" data-index="{{ loop.index }}" data-district="{{ row.short_description }}">Schedule</button>
+                                </div>
+                        {% endfor %}
+                                    <input type="hidden" name="titleh" value="">
+                                    <input type="hidden" name="locald" value="">
+                                    <input type="hidden" name="locali" value="">
+
+
+                    </form>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("JavaScript is running");
+
+    const form = document.getElementById('localForm');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            // Identify the button that triggered the form submission
+            const clickedButton = document.activeElement;
+
+            // Check if the clicked element is a button and if it has a value
+            if (clickedButton.tagName === 'BUTTON' && clickedButton.type === 'submit') {
+                // Extract company business and index from the clicked button's data
+                const localDistrict = clickedButton.getAttribute('data-district');
+                const localIndex = clickedButton.getAttribute('data-index');
+
+                // Update the hidden fields in the form
+                form.querySelector('input[name="locald"]').value = localDistrict;
+                form.querySelector('input[name="locali"]').value = localIndex;
+                form.querySelector('input[name="titleh"]').value = document.querySelector('h2').innerText; // Assuming the title is in the first h2 element
+
+                console.log(`Form submitted with locald: ${localDistrict}, locali: ${localIndex}, titleh: ${form.querySelector('input[name="titleh"]').value}`);
+            }
+        });
+    } else {
+        console.log("Form not found!");
+    }
+});
+</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

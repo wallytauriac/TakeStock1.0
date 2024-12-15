@@ -1,0 +1,3936 @@
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\app.py
+Functions:
+  def is_logged_in(f):
+  def is_trainor(f):
+  def is_admin(f):
+  def is_recep_level(f):
+  def index():
+  def login():
+  def update_password(username):
+  def adminDash():
+  def addTrainor():
+  def deleteTrainor():
+  def addRecep():
+  def deleteRecep():
+  def addEquip():
+  def removeEquip():
+  def addMember():
+  def deleteMember():
+  def viewDetails():
+  def recepDash():
+  def trainorDash():
+  def updatePlans():
+  def memberDash(username):
+  def profile(username):
+  def edit_profile(username):
+  def logout():
+  def wrap(*args, **kwargs):
+  def wrap(*args, **kwargs):
+  def wrap(*args, **kwargs):
+  def wrap(*args, **kwargs):
+Classes:
+  class ChangePasswordForm(Form):
+  class AddTrainorForm(Form):
+  class DeleteRecepForm(Form):
+  class DeleteRecepForm(Form):
+  class AddEquipForm(Form):
+  class RemoveEquipForm(Form):
+  class AddMemberForm(Form):
+  class trainorForm(Form):
+  class UpdatePlanForm(Form):
+  class GameLevelForm(Form):
+  class EditForm(Form):
+Function Calls:
+  app = Flask(__name__)
+  print(f"APP Factory: {app}")
+  mysql = MySQL(app)
+  @app.route('/', methods = ['GET', 'POST'])
+  @app.route('/login', methods = ['GET', 'POST'])
+  @app.route('/update_password/<string:username>', methods = ['GET', 'POST'])
+  @app.route('/adminDash')
+  @app.route('/addTrainor', methods = ['GET', 'POST'])
+  @app.route('/deleteTrainor', methods = ['GET', 'POST'])
+  @app.route('/addRecep', methods = ['GET', 'POST'])
+  @app.route('/deleteRecep', methods = ['GET', 'POST'])
+  @app.route('/addEquip', methods = ['GET', 'POST'])
+  @app.route('/removeEquip', methods = ['GET', 'POST'])
+  @app.route('/addMember', methods = ['GET', 'POST'])
+  @app.route('/deleteMember', methods = ['GET', 'POST'])
+  @app.route('/viewDetails')
+  @app.route('/recepDash')
+  @app.route('/trainorDash', methods = ['GET', 'POST'])
+  @app.route('/updatePlans', methods = ['GET', 'POST'])
+  @app.route('/memberDash/<string:username>', methods=['GET', 'POST'])
+  @app.route('/profile/<string:username>')
+  @app.route('/edit_profile/<string:username>', methods = ['GET', 'POST'])
+  @app.route('/logout')
+  @wraps(f)
+  @wraps(f)
+  @wraps(f)
+  @wraps(f)
+  return render_template('home.html', page_name=page_name)
+  return render_template('login.html', error = error, page_name=page_name)
+  old_password = PasswordField('Existing Password')
+  new_password = PasswordField('Password', [
+  confirm = PasswordField('Confirm Password')
+  form = ChangePasswordForm(request.form)
+  return render_template('updatePassword.html', form = form, page_name=page_name)
+  return render_template('adminDash.html')
+  name = StringField('Name', [validators.Length(min = 1, max = 100)])
+  username = StringField('Username', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
+  password = PasswordField('Password', [
+  confirm = PasswordField('Confirm Password')
+  street = StringField('Street', [validators.Length(min = 1, max = 100)])
+  city = StringField('City', [validators.Length(min = 1, max = 100)])
+  phone = StringField('Phone', [validators.Length(min = 1, max = 100)])
+  values.clear()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM info")
+  b = cur.fetchall()
+  for i in range(q):
+  cur.close()
+  form = AddTrainorForm(request.form)
+  return render_template('addTrainor.html', form=form)
+  username = SelectField(u'Choose which one you wanted to delete', choices=choices)
+  choices.clear()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM trainors")
+  b = cur.fetchall()
+  for i in range(q):
+  form = DeleteRecepForm(request.form)
+  return render_template('deleteRecep.html', form = form)
+  values.clear()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM info")
+  b = cur.fetchall()
+  for i in range(q):
+  cur.close()
+  form = AddTrainorForm(request.form)
+  return render_template('addRecep.html', form=form)
+  username = SelectField(u'Choose which one you wanted to delete', choices=choices)
+  choices.clear()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM receps")
+  b = cur.fetchall()
+  for i in range(q):
+  form = DeleteRecepForm(request.form)
+  return render_template('deleteRecep.html', form = form)
+  name = StringField('Name', [validators.Length(min = 1, max = 100)])
+  count = IntegerField('Count', [validators.NumberRange(min = 1, max = 25)])
+  form = AddEquipForm(request.form)
+  return render_template('addEquip.html', form = form)
+  name = RadioField('Name', choices = choices)
+  count = IntegerField('Count', [validators.InputRequired()])
+  choices.clear()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT name FROM equip")
+  b = cur.fetchall()
+  for i in range(q):
+  form = RemoveEquipForm(request.form)
+  return render_template('removeEquip.html', form = form)
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  username = StringField('Username', [validators.InputRequired(), validators.NoneOf
+  password = PasswordField('Password', [
+  confirm = PasswordField('Confirm Password')
+  role = StringField('role', [validators.Length(min=1, max=20)])
+  email = StringField('email', [validators.Length(min = 1, max = 100)])
+  choices.clear()
+  choices2.clear()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM players")
+  b = cur.fetchall()
+  for i in range(q):
+  cur.close()
+  form = AddMemberForm(request.form)
+  return render_template('addMember.html', form=form, page_name=page_name)
+  choices.clear()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM members")
+  b = cur.fetchall()
+  for i in range(q):
+  form = DeleteRecepForm(request.form)
+  return render_template('deleteRecep.html', form = form)
+  cur = mysql.connection.cursor()
+  cur.execute("SELECT username FROM info WHERE username != %s", [session['username']])
+  result = cur.fetchall()
+  return render_template('viewDetails.html', result = result, page_name=page_name)
+  return render_template('recepDash.html')
+  name = RadioField('Select Username', choices = choices)
+  date = DateField('Date', format='%Y-%m-%d')
+  report = StringField('Report', [validators.InputRequired()])
+  rate = RadioField('Result', choices = [('good', 'good'),('average', 'average'),('poor', 'poor') ])
+  choices.clear()
+  cur = mysql.connection.cursor()
+  cur.execute("SELECT name, count FROM equip")
+  equips = cur.fetchall()
+  cur.execute("SELECT username FROM members WHERE trainor = %s", [session['username']])
+  members_under = cur.fetchall()
+  cur.close()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM members WHERE trainor = %s", [session['username']])
+  b = cur.fetchall()
+  for i in range(q):
+  cur.close()
+  form = trainorForm(request.form)
+  return render_template('trainorDash.html', equips = equips, form = form, members = members_under)
+  name = StringField('Plan Name', [validators.Length(min=1, max=50)])
+  exercise = StringField('Exercise', [validators.Length(min = 1, max = 100)])
+  reps = IntegerField('Reps', [validators.NumberRange(min = 1, max = 20)])
+  sets = IntegerField('Sets', [validators.NumberRange(min = 1, max = 20)])
+  form = UpdatePlanForm(request.form)
+  return render_template('addPlan.html', form = form)
+  glevel = SelectField('Select a game level:', validators=[InputRequired()],
+  ggoal = SelectField('Select a game goal:', validators=[InputRequired()],
+  form = GameLevelForm()
+  return render_template('memberDash.html', user=username, form=form, page_name=page_name)
+  return redirect(url_for('memberDash', username=username, page_name=page_name))
+  flash('You cannot view other\'s profile', 'warning')
+  return redirect(url_for('memberDash', username = username, page_name=page_name))
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  email = StringField('Email', [validators.Length(min = 1, max = 100)])
+  cur = mysql.connection.cursor()
+  cur.execute("SELECT * FROM info WHERE username = %s", [username]);
+  result = cur.fetchone()
+  form = EditForm(request.form)
+  cur.close()
+  return render_template('edit_profile.html', form=form, page_name=page_name)
+  session.clear()
+  flash('You are now logged out', 'success')
+  return redirect(url_for('login'))
+  app.run()
+  cur = mysql.connection.cursor()
+  result = cur.execute('SELECT * FROM info WHERE username = %s', [username])
+  if request.method == 'POST' and form.validate():
+  cur = mysql.connection.cursor()
+  cur.execute("SELECT password FROM info WHERE username = %s", [username])
+  if sha256_crypt.verify(entered, old):
+  cur.close()
+  flash('Old password you entered is wrong!!, try again', 'warning')
+  values.append(b[i]['username'])
+  if request.method == 'POST' and form.validate():
+  password = sha256_crypt.encrypt(str(form.password.data))
+  cur = mysql.connection.cursor()
+  cur.execute("INSERT INTO info(name, username, password, street, city, prof, phone) VALUES(%s, %s, %s, %s, %s, %s, %s)", (name, username, password, street, city, 3,phone))
+  cur.execute("INSERT INTO trainors(username) VALUES(%s)", [username])
+  mysql.connection.commit()
+  cur.close()
+  flash('You recruited a new Trainor!!', 'success')
+  return redirect(url_for('adminDash'))
+  choices.append(tup)
+  if len(choices)==1:
+  flash('You cannot remove your only Trainor!!', 'danger')
+  return redirect(url_for('adminDash'))
+  q = cur.execute("SELECT username FROM trainors WHERE username != %s", [username])
+  b = cur.fetchall()
+  cur.execute("UPDATE members SET trainor = %s WHERE trainor = %s", (new, username))
+  cur.execute("DELETE FROM trainors WHERE username = %s", [username])
+  cur.execute("DELETE FROM info WHERE username = %s", [username])
+  mysql.connection.commit()
+  cur.close()
+  choices.clear()
+  flash('You removed your Trainor!!', 'success')
+  return redirect(url_for('adminDash'))
+  values.append(b[i]['username'])
+  if request.method == 'POST' and form.validate():
+  password = sha256_crypt.encrypt(str(form.password.data))
+  cur = mysql.connection.cursor()
+  cur.execute("INSERT INTO info(name, username, password, street, city, prof, phone) VALUES(%s, %s, %s, %s, %s, %s, %s)", (name, username, password, street, city, 2,phone))
+  cur.execute("INSERT INTO receps(username) VALUES(%s)", [username])
+  mysql.connection.commit()
+  cur.close()
+  flash('You recruited a new Receptionist!!', 'success')
+  return redirect(url_for('adminDash'))
+  choices.append(tup)
+  if len(choices)==1:
+  flash('You cannot remove your only receptionist!!', 'danger')
+  return redirect(url_for('adminDash'))
+  cur.execute("DELETE FROM receps WHERE username = %s", [username])
+  cur.execute("DELETE FROM info WHERE username = %s", [username])
+  mysql.connection.commit()
+  cur.close()
+  choices.clear()
+  flash('You removed your receptionist!!', 'success')
+  return redirect(url_for('adminDash'))
+  if request.method == 'POST' and form.validate():
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT name FROM equip")
+  b = cur.fetchall()
+  for i in range(q):
+  mysql.connection.commit()
+  cur.close()
+  flash('You added a new Equipment!!', 'success')
+  return redirect(url_for('adminDash'))
+  choices.append(tup)
+  if request.method == 'POST' and form.validate():
+  cur.execute("SELECT * FROM equip WHERE name = %s", [form.name.data])
+  data = cur.fetchone()
+  app.logger.info(data['count'])
+  values.append(b[i]['username'])
+  if request.method == 'POST' and form.validate():
+  password = sha256_crypt.encrypt(str(form.password.data))
+  cur = mysql.connection.cursor()
+  mysql.connection.commit()
+  cur.close()
+  choices2.clear()
+  choices.clear()
+  flash('You are added as a new game player!!', 'success')
+  return redirect(url_for('profile', username = username, page_name=page_name))
+  choices.append(tup)
+  cur = mysql.connection.cursor()
+  cur.execute("DELETE FROM members WHERE username = %s", [username])
+  cur.execute("DELETE FROM info WHERE username = %s", [username])
+  mysql.connection.commit()
+  cur.close()
+  choices.clear()
+  flash('You deleted a member from the GYM!!', 'success')
+  return redirect(url_for('recepDash'))
+  choices.append(tup)
+  cur = mysql.connection.cursor()
+  p = cur.execute("SELECT date FROM progress WHERE username = %s", [username])
+  q = cur.fetchall()
+  for i in range(p):
+  cur.execute("INSERT INTO progress(username, date, daily_result, rate) VALUES(%s, %s, %s, %s)", (username, date, report, rate))
+  mysql.connection.commit()
+  cur.close()
+  choices.clear()
+  flash('Progress updated and Reported', 'info')
+  return redirect(url_for('trainorDash'))
+  if request.method == 'POST' and form.validate():
+  cur = mysql.connection.cursor()
+  cur.execute("SELECT name, exercise FROM plans WHERE name = %s and exercise = %s", (name, exercise))
+  result = cur.fetchall()
+  mysql.connection.commit()
+  cur.close()
+  flash('You have updated the plan schemes', 'success')
+  return redirect(url_for('trainorDash'))
+  flash('You aren\'t authorised to view other\'s Dashboards', 'danger')
+  return redirect(url_for('memberDash', username=session['username'], page_name=page_name))
+  if request.method == 'POST' and form.validate():
+  flash("You selected: {selected_level}", "success")
+  return redirect(url_for('memberDash', username=username, page_name=page_name))
+  cur = mysql.connection.cursor()
+  cur.execute("SELECT * FROM info WHERE username = %s", [username])
+  result = cur.fetchone()
+  return render_template('profile.html', result=result, page_name=page_name)
+  return redirect(url_for('memberDash', username=username, page_name=page_name))
+  return redirect(url_for('trainorDash'))
+  return redirect(url_for('memberDash', username = username, page_name=page_name))
+  flash('You aren\'t authorised to edit other\'s details', 'warning')
+  if request.method == 'POST' and form.validate():
+  app.logger.info(name)
+  app.logger.info(email)
+  cur = mysql.connection.cursor()
+  q = cur.execute("UPDATE info SET name = %s, email = %s WHERE username = %s", (name, email, username))
+  app.logger.info(q)
+  mysql.connection.commit()
+  cur.close()
+  flash('You successfully updated your profile!!', 'success')
+  return redirect(url_for('login'))
+  return f(*args, **kwargs)
+  flash('Nice try, Tricks don\'t work, bud!! Please Login :)', 'danger')
+  return redirect(url_for('login'))
+  return f(*args, **kwargs)
+  flash('You are probably not a trainor!!, Are you?', 'danger')
+  return redirect(url_for('login'))
+  return f(*args, **kwargs)
+  flash('You are probably not an admin!!, Are you?', 'danger')
+  return redirect(url_for('login'))
+  return f(*args, **kwargs)
+  flash('You are probably not an authorised to view that page!!', 'danger')
+  return redirect(url_for('login'))
+  data = cur.fetchone()
+  if sha256_crypt.verify(password_candidate, password):
+  cur.close();
+  return render_template('login.html', error = error, page_name=page_name)
+  validators.DataRequired(),
+  validators.EqualTo('confirm', message = 'Passwords aren\'t matching pal!, check \'em')
+  old = (cur.fetchone())['password']
+  cur.execute("UPDATE info SET password = %s WHERE username = %s", (sha256_crypt.encrypt(new), username))
+  mysql.connection.commit()
+  cur.close()
+  flash('New password will be in effect from next login!!', 'info')
+  return redirect(url_for('memberDash', username = session['username'], page_name=page_name))
+  name = StringField('Name', [validators.Length(min = 1, max = 100)])
+  username = StringField('Username', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
+  username = StringField('Username', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
+  validators.DataRequired(),
+  validators.EqualTo('confirm', message = 'Passwords aren\'t matching pal!, check \'em')
+  street = StringField('Street', [validators.Length(min = 1, max = 100)])
+  city = StringField('City', [validators.Length(min = 1, max = 100)])
+  phone = StringField('Phone', [validators.Length(min = 1, max = 100)])
+  password = sha256_crypt.encrypt(str(form.password.data))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('adminDash'))
+  password = sha256_crypt.encrypt(str(form.password.data))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('adminDash'))
+  name = StringField('Name', [validators.Length(min = 1, max = 100)])
+  count = IntegerField('Count', [validators.NumberRange(min = 1, max = 25)])
+  equips.append(b[i]['name'])
+  cur.execute("UPDATE equip SET count = count+%s WHERE name = %s", (count, name))
+  cur.execute("INSERT INTO equip(name, count) VALUES(%s, %s)", (name, count))
+  return redirect(url_for('adminDash'))
+  count = IntegerField('Count', [validators.InputRequired()])
+  cur = mysql.connection.cursor()
+  cur.execute("UPDATE equip SET count = count-%s WHERE name = %s", (count, name))
+  mysql.connection.commit()
+  cur.close()
+  choices.clear()
+  flash('You successfully removed some of your equipment!!', 'success')
+  return redirect(url_for('adminDash'))
+  flash('you must enter valid number', 'danger')
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  username = StringField('Username', [validators.InputRequired(), validators.NoneOf
+  username = StringField('Username', [validators.InputRequired(), validators.NoneOf
+  validators.DataRequired(),
+  validators.EqualTo('confirm', message='Passwords do not match')
+  role = StringField('role', [validators.Length(min=1, max=20)])
+  email = StringField('email', [validators.Length(min = 1, max = 100)])
+  password = sha256_crypt.encrypt(str(form.password.data))
+  cur.execute("INSERT INTO players(name, username, password, role, email) VALUES(%s, %s, %s, %s, %s)",
+  return redirect(url_for('profile', username = username, page_name=page_name))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('recepDash'))
+  report = StringField('Report', [validators.InputRequired()])
+  if datetime.now().date()<date:
+  flash('You cannot predict furture, buoy!!', 'warning')
+  choices.clear()
+  return redirect(url_for('trainorDash'))
+  entered.append(q[i]['date'])
+  cur.execute("UPDATE progress SET daily_result = %s, rate = %s WHERE username = %s and date = %s", (report,rate, username, date))
+  mysql.connection.commit()
+  cur.close()
+  choices.clear()
+  flash('Succesfully updated!', 'success')
+  return redirect(url_for('trainorDash'))
+  return redirect(url_for('trainorDash'))
+  name = StringField('Plan Name', [validators.Length(min=1, max=50)])
+  exercise = StringField('Exercise', [validators.Length(min = 1, max = 100)])
+  reps = IntegerField('Reps', [validators.NumberRange(min = 1, max = 20)])
+  sets = IntegerField('Sets', [validators.NumberRange(min = 1, max = 20)])
+  if len(result)>0:
+  cur.execute("UPDATE plans SET sets=%s, reps= %s WHERE name = %s and exercise = %s", (sets, reps, name, exercise))
+  cur.execute("INSERT INTO plans(name, exercise, sets, reps) VALUES(%s, %s, %s, %s)", (name, exercise, sets, reps))
+  return redirect(url_for('trainorDash'))
+  return redirect(url_for('memberDash', username=session['username'], page_name=page_name))
+  return redirect(url_for('memberDash', username=username, page_name=page_name))
+  return redirect(url_for('trainorDash'))
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  email = StringField('Email', [validators.Length(min = 1, max = 100)])
+  return redirect(url_for('memberDash', username = username, page_name=page_name))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('recepDash', username = username, page_name=page_name))
+  return redirect(url_for('trainorDash', username = username, page_name=page_name))
+  return redirect(url_for('memberDash', username = username, page_name=page_name))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('recepDash', username = username, page_name=page_name))
+  return redirect(url_for('trainorDash', username = username, page_name=page_name))
+  return redirect(url_for('login'))
+  return redirect(url_for('login'))
+  return redirect(url_for('login'))
+  return redirect(url_for('login'))
+  flash('You are logged in', 'success')
+  return redirect(url_for('memberDash', username = username, page_name=page_name))
+  return render_template('login.html', error = error, page_name=page_name)
+  return redirect(url_for('memberDash', username = session['username'], page_name=page_name))
+  return redirect(url_for('adminDash'))
+  flash('DB Insert failed.', 'error')
+  cur.close()
+  return render_template('addMember.html', form=form, page_name=page_name)
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('trainorDash'))
+  return redirect(url_for('trainorDash'))
+  glevel = SelectField('Select a game level:', validators=[InputRequired()],
+  ggoal = SelectField('Select a game goal:', validators=[InputRequired()],
+  return redirect(url_for('memberDash', username = username, page_name=page_name))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('recepDash', username = username, page_name=page_name))
+  return redirect(url_for('trainorDash', username = username, page_name=page_name))
+  return redirect(url_for('memberDash', username = username, page_name=page_name))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('recepDash', username = username, page_name=page_name))
+  return redirect(url_for('trainorDash', username = username, page_name=page_name))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('trainorDash'))
+  return redirect(url_for('recepDash'))
+  return redirect(url_for('memberDash', username = username, page_name=page_name))
+  cur.execute("UPDATE info SET password = %s WHERE username = %s", (sha256_crypt.encrypt(new), username))
+  if datetime.now().date()<date:
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('trainorDash'))
+  return redirect(url_for('recepDash'))
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\app_factory.py
+Functions:
+  def create_app():
+Classes:
+Function Calls:
+  mysql = MySQL()
+  app = Flask(__name__)
+  mysql.init_app(app)
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\formexample.py
+Functions:
+  def contact():
+  def success():
+Classes:
+  class ContactForm(Form):
+Function Calls:
+  app = Flask(__name__)
+  @app.route('/contact', methods=['GET', 'POST'])
+  @app.route('/success', methods=['GET', 'POST'])
+  name = StringField("Candidate Name ", [validators.data_required("Please enter your name.")])
+  Gender = RadioField('Gender', choices=[('M', 'Male'), ('F', 'Female')])
+  address = TextAreaField("Address")
+  email = StringField("Email", [validators.data_required("Please enter your email address."),
+  Age = IntegerField("Age")
+  language = SelectField('Programming Languages', choices=[('java', 'Java'), ('py' 'Python')])
+  submit = SubmitField("Submit")
+  form = ContactForm()
+  return render_template('contact.html', form=form)
+  return render_template("success.html")
+  app.run(debug=True)
+  if form.validate() == False:
+  flash('All fields are required.')
+  return render_template('contact.html')
+  name = StringField("Candidate Name ", [validators.data_required("Please enter your name.")])
+  email = StringField("Email", [validators.data_required("Please enter your email address."),
+  validators.Email("Please enter your email address.")])
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\forms.py
+Functions:
+Classes:
+  class ContactForm(Form):
+Function Calls:
+  name = StringField("Candidate Name ", [validators.data_required("Please enter your name.")])
+  Gender = RadioField('Gender', choices=[('M', 'Male'), ('F', 'Female')])
+  address = TextAreaField("Address")
+  email = StringField("Email", [validators.data_required("Please enter your email address."),
+  Age = IntegerField("Age")
+  language = SelectField('Programming Languages', choices=[('java', 'Java'), ('py' 'Python')])
+  submit = SubmitField("Submit")
+  name = StringField("Candidate Name ", [validators.data_required("Please enter your name.")])
+  email = StringField("Email", [validators.data_required("Please enter your email address."),
+  validators.Email("Please enter your email address.")])
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\Listit.py
+Functions:
+  def get_lines_by_node_type(file_path, node_types):
+  def analyze_file(file_path):
+  def analyze_directory(directory_path):
+  def write_analysis_to_file(output_path, analysis):
+Classes:
+Function Calls:
+  analysis = analyze_directory(project_path)
+  write_analysis_to_file(output_path, analysis)
+  function_lines = get_lines_by_node_type(file_path, (ast.FunctionDef,))
+  class_lines = get_lines_by_node_type(file_path, (ast.ClassDef,))
+  call_lines = get_lines_by_node_type(file_path, (ast.Call,))
+  for root, _, files in os.walk(directory_path):
+  with open(file_path, 'r') as file:
+  source = file.readlines()
+  tree = ast.parse(''.join(source), filename=file_path)
+  for node in ast.walk(tree):
+  with open(output_path, 'w') as file:
+  for file_path, data in analysis.items():
+  tree = ast.parse(''.join(source), filename=file_path)
+  if isinstance(node, tuple(node_types)):
+  if file.endswith(".py"):
+  file.write(f'File: {file_path}\n')
+  file.write('Functions:\n')
+  file.write('Classes:\n')
+  file.write('Function Calls:\n')
+  file.write('\n')
+  if isinstance(node, tuple(node_types)):
+  lines.append(source[line_number].strip())
+  file_path = os.path.join(root, file)
+  analysis[file_path] = analyze_file(file_path)
+  file.write(f'  {line}\n')
+  file.write(f'  {line}\n')
+  file.write(f'  {line}\n')
+  lines.append(source[line_number].strip())
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\MySQL_Load.py
+Functions:
+  def create_table(cursor, table_name, columns):
+  def load_data(cursor, table_name, data):
+  def define_database(csv_file):
+Classes:
+Function Calls:
+  define_database('load.csv')
+  cursor.execute(create_table_stmt)
+  placeholders = ', '.join(['%s'] * len(data[0]))
+  cursor.executemany(insert_stmt, data)
+  conn = mysql.connector.connect(
+  cursor = conn.cursor()
+  create_table(cursor, table_name, columns)
+  load_data(cursor, table_name, data)
+  conn.commit()
+  conn.close()
+  with open(csv_file, 'r') as file:
+  reader = csv.reader(file)
+  create_table_stmt = f"CREATE TABLE {table_name} ({', '.join(columns)})"
+  placeholders = ', '.join(['%s'] * len(data[0]))
+  table_name = next(reader)[0]
+  columns.append(column_def)
+  data.append(row[6:])
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\sessions_test.py
+Functions:
+  def save_session_to_db(session_id, key, value, data_type):
+  def get_session_from_db(session_id):
+  def serialize_value(value):
+  def xdeserialize_value(value):
+  def deserialize_value(value):
+  def set_session(key):
+  def get_session(key):
+  def before_request():
+Classes:
+Function Calls:
+  app = Flask(__name__)
+  mysql = MySQL(app)
+  @app.route('/set/<key>')
+  @app.route('/get/<key>')
+  serialized_value = pickle.dumps(serialize_value(value))
+  cursor = g.mysql.connection.cursor()
+  cursor.execute(
+  g.mysql.connection.commit()
+  cursor.close()
+  cursor = g.mysql.connection.cursor()
+  cursor.execute("SELECT session_key, session_value, data_type FROM sessions WHERE id = %s", (session_id,))
+  session_data = cursor.fetchall()
+  cursor.close()
+  if isinstance(value, dict):
+  if isinstance(value, dict):
+  if isinstance(value, dict):
+  save_session_to_db(session_id, key, value, type)
+  data = get_session_from_db(session_id)
+  app.run(debug=True)
+  serialized_value = pickle.dumps(serialize_value(value))
+  value = pickle.loads(row['session_value'])
+  sessions[key] = deserialize_value(value)
+  elif isinstance(value, list):
+  elif isinstance(value, list):
+  elif isinstance(value, list):
+  return {k: serialize_value(v) for k, v in value.items()}
+  elif isinstance(value, tuple):
+  elif isinstance(value, tuple):
+  elif isinstance(value, tuple):
+  return f'Session data: {data.get(key, "Not Found")}'
+  return {k: serialize_value(v) for k, v in value.items()}
+  return [serialize_value(item) for item in value]
+  return tuple(serialize_value(item) for item in value)
+  elif isinstance(value, (datetime, date)):
+  return {k: deserialize_value(v) if k not in date_columns else datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT') for k, v in value.items()}
+  return {k: deserialize_value(v) if k not in date_columns else datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT') for k, v in value.items()}
+  return {k: deserialize_value(v) if k not in date_columns else datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT') for k, v in value.items()}
+  return [deserialize_value(item) for item in value]
+  return tuple(deserialize_value(item) for item in value)
+  return {k: (datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT').strftime('%a, %d %b %Y %H:%M:%S GMT') if k in date_columns else deserialize_value(v)) for k, v in value.items()}
+  return {k: (datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT').strftime('%a, %d %b %Y %H:%M:%S GMT') if k in date_columns else deserialize_value(v)) for k, v in value.items()}
+  return {k: (datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT').strftime('%a, %d %b %Y %H:%M:%S GMT') if k in date_columns else deserialize_value(v)) for k, v in value.items()}
+  return [deserialize_value(item) for item in value]
+  return tuple(deserialize_value(item) for item in value)
+  return value.isoformat()  # Convert date/datetime to string
+  return tuple(serialize_value(item) for item in value)
+  return tuple(deserialize_value(item) for item in value)
+  return {k: (datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT').strftime('%a, %d %b %Y %H:%M:%S GMT') if k in date_columns else deserialize_value(v)) for k, v in value.items()}
+  return tuple(deserialize_value(item) for item in value)
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\Test.py
+Functions:
+Classes:
+Function Calls:
+  df = pd.DataFrame(data)
+  fig = px.line(df, x='Day', y='Sales', title='Sales Over the Week')
+  fig.write_html('sales_over_week.html')
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\test2.py
+Functions:
+  def get_data(data1):
+  def display():
+  def process_selection():
+Classes:
+Function Calls:
+  app = Flask(__name__)
+  @app.route('/')
+  @app.route('/process_selection', methods=['POST'])
+  data = get_data(data1)
+  return render_template('display.html', data=data)
+  selected_items = request.form.getlist('selected_items')
+  print(selected_items)
+  app.run(debug=True)
+  x = abs(row['amount'])
+  row['amount'] = str(x)
+  data.append(row)
+  return "Items processed: " + ", ".join(selected_items)
+  x = row['short_description'] + ": " + str(row['count']) + "-piece deal"
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\test3.py
+Functions:
+Classes:
+Function Calls:
+  msg = MIMEMultipart()
+  msg.attach(MIMEText(body, 'plain'))
+  server = smtplib.SMTP('smtp.comcast.net', 587)  # Replace 'smtp.example.com' with your email provider's SMTP server
+  server.starttls()
+  server.login(sender_email, password)
+  text = msg.as_string()
+  server.sendmail(sender_email, receiver_email, text)
+  server.quit()
+  print("Email sent successfully.")
+  msg.attach(MIMEText(body, 'plain'))
+  print("bye")
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\testdb.py
+Functions:
+  def __init__(self, obj):
+  def get_game_players(self, game_ID):
+  def update_player_number(self, username, player_number):
+  def get_players_with_details(self):
+Classes:
+  class DB_Mgr:
+Function Calls:
+  app = Flask(__name__)
+  mysql = MySQL(app)  # Properly initialize MySQL with the Flask app
+  db = DB_Mgr(mysql)
+  with app.app_context():
+  status, users = db.get_game_players(game_ID)
+  cur = self.mysql.connection.cursor()
+  cur.execute("SELECT username FROM players WHERE game_ID = %s", [game_ID])
+  users = cur.fetchall()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  cur.execute("UPDATE players SET player_number = %s WHERE username = %s", (player_number, username))
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  cur.execute("SELECT username, player_number, status FROM players")
+  players = cur.fetchall()
+  cur.close()
+  print("Game Players:", users)
+  for i, user in enumerate(users):
+  status, players = db.get_players_with_details()
+  print("DB error")
+  print(f"Database error: {e}")
+  print(f"Database error: {e}")
+  print(f"Database error: {e}")
+  update_status = db.update_player_number(username, i + 1)
+  print("Player Details:", players)
+  print("Failed to retrieve player details")
+  print(f"Updated player number for {username}")
+  print(f"Failed to update player number for {username}")
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\testit.py
+Functions:
+  def home():
+  def remove_trailing_empty(lst):
+Classes:
+Function Calls:
+  app = Flask(__name__)
+  @app.route('/')
+  ic(data['Features'], data['Goals'], data['Player Status1'], data['Player Status2'])
+  df = pd.DataFrame(data)
+  player_status1 = remove_trailing_empty(player_status1)
+  player_status2 = remove_trailing_empty(player_status2)
+  player_status3 = remove_trailing_empty(player_status3)
+  player_status4 = remove_trailing_empty(player_status4)
+  ic(player_status)
+  player_status_df = pd.DataFrame(player_status)
+  ic(player_status_df, df)
+  return render_template('report.html', data=df, player_status=player_status_df)
+  app.run(debug=True)
+  player_status2[0]: [int(x) if x.isdigit() else x for x in player_status2[1:]],
+  player_status2[0]: [int(x) if x.isdigit() else x for x in player_status2[1:]],
+  player_status3[0]: [int(x) if x.isdigit() else x for x in player_status3[1:]],
+  player_status3[0]: [int(x) if x.isdigit() else x for x in player_status3[1:]],
+  player_status4[0]: [int(x) if x.isdigit() else x for x in player_status4[1:]]
+  player_status4[0]: [int(x) if x.isdigit() else x for x in player_status4[1:]]
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\testit2.py
+Functions:
+Classes:
+Function Calls:
+  ic(player_status)
+  for i, key in enumerate(stocks):
+  player_status["Player #"].append(str(1))
+  player_status["STOCK COUNTS"].append(" ")
+  player_status["% of Goal"].append("45.0")
+  ic(player_status)
+  ic(capitalized_player_status)
+  df = pd.DataFrame(capitalized_player_status)
+  ic(df)
+  ic(i, key)
+  player_status[key].append(stocks[key])
+  player_status["Player #"].append(str(1))
+  capitalized_player_status = {k.upper(): v for k, v in player_status.items()}
+  print("Bye")
+  capitalized_player_status = {k.upper(): v for k, v in player_status.items()}
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_cycle.py
+Functions:
+  def __init__(self, table_name: str, id: int):
+  def load_data(self) -> Dict[str, Any]:
+  def get_data(self, key):
+  def add_data(self, key, value):
+  def update_data(self, key, value):
+  def delete_data(self, key):
+  def jc_method(self, key):
+  def lc_method(self, key):
+  def cc_method(self, key):
+  def sc_method(self, key):
+  def sc_method(self, key):
+  def sc2_method(self, key):
+  def calculate_interest(self, rate: float) -> Decimal:
+  def check_eligibility(self, min_amount: Decimal) -> bool:
+  def update_amount(self, transaction_amount: Decimal) -> None:
+  def __init__(self):
+  def get_cycle_table_name(self, key: str):
+  def get_cycle_table_by_code(self, key: str):
+  def get_cycle_tax_code(self, key: str):
+  def get_cycle_message(self, key):
+  def get_info_message(self, action, cycle, itype):
+  def __init__(self, data):
+  def stock_check_removal(self, player_number):
+  def set_buy_type(self, data, shrt_desc):
+  def cash_out(self, player_number):
+  def set_player_flags(self, player_number):
+  def process_raise_event(self, amt, player_number):
+  def __init__(self, ctgy=None, type=None, desc=None, invest=None, options=None):
+  def load_data(self):
+  def add_row(self, ctgy=None, type=None, desc=None, invest=None):
+  def get_options(self):
+  def __init__(self, table_name):
+  def load_data(self, table_name):
+  def add_position(self, new_pos):
+  def retrieve_count(self):
+  def update_data(self):
+  def __init__(self):
+  def set_bill_type(self, bill_desc):
+  def get_data_by_key(self, key):
+  def add_data_by_key(self, key, value):
+  def insert_billpay_card(self):
+  def clear_billpay_card(self):
+  def build_billpay_card(self, player, data):
+  def __init__(self):
+  def get_data_by_key(self, key):
+  def add_data_by_key(self, key, value):
+  def insert_roi_card(self):
+  def clear_roi_card(self):
+  def load_roi_from_addr(self, addr_data, player_number, ppty_id):
+  def build_insert_roi(self, addr: dict):
+Classes:
+  class Cycle:
+  class JobCycle(Cycle):
+  class LifeCycle(Cycle):
+  class CollegeCycle(Cycle):
+  class StockCycle(Cycle):
+  class ShoppingCycle(Cycle):
+  class SellCycle(Cycle):
+  class BankerCycle(Cycle):
+  class CycleExt:
+  class Opportunity:
+  class Options:
+  class Positions:
+  class Billpay:
+  class ROI_Card:
+Function Calls:
+  db = DB_Mgr(mysql)
+  self.data = self.load_data()
+  print(f"Loaded data: {self.data}")
+  status, result, column_names = db.get_table_row(self.table_name, self.id)
+  return self.data.get(key, "Job cycle key not found")
+  interest = round(Decimal(self.amount) * Decimal(rate / 100), 2)
+  print(f"Updated amount: {self.amount}")
+  result = db.get_player_by_number(player_number)
+  result = db.get_player_by_number(player_number)
+  self.load = self.load_data()
+  rnge = len(self.ctgy)
+  for i in range(rnge):
+  for i in range(1):
+  self.visited_positions = self.load_data(table_name)
+  v_pos = set()
+  q, result = db.get_positions_data(table_name)
+  self.visited_positions.add(new_pos)
+  return len(self.visited_positions)
+  status = db.clear_positions_data(self.table_name)
+  return self.billpay_data.get(key, "Bill pay key not found")
+  stat = db.insert_billpay(self.billpay_data)
+  self.clear_billpay_card()
+  return self.roi_data.get(key, "Bill pay key not found")
+  stat = db.insert_roi_card(self.roi_data)
+  self.clear_roi_card()
+  self.roi_data = addr.copy()
+  stat = self.insert_roi_card()
+  self.center_row = len(self.data) // 2
+  raise Exception("Error Condition: Load Data from cycle tables failed...")
+  data = dict(zip(column_names, row))
+  print(f"{self.table_name} Table data: ", data)
+  x = db.delete_investments_by_code("STCK", player_number)
+  x = db.delete_investments_by_code("STCK", player_number)
+  y = db.delete_investments_by_code("PPTY", player_number)
+  resp = db.update_player_by_flag(result)
+  resp = db.update_player_by_flag(result)
+  options.append(d)
+  self.options.append(d)
+  raise Exception(f"Clear Positions data error: Update - {self.table_name}")
+  'bill_amount': decimal.Decimal('0.00'),
+  'bill_value': decimal.Decimal('0.00'),
+  'bill_amount': decimal.Decimal('0.00'),
+  'bill_value': decimal.Decimal('0.00'),
+  if len(data) > 0:
+  print("Billpay data: ", data)
+  if isinstance(data, dict):
+  print("Billpay data1: ", data1)
+  'roi_rent': decimal.Decimal(0.00),
+  'roi_price': decimal.Decimal(0.00),
+  'max_qtrly_roi': decimal.Decimal(0.00),
+  'roi_rent': decimal.Decimal('0.00'),
+  'roi_price': decimal.Decimal('0.00'),
+  'max_qtrly_roi': decimal.Decimal('0.00'),
+  d.append(self.roi_data)
+  roi = Decimal(addr['units']) * Decimal(addr['Rent']) * Decimal(3)
+  data = dict(zip(column_names, row))
+  interest = round(Decimal(self.amount) * Decimal(rate / 100), 2)
+  interest = round(Decimal(self.amount) * Decimal(rate / 100), 2)
+  resp = db.update_player_by_flag(result)
+  result['salary'] = decimal.Decimal(result['salary']) + decimal.Decimal(amt)
+  result['salary'] = decimal.Decimal(result['salary']) + decimal.Decimal(amt)
+  v_pos.add(r['value'])
+  status = db.update_positions_data(self.table_name, self.visited_positions)
+  data1.append(data)
+  x = self.set_bill_type(d['invest_description'])
+  self.billpay_data['bill_amount'] = abs(d['invest_amount'])
+  status = db.insert_billpay(self.billpay_data)
+  roi = Decimal(addr['units']) * Decimal(addr['Rent']) * Decimal(3)
+  roi = Decimal(addr['units']) * Decimal(addr['Rent']) * Decimal(3)
+  roi = Decimal(addr['units']) * Decimal(addr['Rent']) * Decimal(3)
+  if int(action) > 0 and itype != "ZERO":
+  result['job_level'] = int(result['job_level']) + int(1)
+  result['job_level'] = int(result['job_level']) + int(1)
+  y = db.delete_investments_by_code("PPTY", player_number)
+  raise Exception(f"Update positions data failed... {e}")
+  raise Exception("DB Error Condition: ISRT Bill Pay failed...")
+  self.clear_billpay_card()
+  roi = Decimal(addr['units']) * Decimal(addr['Rent']) * Decimal(3)
+  roi = Decimal(addr['units']) * Decimal(addr['Rent']) * Decimal(3)
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_database.py
+Functions:
+  def __init__(self, obj):
+  def _execute_query(self, query, params):
+  def get_player_investment_stats(self, player_number):
+  def get_player_investment_history(self, player_number):
+  def get_investment_by_id(self, id):
+  def get_player_record(self, username):
+  def get_player_by_number(self, player_number):
+  def get_table_row(self, table_name, pos):
+  def get_table_data(self, table_name):
+  def delete_table_data(self, table_name):
+  def clear_players_card(self, game_ID):
+  def validate_password(self, data, password_candidate, username):
+  def update_password(self, username, form):
+  def get_game_players(self, game_ID):
+  def update_player_game_card(self, username, player_number, gstatus):
+  def get_players_game_card(self, game_ID, allcolumn="N"):
+  def get_game_data(self, username):
+  def get_game_card(self, game_ID):
+  def put_game_card(self, gc):
+  def update_game(self, form):
+  def update_game_from_setup(self, form):
+  def update_player_by_flag(self, data):
+  def update_game_player(self, amount, gc, dataopt):
+  def get_investments_by_code(self, code, player_number):
+  def get_investments_by_desc(self, code, desc, player_number):
+  def update_investment_by_id(self, inv_data):
+  def update_goal_by_id(self, goal_data):
+  def insert_investments_from_sale(self, invest_data):
+  def insert_billpay_history(self, bill_data):
+  def insert_billpay(self, bill_data):
+  def insert_roi_card(self, roi_data):
+  def delete_investments_by_code(self, code, player_number):
+  def delete_investments_by_desc(self, code, desc, player_number):
+  def delete_investment_by_id(self, id):
+  def add_game(self, form):
+  def get_players(self):
+  def add_player(self, form):
+  def update_player(self, form):
+  def update_player2(self, result):
+  def update_player3(self, data):
+  def update_gp(self, gp):
+  def update_profile(self, form, username):
+  def get_positions_data(self, table_name):
+  def clear_positions_data(self, table_name):
+  def update_positions_data(self, table_name, v_pos):
+  def get_requests_by_ctgy(self, ctgy):
+  def serialize_value(self, value):
+  def pickle_save(self, session_id, key, value, data_type):
+  def deserialize_value(self, value):
+  def pickle_get(self, session_id):
+  def pickle_restore(row: dict):
+Classes:
+  class DB_Mgr:
+Function Calls:
+  cur = self.mysql.connection.cursor()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  result = cur.fetchall()
+  print(f"Investment Stats = {result}")
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute('SELECT * FROM players WHERE username = %s', [username])
+  result = cur.fetchone()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute('SELECT * FROM players WHERE player_number = %s', [player_number])
+  result = cur.fetchone()
+  cur.close()
+  return self._execute_query(query, [pos])
+  cur = self.mysql.connection.cursor()
+  cur.execute(query)
+  result = cur.fetchall()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  cur.close()
+  if sha256_crypt.verify(password_candidate, password):
+  cur = self.mysql.connection.cursor()
+  cur.execute("SELECT password FROM players WHERE username = %s", [username])
+  cur.close()
+  if sha256_crypt.verify(entered, old):
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("SELECT * FROM game where username = %s", [username])
+  result = cur.fetchone()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("SELECT * FROM game WHERE game_ID = %s", [game_ID])
+  result = cur.fetchone()
+  cur.close()
+  print('Put Game Card: ', gc)
+  cur = self.mysql.connection.cursor()
+  self.mysql.connection.commit()
+  cur.close()
+  username = session.get('username')
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("UPDATE game "
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("UPDATE game "
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("UPDATE players "
+  self.mysql.connection.commit()
+  cur.close()
+  print("UGP DATAOPT: ", dataopt)
+  cur = self.mysql.connection.cursor()
+  self.mysql.connection.commit()
+  q = cur.execute('SELECT * FROM players WHERE username = %s', [username])
+  result = cur.fetchone()
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  invest_cards = cur.fetchall()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  invest_cards = cur.fetchone()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("UPDATE investments "
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("UPDATE gamegoals "
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  print("Query ", sql)
+  print("Value ", val)
+  cur.execute(sql, val)
+  self.mysql.connection.commit()
+  cur.close()
+  bill_round = session.get('player_round')
+  cur = self.mysql.connection.cursor()
+  print("Query ", sql)
+  print("Value ", val)
+  cur.execute(sql, val)
+  self.mysql.connection.commit()
+  cur.close()
+  bill_round = session.get('player_round')
+  cur = self.mysql.connection.cursor()
+  print("Query ", sql)
+  print("Value ", val)
+  cur.execute(sql, val)
+  self.mysql.connection.commit()
+  cur.close()
+  roi_rent = session.get('roi_rent')
+  cur = self.mysql.connection.cursor()
+  print("Query ", sql)
+  print("Value ", val)
+  cur.execute(sql, val)
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  username = session.get('username')
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM players")
+  b = cur.fetchall()
+  for i in range(q):
+  cur.close()
+  password = sha256_crypt.encrypt(str(form.password.data))
+  role = request.form.get("roles")
+  cur = self.mysql.connection.cursor()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("UPDATE players SET status = %s, game_ID = %s, salary = %s WHERE username = %s",
+  self.mysql.connection.commit()
+  cur.close()
+  salary = decimal.Decimal(result['salary'])
+  cash_on_hand = decimal.Decimal(result['cash_on_hand'])
+  other_investments = decimal.Decimal(result['other_investments'])
+  property_value = decimal.Decimal(result['property_value'])
+  stock_value = decimal.Decimal(result['stock_value'])
+  commodity_value = decimal.Decimal(result['commodity_value'])
+  business_value = decimal.Decimal(result['business_value'])
+  points = decimal.Decimal(result['points'])
+  cur = self.mysql.connection.cursor()
+  self.mysql.connection.commit()
+  cur.close()
+  primary_key_value = data.pop(primary_key, None)
+  set_clause = ', '.join([f"{key} = %s" for key in data.keys()])
+  cur = self.mysql.connection.cursor()
+  cur.execute(query, values)
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("UPDATE players SET cash_on_hand = %s, salary = %s, "
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute("UPDATE players "
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute(f"SELECT value FROM positions where list_id = %s", [table_name])
+  b = cur.fetchall()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute(f"DELETE FROM positions where list_id = %s", [table_name])
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  q = cur.execute(f"SELECT * FROM requests where ctgy = %s", [ctgy])
+  d = cur.fetchall()
+  cur.close()
+  if isinstance(value, dict):
+  serialized_value = pickle.dumps(self.serialize_value(value))
+  cursor = self.mysql.connection.cursor()
+  cursor.execute(
+  self.mysql.connection.commit()
+  cursor.close()
+  if isinstance(value, dict):
+  cursor = self.mysql.connection.cursor()
+  cursor.execute("SELECT session_key, session_value, data_type FROM sessions WHERE id = %s", (session_id,))
+  session_data = cursor.fetchall()
+  cursor.close()
+  for key, value in row.items():
+  cur.execute(query, params)
+  result = cur.fetchall()
+  q = cur.execute('Select invest_type, count(invest_count) as inv_cnt FROM investments '
+  q = cur.execute('Select * FROM investments '
+  result = cur.fetchall()
+  q = cur.execute('Select * FROM investments '
+  result = cur.fetchone()
+  if len(result) > 0:
+  cur.execute(query)
+  cur.execute(query)
+  old = (cur.fetchone())['password']
+  cur.execute("UPDATE players SET password = %s WHERE username = %s", (sha256_crypt.encrypt(new), username))
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  cur.execute("SELECT username FROM players WHERE game_ID = %s", [game_ID])
+  users = cur.fetchall()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  cur.execute("UPDATE players SET player_number = %s, status = %s WHERE username = %s",
+  self.mysql.connection.commit()
+  cur.close()
+  cur = self.mysql.connection.cursor()
+  players = cur.fetchall()
+  cur.close()
+  q = cur.execute("UPDATE game "
+  if int(amount) < 0:
+  q = cur.execute("UPDATE game "
+  if int(amount) < 0:
+  cur.execute(sql, val)
+  cur.execute("SELECT * FROM investments WHERE invest_type = %s and player_number = %s", [code, player_number])
+  cur.execute("SELECT * FROM investments WHERE invest_type = %s and player_number = %s and invest_description = %s",
+  q = cur.execute('Delete FROM investments '
+  q = cur.execute('Delete FROM investments '
+  q = cur.execute('Delete FROM investments '
+  q = cur.execute("INSERT INTO game(username, game_ID, player_count, start_date, status, population, pop_chg,"
+  self.mysql.connection.commit()
+  cur.close()
+  values.append(b[i]['username'])
+  password = sha256_crypt.encrypt(str(form.password.data))
+  cur.execute("INSERT INTO players(name, username, password, role, email) VALUES(%s, %s, %s, %s, %s)",
+  self.mysql.connection.commit()
+  cur.close()
+  q = cur.execute("UPDATE players SET status = %s, game_ID = %s, city_addr = %s, salary = %s, cash_on_hand = %s,"
+  values = tuple(data.values()) + (username,)
+  cur.executemany("INSERT INTO positions (list_id, value) VALUES (%s, %s)", [(table_name, val) for val in v_pos])
+  elif isinstance(value, list):
+  serialized_value = pickle.dumps(self.serialize_value(value))
+  with open("sessions.txt", "a") as f:
+  f.write("\n" + str(data))
+  elif isinstance(value, list):
+  value = pickle.loads(row['session_value'])
+  sessions[key] = self.deserialize_value(value)
+  print(f"Database query error: {e}")
+  print(f"DB Investment Statistics error: {e}")
+  print(f"DB Investment History error: {e}")
+  print(f"DB Investment Read error: {e}")
+  print(f"Database delete {table_name} error: {e}")
+  cur.close()
+  exit(111)
+  print(f"Database delete {table_name} error: {e}")
+  cur.close()
+  exit(112)
+  print(f"Database error: {e}")
+  print(f"Database error: {e}")
+  cur.execute("SELECT username, player_number, status FROM players where game_ID = %s", [game_ID])
+  cur.execute("SELECT * FROM players where game_ID = %s", [game_ID])
+  print(f"Database error: {e}")
+  print(f"Database GC error: {e}")
+  total_spending = float(gc['total_spending']) + abs(float(amount))
+  total_spending = float(gc['total_spending']) + abs(float(amount))
+  total_earnings = float(gc['total_earnings']) + abs(float(amount))
+  total_earnings = float(gc['total_earnings']) + abs(float(amount))
+  print(f"Database Update GC error: {e}")
+  if result['cash_on_hand'] > abs(float(amount)):
+  cash_on_hand = float(result['cash_on_hand']) + float(amount)
+  cash_on_hand = float(result['cash_on_hand']) + float(amount)
+  stck = float(stck) + abs(float(amount))
+  stck = float(stck) + abs(float(amount))
+  print(f"Database update players error: {e}")
+  print(f"Database error: {e}")
+  print(f"Database error: {e}")
+  print(f"DB Investment Delete request error: {e}")
+  print(f"DB Investment Delete request error: {e}")
+  print(f"DB Investment Delete request error: {e}")
+  flash('DB Insert failed.', 'error')
+  cur.close()
+  flash('DB Insert failed.', 'error')
+  cur.close()
+  print(f"DB Player update request error: {e}")
+  values = tuple(data.values()) + (username,)
+  raise Exception(f"DB Visited positions update failed... {e}")
+  return {k: self.serialize_value(v) for k, v in value.items()}
+  elif isinstance(value, tuple):
+  elif isinstance(value, tuple):
+  raise ValueError(f"Missing expected key: {e}")
+  cur.execute("UPDATE players SET password = %s WHERE username = %s", (sha256_crypt.encrypt(new), username))
+  amount = decimal.Decimal(amount) * decimal.Decimal(-1)
+  amount = decimal.Decimal(amount) * decimal.Decimal(-1)
+  total_spending = float(gc['total_spending']) + abs(float(amount))
+  total_earnings = float(gc['total_earnings']) + abs(float(amount))
+  if result['cash_on_hand'] > abs(float(amount)):
+  cash_on_hand = float(result['cash_on_hand']) + float(amount)
+  cash_on_hand = float(result['cash_on_hand']) + float(amount)
+  stck = float(stck) + abs(float(amount))
+  ppty = float(ppty) + abs(float(amount))
+  ppty = float(ppty) + abs(float(amount))
+  set_clause = ', '.join([f"{key} = %s" for key in data.keys()])
+  return {k: self.serialize_value(v) for k, v in value.items()}
+  return [self.serialize_value(item) for item in value]
+  return tuple(self.serialize_value(item) for item in value)
+  elif isinstance(value, (datetime, date)):
+  f.write("\n" + str(data))
+  return {k: (datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT').strftime('%a, %d %b %Y %H:%M:%S GMT')
+  if k in date_columns else self.deserialize_value(v)) for k, v in value.items()}
+  if k in date_columns else self.deserialize_value(v)) for k, v in value.items()}
+  return [self.deserialize_value(item) for item in value]
+  return tuple(self.deserialize_value(item) for item in value)
+  amount = decimal.Decimal(amount) * decimal.Decimal(-1)
+  amount = decimal.Decimal(amount) * decimal.Decimal(-1)
+  ppty = float(ppty) + abs(float(amount))
+  bus = float(bus) + abs(float(amount))
+  bus = float(bus) + abs(float(amount))
+  return value.isoformat()
+  bus = float(bus) + abs(float(amount))
+  comm = float(comm) + abs(float(amount))
+  comm = float(comm) + abs(float(amount))
+  othr = float(othr) + abs(float(amount))
+  othr = float(othr) + abs(float(amount))
+  return tuple(self.serialize_value(item) for item in value)
+  return {k: (datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT').strftime('%a, %d %b %Y %H:%M:%S GMT')
+  return tuple(self.deserialize_value(item) for item in value)
+  comm = float(comm) + abs(float(amount))
+  othr = float(othr) + abs(float(amount))
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_database2.py
+Functions:
+  def __init__(self, obj):
+  def _execute_query(self, query, params):
+  def get_table_row(self, table_name, pos):
+Classes:
+  class DB_Mgr:
+Function Calls:
+  cur = self.mysql.connection.cursor()
+  cur.close()
+  return self._execute_query(query, [pos])
+  cur.execute(query, params)
+  result = cur.fetchall()
+  print(f"Database query error: {e}")
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_events.py
+Functions:
+  def __init__(self, table_name):
+  def load_data(self):
+  def get_onsale_rows(self):
+  def get_list_of_retailers(self, data_out):
+  def select_store_items(self, store_name):
+  def create_sales_info(self, store_items):
+  def __init__(self, selected_data: List[Dict[str, Any]]):
+  def update_game_table(self, game_ID):
+  def update_player_table(self, user):
+  def update_investments_table(self, pn):
+  def build_page_data(self):
+  def __init__(self):
+  def load_data(self):
+  def get_vacation_rows(self):
+  def create_sales_info(self, data):
+  def __init__(self, selected_data: List[Dict[str, Any]]):
+  def update_game_table(self, game_ID):
+  def update_player_table(self, user):
+  def update_investments_table(self, pn):
+  def update_investments_table2(self, pn):
+  def calc_distance(self, home_address):
+  def calc_travel_cost(self, distance):
+  def build_page_data(self):
+  def __init__(self):
+  def load_data(self):
+  def get_company_rows(self):
+  def get_local_rows(self):
+  def get_company_list(self, data_out):
+  def get_travel_list_by_company(self, data_out, company):
+  def build_page_data(self, company_projects):
+  def __init__(self, selected_data: List[Dict[str, Any]]):
+  def update_game_table(self, game_ID):
+  def update_player_table(self, user):
+  def update_investments_table(self, pn):
+  def build_page_data(self):
+  def __init__(self, player_name, report_name, trip: dict):
+  def load_data(self):
+  def select_business_report(self):
+  def select_vacation_report(self):
+  def select_random(self):
+  def __init__(self):
+  def load_data(self):
+  def select_goal_code(self, game_type, goal_code):
+  def replace_goal(self, row):
+  def get_goal_name(self, ggoal):
+  def get_level_name(self, glevel):
+  def build_status_report(self, glevel, ggoal, username):
+  def calc_percent(self, player, goal_selected, player_status2, player_status3):
+Classes:
+  class Shopping:
+  class SelectedItems:
+  class Travel:
+  class SelectedTravel:
+  class Business:
+  class BusinessProjects:
+  class TravelReport:
+  class GameGoals:
+Function Calls:
+  db = DB_Mgr(mysql)
+  self.data = self.load_data()
+  status, result = db.get_table_data(self.table_name)
+  choice = random.choice(nbr)
+  print(f"sale items: {sale_items}")
+  print(f"SALES UGT selected_data: {self.selected_data}")
+  gb = GameBoard(game_ID)
+  game_data = gb.get_game_data()
+  update_status = gb.put_game_data(game_data)
+  p = Players(user)
+  print(f"SALES UPT selected_data: {self.selected_data}")
+  update_status = p.update_table()
+  print(f"SALES UIT selected_data: {self.selected_data}")
+  iv = Investment()
+  count = len(self.selected_data)
+  sprice = Decimal(0)
+  points = int(0)
+  print(f"PPrice: {sprice}")
+  self.selected_data.append(new_row)
+  self.data = self.load_data()
+  status, result = db.get_table_data(self.table_name)
+  print(f"TRAVEL UGT selected_data: {self.selected_data}")
+  gb = GameBoard(game_ID)
+  game_data = gb.get_game_data()
+  update_status = gb.put_game_data(game_data)
+  p = Players(user)
+  home_address = p.get_data("city_addr")
+  distance = self.calc_distance(home_address)
+  adjusted_cost, travel_mode = self.calc_travel_cost(distance[0])
+  print(f"distance/cost/travel_mode: {distance} / {adjusted_cost} / {travel_mode}")
+  print(f"TRAVEL UPT selected_data: {self.selected_data}")
+  self.selected_data = new_selected_data.copy()
+  update_status = p.update_table()
+  print(f"TRAVEL UIT selected_data: {self.selected_data}")
+  iv = Investment()
+  print(f"TRAVEL UIT2 selected_data: {self.selected_data}")
+  iv = Investment()
+  print(f"distance: {distance}")
+  travel_cost = round(Decimal(tcpm[travel_mode]) * Decimal(distance), 0)
+  count = len(self.selected_data)
+  pprice = Decimal(0)
+  points = int(0)
+  print(f"PPrice: {pprice}")
+  self.selected_data.append(new_row)
+  self.data = self.load_data()
+  status, result = db.get_table_data(self.table_name)
+  print(f"data out: {data_out}")
+  print(f"company: {company}")
+  print(f"Company List: {company_list}")
+  company_projects = random.sample(company_list, 3)
+  count = len(company_projects)
+  trip_cost = Decimal(0)
+  pprice = Decimal(0)
+  points = int(0)
+  company_projects.append(new_row)
+  print(f"Projects UGT selected_data: {self.selected_data}")
+  gb = GameBoard(game_ID)
+  game_data = gb.get_game_data()
+  update_status = gb.put_game_data(game_data)
+  p = Players(user)
+  print(f"Projects UPT selected_data: {self.selected_data}")
+  update_status = p.update_table()
+  print(f"Projects UIT selected_data: {self.selected_data}")
+  iv = Investment()
+  count = len(self.selected_data)
+  sprice = Decimal(0)
+  points = int(0)
+  print(f"Cost: {sprice}")
+  self.selected_data.append(new_row)
+  ic(self.table_name, self.trip, report_name, self.data)
+  status, result = db.get_table_data(self.table_name)
+  trip = self.trip.copy()
+  ic(trip)
+  ic(trip, self.trip)
+  trip = self.trip.copy()
+  ic(trip, self.trip)
+  selected_set = random.choice(self.data)
+  self.data = self.load_data()
+  status, result = db.get_table_data(self.table_name)
+  goal_name = self.get_goal_name(ggoal)
+  level_name = self.get_level_name(glevel)
+  goals.append(f"Active Game Level & Goal: {level_name} | {goal_name}")
+  goals.append(f" {value} {trailer}")
+  goals.append(" ")
+  plyr = Players(username)
+  status, players = db.get_players_game_card(game_ID, allcolumn="Y")
+  ic(player_status2, player_status3)
+  raise Exception(f"Error Condition: Load {self.table_name} table failed...")
+  sp = abs(row['amount'])
+  row['amount'] = round(sp, 0)
+  row['points'] = int(sp)
+  sp = round(Decimal(sp) * Decimal(sales_calc[choice]), 0)
+  sale_items.append(row)
+  sprice = Decimal(row['sales_price'])
+  print(f"Failed to update game table in update_game_table.")
+  sprice = Decimal(row['sales_price'])
+  points = Decimal(row['points'])
+  x = p.update_data("cash_on_hand", sprice, action="S")
+  x = p.update_data("other_investments", sprice, action="A")
+  x = p.update_data("points", points, action="A")
+  print(f"Failed to update player table update_player_table.")
+  update_status = iv.parse_row_data(row, pn)
+  print(f"Failed to update investments table update_investments_table.")
+  print(f"SPrice (loop): {sprice}")
+  raise Exception(f"Error Condition: Load {self.table_name} table failed...")
+  data_out.append(row)
+  print(f"Failed to update game table in update_game_table.")
+  new_selected_data.append(row)
+  points = Decimal(row['points'])
+  x = p.update_data("cash_on_hand", pprice, action="S")
+  x = p.update_data("other_investments", pprice, action="A")
+  x = p.update_data("points", points, action="A")
+  print(f"Failed to update player table update_player_table.")
+  update_status = iv.parse_row_data(row, pn)
+  print(f"Failed to update investments table update_investments_table.")
+  update_status = iv.parse_row_data(row, pn)
+  print(f"Failed to update investments table update_investments_table.")
+  point1 = home_address.split(".")
+  point2 = dest_address.split(".")
+  distance.append(dist)
+  print(f"PPrice (loop): {pprice}")
+  raise Exception(f"Error Condition: Load {self.table_name} table failed...")
+  row['priority'] = random.choice(priority)
+  trip_cost = round(Decimal(row['cost']) + trip_cost, 0)
+  sprice = Decimal(row['cost'])
+  print(f"Failed to update game table in update_game_table.")
+  sprice = Decimal(row['cost'])
+  points = Decimal(row['points'])
+  x = p.update_data("cash_on_hand", sprice, action="S")
+  x = p.update_data("other_investments", sprice, action="A")
+  x = p.update_data("points", points, action="A")
+  print(f"Failed to update player table update_player_table.")
+  update_status = iv.parse_row_data(row, pn)
+  print(f"Failed to update investments table update_investments_table.")
+  print(f"Cost (loop): {sprice}")
+  self.data = self.load_data()
+  self.data = self.load_data()
+  raise Exception(f"Error Condition: Load {self.table_name} table failed...")
+  raise Exception(f"Error Condition: Load {self.table_name} table failed...")
+  status = db.update_goal_by_id(goal)
+  if len(goal_selected) < 1:
+  flash("Game level or goal invalid.", "error")
+  value = str(goal_selected['target'])
+  goals.append(f"$ {value} {trailer}")
+  value = str(goal_selected['target'])
+  goals.append(f" {value} {trailer}")
+  player_status1.append(str(pn))
+  player_status2, player_status3 = self.calc_percent(player, goal_selected, player_status2, player_status3)
+  if len(player_status2) < len(player_status1):
+  if len(player_status2) < len(player_status1):
+  for i in range(diff):
+  if len(player_status2) > len(player_status1):
+  if len(player_status2) > len(player_status1):
+  for i in range(diff):
+  pct = Decimal(0.00)
+  pct = Decimal(0.00)
+  iv = Investment()
+  pn = str(player['player_number'])
+  stocks, stock_count = iv.get_stock_investments(pn)
+  player_status2.append(str(pct))
+  player_status3["(STOCK COUNTS)->"].append(" ")
+  for i, key in enumerate(stocks):
+  player_status2.append(str(pct))
+  data_out.append(row)
+  store.append(row['INVITES'])
+  retailers.append(row)
+  store_items.append(row)
+  row['short_desc2'] = str(row['count']) + "-piece deal"
+  game_data['total_spending'] = Decimal(game_data['total_spending']) + Decimal(sprice)
+  game_data['total_spending'] = Decimal(game_data['total_spending']) + Decimal(sprice)
+  sprice = sprice + Decimal(row['sales_price'])
+  points = points + int(row['points'])
+  data_out.append(row)
+  pkg_price = Decimal(row['cost']) * Decimal(4)
+  pkg_price = Decimal(row['cost']) * Decimal(4)
+  row['points'] = Decimal(row['points']) * Decimal(4)
+  row['points'] = Decimal(row['points']) * Decimal(4)
+  pprice = Decimal(row['pkg_price'])
+  pprice = Decimal(row['cost'])
+  game_data['total_spending'] = Decimal(game_data['total_spending']) + Decimal(pprice)
+  game_data['total_spending'] = Decimal(game_data['total_spending']) + Decimal(pprice)
+  pprice = Decimal(row['pkg_price'])
+  dist = (abs(int(point1[0]) - int(point2[0]))) + (abs(int(point1[1]) - int(point2[1])))
+  dist = (abs(int(point1[0]) - int(point2[0]))) + (abs(int(point1[1]) - int(point2[1])))
+  travel_cost = round(Decimal(tcpm[travel_mode]) * Decimal(distance), 0)
+  travel_cost = round(Decimal(tcpm[travel_mode]) * Decimal(distance), 0)
+  pprice = pprice + Decimal(row['pkg_price'])
+  points = points + int(row['points'])
+  row['cost'] = int(row['cost'])
+  data_out.append(row)
+  row['cost'] = int(row['cost'])
+  data_out.append(row)
+  business.append(row['business'])
+  row["salary"] = round(Decimal(row['cost']) * Decimal(0.5), 2)
+  row["bonus"] = round(Decimal(row['points']) * Decimal(0.5), 2)
+  row["position"] = random.choice(positions)
+  companies.append(row)
+  points = points + int(row['points'])
+  game_data['total_spending'] = Decimal(game_data['total_spending']) + Decimal(sprice)
+  game_data['total_spending'] = Decimal(game_data['total_spending']) + Decimal(sprice)
+  sprice = sprice + Decimal(row['cost'])
+  points = points + int(row['points'])
+  selected_goal.append(row)
+  player_status1.append(str(pn))
+  diff = len(player_status1) - len(player_status2)
+  diff = len(player_status1) - len(player_status2)
+  player_status2.append("")
+  diff = len(player_status2) - len(player_status1)
+  diff = len(player_status2) - len(player_status1)
+  player_status1.append("")
+  pct = round(Decimal(cash) / Decimal(cash_goal), 2) * 100
+  pct = Decimal(0.00)
+  pct = round(Decimal(stock_count) / Decimal(as_goal*7), 2) * Decimal(100)
+  pct = round(Decimal(stock_count) / Decimal(as_goal*7), 2) * Decimal(100)
+  player_status2.append(str(pct))
+  player_status3[key].append(stocks[key])
+  player_status2.append(str(pct))
+  sp = round(Decimal(sp) * Decimal(sales_calc[choice]), 0)
+  sp = round(Decimal(sp) * Decimal(sales_calc[choice]), 0)
+  pprice = round(Decimal(row['cost']), 2)
+  pprice = round(Decimal(adjusted_cost), 2)
+  destinations.append(row['short_description'])
+  company_list.append(row)
+  trip_cost = round(Decimal(row['cost']) + trip_cost, 0)
+  pct = round(Decimal(pv) / Decimal(pv_goal), 2) * 100
+  pct = Decimal(0.00)
+  pprice = round(Decimal(row['cost']), 2)
+  pprice = round(Decimal(adjusted_cost), 2)
+  dist = (abs(int(point1[0]) - int(point2[0]))) + (abs(int(point1[1]) - int(point2[1])))
+  dist = (abs(int(point1[0]) - int(point2[0]))) + (abs(int(point1[1]) - int(point2[1])))
+  dist = (abs(int(point1[0]) - int(point2[0]))) + (abs(int(point1[1]) - int(point2[1])))
+  dist = (abs(int(point1[0]) - int(point2[0]))) + (abs(int(point1[1]) - int(point2[1])))
+  row["salary"] = round(Decimal(row['cost']) * Decimal(0.5), 2)
+  row["salary"] = round(Decimal(row['cost']) * Decimal(0.5), 2)
+  row["bonus"] = round(Decimal(row['points']) * Decimal(0.5), 2)
+  row["bonus"] = round(Decimal(row['points']) * Decimal(0.5), 2)
+  pct = round(Decimal(cash) / Decimal(cash_goal), 2) * 100
+  pct = round(Decimal(cash) / Decimal(cash_goal), 2) * 100
+  pct = round(Decimal(sv) / Decimal(sv_goal), 2) * 100
+  pct = Decimal(0.00)
+  pct = round(Decimal(stock_count) / Decimal(as_goal*7), 2) * Decimal(100)
+  pct = round(Decimal(stock_count) / Decimal(as_goal*7), 2) * Decimal(100)
+  pct = round(Decimal(pv) / Decimal(pv_goal), 2) * 100
+  pct = round(Decimal(pv) / Decimal(pv_goal), 2) * 100
+  pct = round(Decimal(bv) / Decimal(bv_goal), 2) * 100
+  pct = Decimal(0.00)
+  pct = round(Decimal(sv) / Decimal(sv_goal), 2) * 100
+  pct = round(Decimal(sv) / Decimal(sv_goal), 2) * 100
+  pct = round(Decimal(cv) / Decimal(cv_goal), 2) * 100
+  pct = Decimal(0.00)
+  pct = round(Decimal(bv) / Decimal(bv_goal), 2) * 100
+  pct = round(Decimal(bv) / Decimal(bv_goal), 2) * 100
+  pct = round(Decimal(jl) / Decimal(jl_goal), 2) * 100
+  pct = Decimal(0.00)
+  pct = round(Decimal(cv) / Decimal(cv_goal), 2) * 100
+  pct = round(Decimal(cv) / Decimal(cv_goal), 2) * 100
+  pct = round(Decimal(dl) / Decimal(dl_goal), 2) * 100
+  pct = round(Decimal(jl) / Decimal(jl_goal), 2) * 100
+  pct = round(Decimal(jl) / Decimal(jl_goal), 2) * 100
+  pct = round(Decimal(dl) / Decimal(dl_goal), 2) * 100
+  pct = round(Decimal(dl) / Decimal(dl_goal), 2) * 100
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_game.py
+Functions:
+  def __init__(self, table_name):
+  def load_data(self) -> list:
+  def get_center_row(self) -> dict:
+  def get_starting_position(self) -> dict:
+  def get_new_row(self) -> dict:
+  def get_new_position(self) -> dict:
+  def get_product_value(self, row, choice):
+  def recalculate_value(self) -> float:
+  def choose_stock_brand(self, type):
+  def __init__(self, game_ID: str):
+  def load_data(self) -> Optional[Dict[str, Any]]:
+  def get_game_data(self):
+  def update_gc(self, gc):
+  def put_game_data(self, gc):
+  def get_status(self) -> Optional[Any]:
+  def check_player_count(self):
+  def update_counts(self, value):
+  def get_move_count(self):
+  def update_cpi(self):
+  def update_gdp(self):
+  def update_population(self):
+  def get_game_level(self):
+  def get_game_goal(self):
+  def update_earnings(self, value):
+  def get_earnings(self):
+  def update_spending(self, value):
+  def get_spending(self):
+  def __init__(self):
+  def extract_numeric_value(self, value_str):
+  def calc_inheritance(self):
+  def calc_salary(self):
+  def calc_roi(self, inv_amt, game_ID):
+  def choose_investment(self):
+  def assess_purchase_power(self, user, amount):
+  def apply_for_loan(self, user, amount):
+  def __init__(self, username):
+  def load_data(self, username):
+  def get_player_data(self):
+  def get_data(self, key):
+  def update_table(self):
+  def update_data(self, key, value, action="U"):
+  def update_table_row(self):
+  def recalc_salary(self):
+  def adjust_salary_amount(self, salary_control):
+  def assess_property_insurance_status(self):
+  def assess_car_insurance_status(self):
+  def assess_tax_status(self):
+  def verify_living_status(self):
+  def __init__(self, table_name):
+  def load_data(self) -> list:
+  def get_starting_position(self):
+  def get_current_row(self):
+  def get_new_position(self):
+  def get_row(self, id):
+  def adjust_object_scope(self, key, value):
+  def __init__(self):
+  def load_address_data(self, data_in):
+  def get_data(self, key):
+  def add_data(self, key, value):
+  def update_data(self, key, value):
+  def delete_data(self, key):
+  def __init__(self):
+  def initialize_move_attributes(self):
+  def initialize_travel(self):
+  def initialize_economy(self):
+  def initialize_index(self):
+  def get_action_items(self):
+  def set_move_type(self, move_type):
+  def set_move_gain(self, move_gain):
+  def set_move_loss(self, move_loss):
+  def set_travel(self, travel):
+  def set_position_ID(self, position_ID):
+  def set_index_ID(self, index_ID):
+  def reset_position_ID(self):
+  def reset_index_ID(self, index_ID):
+  def get_current_position(self):
+  def get_new_position(self):
+  def update_attributes(self, **kwargs):
+  def __init__(self, db_config):
+  def load_attributes(self):
+  def get_all_addresses(self):
+  def get_address_by_id(self, address_id):
+  def count_addresses(self):
+  def address_find(self, address_id):
+  def calc_distance(self, address1, address2):
+  def __init__(self):
+  def build_row_data(self, key, value):
+  def parse_row_data(self, data, player_number):
+  def create_player_investment_data(self):
+  def get_player_investment_data(self, player_number):
+  def double_stock_investment(self, type, player_number):
+  def verify_loan(self, player):
+  def verify_rent(self, player):
+  def verify_living_status(self, player_number):
+  def pay_other_bills(self, player):
+  def get_player_investments_by_type(self, player_number, type):
+  def get_stock_investments(self, player_number):
+  def get_player_investments_by_desc(self, player_number, type, desc):
+  def get_player_investments_by_code(self, player_number, value):
+  def update_trip_investments(self, data):
+  def get_bill_investment_by_loanid(self, player_number, type, loanid):
+  def get_investment_by_id(self, id):
+  def update_investment_by_id(self, data):
+  def remove_player_investments_by_type(self, player_number, type, delete="Y"):
+  def remove_player_investments_by_desc(self, player_number, type, desc, delete="Y"):
+  def remove_player_investments_by_id(self, id, delete="Y"):
+  def build_bill_investments(self, player, idata):
+  def update_bill_investment(self, card):
+  def pay_tax_bills(self, player):
+  def build_loan_data(self, data_in):
+  def __init__(self, player_number: int):
+  def load_data(self):
+  def get_row_count(self):
+  def get_row(self, row):
+  def delete_row(self, iv_sold):
+  def select_row(self):
+  def build_investment_for_sellcycle(self, desc):
+  def __init__(self):
+  def load_data(self) -> list:
+  def select_ROI_by_player(self, pn):
+  def update_game_tables(self, user):
+Classes:
+  class PriceIndex:
+  class GameBoard:
+  class banker:
+  class Players:
+  class Game_Assets:
+  class PageLayout:
+  class Game_Action:
+  class gps:
+  class Investment:
+  class Sellcycle:
+  class ROI_Pay:
+Function Calls:
+  db = DB_Mgr(mysql)
+  self.data = self.load_data()
+  self.ids = list(range(1, len(self.data)))
+  status, data = db.get_table_data(self.table_name)
+  p = Positions(self.table_name)
+  steps = random.choices(self.ids, k=1)
+  status = p.update_data()
+  return sum(value for value in current_row.values() if isinstance(value, (int, float)))
+  sc = random.choice(stocks)
+  cc = random.choice(count)
+  self.data: Optional[Dict[str, Any]] = self.load_data()
+  status, data = db.get_game_card(self.game_ID)
+  status = db.put_game_card(gc)
+  return self.data.get('player_count')
+  return self.data.get("move_count")
+  x = abs(x)
+  y = round(decimal.Decimal(x), 2)
+  cpi = decimal.Decimal(y)
+  value = round(decimal.Decimal(diff) / decimal.Decimal((self.data['total_spending'] + 1)), 0)
+  self.data['gdp'] = abs(value)
+  pop_inc = random.choice(pop)
+  chg = round(int((self.data['population'] / value)) * 100, 2)
+  self.data['population_chg'] = decimal.Decimal(chg)
+  glevel = self.data.get("game_level", None)
+  return self.data.get('game_goal')
+  self.data['total_earnings'] += round(Decimal(value), 2)
+  return self.data.get("total_earnings")
+  self.data['total_spending'] += round(Decimal(value), 2)
+  match = re.search(r'[\d.]+', value_str)
+  for pc in range(5):
+  iv = random.choice(inherit)
+  iv = decimal.Decimal(iv).quantize(decimal.Decimal('0.00'), rounding=decimal.ROUND_HALF_UP)
+  for pc in range(5):
+  sv = random.choice(salaries)
+  sv = decimal.Decimal(sv).quantize(decimal.Decimal('0.00'), rounding=decimal.ROUND_HALF_UP)
+  stat, result = db.get_game_card(game_ID)
+  x = abs(x)
+  y = round(decimal.Decimal(x), 2)
+  cpi_value = random.choice(cpi_list)
+  result['cpi'] = decimal.Decimal(cpi2)
+  status = db.put_game_card(result)
+  return decimal.Decimal(mkt_value)
+  rnum = random.choice(number)
+  print(f"Assess amount: {amount}")
+  amount = self.extract_numeric_value(amount)
+  pc = Players(user)
+  cash = pc.get_data("cash_on_hand")
+  pn = pc.get_data("player_number")
+  result, q = db.get_player_record(user)
+  print(f"Assess amount: {amount}")
+  pc = Players(user)
+  cash = pc.get_data("cash_on_hand")
+  ppty_value = pc.get_data("property_value")
+  bus_value = pc.get_data("business_value")
+  pn = pc.get_data("player_number")
+  self.data = self.load_data(username)
+  data, q = db.get_player_record(username)
+  print(f"Fetched data: {data}")  # Debugging line
+  return self.data.get(key, "Player table key not found")
+  stat = db.update_player2(self.data)
+  q = db.update_player2(self.username)
+  d_val = int(self.data['degree_level'] * 0.5)
+  j_val = int(self.data['job_level'] * 0.7)
+  self.update_data("cash_on_hand", sal, action="A")
+  self.data = self.load_data()
+  self.ids = list(range(1, len(self.data)))
+  status, data = db.get_table_data(self.table_name)
+  p = Positions(self.table_name)
+  steps = random.choices(self.ids, k=1)
+  status = p.update_data()
+  print(f"table_name : {self.table_name}")
+  print(f"Visited_positions: {p.visited_positions}")
+  arr = dict(self.data[id])
+  return self.data.get(key, "Page Layout key not found")
+  self.initialize_move_attributes()
+  self.initialize_travel()
+  self.initialize_economy()
+  self.initialize_index()
+  self.visited_positions = set()
+  self.position_ID = random.randint(1, 50)
+  self.position_ID = random.randint(1, 50)
+  nbr = random.choice(ndx)
+  direction = random.choice([-1, 1])
+  steps = random.choices(mylist, weights=[5, 5, 2, 1, 1, 4, 1, 1], k=1)
+  new_position = max(0, min(x, 50 - 1))
+  for key, value in kwargs.items():
+  self.gps = self.load_attributes()
+  return len(self.gps)
+  point1 = address1.split(".")
+  point2 = address2.split(".")
+  self.invest_data['invest_value'] = round(decimal.Decimal(self.invest_data['invest_amount']) * decimal.Decimal(amt), 2)
+  stat = db.insert_investments_from_sale(self.invest_data)
+  stat = db.insert_investments_from_sale(self.invest_data)
+  status, data = db.get_player_investment_history(player_number)
+  status, invest_cards = db.get_investments_by_code(type, player_number)
+  pay_loan = self.get_player_investments_by_desc(player['player_number'], "BILL", "Loan Payment")
+  pay_rent = self.get_player_investments_by_type(player['player_number'], "RENT")
+  status, invest_cards1 = db.get_investments_by_code(code, player_number)
+  status, invest_cards2 = db.get_investments_by_code(code, player_number)
+  bp = Billpay()
+  stat = bp.build_billpay_card(player, idata)
+  status, data = db.get_player_investment_history(player_number)
+  data = self.get_player_investments_by_type(player_number, "STCK")
+  stock_count = int(0)
+  for key, value in stocks.items():
+  status, data = db.get_player_investment_history(player_number)
+  status, data = db.get_player_investment_history(player_number)
+  status, data = db.get_player_investment_history(player_number)
+  status, data = db.get_investment_by_id(id)
+  status = db.update_investment_by_id(data)
+  print(f"IDATA: {idata}")
+  data = idata.copy()
+  for k, v in flags.items():
+  stat = db.update_investment_by_id(card)
+  bills = self.get_player_investments_by_type(player['player_number'], "BILL")
+  self.data = self.load_data()
+  print(f"Loaded sellcycle data: {self.data}")
+  status, result = db.get_player_investment_history(self.player_number)
+  rcount = len(self.data)
+  status = db.delete_investment_by_id(id)
+  rcount = len(self.data)
+  iv_data, rnum = self.select_row()
+  desc.append("This is one of two Sell Cycle opportunities. It is an opportunity to interest the banker into "
+  desc.append(iv_data['invest_description']) # Product info
+  desc.append("$  " + str(iv_data['invest_value']))
+  desc.append("  " + str(iv_data['invest_count']))
+  self.roi_data = self.load_data()
+  status, data = db.get_table_data(self.table_name)
+  self.select_roi_data = data.copy()
+  p = Players(user)
+  print(f"ROI UGT roi_data: {self.select_roi_data}")
+  gb = GameBoard(game_ID)
+  game_data = gb.get_game_data()
+  update_status1 = gb.put_game_data(game_data)
+  update_status2 = p.update_table()
+  self.center_row = len(self.data) // 2
+  self.ids = list(range(1, len(self.data)))
+  print("Error Condition: Load Data for SPBC tables failed...")
+  exit(1)
+  steps = random.choices(self.ids, k=1)
+  print(f"1st VP array: {p.visited_positions}")
+  p.visited_positions.clear()
+  p.visited_positions.add(new_position)
+  p.visited_positions.add(new_position)
+  choice = random.choice(stocks)
+  choice = random.choice(comm)
+  if len(self.data) == 0:
+  print("Error Condition: Load Data for Game Board failed...")
+  exit(1)
+  print("Error Condition: Update Data for Game Board failed...")
+  exit(1)
+  status = self.data.get(ndx, None)
+  earn = decimal.Decimal(self.data.get('total_earnings')) + decimal.Decimal(1)
+  earn = decimal.Decimal(self.data.get('total_earnings')) + decimal.Decimal(1)
+  spend = decimal.Decimal(self.data.get('total_spending')) + decimal.Decimal(1)
+  spend = decimal.Decimal(self.data.get('total_spending')) + decimal.Decimal(1)
+  y = round(decimal.Decimal(x), 2)
+  diff = decimal.Decimal(self.data['total_spending']) - decimal.Decimal(self.data['total_earnings'])
+  diff = decimal.Decimal(self.data['total_spending']) - decimal.Decimal(self.data['total_earnings'])
+  value = int(pop_inc) + int(self.data['population'])
+  value = int(pop_inc) + int(self.data['population'])
+  self.data['total_earnings'] += round(Decimal(value), 2)
+  self.data['total_spending'] += round(Decimal(value), 2)
+  return int(match.group())  # or float(match.group()) if you are sure it is an integer
+  inherit.append(round(max/(pc+1), 0))
+  iv = decimal.Decimal(iv).quantize(decimal.Decimal('0.00'), rounding=decimal.ROUND_HALF_UP)
+  salaries.append(round(max/(pc+1), 0))
+  sv = decimal.Decimal(sv).quantize(decimal.Decimal('0.00'), rounding=decimal.ROUND_HALF_UP)
+  y = round(decimal.Decimal(x), 2)
+  mkt_value = decimal.Decimal(inv_amt) * decimal.Decimal(cpi_value)
+  mkt_value = decimal.Decimal(inv_amt) * decimal.Decimal(cpi_value)
+  mkt_value = decimal.Decimal(amount) / decimal.Decimal(2)
+  mkt_value = decimal.Decimal(amount) / decimal.Decimal(2)
+  if decimal.Decimal(cash) >= decimal.Decimal(amount):
+  if decimal.Decimal(cash) >= decimal.Decimal(amount):
+  resp = random.choice(loan_assess)
+  iv = Investment()
+  x = iv.build_row_data("invest_amount", amount)
+  x = iv.build_row_data("invest_value", mkt_value)
+  x = iv.build_row_data("invest_type", "LOAN")
+  x = iv.build_row_data("invest_description", "Banker Investment Loan")
+  x = iv.build_row_data("invest_count", int(cnt))
+  x = iv.build_row_data("player_number", pn)
+  x = iv.create_player_investment_data()
+  x = iv.build_bill_investments(pc.data, idata)
+  resp = pc.update_data("cash_on_hand", amount, action="A")
+  x = pc.update_table()
+  mkt_value = decimal.Decimal(amount) / decimal.Decimal(2)
+  mkt_value = decimal.Decimal(amount) / decimal.Decimal(2)
+  resp = random.choice(loan_assess)
+  iv = Investment()
+  x = iv.build_row_data("invest_amount", amount)
+  x = iv.build_row_data("invest_value", mkt_value)
+  x = iv.build_row_data("invest_type", "LOAN")
+  x = iv.build_row_data("invest_description", "Signature Loan")
+  x = iv.build_row_data("invest_count", int(cnt))
+  x = iv.build_row_data("player_number", pn)
+  x = iv.create_player_investment_data()
+  x = iv.build_bill_investments(pc.data, idata)
+  bp = Billpay()
+  bp.build_billpay_card(pc.data, bill_card)
+  resp = pc.update_data("cash_on_hand", amount, action="A")
+  x = pc.update_table()
+  d_sal = decimal.Decimal(self.data['salary']) * decimal.Decimal(d_val)
+  d_sal = decimal.Decimal(self.data['salary']) * decimal.Decimal(d_val)
+  j_sal = decimal.Decimal(self.data['salary']) * decimal.Decimal(j_val)
+  j_sal = decimal.Decimal(self.data['salary']) * decimal.Decimal(j_val)
+  sal = decimal.Decimal(self.data['salary']) + decimal.Decimal(d_sal) + decimal.Decimal(j_sal)
+  self.update_data("salary", sc, action="U")
+  ins = round(decimal.Decimal(ins), 2)
+  self.update_data("cash_on_hand", ins, action="A")
+  billpay_data.append({"bill_description": "Property Insurance", "bill_amount": ins})
+  self.update_data("cash_on_hand", ins, action="A")
+  billpay_data.append({"bill_description": "Car Insurance", "bill_amount": ins})
+  self.update_data("cash_on_hand", bus, action="A")
+  billpay_data1.append({"bill_description": "Property Tax", "bill_amount": bus})
+  self.update_data("cash_on_hand", city, action="A")
+  billpay_data2.append({"bill_description": "Federal Tax", "bill_amount": city})
+  self.center_row = len(self.data) // 2
+  self.ids = list(range(1, len(self.data)))
+  print("Error Condition: Load Data for cycle tables failed...")
+  exit(1)
+  steps = random.choices(self.ids, k=1)
+  print(f"1st VP array: {p.visited_positions}")
+  p.visited_positions.clear()
+  p.visited_positions.add(new_position)
+  p.visited_positions.add(new_position)
+  raise Exception("Sorry, Visited positions update failed...")
+  if len(data_in) > 0:
+  new_position = max(0, min(x, 50 - 1))
+  if hasattr(self, key):
+  conn = mysql.connector.connect(**self.db_config)
+  cursor = conn.cursor(dictionary=True)
+  cursor.execute(f"SELECT * FROM {table_name}")
+  data = cursor.fetchall()
+  cursor.close()
+  conn.close()
+  print("Loaded attributes:", data)
+  return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1])
+  return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1])
+  'invest_amount': decimal.Decimal('0.00'),
+  'invest_value': decimal.Decimal('0.00')
+  self.invest_data['invest_count'] = abs(data['COH'])
+  raise Exception("Error Condition: Load Data for investments table failed...")
+  if len(pay_loan) > 0:
+  if len(pay_rent) > 0:
+  player['cash_on_hand'] = decimal.Decimal(player['cash_on_hand']) - decimal.Decimal(500.00)
+  player['cash_on_hand'] = decimal.Decimal(player['cash_on_hand']) - decimal.Decimal(500.00)
+  raise Exception("Error Condition: Load Data Investments by type for table failed...")
+  raise Exception("Error Condition: Load Data Investments by type for table failed...")
+  raise Exception("Error Condition: Load Data Investments by type for table failed...")
+  new_data.append(trip)
+  raise Exception("Error Condition: Load Data Investments by type for table failed...")
+  status = db.delete_investments_by_code(type, player_number)
+  status = db.delete_investments_by_desc(type, desc, player_number)
+  status = db.delete_investment_by_id(id)
+  if len(data) > 0:
+  if len(datax) != 0:
+  for i in range(len(datax)):
+  if len(data_in) > 0:
+  raise Exception("Error Condition: Load investment table failed...")
+  if len(self.data) > 0:
+  response = len(self.data)
+  num_list = list(range(0, rcount))
+  print(f"num_list: {num_list}")
+  if len(data) == 0:
+  print(f"Error Condition: Load Data for ROI {self.table_name} table failed...")
+  exit(1)
+  max_rent = Decimal(row['max_qtrly_roi'])
+  occ_value = Decimal(random.choice(occupancy))
+  rent = round(max_rent * occ_value, 2)
+  x = p.update_data("cash_on_hand", rent, action="A")
+  x = p.update_data("other_investments", rent, action="A")
+  print(f"Failed to update game table in update_game_table.")
+  print(f"Failed to update player table update_player_table.")
+  self.ids = list(range(1, len(self.data)))
+  if len(p.visited_positions) == len(self.data) or attempts == self.max_attempts:
+  if len(p.visited_positions) == len(self.data) or attempts == self.max_attempts:
+  if attempts != self.max_attempts and len(p.visited_positions) != len(self.data):
+  if attempts != self.max_attempts and len(p.visited_positions) != len(self.data):
+  earn = decimal.Decimal(self.data.get('total_earnings')) + decimal.Decimal(1)
+  spend = decimal.Decimal(self.data.get('total_spending')) + decimal.Decimal(1)
+  x = (decimal.Decimal(spend) / decimal.Decimal(earn)) + decimal.Decimal(1.20)
+  x = decimal.Decimal((earn / spend)) + decimal.Decimal(1.20)
+  x = decimal.Decimal((earn / spend)) + decimal.Decimal(1.20)
+  value = round(decimal.Decimal(diff) / decimal.Decimal((self.data['total_spending'] + 1)), 0)
+  value = round(decimal.Decimal(diff) / decimal.Decimal((self.data['total_spending'] + 1)), 0)
+  chg = round(int((self.data['population'] / value)) * 100, 2)
+  return int(match.group())  # or float(match.group()) if you are sure it is an integer
+  inherit.append(round(max/(pc+1), 0))
+  iv = decimal.Decimal(iv).quantize(decimal.Decimal('0.00'), rounding=decimal.ROUND_HALF_UP)
+  salaries.append(round(max/(pc+1), 0))
+  sv = decimal.Decimal(sv).quantize(decimal.Decimal('0.00'), rounding=decimal.ROUND_HALF_UP)
+  x = float((spend / earn)) + 1.2
+  x = float((earn / spend)) + 1.2
+  cnt = decimal.Decimal(amount) / decimal.Decimal(1000)
+  cnt = decimal.Decimal(amount) / decimal.Decimal(1000)
+  x = iv.build_row_data("invest_count", int(cnt))
+  if Decimal(ppty_value) >= Decimal(amount) or Decimal(bus_value) >= Decimal(amount):
+  if Decimal(ppty_value) >= Decimal(amount) or Decimal(bus_value) >= Decimal(amount):
+  if Decimal(ppty_value) >= Decimal(amount) or Decimal(bus_value) >= Decimal(amount):
+  if Decimal(ppty_value) >= Decimal(amount) or Decimal(bus_value) >= Decimal(amount):
+  cnt = decimal.Decimal(amount) / decimal.Decimal(1000)
+  cnt = decimal.Decimal(amount) / decimal.Decimal(1000)
+  x = iv.build_row_data("invest_count", int(cnt))
+  sal = decimal.Decimal(self.data['salary']) + decimal.Decimal(d_sal) + decimal.Decimal(j_sal)
+  sal = decimal.Decimal(self.data['salary']) + decimal.Decimal(d_sal) + decimal.Decimal(j_sal)
+  sc = int(salary_control)
+  self.update_data("salary", sc, action="A")
+  ins = decimal.Decimal(self.data['property_value']) * decimal.Decimal(-0.01)
+  ins = decimal.Decimal(self.data['property_value']) * decimal.Decimal(-0.01)
+  ins = round(decimal.Decimal(ins), 2)
+  ins = decimal.Decimal(300.00) * decimal.Decimal(self.data['car_assess']) * decimal.Decimal(-1.00)
+  bus = decimal.Decimal(self.data['business_value']) * decimal.Decimal(-0.01)
+  bus = decimal.Decimal(self.data['business_value']) * decimal.Decimal(-0.01)
+  city = decimal.Decimal(self.data['cash_on_hand']) * decimal.Decimal(-0.01)
+  city = decimal.Decimal(self.data['cash_on_hand']) * decimal.Decimal(-0.01)
+  self.ids = list(range(1, len(self.data)))
+  if len(p.visited_positions) == len(self.data) or attempts == self.max_attempts:
+  if len(p.visited_positions) == len(self.data) or attempts == self.max_attempts:
+  if attempts != self.max_attempts and len(p.visited_positions) != len(self.data):
+  if attempts != self.max_attempts and len(p.visited_positions) != len(self.data):
+  data2.append(data)
+  page_layout.append(data_row)
+  self.data = page_layout.copy()
+  setattr(self, key, value)
+  raise AttributeError(f"{key} is not a valid attribute of {self.__class__.__name__}")
+  print(f"Error executing SELECT query: {e}")
+  if isinstance(address, dict) and 'id' in address:
+  print("Address found: ", row['Address'])
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_value'] = round(decimal.Decimal(self.invest_data['invest_amount']) * decimal.Decimal(amt), 2)
+  self.invest_data['invest_value'] = round(decimal.Decimal(self.invest_data['invest_amount']) * decimal.Decimal(amt), 2)
+  if len(invest_cards) > 0:
+  bp = Billpay()
+  x = bp.build_billpay_card(player, idata)
+  stat = self.update_bill_investment(row)
+  bp = Billpay()
+  x = bp.build_billpay_card(player, idata)
+  if len(invest_cards1) > 0:
+  if len(invest_cards2) > 0:
+  idata = [{"bill_description": "Utilities", "bill_amount": decimal.Decimal(500.00)}]
+  data1.append(d)
+  stocks[stock['invest_description']] = Decimal(stocks[stock['invest_description']]) + Decimal(stock['invest_count'])
+  stocks[stock['invest_description']] = Decimal(stocks[stock['invest_description']]) + Decimal(stock['invest_count'])
+  stock_count += int(100)
+  stock_count += int(value)
+  data1.append(d)
+  data1.append(d)
+  purpose = row['own_code'].split(":")
+  "flight_class": random.choice(classes),
+  "points": int(row['invest_value'])
+  data1.append(d)
+  raise Exception("DB Error Condition: Load Data Investments by type for table failed...")
+  raise Exception("DB Error Condition: Remove Investments by desc for table failed...")
+  raise Exception("DB Error Condition: Remove Investment by ID for table failed...")
+  self.build_row_data('invest_description', bill_type[k])
+  datax.append(copy.deepcopy(self.invest_data))
+  for i in range(len(datax)):
+  status = db.insert_investments_from_sale(datax[i])
+  page_layout.append(data_row)
+  self.data = page_layout.copy()
+  num_list = list(range(0, rcount))
+  rnum = random.choice(num_list)
+  print(f"rnum: {rnum}")
+  desc.append("$  " + str(iv_data['invest_value']))
+  desc.append("  " + str(iv_data['invest_count']))
+  occ_value = Decimal(random.choice(occupancy))
+  game_data['total_earning'] = Decimal(game_data['total_earning']) + Decimal(rent)
+  game_data['total_earning'] = Decimal(game_data['total_earning']) + Decimal(rent)
+  return sum(value for value in current_row.values() if isinstance(value, (int, float)))
+  return sum(value for value in current_row.values() if isinstance(value, (int, float)))
+  x = (decimal.Decimal(spend) / decimal.Decimal(earn)) + decimal.Decimal(1.20)
+  x = (decimal.Decimal(spend) / decimal.Decimal(earn)) + decimal.Decimal(1.20)
+  idata = [{"invest_description": "Loan Payment", "invest_amount": decimal.Decimal(amount),
+  idata = [{"invest_description": "Loan Payment", "invest_amount": decimal.Decimal(amount),
+  self.data[key] = float(self.data[key]) + float(value)
+  self.data[key] = float(self.data[key]) + float(value)
+  self.data[key] = float(self.data[key]) + float(-value)
+  self.data[key] = float(self.data[key]) + float(-value)
+  ins = decimal.Decimal(300.00) * decimal.Decimal(self.data['car_assess']) * decimal.Decimal(-1.00)
+  ins = decimal.Decimal(300.00) * decimal.Decimal(self.data['car_assess']) * decimal.Decimal(-1.00)
+  "fees": round(decimal.Decimal(d['Price']) * decimal.Decimal(0.06), 2),
+  "price": round(decimal.Decimal(d['Price']) * decimal.Decimal(1.06), 2),
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_count'] = int(1)
+  stat = db.update_investment_by_id(investment)
+  row['invest_value'] = decimal.Decimal(row['invest_value']) - decimal.Decimal(1000.00)
+  row['invest_value'] = decimal.Decimal(row['invest_value']) - decimal.Decimal(1000.00)
+  player['cash_on_hand'] = decimal.Decimal(player['cash_on_hand']) - decimal.Decimal(1000.00)
+  player['cash_on_hand'] = decimal.Decimal(player['cash_on_hand']) - decimal.Decimal(1000.00)
+  player['cash_on_hand'] = decimal.Decimal(player['cash_on_hand']) - decimal.Decimal(row['invest_amount'])
+  player['cash_on_hand'] = decimal.Decimal(player['cash_on_hand']) - decimal.Decimal(row['invest_amount'])
+  amt = round(decimal.Decimal(player['property_value']) * decimal.Decimal(0.001), 2)
+  amt = round(decimal.Decimal(player['car_assess']) * decimal.Decimal(300.00), 2)
+  amt = round(decimal.Decimal(player['property_value']) * decimal.Decimal(0.01), 2)
+  amt = round(decimal.Decimal(player['cash_on_hand']) * decimal.Decimal(0.01), 2)
+  amt = decimal.Decimal(500.00)
+  amt = round(decimal.Decimal(player['cash_on_hand']) * decimal.Decimal(0.0001), 2)
+  amt = decimal.Decimal(1000.00)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(amt), 2)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(amt), 2)
+  datax.append(copy.deepcopy(self.invest_data))
+  raise Exception("DB Error Condition2: ISRT Data Investments by type for table failed...")
+  if decimal.Decimal(player['cash_on_hand']) < decimal.Decimal(b['invest_amount']):
+  if decimal.Decimal(player['cash_on_hand']) < decimal.Decimal(b['invest_amount']):
+  bnkr = banker()
+  stat = bnkr.assess_purchase_power(player['username'], b['invest_amount'])
+  player['cash_on_hand'] -= decimal.Decimal(b['invest_amount'])
+  stat = db.insert_billpay_history(b)
+  "payment": decimal.Decimal(d['invest_amount']),
+  "amount": decimal.Decimal(d['invest_value'])
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_amount'] = round(decimal.Decimal(data['pkg_price']), 2)
+  self.invest_data['invest_count'] = int(4)
+  investment['invest_count'] = int(investment['invest_count']) * 2
+  investment['invest_value'] = float(investment['invest_value']) * float(2.00)
+  investment['invest_value'] = float(investment['invest_value']) * float(2.00)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(amt), 2)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(amt), 2)
+  amt = decimal.Decimal(b['invest_amount']) * decimal.Decimal(3)
+  amt = decimal.Decimal(b['invest_amount']) * decimal.Decimal(3)
+  "fees": round(decimal.Decimal(d['Price']) * decimal.Decimal(0.06), 2),
+  "fees": round(decimal.Decimal(d['Price']) * decimal.Decimal(0.06), 2),
+  "price": round(decimal.Decimal(d['Price']) * decimal.Decimal(1.06), 2),
+  "price": round(decimal.Decimal(d['Price']) * decimal.Decimal(1.06), 2),
+  self.invest_data['invest_amount'] = round(decimal.Decimal(data['pkg_price']), 2)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(data['sales_price']), 2)
+  amt = round(decimal.Decimal(player['property_value']) * decimal.Decimal(0.001), 2)
+  amt = round(decimal.Decimal(player['property_value']) * decimal.Decimal(0.001), 2)
+  amt = round(decimal.Decimal(player['car_assess']) * decimal.Decimal(300.00), 2)
+  amt = round(decimal.Decimal(player['car_assess']) * decimal.Decimal(300.00), 2)
+  amt = round(decimal.Decimal(player['property_value']) * decimal.Decimal(0.01), 2)
+  amt = round(decimal.Decimal(player['property_value']) * decimal.Decimal(0.01), 2)
+  amt = round(decimal.Decimal(player['cash_on_hand']) * decimal.Decimal(0.01), 2)
+  amt = round(decimal.Decimal(player['cash_on_hand']) * decimal.Decimal(0.01), 2)
+  amt = round(decimal.Decimal(player['cash_on_hand']) * decimal.Decimal(0.0001), 2)
+  amt = round(decimal.Decimal(player['cash_on_hand']) * decimal.Decimal(0.0001), 2)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(data['sales_price']), 2)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(data['cost']), 2)
+  self.invest_data['invest_count'] = int(1)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(data['cost']), 2)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(data['cost']), 2)
+  self.invest_data['invest_count'] = int(1)
+  self.invest_data['invest_amount'] = round(decimal.Decimal(data['cost']), 2)
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_count'] = int(500)
+  self.invest_data['invest_count'] = int(1)
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+  self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_load.py
+Functions:
+  def populate_mysql_table(csv_file_path, db_config, table_name):
+Classes:
+Function Calls:
+  populate_mysql_table(load_file, db_config, table_name)
+  print("Bye")
+  if os.path.exists(file_path):
+  columns = df.columns.tolist()
+  cnx = mysql.connector.connect(**db_config)
+  cursor = cnx.cursor()
+  cursor.execute(create_table_query)
+  for row in df.itertuples(index=False):
+  cnx.commit()
+  cursor.close()
+  print("Data inserted successfully")
+  print(f"File {load_file} exists.")
+  print(f"File {load_file} does not exist.")
+  exit(1)
+  exit(1)
+  df = pd.read_csv(csv_file_path, dtype={'Address': str})
+  if len(columns) != col_num:
+  raise ValueError(f"CSV file must have exactly {col_num} columns")
+  cursor.execute(sql)
+  print("Table dropped successfully.")
+  cursor.execute(insert_query, tuple(row))
+  print(f"An error occurred: {e}")
+  if 'cursor' in locals():
+  cursor.close()
+  if 'cnx' in locals():
+  cnx.close()
+  df = pd.read_csv(csv_file_path, dtype={'long_description': str, 'INVITES': str})
+  print(f"Error: {err}")
+  cursor.execute(insert_query, tuple(row))
+  print("Something is wrong with your user name or password")
+  df = pd.read_csv(csv_file_path, dtype={'INVITES': str})
+  df = pd.read_csv(csv_file_path)
+  INSERT INTO {table_name} ({', '.join(columns)})
+  print("Database does not exist")
+  print(err)
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+  INSERT INTO {table_name} ({', '.join(columns)})
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_load2.py
+Functions:
+  def parse_lines(lines):
+  def populate_mysql_table(csv_file_path, db_config, table_name):
+Classes:
+Function Calls:
+  populate_mysql_table(load_file, db_config, table_name)
+  lines = data.split('\n')
+  cnx = mysql.connector.connect(**db_config)
+  cursor = cnx.cursor()
+  parsed_data = parse_lines(lines)
+  df = pd.DataFrame(parsed_data, columns=columns)
+  for index, group in df.groupby('ID'):
+  reshaped_df = pd.DataFrame.from_dict(reshaped_data, orient='index')
+  pd.set_option('display.max_columns', None)
+  pd.set_option('display.max_colwidth', None)
+  data_dicts = reshaped_df.to_dict(orient='records')
+  cursor.execute(create_table_query)
+  cnx.commit()
+  cursor.close()
+  print("Data inserted successfully")
+  print("Bye")
+  if os.path.exists(file_path):
+  with open(csv_file_path, 'r') as file:
+  data = file.read()
+  cursor.execute(sql)
+  print("Table dropped successfully.")
+  parts = line.split(',', 1)  # Split only on the first comma
+  print(f"File {csv_file_path} exists.")
+  print(f"File {csv_file_path} does not exist.")
+  exit(1)
+  exit(1)
+  print(f"Error: {err}")
+  INSERT INTO {table_name} ({', '.join(o_columns)})
+  data_tuple = tuple(record.values())
+  cursor.execute(insert_query, data_tuple)
+  print(f"DB Player update request error: {e}")
+  if len(parts) == 2:
+  col_name = col_name.strip()
+  value = value.strip().strip('"')
+  parsed_data.append([col_name, value])
+  print(f"Skipping line due to unexpected format: {line}")
+  row = {col: val for col, val in zip(group['col_name'], group['value'])}
+  data_tuple = tuple(record.values())
+  value = value.strip().strip('"')
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_main.py
+Functions:
+  def before_request():
+  def is_logged_in(f):
+  def is_admin(f):
+  def config_check():
+  def index():
+  def login():
+  def update_password(username):
+  def adminDash():
+  def addMember():
+  def deleteMember():
+  def user_connect():
+  def gameConnect(username):
+  def game_dash():
+  def gameDash(username):
+  def game_setup():
+  def gameSetup(username):
+  def game_end():
+  def gameEnd(username):
+  def perform_next_task():
+  def profile(username):
+  def edit_profile(username):
+  def logout():
+  def wrap(*args, **kwargs):
+  def wrap(*args, **kwargs):
+Classes:
+  class DelMemberForm(Form):
+Function Calls:
+  app = create_app()
+  print(f"APP in main: {app}")
+  app.register_blueprint(ts_page_bp)
+  app.register_blueprint(ts_sub1_bp)
+  app.register_blueprint(ts_sub2_bp)
+  db = DB_Mgr(mysql)
+  @app.route('/config')
+  @app.route('/', methods=['GET', 'POST'])
+  @app.route('/login', methods = ['GET', 'POST'])
+  @app.route('/update_password/<string:username>', methods = ['GET', 'POST'])
+  @app.route('/adminDash/<username>')
+  @app.route('/addMember', methods=['GET', 'POST'])
+  @app.route('/deleteMember', methods = ['GET', 'POST'])
+  @app.route('/user_connect')
+  @app.route('/gameConnect/<username>', methods=['GET', 'POST'])
+  @app.route('/game_dash', methods=['GET', 'POST'])
+  @app.route('/gameDash/<username>', methods=['GET', 'POST'])
+  @app.route('/game_setup', methods=['GET', 'POST'])
+  @app.route('/gameSetup', methods=['GET', 'POST'])
+  @app.route('/game_end', methods=['GET', 'POST'])
+  @app.route('/gameEnd', methods=['GET', 'POST'])
+  @app.route('/perform_next_task', methods=['GET'])
+  @app.route('/profile/<string:username>')
+  @app.route('/edit_profile/<string:username>', methods = ['GET', 'POST'])
+  @app.route('/logout')
+  @wraps(f)
+  @wraps(f)
+  return render_template('home.html', page_name=page_name)
+  return render_template('login.html', error=error, page_name=page_name)
+  form = ChangePasswordForm(request.form)
+  return render_template('updatePassword.html', form=form, page_name=page_name)
+  return render_template('adminDash.html', page_name=page_name, username=username)
+  choices.clear()
+  status, values = db.get_players()
+  return render_template('addMember.html', form=form, page_name=page_name, roles=roles)
+  username = StringField('Username', validators=[validators.DataRequired()])
+  choices.clear()
+  cur = mysql.connection.cursor()
+  q = cur.execute("SELECT username FROM players")
+  b = cur.fetchall()
+  for i in range(q):
+  form = DelMemberForm(Form)
+  return render_template('deleteRecep.html', form = form)
+  username = session.get('username')
+  return gameConnect(username)
+  username = session.get('username')
+  result, data = db.get_player_record(username)
+  form = GameConnectForm(request.form)
+  return render_template('gameConnect.html', result=result, page_name=page_name,
+  username = session.get('username')
+  return gameDash(username)
+  form = GameLevelForm(request.form)
+  levels_goals = format_game_settings()
+  return render_template('gameDash.html', username=username, form=form, page_name=page_name, levels_goals=levels_goals)
+  username = session.get('username')
+  return gameSetup(username)
+  form = GameSetupForm(request.form)
+  levels_goals = format_game_settings()
+  status, result = db.get_game_data(username)
+  status, users = db.get_game_players(result["game_ID"])
+  return render_template('gameSetup.html', username=username, form=form, players=players, page_name=page_name, levels_goals=levels_goals)
+  username = session.get('username')
+  return gameEnd(username)
+  return render_template('gameEnd.html', username=username, page_name=page_name, tasks=tasks)
+  return render_template('gameEnd.html', username=username, page_name=page_name, tasks=tasks)
+  return redirect(url_for('gameDash', username=username, page_name=page_name))
+  result, q = db.get_player_record(username)
+  form = EditForm(request.form)
+  return render_template('edit_profile.html', form=form, page_name=page_name)
+  session.clear()
+  flash('You are now logged out', 'success')
+  return redirect(url_for('login'))
+  app.run()
+  "PERMANENT_SESSION_LIFETIME": str(app.config['PERMANENT_SESSION_LIFETIME'])  # Convert timedelta to string
+  result, q = db.get_player_record(username)
+  if request.method == 'POST' and form.validate():
+  status = db.update_password(username, form)
+  form = AddMemberForm(values, request.form)
+  if request.method == 'POST' and form.validate():
+  status = db.add_player(form)
+  return redirect(url_for('profile', username = username, page_name=page_name, roles=roles))
+  choices.append(tup)
+  cur = mysql.connection.cursor()
+  cur.execute("DELETE FROM players WHERE username = %s", [username])
+  mysql.connection.commit()
+  cur.close()
+  choices.clear()
+  flash('You deleted a player from the Game!!', 'success')
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('login'))
+  return render_template('gameConnect.html', result=result, page_name=page_name,
+  if request.method == 'POST' and form.validate():
+  stat, q = db.update_player(form)
+  return redirect(url_for('gameConnect', username=username))
+  return redirect(url_for('login'))
+  if username != session.get('username'):
+  flash('You aren\'t authorised to view this page', 'error')
+  return redirect(url_for('login', username=session['username'], page_name="Login"))
+  if session.get('role') != "Host":
+  flash('You aren\'t authorised to access this page', 'error')
+  return redirect(url_for('login', username=session['username'], page_name="Login"))
+  status, result = db.get_game_data(username)
+  return redirect(url_for('login'))
+  if username!=session.get('username'):
+  flash('You aren\'t authorised to view this page', 'error')
+  return redirect(url_for('login', username=session['username'], page_name="Login"))
+  if session.get('role') != "Host":
+  flash('You aren\'t authorised to access this page', 'error')
+  return redirect(url_for('login', username=session['username'], page_name="Login"))
+  for i, user in enumerate(users):
+  status, players = db.get_players_game_card(result["game_ID"])
+  db.pickle_save(result["game_ID"], "session", session, "cookie") # save cookie session
+  flash("Failed retrieving game players", "error")
+  return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
+  if len(request.args) > 0:
+  return redirect(url_for('login'))
+  result, q = db.get_player_record(username)
+  return render_template('profile.html', result=result, page_name=page_name)
+  flash("Please register and/or login.", "error")
+  return redirect(url_for('gameDash', username=username, page_name=page_name))
+  form = render_edit_profile(form, result)
+  if request.method == 'POST' and form.validate():
+  stat, q = db.update_profile(form, username)
+  app.logger.info(request.form['name'])
+  app.logger.info(request.form['email'])
+  app.logger.info(q)
+  flash('You successfully updated your profile!!', 'success')
+  return redirect(url_for('login'))
+  return f(*args, **kwargs)
+  flash('Nice try, Tricks don\'t work, bud!! Please Login :)', 'danger')
+  return redirect(url_for('login'))
+  return f(*args, **kwargs)
+  flash('You are probably not an admin!!, Are you?', 'danger')
+  return redirect(url_for('login'))
+  status = db.validate_password(result, password_candidate, username)
+  return render_template('login.html', error=error, page_name=page_name)
+  flash('New password will be in effect from next login!!', 'info')
+  return redirect(url_for('memberDash', username = session['username'], page_name=page_name))
+  flash('Old password you entered is wrong!!, try again', 'warning')
+  choices.clear()
+  flash('You are now a new game player!!', 'success')
+  return render_template('addMember.html', form=form, page_name=page_name, roles=roles)
+  return redirect(url_for('profile', username = username, page_name=page_name, roles=roles))
+  return redirect(url_for('adminDash'))
+  return redirect(url_for('login'))
+  app.logger.info(q)
+  flash('You successfully updated your profile!!', 'success')
+  return redirect(url_for('gameConnect', username=username))
+  return redirect(url_for('login'))
+  return redirect(url_for('login', username=session['username'], page_name="Login"))
+  return redirect(url_for('login', username=session['username'], page_name="Login"))
+  form.glevel.choices = [(key, value['name']) for key, value in levels_goals.items()]
+  form = render_gametable_settings(form, result)
+  flash('Game card already exists. Please update by Submit.', 'success')
+  form = render_game_settings(form)
+  flash('Game card does not exist. Please complete and Submit.', 'success')
+  return redirect(url_for('login'))
+  return redirect(url_for('login', username=session['username'], page_name="Login"))
+  return redirect(url_for('login', username=session['username'], page_name="Login"))
+  form.glevel.choices = [(key, value['name']) for key, value in levels_goals.items()]
+  update_status = db.update_player_game_card(username, i + 1, gstatus)
+  flash("Failed to retrieve player details", "error")
+  return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
+  return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
+  selected_glevel = request.form.get('game_level')
+  selected_ggoal = request.form.get('game_goal')
+  session['glevel'] = request.form.get('game_level')
+  session['ggoal'] = request.form.get('game_goal')
+  q, status = db.update_game_from_setup(form)
+  app.logger.info(q)
+  db.pickle_save(result["game_ID"], "session", session, "cookie")
+  return redirect(url_for('login'))
+  time.sleep(2)  # Simulate task execution
+  status = process_end_of_game(username, task)
+  return redirect(url_for('login'))
+  return redirect(url_for('login'))
+  flash('You are logged into TakeStock!', 'success')
+  return redirect(url_for('profile', username=username, result=result, page_name=page_name))
+  return render_template('login.html', error=error, page_name=page_name)
+  return redirect(url_for('memberDash', username = session['username'], page_name=page_name))
+  username = StringField('Username', validators=[validators.DataRequired()])
+  q, status = db.update_game(form)
+  app.logger.info(q)
+  flash('Game card updated successfully', 'success')
+  status, q = db.add_game(form)
+  flash("Failed to update {username}", "error")
+  return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name))
+  return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
+  app.logger.info(q)
+  flash("Game status update was successful", "success")
+  return render_template('gameSetup.html', username=username, form=form, players=players, page_name=page_name, levels_goals=levels_goals)
+  return render_template('gameSetup.html', form=form, page_name=page_name, username=username, levels_goals=levels_goals)
+  return redirect(url_for('profile', username=username, result=result, page_name=page_name))
+  app.logger.info(q)
+  flash("You selected: {selected_level}.", "success")
+  return redirect(url_for('gameDash', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
+  flash('Game card failed insertion.', 'error')
+  return render_template('gameDash.html', form=form, page_name=page_name, username=username, levels_goals=levels_goals)
+  return redirect(url_for('gameSetup', username=username, form=form, page_name=page_name))
+  return redirect(url_for('gameDash', username=username, form=form, page_name=page_name, levels_goals=levels_goals))
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_page.py
+Functions:
+  def is_logged_in(f):
+  def render_game_card(session, game_id):
+  def process_first_move(game_ID, data):
+  def setup_bill_investment_cards(game_ID):
+  def process_end_of_round(session):
+  def check_game_status():
+  def render_player_card(players, player_number):
+  def render_edit_profile(form, result):
+  def render_game_settings(form):
+  def render_gametable_settings(form, result):
+  def format_game_settings():
+  def process_end_of_game(username, task):
+  def render_sp_options():
+  def build_sp_options():
+  def render_bs_options(session, splay="Y"):
+  def render_bp_options(session, pplay="Y"):
+  def render_bb_options(session, bplay="Y"):
+  def render_bc_options(session):
+  def render_sale_options(data):
+  def update_player_game(dataopt):
+  def build_invest_card(invest_data, product, opt1, opt2, own="FULL"):
+  def render_tp_options():
+  def build_tp_options():
+  def render_tpsale_options(data):
+  def update_tp_player_game(dataopt):
+  def render_gb_options(game_ID):
+  def render_pb_options():
+  def render_preview_options(rev_type):
+  def create_options_list(investments, rev_types, options):
+  def flatten_dict(d, parent_key='', sep='_'):
+  def unflatten_dict(d, sep='_'):
+  def decorated_function(*args, **kwargs):
+Classes:
+Function Calls:
+  ts_page_bp = Blueprint('ts_page_bp', __name__, template_folder="templates")
+  db = DB_Mgr(mysql)
+  @wraps(f)
+  gb = GameBoard(game_ID)
+  gb.update_gdp()
+  gb.update_cpi()
+  gc = gb.get_game_data()
+  print("First Move GC", gc)
+  status = gb.put_game_data(gc)
+  status, players = db.get_players_game_card(game_ID, allcolumn="Y")
+  print("End of Round Session: ", session)
+  data = session.get('data')
+  gb = GameBoard(game_ID)
+  gb.update_gdp()
+  gb.update_population()
+  gb.update_cpi()
+  gc = gb.get_game_data()
+  print("End Round GC", gc)
+  g = Game_Action()
+  ga = g.get_action_items()
+  status, players = db.get_players_game_card(game_ID, allcolumn="Y")
+  gc['total_earnings'] += decimal.Decimal(sal)
+  status = gb.put_game_data(gc)
+  result, q = db.get_player_record(session['username'])
+  gg = GameGoals()
+  features, goals, player_status1, player_status2, player_status3 = gg.build_status_report(glevel, ggoal, session['username'])
+  ic(features, goals, player_status1, player_status2, player_status3)
+  for i in range(len(player_status2)):
+  form.start_date.data = date.today()
+  gg = GameGoals()
+  gb = GameBoard(username)
+  desc, invest = build_sp_options()
+  for i in range(4):
+  pi_stck = PriceIndex("stocks")
+  sc, cc = pi_stck.choose_stock_brand("STCK")  # SC=Stock Choice and CC=Count Choice
+  pos = pi_stck.get_new_position()
+  row1 = pi_stck.get_new_row()
+  sc = sc.capitalize()
+  desc.append(sc + " Stocks Count=" + str(cc))
+  invest.append("$   " + str(value * cc))  # Calculate stock value and store for display
+  pi_ppty = PriceIndex("address")
+  pos = pi_ppty.get_new_position()
+  row2 = pi_ppty.get_new_row()
+  desc.append(b_type + " for " + p_type)
+  price = round(row2['Price'], 0)
+  invest.append("$  " + str(price))
+  pi_bus = PriceIndex("business")
+  pos = pi_bus.get_new_position()
+  row3 = pi_bus.get_new_row()
+  desc.append(row3['business'])
+  invest.append("$  " + str(row3['buy']))
+  pi_comm = PriceIndex("commodities")
+  commc, cc = pi_comm.choose_stock_brand("COMM")  # COMMC=COMM Choice and CC=Count Choice
+  pos = pi_comm.get_new_position()
+  row4 = pi_comm.get_new_row()
+  desc.append(commc + " Mkt Share Count=" + str(cc))
+  iv = round(int(iv), 0)
+  invest.append("$   " + str(iv))
+  desc.append(bs['sc'].capitalize() + " Stock")
+  desc.append(str(cnt) + " Share(s)")
+  desc.append("$  " + str(tc))
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  desc.append(bp['Property'])
+  desc.append(type)
+  desc.append("  $  " + str(tc))
+  print(f"session in render_bp_options: {session}")
+  options = o.get_options()
+  desc.append(bb['business'])
+  desc.append('$  ' + str(bb['buy']))
+  options = o.get_options()
+  desc.append(bc['commc'] + " Shares")
+  desc.append("$  " + str(cps))  # Cost per Share
+  desc.append(str(cnt) + " Share(s)")
+  desc.append("$  " + str(tc))
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  print(f"Render Sale DATA: {data}")
+  bnkr = banker()
+  print(f"Render Sale Options: {options}")
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  print("Sale Options DATAOPT = ", dataopt)
+  print("Session Dictionary: ", session)
+  print(f"Update Player data1: {data1}")
+  print(f"Update Player options1: {options1}")
+  print(f"Update Player data2: {data2}")
+  print(f"Update Player options2: {options2}")
+  stat, gc = db.get_game_card(game_ID)
+  print(f"Update Player Invest Card: {invest_card}")
+  status = db.insert_investments_from_sale(invest_card)
+  print(f"GC before investment: {gc}")
+  status = db.update_game_player(invest_card['invest_amount'], gc, dataopt)
+  n = extract_numeric_value(n)
+  a = extract_numeric_value(a)
+  invest_data['invest_count'] = int(n)
+  invest_data['invest_amount'] = decimal.Decimal(a)
+  bnkr = banker()
+  inv_amt = bnkr.calc_roi(invest_data['invest_amount'], game_ID)
+  print("INVEST DATA= ", invest_data)
+  desc, invest = build_tp_options()
+  o = Options(ctgy=ctgy, type=type, desc=desc, invest=invest)
+  options = o.get_options()
+  sc = random.choice(stocks)
+  cc = random.choice(count)
+  pi_stck = PriceIndex("stocks")
+  pos = pi_stck.get_new_position()
+  row1 = pi_stck.get_new_row()
+  sc = sc.capitalize()
+  desc.append(sc + " Stocks Count=" + str(cc))
+  invest.append("$   " + str(value * cc))
+  pi_ppty = PriceIndex("address")
+  pos = pi_ppty.get_new_position()
+  row2 = pi_ppty.get_new_row()
+  desc.append(b_type + " for " + p_type)
+  price = round(row2['Price'], 0)
+  invest.append("$  " + str(price))
+  pi_bus = PriceIndex("business")
+  pos = pi_bus.get_new_position()
+  row3 = pi_bus.get_new_row()
+  desc.append(row3['business'])
+  invest.append("$  " + str(row3['buy']))
+  print("TP OPT SESSION 1: ", session)
+  stat, result = db.get_game_card(game_ID)
+  print("TP OPT SESSION 2: ", session)
+  bnkr = banker()
+  desc.append('STOCK PURCHASE')
+  desc.append(options[3]['opt_desc'])
+  desc.append('PROPERTY PURCHASE')
+  desc.append(options[7]['opt_desc'])
+  desc.append('BUSINESS PURCHASE')
+  desc.append(options[10]['opt_desc'])
+  stck_amt = extract_numeric_value(options[3]['opt_desc'])
+  ppty_amt = extract_numeric_value(options[7]['opt_desc'])
+  bus_amt = extract_numeric_value(options[10]['opt_desc'])
+  te = int(stck_amt + ppty_amt + bus_amt)
+  desc.append("$  " + str(te))
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  print("TPSale Options DATAOPT = ", dataopt)
+  print("Session Dictionary: ", session)
+  invest_card = build_invest_card(invest_data, product_data['sc'], options2[2]['opt_desc'], options2[3]['opt_desc'])
+  print("DATA1: ", data1)
+  print("DATAOPT= ", dataopt)
+  print("INVEST CARD: ", invest_card)
+  print(invest_card['player_number'])
+  print(data1['player_number'])
+  status = db.insert_investments_from_sale(invest_card)
+  status = db.update_game_player(invest_card['invest_amount'], gc, data1)
+  invest_card = build_invest_card(invest_data, product_data['Property'], "1", options2[7]['opt_desc'])
+  status = db.insert_investments_from_sale(invest_card)
+  status = db.update_game_player(invest_card['invest_amount'], gc, data1)
+  invest_card = build_invest_card(invest_data, product_data['business'], "1", options2[10]['opt_desc'])
+  status = db.insert_investments_from_sale(invest_card)
+  status = db.update_game_player(invest_card['invest_amount'], gc, data1)
+  status, players = db.get_players_game_card(game_ID, allcolumn="Y")
+  print("Player Cards= ", players)
+  for i in range(y):
+  status, results = db.get_player_investment_stats(session['player_number'])
+  print("Investment Stats", results)
+  result2, q = db.get_player_record(session['user'])
+  status, investments = db.get_player_investment_history(session['player_number'])
+  status, results = db.get_player_investment_stats(session['player_number'])
+  print("Investment Stats", results)
+  status, investments = db.get_player_investment_history(session['player_number'])
+  print("Investment option list detail: ", options)
+  for k, v in d.items():
+  return dict(items)
+  for key, value in d.items():
+  return f(*args, **kwargs)
+  data['player_number'] = session.get('player_number')
+  data['player_move'] = session.get('player_move')
+  data['player_round'] = session.get('player_round')
+  pc = Players(player['username'])
+  iv = Investment()
+  invest_data = iv.get_player_investments_by_type(player['player_number'], "BILL")
+  stat = iv.remove_player_investments_by_type(player['player_number'], "BILL")
+  pc = Players(player['username'])
+  iv = Investment()
+  bp = Billpay()
+  stat = pc.update_table()
+  stat = check_game_status()
+  for i in range(len(player_status2)):
+  redirect("ts_sub1_bp.game_status")
+  form.game_ID.data = "TS" + date.today().strftime("YYYY-MM-DD")
+  stat = db.delete_table_data("investments")
+  stat = db.delete_table_data("investment_return")
+  stat = db.delete_table_data("billpay")
+  options.append(d)
+  iv = value * int(cc)
+  iv = round(int(iv), 0)
+  desc.append("$  " + str(cps))  # Cost per Share
+  tc = int(cnt) * int(cps)
+  tc = int(cnt) * int(cps)
+  desc.append("  $  " + str(price))
+  fees = int(round(calc, 2))
+  desc.append("  $  " + str(fees))
+  fees = int(round(calc, 2))
+  tc = int(float(bp['Price'])) + int(fees)
+  tc = int(float(bp['Price'])) + int(fees)
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None, options=None)
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None, options=options)
+  desc.append('$  ' + str(bb['partner']))
+  desc.append('$  ' + str(bb['club']))
+  desc.append('$  ' + str(bb['value']))
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None, options=None)
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None, options=options)
+  value = float(cps)
+  tc = int(cnt) * int(float(value))
+  tc = int(cnt) * int(float(value))
+  desc.append('STOCK PURCHASE')
+  desc.append(options[4]['opt_desc'])
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  desc.append('PROPERTY PURCHASE')
+  print(f"session in render_sale_options: {session}")
+  print("Session before accessing PPTY_cost in render_sale_options:", session)
+  print("Desc after accessing PPTY_cost:", desc)
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  print(f"Business for sale: {desc}")
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  desc.append('COMMODITY PURCHASE')
+  desc.append(options[4]['opt_desc'])
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  ctgy.append("Purchase Power Status")
+  desc.append("The banker was able to qualify you for a loan to purchase. The loan was added to your cash on hand.")
+  update_player_game(dataopt)
+  pc = db.get_player_by_number(data1['player_number'])
+  invest_card = build_invest_card(invest_data, product_data['sc'], options2[3]['opt_desc'], options2[4]['opt_desc'])
+  invest_card = build_invest_card(invest_data, product_data['Property'], "1", session['PPTY_cost'])
+  invest_card = build_invest_card(invest_data, product_data['commc'], options2[3]['opt_desc'], options2[4]['opt_desc'])
+  flash("Good investing!", "success")
+  flash("Good Play!", "success")
+  ctgy.append("Purchase Power Status")
+  desc.append(
+  update_tp_player_game(dataopt)
+  flash("Good STCK investment!", "success")
+  flash("Good PPTY investment! Real estate is valuable.", "success")
+  flash("Good Business investment! You are in business.", "success")
+  plyr.append(str(player['player_number']))
+  cash.append("$  " + str(player['cash_on_hand']))
+  prop.append("$  " + str(player['property_value']))
+  stck.append("$  " + str(player['stock_value']))
+  busc.append("$  " + str(player['business_value']))
+  options.append(d)
+  rnge = len(results)
+  for i in range(rnge):
+  flash("DB error. Investments table read error.", "error")
+  flash("DB error. Players table read error.", "error")
+  print("Investments", investments)
+  print("Investments row count: ", len(investments))
+  options = create_options_list(investments, rev_types, options)
+  flash("DB error. Players table read error.", "error")
+  rnge = len(results)
+  for i in range(rnge):
+  flash("DB error. Investments table read error.", "error")
+  print("Investments", investments)
+  print("Investments row count: ", len(investments))
+  rev_types.append(rev_type)
+  options = create_options_list(investments, rev_types, options)
+  print("Investment option Detail: ", options)
+  flash("DB error. Players table read error.", "error")
+  if isinstance(v, dict):
+  parts = key.split(sep)
+  if not session.get('logged_in'):
+  flash('You need to be logged in to view this page', 'error')
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  ga = Game_Action()
+  data['ga'] = ga.get_action_items()
+  print("GA ", data['ga'])
+  ga = Game_Action()
+  data['ga'] = ga.get_action_items()
+  print("GA ", data['ga'])
+  if len(invest_data) >= 5:
+  sal = pc.recalc_salary()
+  roi = ROI_Pay()
+  bill_card1 = pc.assess_car_insurance_status()  # If true then pay insurance premium
+  print(f"End of Round Build Card 1: {bill_card1} ")
+  bp.build_billpay_card(pc.data, bill_card1)
+  stat = iv.verify_loan(pc.data)
+  stat = iv.verify_rent(pc.data)
+  stat = iv.pay_other_bills(pc.data)
+  bill_card = pc.assess_property_insurance_status()  # If true then pay insurance premium
+  bp.build_billpay_card(pc.data, bill_card)
+  bill_card2, bill_card3 = pc.assess_tax_status()
+  bp.build_billpay_card(pc.data, bill_card2)
+  bp.build_billpay_card(pc.data, bill_card3)
+  stat = db.delete_table_data("sessions")
+  desc.append(sc + " Stocks Count=" + str(cc))
+  invest.append("$   " + str(value * cc))  # Calculate stock value and store for display
+  invest.append("$  " + str(price))
+  invest.append("$  " + str(row3['buy']))
+  desc.append(commc + " Mkt Share Count=" + str(cc))
+  invest.append("$   " + str(iv))
+  desc.append(bs['sc'].capitalize() + " Stock")
+  desc.append(str(cnt) + " Share(s)")
+  desc.append("$  " + str(tc))
+  calc = float(price) * 0.06
+  fees = int(round(calc, 2))
+  calc = float(price) * 0.06
+  fees = int(round(calc, 2))
+  tc = int(float(bp['Price'])) + int(fees)
+  desc.append("  $  " + str(tc))
+  desc.append('$  ' + str(bb['buy']))
+  desc.append("$  " + str(cps))  # Cost per Share
+  desc.append(str(cnt) + " Share(s)")
+  value = float(cps) * 1000000
+  tc = int(cnt) * int(float(value))
+  desc.append("$  " + str(tc))
+  desc.append(session['PPTY_cost'])  # Access PPTY_cost
+  print("PPTY_cost found:", session['PPTY_cost'])
+  desc.append(options[1]['opt_desc'])
+  desc.append(options[2]['opt_desc'])
+  ctgy.append("Purchase Power Status")
+  desc.append("The banker was not able to qualify you for a loan to purchase. No purchase made for you.")
+  invest_card = build_invest_card(invest_data, options1[1]['opt_desc'], "count=1", options1[2]['opt_desc'])
+  invest_card = build_invest_card(invest_data, options1[1]['opt_desc'], "count=1", options2[3]['opt_desc'], own="PART")
+  invest_card = build_invest_card(invest_data, options1[1]['opt_desc'], "count=1", options2[4]['opt_desc'], own="CLUB")
+  desc.append(sc + " Stocks Count=" + str(cc))
+  invest.append("$   " + str(value * cc))
+  invest.append("$  " + str(price))
+  invest.append("$  " + str(row3['buy']))
+  desc.append("$  " + str(te))
+  ctgy.append("Purchase Power Status")
+  desc.append("The banker was not able to qualify you for a loan to purchase. No purchase made for you.")
+  plyr.append(str(player['player_number']))
+  data['money'] = "$  " + str(result2['cash_on_hand'])
+  data['salary'] = "$  " + str(result2['salary'])
+  data['job_level'] = "   " + str(result2['job_level'])
+  data['degree_level'] = "   " + str(result2['degree_level'])
+  data['property_value'] = "$  " + str(result2['property_value'])
+  data['stock_value'] = "$  " + str(result2['stock_value'])
+  data['business_value'] = "$  " + str(result2['business_value'])
+  data['commodity_value'] = "$  " + str(result2['commodity_value'])
+  data['other_investments'] = "$  " + str(result2['other_investments'])
+  print("Investments row count: ", len(investments))
+  print("Investments row count: ", len(investments))
+  rev_types.append("ROI")
+  options.append(d)
+  items.extend(flatten_dict(v, new_key, sep=sep).items())
+  items.append((new_key, v))
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  elif len(invest_data) == 0:
+  for key, value in (bill_type.items()):
+  stat = iv.build_bill_investments(player, invest_data)
+  stat = iv.build_bill_investments(player, invest_data)
+  if len(roi.roi_data) != 0:
+  roi_data = roi.select_ROI_by_player(player['username'])
+  if Decimal(player_status2[i]) >= Decimal(90):
+  if Decimal(player_status2[i]) >= Decimal(90):
+  flash(f"Player {i} is approaching a WIN status.", "success")
+  form.game_ID.data = "TS" + date.today().strftime("YYYY-MM-DD")
+  stat = db.delete_table_data("positions")
+  desc.append("$  " + str(cps))  # Cost per Share
+  desc.append("  $  " + str(price))
+  desc.append("  $  " + str(fees))
+  session['PPTY_cost'] = desc[len(desc)-1]
+  desc.append('$  ' + str(bb['partner']))
+  desc.append('$  ' + str(bb['club']))
+  desc.append('$  ' + str(bb['value']))
+  print("Error: PPTY_cost not found in session")
+  raise Exception("Error: PPTY_cost not found in session")
+  desc.append(options[1]['opt_desc'])
+  desc.append(options[3]['opt_desc'])
+  cash.append("$  " + str(player['cash_on_hand']))
+  prop.append("$  " + str(player['property_value']))
+  stck.append("$  " + str(player['stock_value']))
+  busc.append("$  " + str(player['business_value']))
+  rev_types.append("BILL")
+  'opt_count': str(item['invest_count']),
+  'opt_amt': str(item['invest_amount']),
+  'opt_val': str(item['invest_value']),
+  'opt_own': str(item['own_code'])
+  items.extend(flatten_dict(v, new_key, sep=sep).items())
+  invest_data.append(d)
+  if len(roi_data) != 0:
+  stat1, stat2 = roi.update_game_tables(player['username'])
+  plyr = Players(username)
+  stat = db.clear_players_card(game_ID)
+  desc.append(options[1]['opt_desc'])
+  desc.append(options[4]['opt_desc'])
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  stat = db.delete_table_data("game")
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  stat = bnkr.assess_purchase_power(user, desc[len(desc) - 1])
+  data['BUS'] = "  " + str(results[i]['inv_cnt']) + "  "
+  data[results[i]['invest_type']] = "  " + str(results[i]['inv_cnt']) + "  "
+  data['BUS'] = "  " + str(results[i]['inv_cnt']) + "  "
+  data[results[i]['invest_type']] = "  " + str(results[i]['inv_cnt']) + "  "
+  items.extend(flatten_dict(v, new_key, sep=sep).items())
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_page2.py
+Functions:
+  def render_rp_options():
+  def render_rpbuy_options():
+  def render_rp_sale_options(data):
+  def update_rp_player_game(dataopt):
+  def render_inplay_options():
+  def build_inplay_options(cycle_round):
+  def render_insale_options():
+  def update_insale_options(dataopt):
+  def extract_numeric_value(value_str):
+Classes:
+Function Calls:
+  print("Session RP data: ", session)
+  ga = Game_Assets("opportunities")
+  select = ga.get_new_position()
+  print(f"OPP row Selection: {select}")
+  stat, result, column_names = db.get_table_row("opportunities", select)
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  desc.append(result['long_description'])
+  desc.append(result['short_description'])
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  desc.append(result['short_description'])
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  print("RPSale Options DATAOPT = ", dataopt)
+  print("Session Dictionary: ", session)
+  update_rp_player_game(dataopt)
+  pc, q = db.get_player_record(session['user'])
+  stat, gc = db.get_game_card(pc['game_ID'])
+  opp = Opportunity(result)
+  print("Result in RP_PLAYER: ", result)
+  dataopt = opp.set_buy_type(dataopt, result['short_description'])
+  data1 = opp.set_buy_type(data1, result['short_description'])
+  status = db.update_game_player(result['amount'], gc, dataopt)
+  desc = build_inplay_options(cycle_round)
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  desc.append(" This opportunity invitation may take you shopping, to college, on a job, buying stocks, "
+  print("IN OPT SESSION 2: ", session)
+  print(f"amount_str: {amount_str}")
+  amount = extract_numeric_value(amount_str)
+  count = extract_numeric_value(count_str)
+  desc.append(" Hopefully, this cycle opportunity invitation was good for you. Whether it is cycle round 1 or 2, "
+  desc.append(amount_str)
+  desc.append(count_str)
+  o = Options(ctgy=ctgy, type=None, desc=desc, invest=None)
+  options = o.get_options()
+  resp = update_insale_options(dataopt)
+  ce = CycleExt()
+  table_name = ce.get_cycle_table_by_code(code)
+  iv = Investment()
+  pc = Players(user)
+  ce = CycleExt()
+  match = re.search(r'[\d.]+', value_str)
+  desc.append(value)
+  for i in range(3):
+  desc.append(result['count'])
+  desc.append(result['INVITES'])
+  desc.append(None)
+  desc.append(result['INVITES'])
+  desc.append("  No")
+  invest_data['invest_count'] = int(result['count'])
+  status = db.insert_investments_from_sale(invest_data)
+  flash("Game and Play status is good!", "success")
+  x = opp.stock_check_removal(data2['player_number'])
+  print(f"Stock Check status: {x}")
+  x = opp.cash_out(data2['player_number'])
+  x = opp.set_player_flags(data2['player_number'])
+  sc3 = Sellcycle(player_number)
+  desc, iv_data = sc3.build_investment_for_sellcycle(desc)
+  print(f"INPLAY IV Data: {ga_sel}")
+  c = CycleExt()
+  desc.append(c.get_cycle_message(invite_cycle))
+  table = c.get_cycle_table_name(invite_cycle)
+  gat = Game_Assets(table)
+  pos = gat.get_new_position()
+  print(f"Cycle row Selection: {pos}")
+  ga_sel = gat.get_row(pos)
+  print(f"INPLAY ga_sel: {ga_sel}")
+  desc.append("$  " + str(ga_sel['amount']))
+  desc.append(short_desc + " at " + INVITES)
+  desc.append(short_desc)
+  o.add_row(ctgy=ctgy, type=None, desc=desc, invest=None)
+  pc.update_data('cash_on_hand', cycle['invest_value'], action="A")
+  sc3 = Sellcycle(player_number)
+  iv_sold = sc3.get_row(cycle['rnum'])
+  stat = sc3.delete_row(iv_sold)
+  pc.update_data('cash_on_hand', cycle['COH'], action="A")
+  col_name, col_value = ce.get_cycle_tax_code(cycle['tax_check'])
+  stat = pc.update_data(col_name, col_value)
+  stat = iv.parse_row_data(cycle, player_number)
+  stat = pc.update_data('other_investment', abs(cycle['amount']), action="A")
+  stat = iv.parse_row_data(cycle, player_number)
+  msg = ce.get_info_message(cycle['amount'], code, cycle['salary'])
+  pc.adjust_salary_amount(cycle['salary'])
+  if isinstance(result, tuple) and len(result) > 0 and isinstance(result[0], dict):
+  if isinstance(result, tuple) and len(result) > 0 and isinstance(result[0], dict):
+  desc.append(' ')
+  desc.append(option['opt_desc'])
+  desc.append(option['opt_desc'])
+  desc.append(option['opt_desc'])
+  desc.append(option['opt_desc'])
+  desc.append(option['opt_desc'])
+  desc.append(option['opt_desc'])
+  invest_data['invest_amount'] = decimal.Decimal(result['amount']) * decimal.Decimal(-1)
+  invest_data['invest_amount'] = decimal.Decimal(result['amount']) * decimal.Decimal(-1)
+  if int(result['count']) == 0:
+  invest_data['invest_value'] = float(1000.00)
+  flash("Random Play Investment successful!", "success")
+  if int(result['amount']) < 0:
+  desc.append(c.get_cycle_message(invite_cycle))
+  desc.append(ga_sel['INVITES'] + ": " + ga_sel['long_description'])
+  desc.append(ga_sel['long_description'])
+  desc.append("  1")
+  desc.append("  " + str(ga_sel['count']))
+  pc.update_data('stock_value', cycle['stock_value'], action="A")
+  stat = iv.parse_row_data(cycle, player_number)
+  stat = pc.update_data('comm_value', cycle['comm_value'], action="A")
+  stat = iv.parse_row_data(cycle, player_number)
+  stat = pc.update_data('other_investment', abs(cycle['amount']), action="A")
+  msg = ce.get_info_message("flag", code, cycle['tax_check'])
+  msg = ce.get_info_message("insert", code, "OTHR")
+  if int(cycle['job_level']) > 0:
+  jl = int(cycle['job_level'])
+  stat = pc.update_data('job_level', jl, action="A")
+  stat = pc.update_data('degree_level', cycle['degree_level'], action="A")
+  stat = iv.parse_row_data(cycle, player_number)
+  loan_status = iv.verify_loan(pc.data)
+  stat = pc.update_data('other_investments', abs(cycle['amount']), action="A")
+  pc_lstat = pc.verify_living_status()  # un-housed or housed based on player city_addr column
+  iv_lstat = iv.verify_living_status(player_number)  # Home Owner, un-housed, Renter statuses
+  stat = pc.update_data('ins_assess', 0, action="U")
+  stat = iv.parse_row_data(cycle, player_number)
+  stat = pc.update_data('other_investments', abs(decimal.Decimal(cycle['amount'])), action="A")
+  stat = db.delete_investments_by_code(cycle['product'], player_number)
+  return int(match.group())  # or float(match.group()) if you are sure it is an integer
+  if isinstance(result, tuple) and len(result) > 0 and isinstance(result[0], dict):
+  desc[1] = "$  " + str(result['amount'])
+  invest_data['invest_value'] = abs(float(result['amount'])) * 1.25
+  result['amount'] = int(result['amount']) * -1
+  desc.append("$  " + str(ga_sel['amount']))
+  msg = ce.get_info_message("insert", code, cycle['investment_type'])
+  stat = db.delete_investments_by_code(cycle['investment_type'], player_number)
+  stat = db.delete_investments_by_code(cycle['investment_type'], player_number)
+  msg = ce.get_info_message("degree", code, cycle['degree_level'])
+  stat = pc.update_data('other_investments', abs(cycle['amount']), action="A")
+  stat = iv.parse_row_data(cycle, player_number)
+  rent_status = iv.verify_rent(pc.data)
+  stat = pc.update_data('city_addr', "1248.70", action="U")
+  msg = ce.get_info_message("insurance", code, cycle['insurance_flag'])
+  stat = pc.update_data('other_investments', abs(decimal.Decimal(cycle['amount'])), action="A")
+  return int(match.group())  # or float(match.group()) if you are sure it is an integer
+  return float(match.group())
+  desc[2] = "$  " + str(result['amount'])
+  desc[3] = "$  " + str(result['amount'])
+  invest_data['invest_value'] = abs(float(result['amount'])) * 1.25
+  desc.append("  " + str(ga_sel['count']))
+  msg = ce.get_info_message("remove", code, cycle['investment_type'])
+  stat = iv.double_stock_investment(cycle['investment_type'], player_number)
+  msg = ce.get_info_message("remove", code, cycle['investment_type'])
+  stat = pc.update_data('other_investments', abs(decimal.Decimal(cycle['amount'])), action="A")
+  return float(match.group())
+  msg = ce.get_info_message("double", code, cycle['investment_type'])
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_page3.py
+Functions:
+  def render_request_play_options():
+  def build_request_play_options():
+  def render_request_list(ctgy):
+  def render_request_item(ctgy, item):
+  def process_event_requests(req_id):
+  def process_loan_payments(req_id):
+  def process_loan_request(req_id):
+  def process_event_property_request(req_id, req_type):
+  def process_investment_requests(req_id):
+  def process_rental_properties(req_id, req_type):
+  def process_sell_properties(req_id, req_type):
+  def process_travel_requests(req_id):
+  def process_vacation_travel(req_id, req_opt):
+  def process_shopping_travel(req_id, req_opt):
+  def process_shopping_online(req_id, req_opt):
+  def process_business_travel(req_id, req_opt):
+  def process_local_travel(req_id, req_opt):
+  def process_scheduled_trips(req_id, req_opt):
+  def process_scheduled_report():
+Classes:
+Function Calls:
+  x = build_request_play_options()
+  for i in range(4):
+  q, d = db.get_requests_by_ctgy(ctgy)
+  q, requests = db.get_requests_by_ctgy(ctgy)
+  pay_count = request.form.get('pay_count_' + req_id)
+  iv = Investment()
+  bill = iv.get_investment_by_id(loan_id)
+  bill['invest_value'] = Decimal(new_amt)
+  x = iv.update_bill_investment(bill)
+  p = Players(user)
+  stat = p.update_table()
+  loan_amt = request.form.get('amt_desired_1')
+  bnkr = banker()
+  stat = bnkr.apply_for_loan(user, loan_amt)
+  session['loans'] = list(loans)
+  p = Players(user)
+  price = Decimal(inv_item['invest_value'])
+  pc = Players(user)
+  resp = random.choice(buy_assess)
+  print(f"TRAVEL from session: {travel}")
+  print(f"REQ_ID: {req_id}")
+  print(f"TRAVEL selected_data: {selected_data}")
+  selected_travel = SelectedTravel(selected_data)
+  selected_travel.update_game_table(game_ID)
+  selected_travel.update_player_table(user)
+  selected_travel.update_investments_table(pn)
+  options = selected_travel.build_page_data()
+  shp = Shopping("shopping")
+  sale_items = shp.select_store_items(req_opt)
+  sales = shp.create_sales_info(sale_items)
+  print(f"SALES from session: {sales}")
+  print(f"REQ_ID: {req_id}")
+  print(f"SALES selected_data: {selected_data}")
+  selected_items = SelectedItems(selected_data)
+  selected_items.update_game_table(game_ID)
+  selected_items.update_player_table(user)
+  selected_items.update_investments_table(pn)
+  options = selected_items.build_page_data()
+  print(f"COMPANIES from session: {companies}")
+  bus = Business()
+  cmpy = bus.get_company_rows()
+  projects = bus.get_travel_list_by_company(cmpy, req_opt)
+  print(f"Company Projects: {projects}")
+  bp = BusinessProjects(projects)
+  bp.update_game_table(game_ID)
+  bp.update_player_table(user)
+  bp.update_investments_table(pn)
+  options = bus.build_page_data(projects)
+  print(f"LOCALS from session: {locals}")
+  print(f"REQ_ID: {req_id}")
+  selected_data.append(locals[selected])
+  print(f"LOCALS selected_data: {selected_data}")
+  selected_travel = SelectedTravel(selected_data)
+  selected_travel.update_game_table(game_ID)
+  selected_travel.update_player_table(user)
+  selected_travel.update_investments_table2(pn)
+  options = selected_data.copy()
+  print(f"PST req_id and req_opt: {req_id} and {req_opt} ")
+  iv = Investment()
+  status = iv.remove_player_investments_by_id(id)
+  tr = TravelReport(user, report_name, trip)
+  options.append(d)
+  total_payment = Decimal(payment) * Decimal(pay_count)
+  total_payment = Decimal(payment) * Decimal(pay_count)
+  new_amt = Decimal(owed_amt) - Decimal(total_payment)
+  new_amt = Decimal(owed_amt) - Decimal(total_payment)
+  p.cash_on_hand = Decimal(p.cash_on_hand) - Decimal(total_payment)
+  p.cash_on_hand = Decimal(p.cash_on_hand) - Decimal(total_payment)
+  flash("Loan Payment Received!", "success")
+  b = Billpay()
+  s = b.add_data_by_key("bill_type", "LOAN")
+  s = b.add_data_by_key("bill_round", session['player_round'])
+  s = b.add_data_by_key("bill_amount", total_payment)
+  s = b.add_data_by_key("bill_description", "Loan Req Pay")
+  s = b.add_data_by_key("player_number", pn)
+  s = b.add_data_by_key("bill_value", new_amt)
+  s = b.add_data_by_key("invest_id", bill['invest_count'])
+  s = b.insert_billpay_card()
+  flash("Loan Payment NOT processed!", "error")
+  req = int(req_id)
+  stat, result, column_names = db.get_table_row("address", id)
+  gat = Game_Assets("address")
+  print(f"addr2 in process_investment_requests: {addr2} ")
+  roi = ROI_Card()
+  addr = roi.load_roi_from_addr(addr2, session['player_number'], 0)
+  print(f"addr in process_investment_requests: {addr} ")
+  iv = Investment()
+  inv_data = iv.get_player_investments_by_type(session['player_number'], inv_type)
+  inv_loans = iv.get_player_investments_by_type(session['player_number'], "LOAN")
+  if Decimal(price) <= Decimal(p.cash_on_hand):
+  if Decimal(price) <= Decimal(p.cash_on_hand):
+  p.update_data("cash_on_hand", debit, action="A")
+  p.update_data("property_value", Decimal(price), action="A")
+  stat = p.update_table()
+  x = pc.update_data("cash_on_hand", price, action="A")
+  x = pc.update_table()
+  iv = Investment()
+  x = iv.remove_player_investments_by_id(inv_item['invest_id'])
+  trv = Travel()
+  trav = trv.get_vacation_rows()
+  travel = trv.create_sales_info(trav)
+  shp = Shopping("shopping")
+  shop = shp.get_onsale_rows()
+  retailers = shp.get_list_of_retailers(shop)
+  bus = Business()
+  cmpy = bus.get_company_rows()
+  companies = bus.get_company_list(cmpy)
+  bus = Business()
+  locals = bus.get_local_rows()
+  iv = Investment()
+  investments = iv.get_player_investments_by_code(pn, "TRIP")
+  trips = iv.update_trip_investments(investments)
+  selected = int(req_id) - 1
+  req_id = int(travel['req_id']) - int(1)
+  req_id = int(travel['req_id']) - int(1)
+  trip = tr.select_vacation_report()
+  trip = tr.select_business_report()
+  addr2 = gat.adjust_object_scope("District", "Residential")
+  addr2 = gat.adjust_object_scope("BLDG_type", "Building")
+  flash ("Property Sale prohibited, You possess more than 1 loan", "warning")
+  if len(inv_data) == 0:
+  flash("Sale prohibited, You possess none of requested investment type.", "warning")
+  flash("Choose one investment to sell. A buyer may respond.", "success")
+  debit = Decimal(price) * Decimal(-1.00)
+  debit = Decimal(price) * Decimal(-1.00)
+  p.update_data("property_value", Decimal(price), action="A")
+  g = GameBoard(game_ID)
+  g.update_spending(price)
+  game_card = g.get_game_data()
+  stat = g.put_game_data(game_card)
+  r = ROI_Card()
+  stat = r.build_insert_roi(ppty)
+  loan = loans[int(req_id)-1]
+  loan = loans[int(req_id) - 1]
+  if isinstance(result, tuple) and len(result) > 0 and isinstance(result[0], dict):
+  if isinstance(result, tuple) and len(result) > 0 and isinstance(result[0], dict):
+  if inv_type == "PPTY" and len(inv_loans) > 1:
+  if len(inv_data) > 0 and flag != 1:
+  ppty = addr[int(req_id)-1]
+  inv_item = inv_data[int(req_id) - 1]
+  selected_data = [row for row in travel if row['id'] in map(int, req_id)]
+  selected_data = [row for row in sales if row['id'] in map(int, req_id)]
+  company_data = [row for row in companies if row['id'] in list(req_id)]
+  trip = trips[int(req_id) - int(1)]
+  trip = trips[int(req_id) - int(1)]
+  gat = Game_Assets("address")
+  print(f"PPTY_type in process_event_requests: {addr2[0]['PPTY_type']} ")
+  pl = PageLayout()
+  addresses = pl.load_address_data(addr2)
+  print(f"Move to addresses: {addresses}")
+  if isinstance(result, tuple) and len(result) > 0 and isinstance(result[0], dict):
+  addr2 = gat.adjust_object_scope("PPTY_type", "House")
+  addr2 = gat.adjust_object_scope("PPTY_type", "Rent")
+  iv = Investment()
+  loans_inv = iv.get_player_investments_by_type(session['player_number'], "BILL")
+  loans = iv.build_loan_data(loans_inv)
+  player = db.get_player_by_number(session['player_number'])
+  stat = db.update_player3(player)
+  iv = Investment()
+  "amt_desired": Decimal(25000.00), "status": "unknown"} ]
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\TS_Reviews.py
+Functions:
+  def __init__(self, otype):
+  def load_review(self):
+  def get_random_review(self):
+Classes:
+  class Reviews:
+Function Calls:
+  r = Reviews("JC")
+  status = r.load_review()
+  self.file = open("C:/Users/wally/Documents/Python/Demo/Takestock1.0/files/TakeStock.csv", "r")
+  self.data = list(csv.reader(self.file, delimiter=","))
+  rnum = random.randint(1, rng - 1)
+  val = str(rnum)
+  self.data = list(csv.reader(self.file, delimiter=","))
+  while row < len(data):
+  rng = len(self.em) - 1
+  while row < len(self.em):
+  self.em.append(data[row][0:17])
+  print(self.em[i])
+  event_amount = event_amount.replace('$', '')
+  event_amount = event_amount.replace(',', '')
+  event_amount = int(event_amount)
+  self.msg = event_desc + ": " + val_type + str(event_amount)
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_sub1.py
+Functions:
+  def is_logged_in(f):
+  def game_pass():
+  def gamePass(username):
+  def game_action():
+  def gameAction(username):
+  def game_SPlay():
+  def game_BuyProd():
+  def game_Sale():
+  def game_RPlay():
+  def game_RPBuy():
+  def game_RPSale():
+  def game_INPlay():
+  def game_INBuy():
+  def game_INSale():
+  def game_TPlay():
+  def game_TPBuy():
+  def game_TPSale():
+  def game_GBoard():
+  def game_PBoard():
+  def game_PReview():
+  def game_help():
+  def game_status():
+  def remove_trailing_empty(lst):
+  def pad_list(lst, length, padding_value=None):
+  def city_Tour():
+  def tour_BDistrict():
+  def tour_EDistrict():
+  def tour_SDistrict():
+  def tour_ODistrict():
+  def tour_RDistrict():
+  def print_data(data=None, options=None, dataopt=None, gc=None, ga=None, pc=None, session=None):
+  def decorated_function(*args, **kwargs):
+Classes:
+Function Calls:
+  ts_sub1_bp = Blueprint('ts_sub1_bp', __name__, template_folder="templates")
+  db = DB_Mgr(mysql)
+  @ts_sub1_bp.route('/game_pass', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/gamepass/<username>', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_action', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/gameAction/<username>', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_s_play', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_buyprod', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_sale', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_r_play', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_rpbuy', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_rpsale', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_inplay', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_inbuy', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_insale', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_t_play', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_tpbuy', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_tpsale', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_g_board', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_p_board', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_p_review', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_help', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/game_status', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/city_tour', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/tour_bdistrict', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/tour_edistrict', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/tour_sdistrict', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/tour_odistrict', methods=['GET', 'POST'])
+  @ts_sub1_bp.route('/tour_rdistrict', methods=['GET', 'POST'])
+  @wraps(f)
+  username = session.get('username')
+  return gamePass(username)
+  print_data(session=session)
+  pn = session.get('player_number')
+  pc = session.get('player_count')
+  print(f"passed data: {pn} and {pc}")
+  db.pickle_save(session['game_ID'], "session", session, "cookie")
+  event_number = randint(1, 50)
+  return gameAction(username)
+  username = session.get('username')
+  return gameAction(username)
+  result, q = db.get_player_record(username)
+  db.pickle_save(session['game_ID'], "session", session, "cookie")
+  print_data(data=data, session=session)
+  gg = GameGoals()
+  glevel_name = gg.get_level_name(glevel)
+  ggoal_name = gg.get_goal_name(ggoal)
+  flash(f"GAME SELECTIONS: Game Level is - {glevel_name} and Game Goal is - {ggoal_name}", "success")
+  return render_template('gameAction.html', data=data, page_name=page_name, user=user)
+  data['player_number'] = session.get('player_number')
+  data['player_move'] = session.get('player_move')
+  data['player_round'] = session.get('player_round')
+  options = render_sp_options()
+  db.pickle_save("SinglePlay", "session", session, "cookie")
+  return render_template('game_SPlay.html', data=data, page_name=page_name, options=options, user=user)
+  product = request.args.get('product')
+  username = session.get('username')
+  flash("Another round of success!", "success")
+  return gamePass(username)
+  data['player_number'] = session.get('player_number')
+  data['player_move'] = session.get('player_move')
+  data['player_round'] = session.get('player_round')
+  options = render_rp_options()
+  db.pickle_save("RandomPlay", "session", session, "cookie")
+  print_data(options=options, session=session, data=data)
+  return render_template('game_RPlay.html', options=options, page_name=page_name, user=user, data=data)
+  data['player_number'] = session.get('player_number')
+  data['player_move'] = session.get('player_move')
+  data['player_round'] = session.get('player_round')
+  options = render_inplay_options()
+  db.pickle_save("RandomPlay", "session", session, "cookie")
+  print_data(options=options, session=session)
+  return render_template('game_INPlay.html', options=options, page_name=page_name, user=user, data=data)
+  options = render_insale_options()
+  db.pickle_save("RandomPlay", "session", session, "cookie")
+  return render_template('game_INBuy.html', data=data, user=user, page_name=page_name, options=options)
+  data['player_number'] = session.get('player_number')
+  data['player_move'] = session.get('player_move')
+  data['player_round'] = session.get('player_round')
+  options = render_tp_options()
+  db.pickle_save("RandomPlay", "session", session, "cookie")
+  print_data(options=options, session=session)
+  return render_template('game_TPlay.html', options=options, page_name=page_name, user=user, data=data)
+  username = session.get('username')
+  flash("Triple play success success!", "success")
+  return gamePass(username)
+  result, q = db.get_player_record(username)
+  status, result2 = db.get_game_card(result["game_ID"])
+  print("Game Card= ", result2)
+  print_data(session=session)
+  data['player_move'] = session.get('player_move')
+  data['player_round'] = session.get('player_round')
+  data['user_captain'] = session.get('username')
+  options = render_gb_options(data['game_ID'])
+  print_data(data=data, options=options, session=session)
+  return render_template('game_GBoard.html', options=options, page_name=page_name, data=data)
+  options, data = render_pb_options()
+  data['player_number'] = session.get('player_number')
+  data['player_name'] = session.get('user')
+  print_data(options=options, data=data, session=session)
+  return render_template('game_PBoard.html', options=options, page_name=page_name, data=data)
+  rev_type = request.args.get('review')
+  options, data = render_preview_options(rev_type)
+  data['player_number'] = session.get('player_number')
+  data['player_name'] = session.get('user')
+  print_data(options=options, data=data, session=session)
+  return render_template('game_PReview.html', options=options, page_name=page_name, data=data)
+  result, q = db.get_player_record(session['username'])
+  gg = GameGoals()
+  glevel_name = gg.get_level_name(glevel)
+  ggoal_name = gg.get_goal_name(ggoal)
+  flash("There are three game levels and different game goals per level. Get familiar with them", "success")
+  return render_template('game_help.html', page_name=page_name, data=data, goals=goals)
+  result, q = db.get_player_record(session['username'])
+  flash("There are three game levels and different game goals per level. Get familiar with them", "success")
+  gg = GameGoals()
+  features, goals, player_status1, player_status2, player_status3 = gg.build_status_report(glevel, ggoal, session['username'])
+  ic(features, goals, player_status1, player_status2, player_status3)
+  df1 = pd.DataFrame(rpt_features)
+  df2 = pd.DataFrame(rpt_goals)
+  ic(df1, df2)
+  ic(player_status)
+  player_status_df = pd.DataFrame(player_status)
+  ic(player_status_df)
+  return render_template('game_status.html', page_name=page_name, data=data, rpt_features=df1, rpt_goals=df2, player_status=player_status_df, ggoal=ggoal)
+  return render_template('city_Tour.html', page_name=page_name)
+  return render_template('tour_BDistrict.html', page_name=page_name)
+  return render_template('tour_EDistrict.html', page_name=page_name)
+  return render_template('tour_SDistrict.html', page_name=page_name)
+  return render_template('tour_ODistrict.html', page_name=page_name)
+  return render_template('tour_RDistrict.html', page_name=page_name)
+  return f(*args, **kwargs)
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  if username != session.get('username'):
+  flash('You aren\'t authorised to view this page', 'error')
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  if session.get('role') != "Host":
+  flash('You aren\'t authorised to access this page', 'error')
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  data = session.get('data')
+  gac = Game_Action()
+  ga = gac.get_action_items()
+  data['ga']['position_id'] = gac.get_new_position()
+  if str(pn) < str(pc):
+  if str(pn) < str(pc):
+  return redirect(url_for('login'))
+  status, players = db.get_players_game_card(result["game_ID"], allcolumn="Y")
+  print("Action Players: ", players)
+  buy_type = request.args.get('product')
+  print_data(options=options, session=session)
+  db.pickle_save("SinglePlay", "session", session, "cookie")
+  return render_template('game_BuyProd.html', data=data, user=user, page_name=page_name, options=options)
+  return render_template('game_RPBuy.html', data=data, user=user, page_name=page_name, options=options)
+  print_data(options=options, session=session, data=data)
+  dataopt = render_rp_sale_options(data)
+  db.pickle_save("RandomPlay", "session", session, "cookie")
+  print_data(dataopt=dataopt, session=session)
+  return render_template('game_RPSale.html', page_name=page_name, options=options, data=data, user=user)
+  flash("Invites not available for Easy Play", "error")
+  return redirect(url_for('game_action'))
+  flash("Triple Play not available for Easy Play", "error")
+  return redirect(url_for('ts_sub1_bp.game_action'))
+  options = render_bs_options(session, splay="N")
+  options = render_bp_options(session, pplay="N")
+  options = render_bb_options(session, bplay="N")
+  db.pickle_save("TriplePlay", "session", session, "cookie")
+  return render_template('game_TPBuyProd.html', data=data, user=user, page_name=page_name, options=options)
+  data_json = request.form.get('data')
+  options_json = request.form.get('options')
+  data = json.loads(data_json.replace("'", "\""))
+  print("Options json: ", options_json)
+  options = json.loads(options_json.replace("'", "\""))
+  print("DATA: ", data)
+  print("OPTIONS: ", options)
+  dataopt = render_tpsale_options(data)
+  print_data(dataopt=dataopt, session=session)
+  db.pickle_save("TriplePlay", "session", session, "cookie")
+  return render_template('game_TPSale.html', **dataopt)
+  for key, value in player_status3.items():
+  print("Session: ", session)
+  if not session.get('logged_in'):
+  flash('You need to be logged in to view this page', 'error')
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  plyr = Players(username)
+  gb = GameBoard(game_ID)
+  status = gb.get_status()
+  stat = process_first_move(session['game_ID'], data)
+  status = process_end_of_round(session)
+  return redirect(url_for('login'))
+  gc = GameBoard(result["game_ID"])
+  game_card = gc.get_game_data()
+  game_card['total_earnings'] += decimal.Decimal(inh)
+  data = render_game_card(session, result["game_ID"])
+  print("Game card: ", data)
+  print("Game Action Session: ", session)
+  pc = render_player_card(players, session['player_number'])
+  print("Player card: ", pc)
+  flash("Failed to retrieve player details", "error")
+  return redirect(url_for('gameAction', data=data, page_name=page_name, user=user))
+  print(f"Check DATA: {data}")
+  options = render_bs_options(session)
+  print(f"SESSION at beginning of POST: {session}")
+  data_json = request.form.get('data')
+  options_json = request.form.get('options')
+  print("Received data_json:", data_json)
+  print("Received options_json:", options_json)
+  form = GameBuyForm(request.form)
+  buy_type = request.form.get('buy_type')  # Ensure buy_type persists
+  print("DATA:", data)
+  print("OPTIONS:", options)
+  dataopt = render_sale_options(data)
+  print("DATAOPT:", dataopt)
+  db.pickle_save("SinglePlay", "session", session, "cookie")
+  print_data(dataopt=dataopt, session=session)
+  return render_template('game_Sale.html', **dataopt)
+  'player_number': session.get('player_number'),
+  'player_move': session.get('player_move'),
+  'player_round': session.get('player_round'),
+  return redirect(url_for('game_action'))
+  return redirect(url_for('ts_sub1_bp.game_action'))
+  'player_number': session.get('player_number'),
+  'player_move': session.get('player_move'),
+  'player_round': session.get('player_round'),
+  data = json.loads(data_json.replace("'", "\""))
+  options = json.loads(options_json.replace("'", "\""))
+  print("PC: ", pc)
+  return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+  flash("The game status must be Ready or Active to start the game.", "danger")
+  return redirect(url_for('game_dash'))
+  raise Exception("Process First Move failed...")
+  elif str(pn) == str(pc) and str(pc) > '1':
+  elif str(pn) == str(pc) and str(pc) > '1':
+  elif str(pn) == str(pc) and str(pc) > '1':
+  if decimal.Decimal(inh) != decimal.Decimal(0):
+  if decimal.Decimal(inh) != decimal.Decimal(0):
+  stat = gc.put_game_data(game_card)
+  return redirect(url_for('gameAction', data=data, page_name=page_name, user=user))
+  options = render_bp_options(session)
+  print("Before loading data_json:", data_json)
+  data = json.loads(data_json.replace("'", "\""))
+  print("Before loading options_json:", options_json)
+  options = json.loads(options_json.replace("'", "\""))
+  return lst + [padding_value] * (length - len(lst))
+  print("GA: ", ga)
+  return redirect(url_for('game_dash'))
+  if float(cash) <= float(0.00):
+  if float(cash) <= float(0.00):
+  bnkr = banker()
+  sal = bnkr.calc_salary()
+  inh = bnkr.calc_inheritance()
+  stat = db.update_player2(player)
+  'player_number': session.get('player_number'),
+  'player_move': session.get('player_move'),
+  'player_round': session.get('player_round'),
+  options = render_bb_options(session)
+  data = json.loads(data_json.replace("'", "\""))
+  options = json.loads(options_json.replace("'", "\""))
+  player_status[key.upper()] = value
+  print("GC: ", gc)
+  options = render_bc_options(session)
+  print("DATAOPT: ", dataopt)
+  print("DATA: ", data)
+  return f"JSON decode error: {str(e)}", 400
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_sub2.py
+Functions:
+  def game_RequestPlay():
+  def event_requests():
+  def investment_requests():
+  def travel_requests():
+  def request_handler():
+  def event_handler():
+  def event_request_process():
+  def investment_handler():
+  def investment_request_process():
+  def travel_handler():
+  def travel_request_process():
+  def travel_trip_process():
+  def travel_report_process():
+Classes:
+Function Calls:
+  ts_sub2_bp = Blueprint('ts_sub2_bp', __name__, template_folder="templates")
+  db = DB_Mgr(mysql)
+  @ts_sub2_bp.route('/game_request_play', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/event_requests')
+  @ts_sub2_bp.route('/investment_requests')
+  @ts_sub2_bp.route('/travel_requests')
+  @ts_sub2_bp.route('/request_handler', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/event_handler', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/event_request_process', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/investment_handler', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/investment_request_process', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/travel_handler', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/travel_request_process', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/travel_trip_process', methods=['GET', 'POST'])
+  @ts_sub2_bp.route('/travel_report_process', methods=['GET', 'POST'])
+  data['player_number'] = session.get('player_number')
+  data['player_move'] = session.get('player_move')
+  data['player_round'] = session.get('player_round')
+  db.pickle_save("RequestPlay", "session", session, "cookie")
+  return render_template('event_requests.html')
+  return render_template('investment_requests.html')
+  return render_template('travel_requests.html')
+  return render_template('review_requests.html', data=data, page_name=page_name, user=user)
+  print(f"Event id: {req_id}")
+  requests = render_request_list("Event")
+  page = process_event_requests(req_id)
+  db.pickle_save("RequestPlay", "session", session, "cookie")
+  return render_template('move_address.html', data=data, page_name=page_name, user=user, addresses=addresses,
+  req_id = request.args.get('request_id')
+  req_type = request.args.get('request')
+  return render_template('move_address.html', data=data)
+  print(f"Investment id: {req_id}")
+  requests = render_request_list("Investment")
+  page = process_investment_requests(req_id)
+  db.pickle_save("RequestPlay", "session", session, "cookie")
+  return render_template('move_address.html', data=data, page_name=page_name, user=user)
+  req_id = request.args.get('request_id')
+  req_type = request.args.get('request')
+  return render_template('move_address.html', data=data, page_name=page_name)
+  requests = render_request_list("Travel")
+  print(f"Event id: {req_id}")
+  page = process_travel_requests(req_id)
+  db.pickle_save("RequestPlay", "session", session, "cookie")
+  print(f"titleh value: {req_type}")
+  req_opt = request.form.get('tript')
+  req_id = request.form.get('tripi')
+  return render_template('flight_departure.html', data=data, page_name=page_name, user=user, video=video)
+  process_scheduled_report()
+  return render_template(web_page, data=data, page_name=page_name, user=user, trip=trip)
+  flash("Request Play only available for Guru Play", "error")
+  return redirect(url_for('ts_sub1_bp.game_action'))
+  return render_template('game_RequestPlay.html', data=data, page_name=page_name, user=user)
+  requests = render_request_list("Event")
+  return render_template('event_requests.html', data=data, page_name=page_name, user=user, requests=requests)
+  requests = render_request_list("Investment")
+  return render_template('investment_requests.html', data=data, page_name=page_name, user=user, requests=requests)
+  requests = render_request_list("Travel")
+  return render_template('travel_requests.html', data=data, page_name=page_name, user=user, requests=requests)
+  req_type = request.args.get('request')
+  req_id = request.args.get('request_id')
+  db.pickle_save("RequestPlay", "session", session, "cookie")
+  print(f"Request type and id: {req_type} - {req_id} ")
+  return redirect(url_for('ts_sub1_bp.game_INPlay'))
+  print(f"DATA in event_request_process: {data}")
+  page = process_event_property_request(req_id, req_type)
+  db.pickle_save("RequestPlay", "session", session, "cookie")
+  return response.get_data(as_text=True)
+  stat = process_loan_payments(req_id)
+  process_loan_request(req_id)
+  db.pickle_save("RequestPlay", "session", session, "cookie")
+  return render_template('loan_request.html', data=data, page_name=page_name, user=user, loans=loans,
+  return render_template('property_rental.html', data=data, page_name=page_name, user=user, title=title, image=image, addr=addr)
+  return render_template('property_rental.html', data=data, page_name=page_name, user=user, title=title, image=image, addr=addr)
+  return render_template('property_sale.html', data=data, page_name=page_name, user=user, title=title, image=image, inv_data=inv_data)
+  stat = process_rental_properties(req_id, req_type)
+  return render_template('property_rental.html', data=data, page_name=page_name, user=user, title=title, image=image,
+  stat = process_rental_properties(req_id, req_type)
+  return render_template('property_rental.html', data=data, page_name=page_name, user=user, title=title, image=image,
+  stat = process_sell_properties(req_id, req_type)
+  return render_template('property_sale.html', data=data, page_name=page_name, user=user, title=title, image=image,
+  flash("Select one or more packages using the checkbox, and then click the SUBMIT button.", "success")
+  return render_template('travel_schedule.html', data=data, page_name=page_name, user=user, travel=travel,
+  return render_template('shopping_list.html', data=data, page_name=page_name, user=user, retailers=retailers, title=title, image=image)
+  selected_companies = random.sample(companies, 3)
+  return render_template('business_offer.html', data=data, page_name=page_name, user=user, selected_companies=selected_companies, title=title, image=image)
+  return render_template('local_travel.html', data=data, page_name=page_name, user=user, locals=locals, title=title, image=image)
+  form_action = url_for("ts_sub2_bp.travel_request_process")
+  print(f"Form Action: {form_action}")
+  print(f"trips from session: {trips}")
+  return render_template('scheduled_trips.html', data=data, page_name=page_name, user=user, trips=trips, title=title,
+  req_type = request.form.get('titleh') or request.args.get('titleh')
+  req_type = request.form.get('titleh') or request.args.get('titleh')
+  req_id = request.form.getlist('selected_items')
+  req_opt = request.form.getlist('requesth')
+  print(f"Req_id and req_opt: {req_id} and {req_opt}")
+  page = process_vacation_travel(req_id, req_opt)
+  req_opt = request.args.get('request_opt')
+  req_id = request.args.get('request_id')
+  page = process_shopping_travel(req_id, req_opt)
+  req_id = request.form.getlist('selected_items')
+  req_opt = request.form.getlist('requesth')
+  print(f"Req_id and req_opt: {req_id} and {req_opt}")
+  page = process_shopping_online(req_id, req_opt)
+  req_opt = request.form.get('companyb')
+  req_id = request.form.get('companyi')
+  page = process_business_travel(req_id, req_opt)
+  req_opt = request.form.get('locald')
+  req_id = request.form.get('locali')
+  page = process_local_travel(req_id, req_opt)
+  print("In travel_request_process for Scheduled Trips.")
+  req_opt = request.form.get('tript')
+  req_id = request.form.get('tripi')
+  print(f"request and ID: {req_opt} and {req_id}")
+  page = process_scheduled_trips(req_id, req_opt)
+  return render_template('vacation_receipt.html', data=data, page_name=page_name, user=user, options=options, title=title)
+  flash("Select one or more items by clicking checkbox below each item desired.", "success")
+  return render_template('shopping_online.html', data=data, page_name=page_name, user=user, sales=sales,
+  return render_template('shopping_receipt.html', data=data, page_name=page_name, user=user, options=options, title=title)
+  return render_template('project_voucher.html', data=data, page_name=page_name, user=user, options=options, title=title, subtitle=subtitle)
+  return render_template('local_travel_receipt.html', data=data, page_name=page_name, user=user, options=options, title=title, subtitle=subtitle)
+  form_action = url_for('ts_sub2_bp.travel_trip_process')
+  print(f"TRP req_id: {req_id}")
+  flash("Your selected trip is highlighted. Click the button to continue with your flight.", "success")
+  return render_template('scheduled_trips.html', data=data, page_name=page_name, user=user, trips=trips,
+  req_type = request.form.get('titleh') or request.args.get('titleh')
+  req_type = request.form.get('titleh') or request.args.get('titleh')
+  flash("Wherever your travel takes you, bring your best and the rewards will be great!", "success")
+  flash("TakeStock Village has plenty to offer whether you go there by plane, cab, train, or portal!", "success")
+  return redirect(url_for('ts_sub1_bp.game_action'))
+  flash("Please select both a travel mode and request. ", "error")
+  return render_template('game_RequestPlay.html', data=data, page_name=page_name, user=user)
+  flash("Please select both a travel mode and request type. ", "error")
+  return render_template('game_RequestPlay.html', data=data, page_name=page_name, user=user)
+  return redirect(url_for('ts_sub2_bp.event_requests'))
+  return redirect(url_for('ts_sub2_bp.event_handler'))
+  return redirect(url_for('ts_sub1_bp.game_INPlay'))
+  print(f"Property request type: {session['PPTY_type']}")
+  return render_template('move_address.html', data=data, page_name=page_name, user=user, addresses=addresses,
+  with current_app.test_request_context('/game_buyprod?product=bp'):
+  response = current_app.full_dispatch_request()
+  return redirect(url_for('ts_sub1_bp.game_pass'))
+  db.pickle_save("RequestPlay", "session", session, "cookie")
+  return render_template('loan_list.html', data=data, page_name=page_name, user=user, loans=loans,
+  flash("Your property purchase now has an ROI card. Payments every 5th round.", "success")
+  flash("Your property purchase failed approval. Insufficient funds.", "warning")
+  addr = list(addr1[int(req_id) - 1])
+  flash("Your property purchase now has an ROI card. Payments every 5th round.", "success")
+  flash("Your property purchase failed approval. Insufficient funds.", "warning")
+  inv_data = list(inv_data1[int(req_id) - 1])
+  flash("Found a buyer for your investment. Item sold!", "success")
+  flash("No buyer found. Try again later.", "warning")
+  return redirect(url_for('ts_sub2_bp.event_requests'))
+  return redirect(url_for('ts_sub2_bp.investment_requests'))
+  return redirect(url_for('ts_sub2_bp.event_handler'))
+  return redirect(url_for('ts_sub2_bp.investment_handler'))
+  return render_template('loan_list.html', data=data, page_name=page_name, user=user, loans=loans,
+  return redirect(url_for('ts_sub1_bp.game_pass'))
+  return redirect(url_for('ts_sub2_bp.investment_requests'))
+  return redirect(url_for('ts_sub2_bp.travel_requests'))
+  return redirect(url_for('ts_sub2_bp.investment_handler'))
+  return redirect(url_for('ts_sub2_bp.travel_handler'))
+  return render_template('loan_request.html', data=data, page_name=page_name, user=user, loans=loans,
+  return redirect(url_for('ts_sub2_bp.travel_requests'))
+  return redirect(url_for('ts_sub2_bp.travel_handler'))
+  addr = addr1[int(req_id) - 1]
+  addr = list(addr1[int(req_id) - 1])
+  inv_data = list(inv_data1[int(req_id) - 1])
+
+File: C:/Users/wally/Documents/Python/Demo/Takestock1.0\ts_validation.py
+Functions:
+  def __init__(self, values, *args, **kwargs):
+  def validate_select_field(form, choice):
+Classes:
+  class ChangePasswordForm(Form):
+  class AddMemberForm(Form):
+  class EditForm(Form):
+  class GameActionForm(Form):
+  class GameForm(Form):
+  class GameLevelForm(Form):
+  class GameSetupForm(Form):
+  class GameConnectForm(Form):
+  class GameBuyForm(Form):
+Function Calls:
+  old_password = PasswordField('Existing Password')
+  new_password = PasswordField('Password', [
+  confirm = PasswordField('Confirm Password')
+  username = StringField('Username', [
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  password = PasswordField('Password', [
+  confirm = PasswordField('Confirm Password')
+  email = StringField('Email', [validators.Length(min=1, max=100)])
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  email = StringField('Email', [validators.Length(min=1, max=100)])
+  role = StringField('Role', [validators.Length(min=1, max=10)])
+  player_number = IntegerField('Player Number', [NumberRange(min=0, max=12, message='Number must be between 0 and 12')])
+  status = StringField('Status', [validators.Length(min=1, max=10)])
+  player_number = IntegerField('PN', [NumberRange(min=0, max=12, message='Number must be between 0 and 12')])
+  player_round = IntegerField('PR', [NumberRange(min=0, max=999, message='Number must be between 0 and 999')])
+  player_move = IntegerField('PR', [NumberRange(min=0, max=999, message='Number must be between 0 and 999')])
+  player_message1 = StringField('Name', [validators.Length(min=1, max=100)])
+  player_message2 = StringField('Name', [validators.Length(min=1, max=100)])
+  player_message3 = StringField('Name', [validators.Length(min=1, max=300)])
+  action = StringField('Action', [validators.InputRequired()])
+  salary = IntegerField('Salary', [NumberRange(min=0, max=3000, message='Salary must be between 0 and 3000')])
+  game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
+  status = SelectField('Status', choices=choices)
+  level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])
+  glevel = SelectField('Game Level', choices=[])
+  ggoal = SelectField('Game Goal', choices=[])
+  player_count = IntegerField('Player Count', [
+  status = SelectField('Status', choices=[('New', 'New Game'), ('Ready', 'Active'), ('Paused', 'Paused'), ('End', 'End')])
+  game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
+  start_date = DateField('Game Start Date', default=date.today)
+  population = DecimalField('Town Population', [
+  population_chg = FloatField('Population Growth Rate', [
+  level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])
+  glevel = SelectField('Game Level', choices=[])
+  ggoal = SelectField('Game Goal', choices=[])
+  player_count = IntegerField('Player Count',
+  status = SelectField('Status', choices=[('New', 'New Game'), ('Ready', 'Active'), ('Paused', 'Paused'), ('End', 'End')])
+  game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
+  start_date = DateField('Game Start Date', default=date.today)
+  salary = IntegerField('Salary', [NumberRange(min=1000, max=3000, message='Salary must be between 1000 and 3000')])
+  game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
+  status = SelectField('Status', choices=choices)
+  choice = SelectField('Buy Selection', choices=choices)
+  super().__init__(*args, **kwargs)
+  flash("Please enter a valid choice.", "error")
+  validators.DataRequired(),
+  validators.EqualTo('confirm', message='Passwords do not match')])
+  validators.InputRequired(),
+  validators.NoneOf(values=[], message="Username already taken, Please try another")
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  validators.DataRequired(),
+  validators.EqualTo('confirm', message='Passwords do not match')
+  email = StringField('Email', [validators.Length(min=1, max=100)])
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  email = StringField('Email', [validators.Length(min=1, max=100)])
+  role = StringField('Role', [validators.Length(min=1, max=10)])
+  player_number = IntegerField('Player Number', [NumberRange(min=0, max=12, message='Number must be between 0 and 12')])
+  status = StringField('Status', [validators.Length(min=1, max=10)])
+  player_number = IntegerField('PN', [NumberRange(min=0, max=12, message='Number must be between 0 and 12')])
+  player_round = IntegerField('PR', [NumberRange(min=0, max=999, message='Number must be between 0 and 999')])
+  player_move = IntegerField('PR', [NumberRange(min=0, max=999, message='Number must be between 0 and 999')])
+  player_message1 = StringField('Name', [validators.Length(min=1, max=100)])
+  player_message2 = StringField('Name', [validators.Length(min=1, max=100)])
+  player_message3 = StringField('Name', [validators.Length(min=1, max=300)])
+  action = StringField('Action', [validators.InputRequired()])
+  salary = IntegerField('Salary', [NumberRange(min=0, max=3000, message='Salary must be between 0 and 3000')])
+  game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
+  level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])
+  level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])
+  validators.NumberRange(min=1, max=12, message='Number of Players must be between 1 and 12')])
+  game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
+  validators.NumberRange(min=100000, max=2000000, message='Population must be between 100K and 2M')])
+  validators.NumberRange(min=0.05, max=0.15, message='Population rate must be between 0.05 and 0.15')])
+  level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])
+  level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])
+  [NumberRange(min=1, max=12, message='Number of Players must be between 1 and 12')])
+  game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
+  salary = IntegerField('Salary', [NumberRange(min=1000, max=3000, message='Salary must be between 1000 and 3000')])
+  game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
+  raise ValidationError('Please select a valid choice.')
+  super().__init__(*args, **kwargs)
+

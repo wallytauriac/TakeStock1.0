@@ -1,0 +1,398 @@
+ctgy,business,bus_type,short_description,purpose,long_description,cost,points
+Local,Uptown,,Entertainment District,,A wonderful day or night spot for enjoying family time.,500.00,5000
+Local,Uptown,,Opportunity District,,A part of town that caters to learning opportunities.,500.00,5000
+Local,Uptown,,Investment District,,A place for the money crowd.,500.00,5000
+Local,Uptown,,Residential District,,"An area that includes business, entertainment, and good living.",500.00,5000
+Local,Downtown,,Business District,,Takestock city business area,500.00,5000
+Local,Downtown,,Wall Street District,,Takestock city stock and commodity market area.,500.00,5000
+Local,Downtown,,Market District,,Takestock city business stores for shopping and eating.,500.00,5000
+Remote,Amuze Park,Entertainment,New Orleans,Business Conference,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,1200.00,12000
+Remote,Amuze Park,Entertainment,Chicago,Business Meeting,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,1800.00,18000
+Remote,Amuze Park,Entertainment,Grand Canyon National Park,Business Operation Review,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,1500.00,15000
+Remote,Amuze Park,Entertainment,New York City,Business Audit,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,3000.00,30000
+Remote,Amuze Park,Entertainment,Yellowstone National Park,Development Oversight,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,2000.00,20000
+Remote,Amuze Park,Entertainment,Las Vegas,New Venture,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,4000.00,40000
+Remote,Amuze Park,Entertainment,Washington DC,Meeting with Gov. Officials,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,1300.00,13000
+Remote,Amuze Park,Entertainment,San Diego,Business Seminar,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,1900.00,19000
+Remote,Amuze Park,Entertainment,Charleston,Office Training,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,1000.00,10000
+Remote,Amuze Park,Entertainment,Orlando,New Office Opening,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,2500.00,25000
+Remote,Amuze Park,Entertainment,Carribean Island,Employment Review,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,3500,35000
+Remote,Amuze Park,Entertainment,Hawaian Island,Sales Review Meetings,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,4500,45000
+Remote,Amuze Park,Entertainment,Key West,Land Development,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,2500,25000
+Remote,Amuze Park,Entertainment,San Francisco,Equipment Procurement,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,2500,25000
+Remote,Amuze Park,Entertainment,Houston,Supply Management,Establishment seeking to expand its services and amenities in new locations. It also looks for opportunities to purchase and improve existing entertainment locations.,2500,25000
+Remote,Vacation Resort,Hospitality,New Orleans,Business Conference,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",1200.00,12000
+Remote,Vacation Resort,Hospitality,Chicago,Business Meeting,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",1800.00,18000
+Remote,Vacation Resort,Hospitality,Grand Canyon National Park,Business Operation Review,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",1500.00,15000
+Remote,Vacation Resort,Hospitality,New York City,Business Audit,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",3000.00,30000
+Remote,Vacation Resort,Hospitality,Yellowstone National Park,Development Oversight,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",2000.00,20000
+Remote,Vacation Resort,Hospitality,Las Vegas,New Venture,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",4000.00,40000
+Remote,Vacation Resort,Hospitality,Washington DC,Meeting with Gov. Officials,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",1300.00,13000
+Remote,Vacation Resort,Hospitality,San Diego,Business Seminar,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",1900.00,19000
+Remote,Vacation Resort,Hospitality,Charleston,Office Training,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",1000.00,10000
+Remote,Vacation Resort,Hospitality,Orlando,New Office Opening,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",2500.00,25000
+Remote,Vacation Resort,Hospitality,Carribean Island,Employment Review,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",3500,35000
+Remote,Vacation Resort,Hospitality,Hawaian Island,Sales Review Meetings,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",4500,45000
+Remote,Vacation Resort,Hospitality,Key West,Land Development,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",2500,25000
+Remote,Vacation Resort,Hospitality,San Francisco,Equipment Procurement,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",2500,25000
+Remote,Vacation Resort,Hospitality,Houston,Supply Management,"Commercial establishment seeking to expand its variety of services and amenities to vacationers, including food, drink, accommodation, swimming, sports, entertainment, and shopping.",2500,25000
+Remote,Rest & Recreation Park,Entertainment,New Orleans,Business Conference,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",1200.00,12000
+Remote,Rest & Recreation Park,Entertainment,Chicago,Business Meeting,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",1800.00,18000
+Remote,Rest & Recreation Park,Entertainment,Grand Canyon National Park,Business Operation Review,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",1500.00,15000
+Remote,Rest & Recreation Park,Entertainment,New York City,Business Audit,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",3000.00,30000
+Remote,Rest & Recreation Park,Entertainment,Yellowstone National Park,Development Oversight,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",2000.00,20000
+Remote,Rest & Recreation Park,Entertainment,Las Vegas,New Venture,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",4000.00,40000
+Remote,Rest & Recreation Park,Entertainment,Washington DC,Meeting with Gov. Officials,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",1300.00,13000
+Remote,Rest & Recreation Park,Entertainment,San Diego,Business Seminar,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",1900.00,19000
+Remote,Rest & Recreation Park,Entertainment,Charleston,Office Training,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",1000.00,10000
+Remote,Rest & Recreation Park,Entertainment,Orlando,New Office Opening,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",2500.00,25000
+Remote,Rest & Recreation Park,Entertainment,Carribean Island,Employment Review,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",3500,35000
+Remote,Rest & Recreation Park,Entertainment,Hawaian Island,Sales Review Meetings,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",4500,45000
+Remote,Rest & Recreation Park,Entertainment,Key West,Land Development,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",2500,25000
+Remote,Rest & Recreation Park,Entertainment,San Francisco,Equipment Procurement,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",2500,25000
+Remote,Rest & Recreation Park,Entertainment,Houston,Supply Management,"Commercial business addressing the needs of  vacationers, with food and drink events, accommodation, swimming, sports, entertainment, and shopping.",2500,25000
+Remote,Pizza Place,Entertainment,New Orleans,Business Conference,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1200.00,12000
+Remote,Pizza Place,Entertainment,Chicago,Business Meeting,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1800.00,18000
+Remote,Pizza Place,Entertainment,Grand Canyon National Park,Business Operation Review,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1500.00,15000
+Remote,Pizza Place,Entertainment,New York City,Business Audit,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,3000.00,30000
+Remote,Pizza Place,Entertainment,Yellowstone National Park,Development Oversight,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2000.00,20000
+Remote,Pizza Place,Entertainment,Las Vegas,New Venture,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,4000.00,40000
+Remote,Pizza Place,Entertainment,Washington DC,Meeting with Gov. Officials,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1300.00,13000
+Remote,Pizza Place,Entertainment,San Diego,Business Seminar,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1900.00,19000
+Remote,Pizza Place,Entertainment,Charleston,Office Training,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1000.00,10000
+Remote,Pizza Place,Entertainment,Orlando,New Office Opening,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2500.00,25000
+Remote,Pizza Place,Entertainment,Carribean Island,Employment Review,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,3500,35000
+Remote,Pizza Place,Entertainment,Hawaian Island,Sales Review Meetings,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,4500,45000
+Remote,Pizza Place,Entertainment,Key West,Land Development,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2500,25000
+Remote,Pizza Place,Entertainment,San Francisco,Equipment Procurement,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2500,25000
+Remote,Pizza Place,Entertainment,Houston,Supply Management,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2500,25000
+Remote,Bowling Lanes,Entertainment,New Orleans,Business Conference,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1200.00,12000
+Remote,Bowling Lanes,Entertainment,Chicago,Business Meeting,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1800.00,18000
+Remote,Bowling Lanes,Entertainment,Grand Canyon National Park,Business Operation Review,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1500.00,15000
+Remote,Bowling Lanes,Entertainment,New York City,Business Audit,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,3000.00,30000
+Remote,Bowling Lanes,Entertainment,Yellowstone National Park,Development Oversight,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2000.00,20000
+Remote,Bowling Lanes,Entertainment,Las Vegas,New Venture,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,4000.00,40000
+Remote,Bowling Lanes,Entertainment,Washington DC,Meeting with Gov. Officials,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1300.00,13000
+Remote,Bowling Lanes,Entertainment,San Diego,Business Seminar,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1900.00,19000
+Remote,Bowling Lanes,Entertainment,Charleston,Office Training,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,1000.00,10000
+Remote,Bowling Lanes,Entertainment,Orlando,New Office Opening,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2500.00,25000
+Remote,Bowling Lanes,Entertainment,Carribean Island,Employment Review,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,3500,35000
+Remote,Bowling Lanes,Entertainment,Hawaian Island,Sales Review Meetings,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,4500,45000
+Remote,Bowling Lanes,Entertainment,Key West,Land Development,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2500,25000
+Remote,Bowling Lanes,Entertainment,San Francisco,Equipment Procurement,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2500,25000
+Remote,Bowling Lanes,Entertainment,Houston,Supply Management,Fast food franchise dedicated to have customers appreciate the best of italian cuisine. The franchise is still expanding across the country.,2500,25000
+Remote,Oil & Gas Stock Office,Oil and Gas,New Orleans,Business Conference,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,1200.00,12000
+Remote,Oil & Gas Stock Office,Oil and Gas,Chicago,Business Meeting,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,1800.00,18000
+Remote,Oil & Gas Stock Office,Oil and Gas,Grand Canyon National Park,Business Operation Review,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,1500.00,15000
+Remote,Oil & Gas Stock Office,Oil and Gas,New York City,Business Audit,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,3000.00,30000
+Remote,Oil & Gas Stock Office,Oil and Gas,Yellowstone National Park,Development Oversight,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,2000.00,20000
+Remote,Oil & Gas Stock Office,Oil and Gas,Las Vegas,New Venture,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,4000.00,40000
+Remote,Oil & Gas Stock Office,Oil and Gas,Washington DC,Meeting with Gov. Officials,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,1300.00,13000
+Remote,Oil & Gas Stock Office,Oil and Gas,San Diego,Business Seminar,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,1900.00,19000
+Remote,Oil & Gas Stock Office,Oil and Gas,Charleston,Office Training,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,1000.00,10000
+Remote,Oil & Gas Stock Office,Oil and Gas,Orlando,New Office Opening,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,2500.00,25000
+Remote,Oil & Gas Stock Office,Oil and Gas,Carribean Island,Employment Review,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,3500,35000
+Remote,Oil & Gas Stock Office,Oil and Gas,Hawaian Island,Sales Review Meetings,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,4500,45000
+Remote,Oil & Gas Stock Office,Oil and Gas,Key West,Land Development,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,2500,25000
+Remote,Oil & Gas Stock Office,Oil and Gas,San Francisco,Equipment Procurement,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,2500,25000
+Remote,Oil & Gas Stock Office,Oil and Gas,Houston,Supply Management,Commercial operation focused on the business of procuring oil and gas and generating products that are derived from them.,2500,25000
+Remote,Movie Theater,Movies,New Orleans,Business Conference,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,1200.00,12000
+Remote,Movie Theater,Movies,Chicago,Business Meeting,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,1800.00,18000
+Remote,Movie Theater,Movies,Grand Canyon National Park,Business Operation Review,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,1500.00,15000
+Remote,Movie Theater,Movies,New York City,Business Audit,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,3000.00,30000
+Remote,Movie Theater,Movies,Yellowstone National Park,Development Oversight,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,2000.00,20000
+Remote,Movie Theater,Movies,Las Vegas,New Venture,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,4000.00,40000
+Remote,Movie Theater,Movies,Washington DC,Meeting with Gov. Officials,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,1300.00,13000
+Remote,Movie Theater,Movies,San Diego,Business Seminar,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,1900.00,19000
+Remote,Movie Theater,Movies,Charleston,Office Training,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,1000.00,10000
+Remote,Movie Theater,Movies,Orlando,New Office Opening,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,2500.00,25000
+Remote,Movie Theater,Movies,Carribean Island,Employment Review,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,3500,35000
+Remote,Movie Theater,Movies,Hawaian Island,Sales Review Meetings,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,4500,45000
+Remote,Movie Theater,Movies,Key West,Land Development,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,2500,25000
+Remote,Movie Theater,Movies,San Francisco,Equipment Procurement,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,2500,25000
+Remote,Movie Theater,Movies,Houston,Supply Management,Commercial business promoting consumer opportunities to eat and drink while seeing a movie on large screens. This is a franchise expanding across the country.,2500,25000
+Remote,Mummy Museum,Museum,New Orleans,Business Conference,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",1200.00,12000
+Remote,Mummy Museum,Museum,Chicago,Business Meeting,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",1800.00,18000
+Remote,Mummy Museum,Museum,Grand Canyon National Park,Business Operation Review,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",1500.00,15000
+Remote,Mummy Museum,Museum,New York City,Business Audit,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",3000.00,30000
+Remote,Mummy Museum,Museum,Yellowstone National Park,Development Oversight,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",2000.00,20000
+Remote,Mummy Museum,Museum,Las Vegas,New Venture,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",4000.00,40000
+Remote,Mummy Museum,Museum,Washington DC,Meeting with Gov. Officials,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",1300.00,13000
+Remote,Mummy Museum,Museum,San Diego,Business Seminar,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",1900.00,19000
+Remote,Mummy Museum,Museum,Charleston,Office Training,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",1000.00,10000
+Remote,Mummy Museum,Museum,Orlando,New Office Opening,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",2500.00,25000
+Remote,Mummy Museum,Museum,Carribean Island,Employment Review,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",3500,35000
+Remote,Mummy Museum,Museum,Hawaian Island,Sales Review Meetings,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",4500,45000
+Remote,Mummy Museum,Museum,Key West,Land Development,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",2500,25000
+Remote,Mummy Museum,Museum,San Francisco,Equipment Procurement,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",2500,25000
+Remote,Mummy Museum,Museum,Houston,Supply Management,"Commercial business promoting consumer opportunities to see wax, wood, and stone versions of famous celebrities and characters. This is a franchise business expanding across the country.",2500,25000
+Remote,Robotics Office,Robotics,New Orleans,Business Conference,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,1200.00,12000
+Remote,Robotics Office,Robotics,Chicago,Business Meeting,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,1800.00,18000
+Remote,Robotics Office,Robotics,Grand Canyon National Park,Business Operation Review,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,1500.00,15000
+Remote,Robotics Office,Robotics,New York City,Business Audit,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,3000.00,30000
+Remote,Robotics Office,Robotics,Yellowstone National Park,Development Oversight,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,2000.00,20000
+Remote,Robotics Office,Robotics,Las Vegas,New Venture,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,4000.00,40000
+Remote,Robotics Office,Robotics,Washington DC,Meeting with Gov. Officials,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,1300.00,13000
+Remote,Robotics Office,Robotics,San Diego,Business Seminar,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,1900.00,19000
+Remote,Robotics Office,Robotics,Charleston,Office Training,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,1000.00,10000
+Remote,Robotics Office,Robotics,Orlando,New Office Opening,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,2500.00,25000
+Remote,Robotics Office,Robotics,Carribean Island,Employment Review,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,3500,35000
+Remote,Robotics Office,Robotics,Hawaian Island,Sales Review Meetings,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,4500,45000
+Remote,Robotics Office,Robotics,Key West,Land Development,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,2500,25000
+Remote,Robotics Office,Robotics,San Francisco,Equipment Procurement,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,2500,25000
+Remote,Robotics Office,Robotics,Houston,Supply Management,New Commercial business franchise providing robotic services and developing new robotic technology to meet future needs.,2500,25000
+Remote,Gold Bullion Office,Precious Metals,New Orleans,Business Conference,Business offices around the country that specialize in making special metals available to the public.,1200.00,12000
+Remote,Gold Bullion Office,Precious Metals,Chicago,Business Meeting,Business offices around the country that specialize in making special metals available to the public.,1800.00,18000
+Remote,Gold Bullion Office,Precious Metals,Grand Canyon National Park,Business Operation Review,Business offices around the country that specialize in making special metals available to the public.,1500.00,15000
+Remote,Gold Bullion Office,Precious Metals,New York City,Business Audit,Business offices around the country that specialize in making special metals available to the public.,3000.00,30000
+Remote,Gold Bullion Office,Precious Metals,Yellowstone National Park,Development Oversight,Business offices around the country that specialize in making special metals available to the public.,2000.00,20000
+Remote,Gold Bullion Office,Precious Metals,Las Vegas,New Venture,Business offices around the country that specialize in making special metals available to the public.,4000.00,40000
+Remote,Gold Bullion Office,Precious Metals,Washington DC,Meeting with Gov. Officials,Business offices around the country that specialize in making special metals available to the public.,1300.00,13000
+Remote,Gold Bullion Office,Precious Metals,San Diego,Business Seminar,Business offices around the country that specialize in making special metals available to the public.,1900.00,19000
+Remote,Gold Bullion Office,Precious Metals,Charleston,Office Training,Business offices around the country that specialize in making special metals available to the public.,1000.00,10000
+Remote,Gold Bullion Office,Precious Metals,Orlando,New Office Opening,Business offices around the country that specialize in making special metals available to the public.,2500.00,25000
+Remote,Gold Bullion Office,Precious Metals,Carribean Island,Employment Review,Business offices around the country that specialize in making special metals available to the public.,3500,35000
+Remote,Gold Bullion Office,Precious Metals,Hawaian Island,Sales Review Meetings,Business offices around the country that specialize in making special metals available to the public.,4500,45000
+Remote,Gold Bullion Office,Precious Metals,Key West,Land Development,Business offices around the country that specialize in making special metals available to the public.,2500,25000
+Remote,Gold Bullion Office,Precious Metals,San Francisco,Equipment Procurement,Business offices around the country that specialize in making special metals available to the public.,2500,25000
+Remote,Gold Bullion Office,Precious Metals,Houston,Supply Management,Business offices around the country that specialize in making special metals available to the public.,2500,25000
+Remote,Paper Trade Office,Paper Products,New Orleans,Business Conference,Paper manufacturing business that produces a variety of products for consumer use. ,1200.00,12000
+Remote,Paper Trade Office,Paper Products,Chicago,Business Meeting,Paper manufacturing business that produces a variety of products for consumer use. ,1800.00,18000
+Remote,Paper Trade Office,Paper Products,Grand Canyon National Park,Business Operation Review,Paper manufacturing business that produces a variety of products for consumer use. ,1500.00,15000
+Remote,Paper Trade Office,Paper Products,New York City,Business Audit,Paper manufacturing business that produces a variety of products for consumer use. ,3000.00,30000
+Remote,Paper Trade Office,Paper Products,Yellowstone National Park,Development Oversight,Paper manufacturing business that produces a variety of products for consumer use. ,2000.00,20000
+Remote,Paper Trade Office,Paper Products,Las Vegas,New Venture,Paper manufacturing business that produces a variety of products for consumer use. ,4000.00,40000
+Remote,Paper Trade Office,Paper Products,Washington DC,Meeting with Gov. Officials,Paper manufacturing business that produces a variety of products for consumer use. ,1300.00,13000
+Remote,Paper Trade Office,Paper Products,San Diego,Business Seminar,Paper manufacturing business that produces a variety of products for consumer use. ,1900.00,19000
+Remote,Paper Trade Office,Paper Products,Charleston,Office Training,Paper manufacturing business that produces a variety of products for consumer use. ,1000.00,10000
+Remote,Paper Trade Office,Paper Products,Orlando,New Office Opening,Paper manufacturing business that produces a variety of products for consumer use. ,2500.00,25000
+Remote,Paper Trade Office,Paper Products,Carribean Island,Employment Review,Paper manufacturing business that produces a variety of products for consumer use. ,3500,35000
+Remote,Paper Trade Office,Paper Products,Hawaian Island,Sales Review Meetings,Paper manufacturing business that produces a variety of products for consumer use. ,4500,45000
+Remote,Paper Trade Office,Paper Products,Key West,Land Development,Paper manufacturing business that produces a variety of products for consumer use. ,2500,25000
+Remote,Paper Trade Office,Paper Products,San Francisco,Equipment Procurement,Paper manufacturing business that produces a variety of products for consumer use. ,2500,25000
+Remote,Paper Trade Office,Paper Products,Houston,Supply Management,Paper manufacturing business that produces a variety of products for consumer use. ,2500,25000
+Remote,Utility Trade Office,Utility Servives,New Orleans,Business Conference,"A service organization that provides consumers with electricity, gas, and water services.",1200.00,12000
+Remote,Utility Trade Office,Utility Servives,Chicago,Business Meeting,"A service organization that provides consumers with electricity, gas, and water services.",1800.00,18000
+Remote,Utility Trade Office,Utility Servives,Grand Canyon National Park,Business Operation Review,"A service organization that provides consumers with electricity, gas, and water services.",1500.00,15000
+Remote,Utility Trade Office,Utility Servives,New York City,Business Audit,"A service organization that provides consumers with electricity, gas, and water services.",3000.00,30000
+Remote,Utility Trade Office,Utility Servives,Yellowstone National Park,Development Oversight,"A service organization that provides consumers with electricity, gas, and water services.",2000.00,20000
+Remote,Utility Trade Office,Utility Servives,Las Vegas,New Venture,"A service organization that provides consumers with electricity, gas, and water services.",4000.00,40000
+Remote,Utility Trade Office,Utility Servives,Washington DC,Meeting with Gov. Officials,"A service organization that provides consumers with electricity, gas, and water services.",1300.00,13000
+Remote,Utility Trade Office,Utility Servives,San Diego,Business Seminar,"A service organization that provides consumers with electricity, gas, and water services.",1900.00,19000
+Remote,Utility Trade Office,Utility Servives,Charleston,Office Training,"A service organization that provides consumers with electricity, gas, and water services.",1000.00,10000
+Remote,Utility Trade Office,Utility Servives,Orlando,New Office Opening,"A service organization that provides consumers with electricity, gas, and water services.",2500.00,25000
+Remote,Utility Trade Office,Utility Servives,Carribean Island,Employment Review,"A service organization that provides consumers with electricity, gas, and water services.",3500,35000
+Remote,Utility Trade Office,Utility Servives,Hawaian Island,Sales Review Meetings,"A service organization that provides consumers with electricity, gas, and water services.",4500,45000
+Remote,Utility Trade Office,Utility Servives,Key West,Land Development,"A service organization that provides consumers with electricity, gas, and water services.",2500,25000
+Remote,Utility Trade Office,Utility Servives,San Francisco,Equipment Procurement,"A service organization that provides consumers with electricity, gas, and water services.",2500,25000
+Remote,Utility Trade Office,Utility Servives,Houston,Supply Management,"A service organization that provides consumers with electricity, gas, and water services.",2500,25000
+Remote,Auto Dealer,Auto Services,New Orleans,Business Conference,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,1200.00,12000
+Remote,Auto Dealer,Auto Services,Grand Canyon National Park,Business Operation Review,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,1500.00,15000
+Remote,Auto Dealer,Auto Services,New York City,Business Audit,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,3000.00,30000
+Remote,Auto Dealer,Auto Services,Yellowstone National Park,Development Oversight,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,2000.00,20000
+Remote,Auto Dealer,Auto Services,Las Vegas,New Venture,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,4000.00,40000
+Remote,Auto Dealer,Auto Services,Washington DC,Meeting with Gov. Officials,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,1300.00,13000
+Remote,Auto Dealer,Auto Services,San Diego,Business Seminar,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,1900.00,19000
+Remote,Auto Dealer,Auto Services,Charleston,Office Training,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,1000.00,10000
+Remote,Auto Dealer,Auto Services,Orlando,New Office Opening,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,2500.00,25000
+Remote,Auto Dealer,Auto Services,Carribean Island,Employment Review,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,3500,35000
+Remote,Auto Dealer,Auto Services,Hawaian Island,Sales Review Meetings,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,4500,45000
+Remote,Auto Dealer,Auto Services,Key West,Land Development,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,2500,25000
+Remote,Auto Dealer,Auto Services,San Francisco,Equipment Procurement,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,2500,25000
+Remote,Auto Dealer,Auto Services,Houston,Supply Management,A service organization providing consumers with vehicles to purchase. Services are extended to vehicle repair and maintenance.,2500,25000
+Remote,Airline Port,Air Travel Services,New Orleans,Business Conference,A service organization that provides consumers with means to travel by air anywhere and return.,1200.00,12000
+Remote,Airline Port,Air Travel Services,Grand Canyon National Park,Business Operation Review,A service organization that provides consumers with means to travel by air anywhere and return.,1500.00,15000
+Remote,Airline Port,Air Travel Services,New York City,Business Audit,A service organization that provides consumers with means to travel by air anywhere and return.,3000.00,30000
+Remote,Airline Port,Air Travel Services,Yellowstone National Park,Development Oversight,A service organization that provides consumers with means to travel by air anywhere and return.,2000.00,20000
+Remote,Airline Port,Air Travel Services,Las Vegas,New Venture,A service organization that provides consumers with means to travel by air anywhere and return.,4000.00,40000
+Remote,Airline Port,Air Travel Services,Washington DC,Meeting with Gov. Officials,A service organization that provides consumers with means to travel by air anywhere and return.,1300.00,13000
+Remote,Airline Port,Air Travel Services,San Diego,Business Seminar,A service organization that provides consumers with means to travel by air anywhere and return.,1900.00,19000
+Remote,Airline Port,Air Travel Services,Charleston,Office Training,A service organization that provides consumers with means to travel by air anywhere and return.,1000.00,10000
+Remote,Airline Port,Air Travel Services,Orlando,New Office Opening,A service organization that provides consumers with means to travel by air anywhere and return.,2500.00,25000
+Remote,Airline Port,Air Travel Services,Carribean Island,Employment Review,A service organization that provides consumers with means to travel by air anywhere and return.,3500,35000
+Remote,Airline Port,Air Travel Services,Hawaian Island,Sales Review Meetings,A service organization that provides consumers with means to travel by air anywhere and return.,4500,45000
+Remote,Airline Port,Air Travel Services,Key West,Land Development,A service organization that provides consumers with means to travel by air anywhere and return.,2500,25000
+Remote,Airline Port,Air Travel Services,San Francisco,Equipment Procurement,A service organization that provides consumers with means to travel by air anywhere and return.,2500,25000
+Remote,Airline Port,Air Travel Services,Houston,Supply Management,A service organization that provides consumers with means to travel by air anywhere and return.,2500,25000
+Remote,Mutual Funds Center,Funds Services,New Orleans,Business Conference,A service organization that provides consumers with the means to obtain investment services.,1200.00,12000
+Remote,Mutual Funds Center,Funds Services,Grand Canyon National Park,Business Operation Review,A service organization that provides consumers with the means to obtain investment services.,1500.00,15000
+Remote,Mutual Funds Center,Funds Services,New York City,Business Audit,A service organization that provides consumers with the means to obtain investment services.,3000.00,30000
+Remote,Mutual Funds Center,Funds Services,Yellowstone National Park,Development Oversight,A service organization that provides consumers with the means to obtain investment services.,2000.00,20000
+Remote,Mutual Funds Center,Funds Services,Las Vegas,New Venture,A service organization that provides consumers with the means to obtain investment services.,4000.00,40000
+Remote,Mutual Funds Center,Funds Services,Washington DC,Meeting with Gov. Officials,A service organization that provides consumers with the means to obtain investment services.,1300.00,13000
+Remote,Mutual Funds Center,Funds Services,San Diego,Business Seminar,A service organization that provides consumers with the means to obtain investment services.,1900.00,19000
+Remote,Mutual Funds Center,Funds Services,Charleston,Office Training,A service organization that provides consumers with the means to obtain investment services.,1000.00,10000
+Remote,Mutual Funds Center,Funds Services,Orlando,New Office Opening,A service organization that provides consumers with the means to obtain investment services.,2500.00,25000
+Remote,Mutual Funds Center,Funds Services,Carribean Island,Employment Review,A service organization that provides consumers with the means to obtain investment services.,3500,35000
+Remote,Mutual Funds Center,Funds Services,Hawaian Island,Sales Review Meetings,A service organization that provides consumers with the means to obtain investment services.,4500,45000
+Remote,Mutual Funds Center,Funds Services,Key West,Land Development,A service organization that provides consumers with the means to obtain investment services.,2500,25000
+Remote,Mutual Funds Center,Funds Services,San Francisco,Equipment Procurement,A service organization that provides consumers with the means to obtain investment services.,2500,25000
+Remote,Mutual Funds Center,Funds Services,Houston,Supply Management,A service organization that provides consumers with the means to obtain investment services.,2500,25000
+Remote,Diamonds R Us Center,Diamonds Services,New Orleans,Business Conference,A service organization that provides consumers with the means to obtain investments in precious jewels.,1200.00,12000
+Remote,Diamonds R Us Center,Diamonds Services,Grand Canyon National Park,Business Operation Review,A service organization that provides consumers with the means to obtain investments in precious jewels.,1500.00,15000
+Remote,Diamonds R Us Center,Diamonds Services,New York City,Business Audit,A service organization that provides consumers with the means to obtain investments in precious jewels.,3000.00,30000
+Remote,Diamonds R Us Center,Diamonds Services,Yellowstone National Park,Development Oversight,A service organization that provides consumers with the means to obtain investments in precious jewels.,2000.00,20000
+Remote,Diamonds R Us Center,Diamonds Services,Las Vegas,New Venture,A service organization that provides consumers with the means to obtain investments in precious jewels.,4000.00,40000
+Remote,Diamonds R Us Center,Diamonds Services,Washington DC,Meeting with Gov. Officials,A service organization that provides consumers with the means to obtain investments in precious jewels.,1300.00,13000
+Remote,Diamonds R Us Center,Diamonds Services,San Diego,Business Seminar,A service organization that provides consumers with the means to obtain investments in precious jewels.,1900.00,19000
+Remote,Diamonds R Us Center,Diamonds Services,Charleston,Office Training,A service organization that provides consumers with the means to obtain investments in precious jewels.,1000.00,10000
+Remote,Diamonds R Us Center,Diamonds Services,Orlando,New Office Opening,A service organization that provides consumers with the means to obtain investments in precious jewels.,2500.00,25000
+Remote,Diamonds R Us Center,Diamonds Services,Carribean Island,Employment Review,A service organization that provides consumers with the means to obtain investments in precious jewels.,3500,35000
+Remote,Diamonds R Us Center,Diamonds Services,Hawaian Island,Sales Review Meetings,A service organization that provides consumers with the means to obtain investments in precious jewels.,4500,45000
+Remote,Diamonds R Us Center,Diamonds Services,Key West,Land Development,A service organization that provides consumers with the means to obtain investments in precious jewels.,2500,25000
+Remote,Diamonds R Us Center,Diamonds Services,San Francisco,Equipment Procurement,A service organization that provides consumers with the means to obtain investments in precious jewels.,2500,25000
+Remote,Diamonds R Us Center,Diamonds Services,Houston,Supply Management,A service organization that provides consumers with the means to obtain investments in precious jewels.,2500,25000
+Remote,Commodities Trade Center,Commodities Services,New Orleans,Business Conference,A service organization that provides consumers with the means to obtain investments in commodities.,1200.00,12000
+Remote,Diamonds R Us Center,Commodities Services,Grand Canyon National Park,Business Operation Review,A service organization that provides consumers with the means to obtain investments in commodities.,1500.00,15000
+Remote,Diamonds R Us Center,Commodities Services,New York City,Business Audit,A service organization that provides consumers with the means to obtain investments in commodities.,3000.00,30000
+Remote,Diamonds R Us Center,Commodities Services,Yellowstone National Park,Development Oversight,A service organization that provides consumers with the means to obtain investments in commodities.,2000.00,20000
+Remote,Diamonds R Us Center,Commodities Services,Las Vegas,New Venture,A service organization that provides consumers with the means to obtain investments in commodities.,4000.00,40000
+Remote,Diamonds R Us Center,Commodities Services,Washington DC,Meeting with Gov. Officials,A service organization that provides consumers with the means to obtain investments in commodities.,1300.00,13000
+Remote,Diamonds R Us Center,Commodities Services,San Diego,Business Seminar,A service organization that provides consumers with the means to obtain investments in commodities.,1900.00,19000
+Remote,Diamonds R Us Center,Commodities Services,Charleston,Office Training,A service organization that provides consumers with the means to obtain investments in commodities.,1000.00,10000
+Remote,Diamonds R Us Center,Commodities Services,Orlando,New Office Opening,A service organization that provides consumers with the means to obtain investments in commodities.,2500.00,25000
+Remote,Diamonds R Us Center,Commodities Services,Carribean Island,Employment Review,A service organization that provides consumers with the means to obtain investments in commodities.,3500,35000
+Remote,Diamonds R Us Center,Commodities Services,Hawaian Island,Sales Review Meetings,A service organization that provides consumers with the means to obtain investments in commodities.,4500,45000
+Remote,Diamonds R Us Center,Commodities Services,Key West,Land Development,A service organization that provides consumers with the means to obtain investments in commodities.,2500,25000
+Remote,Diamonds R Us Center,Commodities Services,San Francisco,Equipment Procurement,A service organization that provides consumers with the means to obtain investments in commodities.,2500,25000
+Remote,Diamonds R Us Center,Commodities Services,Houston,Supply Management,A service organization that provides consumers with the means to obtain investments in commodities.,2500,25000
+Remote,Security Bonds Center,Bonds Services,New Orleans,Business Conference,A service organization that provides consumers with the means to obtain investments in bond products.,1200.00,12000
+Remote,Security Bonds Center,Bonds Services,Grand Canyon National Park,Business Operation Review,A service organization that provides consumers with the means to obtain investments in bond products.,1500.00,15000
+Remote,Security Bonds Center,Bonds Services,New York City,Business Audit,A service organization that provides consumers with the means to obtain investments in bond products.,3000.00,30000
+Remote,Security Bonds Center,Bonds Services,Yellowstone National Park,Development Oversight,A service organization that provides consumers with the means to obtain investments in bond products.,2000.00,20000
+Remote,Security Bonds Center,Bonds Services,Las Vegas,New Venture,A service organization that provides consumers with the means to obtain investments in bond products.,4000.00,40000
+Remote,Security Bonds Center,Bonds Services,Washington DC,Meeting with Gov. Officials,A service organization that provides consumers with the means to obtain investments in bond products.,1300.00,13000
+Remote,Security Bonds Center,Bonds Services,San Diego,Business Seminar,A service organization that provides consumers with the means to obtain investments in bond products.,1900.00,19000
+Remote,Security Bonds Center,Bonds Services,Charleston,Office Training,A service organization that provides consumers with the means to obtain investments in bond products.,1000.00,10000
+Remote,Security Bonds Center,Bonds Services,Orlando,New Office Opening,A service organization that provides consumers with the means to obtain investments in bond products.,2500.00,25000
+Remote,Security Bonds Center,Bonds Services,Carribean Island,Employment Review,A service organization that provides consumers with the means to obtain investments in bond products.,3500,35000
+Remote,Security Bonds Center,Bonds Services,Hawaian Island,Sales Review Meetings,A service organization that provides consumers with the means to obtain investments in bond products.,4500,45000
+Remote,Security Bonds Center,Bonds Services,Key West,Land Development,A service organization that provides consumers with the means to obtain investments in bond products.,2500,25000
+Remote,Security Bonds Center,Bonds Services,San Francisco,Equipment Procurement,A service organization that provides consumers with the means to obtain investments in bond products.,2500,25000
+Remote,Security Bonds Center,Bonds Services,Houston,Supply Management,A service organization that provides consumers with the means to obtain investments in bond products.,2500,25000
+Remote,Silver Trade Center,Silver Services,New Orleans,Business Conference,A service organization specializing in silver product investments for consumers.,1200.00,12000
+Remote,Silver Trade Center,Silver Services,Grand Canyon National Park,Business Operation Review,A service organization specializing in silver product investments for consumers.,1500.00,15000
+Remote,Silver Trade Center,Silver Services,New York City,Business Audit,A service organization specializing in silver product investments for consumers.,3000.00,30000
+Remote,Silver Trade Center,Silver Services,Yellowstone National Park,Development Oversight,A service organization specializing in silver product investments for consumers.,2000.00,20000
+Remote,Silver Trade Center,Silver Services,Las Vegas,New Venture,A service organization specializing in silver product investments for consumers.,4000.00,40000
+Remote,Silver Trade Center,Silver Services,Washington DC,Meeting with Gov. Officials,A service organization specializing in silver product investments for consumers.,1300.00,13000
+Remote,Silver Trade Center,Silver Services,San Diego,Business Seminar,A service organization specializing in silver product investments for consumers.,1900.00,19000
+Remote,Silver Trade Center,Silver Services,Charleston,Office Training,A service organization specializing in silver product investments for consumers.,1000.00,10000
+Remote,Silver Trade Center,Silver Services,Orlando,New Office Opening,A service organization specializing in silver product investments for consumers.,2500.00,25000
+Remote,Silver Trade Center,Silver Services,Carribean Island,Employment Review,A service organization specializing in silver product investments for consumers.,3500,35000
+Remote,Silver Trade Center,Silver Services,Hawaian Island,Sales Review Meetings,A service organization specializing in silver product investments for consumers.,4500,45000
+Remote,Silver Trade Center,Silver Services,Key West,Land Development,A service organization specializing in silver product investments for consumers.,2500,25000
+Remote,Silver Trade Center,Silver Services,San Francisco,Equipment Procurement,A service organization specializing in silver product investments for consumers.,2500,25000
+Remote,Silver Trade Center,Silver Services,Houston,Supply Management,A service organization specializing in silver product investments for consumers.,2500,25000
+Remote,Certificate of Deposit Center,COD Services,New Orleans,Business Conference,A service organization specializing in COD product investments for consumers.,1200.00,12000
+Remote,Certificate of Deposit Center,COD Services,Grand Canyon National Park,Business Operation Review,A service organization specializing in COD product investments for consumers.,1500.00,15000
+Remote,Certificate of Deposit Center,COD Services,New York City,Business Audit,A service organization specializing in COD product investments for consumers.,3000.00,30000
+Remote,Certificate of Deposit Center,COD Services,Yellowstone National Park,Development Oversight,A service organization specializing in COD product investments for consumers.,2000.00,20000
+Remote,Certificate of Deposit Center,COD Services,Las Vegas,New Venture,A service organization specializing in COD product investments for consumers.,4000.00,40000
+Remote,Certificate of Deposit Center,COD Services,Washington DC,Meeting with Gov. Officials,A service organization specializing in COD product investments for consumers.,1300.00,13000
+Remote,Certificate of Deposit Center,COD Services,San Diego,Business Seminar,A service organization specializing in COD product investments for consumers.,1900.00,19000
+Remote,Certificate of Deposit Center,COD Services,Charleston,Office Training,A service organization specializing in COD product investments for consumers.,1000.00,10000
+Remote,Certificate of Deposit Center,COD Services,Orlando,New Office Opening,A service organization specializing in COD product investments for consumers.,2500.00,25000
+Remote,Certificate of Deposit Center,COD Services,Carribean Island,Employment Review,A service organization specializing in COD product investments for consumers.,3500,35000
+Remote,Certificate of Deposit Center,COD Services,Hawaian Island,Sales Review Meetings,A service organization specializing in COD product investments for consumers.,4500,45000
+Remote,Certificate of Deposit Center,COD Services,Key West,Land Development,A service organization specializing in COD product investments for consumers.,2500,25000
+Remote,Certificate of Deposit Center,COD Services,San Francisco,Equipment Procurement,A service organization specializing in COD product investments for consumers.,2500,25000
+Remote,Certificate of Deposit Center,COD Services,Houston,Supply Management,A service organization specializing in COD product investments for consumers.,2500,25000
+Remote,Money Market Center,CD Services,New Orleans,Business Conference,A service organization specializing in CD product investments for consumers.,1200.00,12000
+Remote,Money Market Center,CD Services,Grand Canyon National Park,Business Operation Review,A service organization specializing in CD product investments for consumers.,1500.00,15000
+Remote,Money Market Center,CD Services,New York City,Business Audit,A service organization specializing in CD product investments for consumers.,3000.00,30000
+Remote,Money Market Center,CD Services,Yellowstone National Park,Development Oversight,A service organization specializing in CD product investments for consumers.,2000.00,20000
+Remote,Money Market Center,CD Services,Las Vegas,New Venture,A service organization specializing in CD product investments for consumers.,4000.00,40000
+Remote,Money Market Center,CD Services,Washington DC,Meeting with Gov. Officials,A service organization specializing in CD product investments for consumers.,1300.00,13000
+Remote,Money Market Center,CD Services,San Diego,Business Seminar,A service organization specializing in CD product investments for consumers.,1900.00,19000
+Remote,Money Market Center,CD Services,Charleston,Office Training,A service organization specializing in CD product investments for consumers.,1000.00,10000
+Remote,Money Market Center,CD Services,Orlando,New Office Opening,A service organization specializing in CD product investments for consumers.,2500.00,25000
+Remote,Money Market Center,CD Services,Carribean Island,Employment Review,A service organization specializing in CD product investments for consumers.,3500,35000
+Remote,Money Market Center,CD Services,Hawaian Island,Sales Review Meetings,A service organization specializing in CD product investments for consumers.,4500,45000
+Remote,Money Market Center,CD Services,Key West,Land Development,A service organization specializing in CD product investments for consumers.,2500,25000
+Remote,Money Market Center,CD Services,San Francisco,Equipment Procurement,A service organization specializing in CD product investments for consumers.,2500,25000
+Remote,Money Market Center,CD Services,Houston,Supply Management,A service organization specializing in CD product investments for consumers.,2500,25000
+Remote,Wally Mart,Home Supplies,New Orleans,Business Conference,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",1200.00,12000
+Remote,Wally Mart,Home Supplies,Grand Canyon National Park,Business Operation Review,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",1500.00,15000
+Remote,Wally Mart,Home Supplies,New York City,Business Audit,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",3000.00,30000
+Remote,Wally Mart,Home Supplies,Yellowstone National Park,Development Oversight,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",2000.00,20000
+Remote,Wally Mart,Home Supplies,Las Vegas,New Venture,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",4000.00,40000
+Remote,Wally Mart,Home Supplies,Washington DC,Meeting with Gov. Officials,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",1300.00,13000
+Remote,Wally Mart,Home Supplies,San Diego,Business Seminar,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",1900.00,19000
+Remote,Wally Mart,Home Supplies,Charleston,Office Training,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",1000.00,10000
+Remote,Wally Mart,Home Supplies,Orlando,New Office Opening,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",2500.00,25000
+Remote,Wally Mart,Home Supplies,Carribean Island,Employment Review,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",3500,35000
+Remote,Wally Mart,Home Supplies,Hawaian Island,Sales Review Meetings,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",4500,45000
+Remote,Wally Mart,Home Supplies,Key West,Land Development,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",2500,25000
+Remote,Wally Mart,Home Supplies,San Francisco,Equipment Procurement,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",2500,25000
+Remote,Wally Mart,Home Supplies,Houston,Supply Management,"A supply company franchise providing consumer home supplies, such as, furnishings and groceries.",2500,25000
+Remote,Sport Center,Equipment Supplier,New Orleans,Business Conference,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,1200.00,12000
+Remote,Sport Center,Equipment Supplier,Grand Canyon National Park,Business Operation Review,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,1500.00,15000
+Remote,Sport Center,Equipment Supplier,New York City,Business Audit,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,3000.00,30000
+Remote,Sport Center,Equipment Supplier,Yellowstone National Park,Development Oversight,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,2000.00,20000
+Remote,Sport Center,Equipment Supplier,Las Vegas,New Venture,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,4000.00,40000
+Remote,Sport Center,Equipment Supplier,Washington DC,Meeting with Gov. Officials,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,1300.00,13000
+Remote,Sport Center,Equipment Supplier,San Diego,Business Seminar,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,1900.00,19000
+Remote,Sport Center,Equipment Supplier,Charleston,Office Training,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,1000.00,10000
+Remote,Sport Center,Equipment Supplier,Orlando,New Office Opening,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,2500.00,25000
+Remote,Sport Center,Equipment Supplier,Carribean Island,Employment Review,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,3500,35000
+Remote,Sport Center,Equipment Supplier,Hawaian Island,Sales Review Meetings,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,4500,45000
+Remote,Sport Center,Equipment Supplier,Key West,Land Development,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,2500,25000
+Remote,Sport Center,Equipment Supplier,San Francisco,Equipment Procurement,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,2500,25000
+Remote,Sport Center,Equipment Supplier,Houston,Supply Management,A supply chain franchise providing consumer supplies for indoor and outdoor sporting.,2500,25000
+Remote,McRonald's Restaurant,Fast Food Supplier,New Orleans,Business Conference,A supply chain franchise providing consumer supplies for fast food eateries.,1200.00,12000
+Remote,McRonald's Restaurant,Fast Food Supplier,Grand Canyon National Park,Business Operation Review,A supply chain franchise providing consumer supplies for fast food eateries.,1500.00,15000
+Remote,McRonald's Restaurant,Fast Food Supplier,New York City,Business Audit,A supply chain franchise providing consumer supplies for fast food eateries.,3000.00,30000
+Remote,McRonald's Restaurant,Fast Food Supplier,Yellowstone National Park,Development Oversight,A supply chain franchise providing consumer supplies for fast food eateries.,2000.00,20000
+Remote,McRonald's Restaurant,Fast Food Supplier,Las Vegas,New Venture,A supply chain franchise providing consumer supplies for fast food eateries.,4000.00,40000
+Remote,McRonald's Restaurant,Fast Food Supplier,Washington DC,Meeting with Gov. Officials,A supply chain franchise providing consumer supplies for fast food eateries.,1300.00,13000
+Remote,McRonald's Restaurant,Fast Food Supplier,San Diego,Business Seminar,A supply chain franchise providing consumer supplies for fast food eateries.,1900.00,19000
+Remote,McRonald's Restaurant,Fast Food Supplier,Charleston,Office Training,A supply chain franchise providing consumer supplies for fast food eateries.,1000.00,10000
+Remote,McRonald's Restaurant,Fast Food Supplier,Orlando,New Office Opening,A supply chain franchise providing consumer supplies for fast food eateries.,2500.00,25000
+Remote,McRonald's Restaurant,Fast Food Supplier,Carribean Island,Employment Review,A supply chain franchise providing consumer supplies for fast food eateries.,3500,35000
+Remote,McRonald's Restaurant,Fast Food Supplier,Hawaian Island,Sales Review Meetings,A supply chain franchise providing consumer supplies for fast food eateries.,4500,45000
+Remote,McRonald's Restaurant,Fast Food Supplier,Key West,Land Development,A supply chain franchise providing consumer supplies for fast food eateries.,2500,25000
+Remote,McRonald's Restaurant,Fast Food Supplier,San Francisco,Equipment Procurement,A supply chain franchise providing consumer supplies for fast food eateries.,2500,25000
+Remote,McRonald's Restaurant,Fast Food Supplier,Houston,Supply Management,A supply chain franchise providing consumer supplies for fast food eateries.,2500,25000
+Remote,Audreys Furniture Store,Furniture Outlet,New Orleans,Business Conference,A supply chain franchise providing consumer supplies for inside house needs.,1200.00,12000
+Remote,Audreys Furniture Store,Furniture Outlet,Grand Canyon National Park,Business Operation Review,A supply chain franchise providing consumer supplies for inside house needs.,1500.00,15000
+Remote,Audreys Furniture Store,Furniture Outlet,New York City,Business Audit,A supply chain franchise providing consumer supplies for inside house needs.,3000.00,30000
+Remote,Audreys Furniture Store,Furniture Outlet,Yellowstone National Park,Development Oversight,A supply chain franchise providing consumer supplies for inside house needs.,2000.00,20000
+Remote,Audreys Furniture Store,Furniture Outlet,Las Vegas,New Venture,A supply chain franchise providing consumer supplies for inside house needs.,4000.00,40000
+Remote,Audreys Furniture Store,Furniture Outlet,Washington DC,Meeting with Gov. Officials,A supply chain franchise providing consumer supplies for inside house needs.,1300.00,13000
+Remote,Audreys Furniture Store,Furniture Outlet,San Diego,Business Seminar,A supply chain franchise providing consumer supplies for inside house needs.,1900.00,19000
+Remote,Audreys Furniture Store,Furniture Outlet,Charleston,Office Training,A supply chain franchise providing consumer supplies for inside house needs.,1000.00,10000
+Remote,Audreys Furniture Store,Furniture Outlet,Orlando,New Office Opening,A supply chain franchise providing consumer supplies for inside house needs.,2500.00,25000
+Remote,Audreys Furniture Store,Furniture Outlet,Carribean Island,Employment Review,A supply chain franchise providing consumer supplies for inside house needs.,3500,35000
+Remote,Audreys Furniture Store,Furniture Outlet,Hawaian Island,Sales Review Meetings,A supply chain franchise providing consumer supplies for inside house needs.,4500,45000
+Remote,Audreys Furniture Store,Furniture Outlet,Key West,Land Development,A supply chain franchise providing consumer supplies for inside house needs.,2500,25000
+Remote,Audreys Furniture Store,Furniture Outlet,San Francisco,Equipment Procurement,A supply chain franchise providing consumer supplies for inside house needs.,2500,25000
+Remote,Audreys Furniture Store,Furniture Outlet,Houston,Supply Management,A supply chain franchise providing consumer supplies for inside house needs.,2500,25000
+Remote,Home Tool Shed Store,Hardware Store,New Orleans,Business Conference,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,1200.00,12000
+Remote,Home Tool Shed Store,Hardware Store,Grand Canyon National Park,Business Operation Review,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,1500.00,15000
+Remote,Home Tool Shed Store,Hardware Store,New York City,Business Audit,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,3000.00,30000
+Remote,Home Tool Shed Store,Hardware Store,Yellowstone National Park,Development Oversight,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,2000.00,20000
+Remote,Home Tool Shed Store,Hardware Store,Las Vegas,New Venture,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,4000.00,40000
+Remote,Home Tool Shed Store,Hardware Store,Washington DC,Meeting with Gov. Officials,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,1300.00,13000
+Remote,Home Tool Shed Store,Hardware Store,San Diego,Business Seminar,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,1900.00,19000
+Remote,Home Tool Shed Store,Hardware Store,Charleston,Office Training,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,1000.00,10000
+Remote,Home Tool Shed Store,Hardware Store,Orlando,New Office Opening,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,2500.00,25000
+Remote,Home Tool Shed Store,Hardware Store,Carribean Island,Employment Review,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,3500,35000
+Remote,Home Tool Shed Store,Hardware Store,Hawaian Island,Sales Review Meetings,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,4500,45000
+Remote,Home Tool Shed Store,Hardware Store,Key West,Land Development,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,2500,25000
+Remote,Home Tool Shed Store,Hardware Store,San Francisco,Equipment Procurement,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,2500,25000
+Remote,Home Tool Shed Store,Hardware Store,Houston,Supply Management,A supply chain franchise providing consumer tools to meet hardware building and repair needs.,2500,25000
+Remote,Famous Foot Shoes Store,Shoe Store,New Orleans,Business Conference,A supply chain franchise providing consumer foot wear needs.,1200.00,12000
+Remote,Famous Foot Shoes Store,Shoe Store,Grand Canyon National Park,Business Operation Review,A supply chain franchise providing consumer foot wear needs.,1500.00,15000
+Remote,Famous Foot Shoes Store,Shoe Store,New York City,Business Audit,A supply chain franchise providing consumer foot wear needs.,3000.00,30000
+Remote,Famous Foot Shoes Store,Shoe Store,Yellowstone National Park,Development Oversight,A supply chain franchise providing consumer foot wear needs.,2000.00,20000
+Remote,Famous Foot Shoes Store,Shoe Store,Las Vegas,New Venture,A supply chain franchise providing consumer foot wear needs.,4000.00,40000
+Remote,Famous Foot Shoes Store,Shoe Store,Washington DC,Meeting with Gov. Officials,A supply chain franchise providing consumer foot wear needs.,1300.00,13000
+Remote,Famous Foot Shoes Store,Shoe Store,San Diego,Business Seminar,A supply chain franchise providing consumer foot wear needs.,1900.00,19000
+Remote,Famous Foot Shoes Store,Shoe Store,Charleston,Office Training,A supply chain franchise providing consumer foot wear needs.,1000.00,10000
+Remote,Famous Foot Shoes Store,Shoe Store,Orlando,New Office Opening,A supply chain franchise providing consumer foot wear needs.,2500.00,25000
+Remote,Famous Foot Shoes Store,Shoe Store,Carribean Island,Employment Review,A supply chain franchise providing consumer foot wear needs.,3500,35000
+Remote,Famous Foot Shoes Store,Shoe Store,Hawaian Island,Sales Review Meetings,A supply chain franchise providing consumer foot wear needs.,4500,45000
+Remote,Famous Foot Shoes Store,Shoe Store,Key West,Land Development,A supply chain franchise providing consumer foot wear needs.,2500,25000
+Remote,Famous Foot Shoes Store,Shoe Store,San Francisco,Equipment Procurement,A supply chain franchise providing consumer foot wear needs.,2500,25000
+Remote,Famous Foot Shoes Store,Shoe Store,Houston,Supply Management,A supply chain franchise providing consumer foot wear needs.,2500,25000

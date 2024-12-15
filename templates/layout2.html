@@ -2,17 +2,49 @@
 <html>
 <head>
 	<title>Take$tock</title>
-
-	<link rel="stylesheet" href="{{url_for('static', filename = 'assets/bootstrap/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{url_for('static', filename = 'assets/bootstrap/css/bootstrap-reboot.min.css')}}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{url_for('static', filename = '/style.css')}}">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<style>
+                body { font-family: Arial, sans-serif; }
+                .centered { display: block; margin-left: auto; margin-right: auto; text-align: center; }
+                .wrapper { margin: 5 auto; padding: 20px; width: 100%; }
+                .newspaper { column-count: 2; column-gap: 20px; background-color: gold; }
+                .section { break-inside: avoid-column; margin-top: 20px; margin: 5 auto;}
+                .headline { text-align: center; color: white; background-color: green; padding: 10px; }
+		        .alert {
+					padding: 15px;
+					margin: 20px 0;
+					border: 1px solid transparent;
+					border-radius: 4px;
+				}
+				.alert-success {
+					color: #3c763d;
+					background-color: #dff0d8;
+					border-color: #d6e9c6;
+				}
+				.alert-warning {
+					color: #8a6d3b;
+					background-color: #fcf8e3;
+					border-color: #faebcc;
+				}
+				.alert-error {
+					color: #a94442;
+					background-color: #f2dede;
+					border-color: #ebccd1;
+				}
+	</style>
 </head>
 <body background="/static/Take$tock City 2.PNG" style="background-repeat: no-repeat; background-size: cover;background-position: center; background-attachment: fixed;">
 	{% include 'includes/_navbar2.html' %}
 <br><br>
 	<div style="text-align: center;">
 		<img src="/static/Game_Logo_2.png" height="100px" width="100%"  >
+		{% include 'includes/_messages2.html' %}
+		<div class="container">
+		<!-- Write your comments here  -->
+
+	</div>
 		{% block body %}{% endblock %}
 	</div>
 

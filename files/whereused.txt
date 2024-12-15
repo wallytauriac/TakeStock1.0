@@ -1,0 +1,13 @@
+Search Criteria: get_investment_by_id
+Directory Path: C:/Users/wally/Documents/Python/Demo/Takestock1.0
+ - ts_page3.py, Function: render_request_play_options
+ - ts_page3.py, Function: build_request_play_options
+ - ts_page3.py, Function: render_request_list
+ - ts_page3.py, Function: render_request_item
+ - ts_page3.py, Function: process_event_requests
+ - ts_page3.py, Function: process_loan_payments
+ - whereused.py, Function: search_files
+ - whereused.py, Function: generate_report
+ - whereused.py, Function: generate_list
+ - whereused.py, Function: main
+

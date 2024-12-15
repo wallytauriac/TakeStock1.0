@@ -1,0 +1,106 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="container">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PBoard')}}" target="_blank" >Player Board</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_pass')}}" >Decline Play</a>
+                </td>
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1 style="background-color: green;"><strong>Current Player: {{user}}</strong></h1>
+            </div>
+
+            <div class="inner-container" style="width: 100%">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div class="custom-table">
+                        <div class="player-info">
+                            <div style="background-color: gold;">PLAYER: <span>{{ data.player_number }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group"  style="verticle-align: top;background-color: green;float: left">
+                        <h2 style="background-color: yellow;">{{ title  }}</h2>
+
+                    <form action="{{ form_action }}" method="POST" class="row justify-content-center" id="travelForm">
+                    {% for trip in trips %}
+                    <div class="col-3 col-md-6 col-sm-12 data-block" style="border: 1px solid black; margin: 10px; padding: 10px; flex: 1; background-color: yellow;">
+                        <h3>{{ trip.type }}</h3>
+                        <p style="display: none">{{ loop.index }}</p>
+                        <p><strong>Destination: </strong>{{ trip.description }}</p>
+                        <p><strong>Purpose: </strong>{{ trip.purpose }}</p>
+                        <p><strong>Tickets: </strong> {{ trip.count }}</p>
+                        <p><strong>Flight Class: </strong> {{ trip.flight_class }}</p>
+                        <h6 style="color: yellow; background-color: green;">Game Points Earned: {{ trip.points }}</h6>
+                        <button class="button" type="submit" name="request" value="{{ trip.type }}" data-index="{{ loop.index }}" data-business="{{ trip.type }}">
+                            {{ button_label }} </button>
+                    </div>
+                    {% endfor %}
+                    <input type="hidden" name="titleh" value="{{ title }}">
+                    <input type="hidden" name="tript" value="">
+                    <input type="hidden" name="tripi" value="">
+                </form>
+                 <table>
+                    <tr><td style=" verticle-align: top;">
+                        <img style="max-width: 100%;" class="img-responsive" src="/static/{{ image }}">
+                    </td></tr>
+                 </table>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('travelForm');
+    if (form) {
+        const selectedTripIndex = "{{ selected_trip_index }}" || null;
+        console.log("Selected Trip Index:", selectedTripIndex);  // Debugging output
+
+        if (selectedTripIndex && selectedTripIndex !== "None" && selectedTripIndex !== "0") {
+            const blocks = document.querySelectorAll('.data-block');
+            blocks.forEach((block, index) => {
+                if (index == selectedTripIndex - 1) {
+                    block.style.backgroundColor = '#FFD700';
+                } else {
+                    block.style.opacity = '0.5';
+                }
+            });
+            const selectedBlock = blocks[selectedTripIndex - 1];
+            if (selectedBlock) {
+                selectedBlock.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const clickedButton = document.activeElement;
+            console.log("Button Clicked:", clickedButton.tagName, clickedButton.type);  // Detailed Debugging output
+
+            if (clickedButton.tagName === 'BUTTON' && clickedButton.type === 'submit') {
+                const tripType = clickedButton.getAttribute('data-business');
+                const tripIndex = clickedButton.getAttribute('data-index');
+                console.log(`Button Data: tripType=${tripType}, tripIndex=${tripIndex}`);  // Detailed Debugging output
+
+                form.querySelector('input[name="tript"]').value = tripType;
+                form.querySelector('input[name="tripi"]').value = tripIndex;
+                console.log(`Setting hidden fields: tript=${tripType}, tripi=${tripIndex}`);  // Detailed Debugging output
+                form.submit();
+            }
+        });
+    }
+});
+
+</script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

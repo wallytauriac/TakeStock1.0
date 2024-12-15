@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .report-content {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.2;
+        }
+        .centered {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-container container">
+        <div class="inner-container">
+            <div class="jumbotron">
+                <table style="width: 100%; background-color: yellow;">
+                    <tr>
+
+                    </tr>
+                </table>
+                <div class="text-black">
+                    <h1 style="text-align: center;font-weight: bold;">Game Captain: John Doe</h1>
+                </div>
+
+                <div class="container report-content">
+                    {% for line in data['Features'] %}
+                    <div style="text-align: left; color: green;">{{ line }}</div>
+                    {% endfor %}
+
+                    <br>
+                    {% for line in data['Goals'] %}
+                    <div style="text-align: center;">{{ line }}</div>
+                    {% endfor %}
+
+                    <br>
+                    <h4 style="text-align: center;font-weight: bold;">Player Status</h4>
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+
+                            <thead>
+                                <tr class="centered">
+
+                                    <th>Player</th>
+                                    <th>% of Goal</th>
+                                    <th>-STOCK COUNTS-</th>
+                                    <th> OnG </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for _, row in player_status.iterrows() %}
+                                <tr class="centered">
+                                    <td>{{ row['Player'] }}</td>
+                                    <td>{{ row['% of Goal'] }}</td>
+                                    <td>{{ row['-STOCK COUNT-'] }}</td>
+                                    <td>{{ row['OnG'] }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

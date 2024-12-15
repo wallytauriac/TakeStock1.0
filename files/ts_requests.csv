@@ -1,0 +1,17 @@
+id,ctgy,type,short_description,long_description,table
+1,Event,Life,Experience life events,Experience life challenging events for opportunities,lifecenter
+2,Event,College Attendance,Attend the local college,Attend the local college to increase your abilities,learncenter
+3,Event,Job Attendance,Put some time on the job,Put some time on the job to meet your career objectives,jobcenter
+4,Event,Move Address,Find another home and move,Find another home and move into the new location,address
+5,Event,Move Address,Find another apartment and move,Find another apartment and move into the new location,address
+6,Event,Loan Payments,Pay on an outstanding loan,Pay on an outstanding loan to accelerate payoff,investments
+7,Event,Loan Request,Apply for a loan,Apply for a loan to get ready for investment opportunities,investments
+8,Investment,Rental Investment,Buy Apartment Complex,Apartment purchase to collect rent from tenants,address
+9,Investment,Rental Investment,Buy Property For Sale,Purchase property to rent to tenant,address
+10,Investment,House to sell,Property Sell Request,Property list for sale at open house event,investments
+11,Investment,Business for Sale,Business Sell Request,Business list for sale at business sale event,investments
+12,Investment,Commodity for Sale,Commodity Sell Request,Commodity list for sale at commodity sale event,investments
+13,Travel,Remote travel,Vacation/Visit Request,Vacation/Visiting (travel cycle),travel(vac/visit)
+14,Travel,Local travel,Shopping Request,Shopping (shopping cycle),shopping
+15,Travel,Business travel,Conference Attendance Request,Conference or business (travel cycle),travel(bus/conf)
+16,Travel,Local travel,Local Travel Request,Uptown or downtown (life cycle),travel(local)

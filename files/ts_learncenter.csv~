@@ -1,0 +1,51 @@
+code,id,type,short_description,long_description,amount,COH,Investment,degree_level,house_status
+LC,1,inc,Scholarship Funding,"The board met recently and determined you qualify for a scholarship. This is not a full scholarship, but it provides a good start for your education.",16000,16000,No,0,OK
+LC,2,inc,Work Study grant,In the last board meeting your name came up. You have been extended a work study grant. You can use it for tuition and book requirements this year.,8000,8000,No,0,OK
+LC,3,exp,Loan Payment,Thank you for your promptness in sending us your payment now due for the loan we provided you last fall.,-8000,-8000,No,0,OK
+LC,4,inc,Student grant,We were not able to extend a semester loan this year but please accept this grant to assist you with current expenses.,1000,1000,No,0,OK
+LC,5,exp,School Tuition,Your school tuition fees are now due. We were unable to provide you with a loan to cover the full amount. The remainder is now due.,-8000,-8000,No,0,OK
+LC,6,exp,Dormitory Fees,Thank you for selecting to stay at our fine dormitory. The fee is due now.,-2000,-2000,No,0,OK
+LC,7,inc,Student Loan,"We were not able to provide you with the full amount of the loan requested. However, here is what we could do for this semester.",1000,1000,LOAN,0,OK
+LC,8,exp,Apartment rent,We welcome you to our apartment complex for students attending the nearby college. Your fee is enclosed.,-1800,-1800,RENT,0,Check
+LC,9,inc,Summer work,You have been accepted in our school work/study program. You are entitled to payment in full.,2500,2500,No,0,OK
+LC,10,exp,Book tuition,We were glad you could find the books you needed for this semester. Your bill is enclosed.,-1000,-1000,No,0,OK
+LC,11,exp,Travel expenses,In order to participate in the on-the-road training class the fee is enclosed.,-1200,-1200,No,0,OK
+LC,12,inc,Special aid,All grants and loans have been scheduled this year for other students. But here is a special aid we were able to assign to you as a grant.,800,800,No,0,OK
+LC,13,inc,Evening work pay,We were glad you could work with us for this weekend evening events. It was appreciated. Please accept our thanks.,500,500,No,0,OK
+LC,14,inc,Congratulations: New Degree,We are pleased to announce your successful completion of your current degree program.,1,1,No,1,OK
+LC,15,inc,Scholarship Funding,"The board met recently and determined you qualify for a scholarship. This is not a full scholarship, but it provides a good start for your education.",16000,16000,No,0,OK
+LC,16,inc,Work Study grant,In the last board meeting your name came up. You have been extended for a work study grant. You can use it for tuition and book requirements this year.,8000,8000,No,0,OK
+LC,17,exp,Loan Payment,Thank you for your promptness in sending us your payment now due for the loan we provided you last fall.,-8000,-8000,No,0,OK
+LC,18,inc,Student grant,We were not able to extend a semester loan this year but please accept this grant to assist you with current expenses.,1000,1000,No,0,OK
+LC,19,exp,School Tuition,Your school tuition fees are now due. We were unable to provide you with a loan to cover the full amount. The remainder is now due.,-8000,-8000,No,0,OK
+LC,20,exp,Dormitory Fees,Thank you for selecting to stay at our fine dormitory. The fee is due now.,-2000,-2000,No,0,OK
+LC,21,inc,Student Loan,"We were not able to provide you with the full amount of the loan requested. However, here is what we could do for this semester.",1000,1000,LOAN,0,OK
+LC,22,exp,Apartment rent,We welcome you to our apartment complex for students attending the nearby college. Your fee is enclosed.,-1800,-1800,RENT,0,Check
+LC,23,inc,Summer work,You have been accepted in our school work/study program. You are entitled to payment in full.,2500,2500,No,0,OK
+LC,24,exp,Book tuition,We were glad you could find the books you needed for this semester. Your bill is enclosed.,-1000,-1000,No,0,OK
+LC,25,exp,Travel expenses,In order to participate in the on-the-road training class the fee is enclosed.,-1200,-1200,No,0,OK
+LC,26,inc,Special aid,All grants and loans have been scheduled this year for other students. But here is a special aid we were able to assign to you as a grant.,800,800,No,0,OK
+LC,27,inc,Evening work pay,We were glad you could work with us for this weekend evening events. It was appreciated. Please accept our thanks.,1500,1500,No,0,OK
+LC,28,inc,Scholarship Funding,"The board met recently and determined you qualify for a scholarship. This is not a full scholarship, but it provides a good start for your education.",8000,8000,No,0,OK
+LC,29,inc,Work Study grant,In the last board meeting your name came up. You have been extended a work study grant. You can use it for tuition and book requirements this year.,4000,4000,No,0,OK
+LC,30,exp,Loan Payment,Thank you for your promptness in sending us your payment now due for the loan we provided you last spring.,-4000,-4000,LOAN,0,OK
+LC,31,inc,Student grant,We were not able to extend a semester loan this year but please accept this grant to assist you with current expenses.,500,500,No,0,OK
+LC,32,exp,School Tuition,Your school tuition fees are now due. We were unable to provide you with a loan to cover the full amount. The remainder is now due.,-4000,-4000,No,0,OK
+LC,33,exp,Dormitory Fees,Thank you for selecting to stay at our fine dormitory. The fee is due now.,-1000,-1000,No,0,OK
+LC,34,inc,Student Loan,"We were not able to provide you with the full amount of the loan requested. However, here is what we could do for this semester.",500,500,LOAN,0,OK
+LC,35,exp,Apartment rent,We welcome you to our apartment complex for students attending the nearby college. Your fee is enclosed.,-900,-900,RENT,0,OK
+LC,36,inc,Summer work,You have been accepted in our school work/study program. You are entitled to payment in full.,1250,1250,No,0,OK
+LC,37,exp,Book tuition,We were glad you could find the books you needed for this semester. Your bill is enclosed.,-500,-500,No,0,OK
+LC,38,exp,Travel expenses,In order to participate in the on-the-road training class the fee is enclosed.,-600,-600,No,0,OK
+LC,39,inc,Special aid,All grants and loans have been scheduled this year for other students. But here is a special aid we were able to assign to you as a grant.,400,400,No,0,OK
+LC,40,inc,Evening work pay,We were glad you could work with us for the last evening events. It was appreciated. Please accept our thanks.,250,250,No,0,OK
+LC,41,inc,Scholarship Funding,"The board met recently and determined you qualify for a scholarship. This is not a full scholarship, but it provides a good start for your education.",4000,4000,No,0,OK
+LC,42,inc,Work Study grant,In the last board meeting your name came up. You have been extended a work study grant. You can use it for tuition and book requirements this year.,2000,2000,No,0,OK
+LC,43,inc,Congratulations: New Degree,We are pleased to announce your successful completion of your current degree program.,1,1,No,1,OK
+LC,44,inc,Student grant,We were not able to extend a semester loan this year but please accept this grant to assist you with current expenses.,250,250,No,0,OK
+LC,45,exp,School Tuition,Your school tuition fees are now due. We were unable to provide you with a loan to cover the full amount. The remainder is now due.,-2000,-2000,No,0,OK
+LC,46,exp,Dormitory Fees,Thank you for selecting to stay at our fine dormitory. The fee is due now.,-500,-500,No,0,OK
+LC,47,inc,Student Loan,"We were not able to provide you with the full amount of the loan requested. However, here is what we could do for this semester.",250,250,LOAN,0,OK
+LC,48,exp,Travel expenses,In order to participate in the on-the-road training class the fee is enclosed.,-450,-450,No,0,OK
+LC,49,inc,Special aid,All grants and loans have been scheduled this year for other students. But here is a special aid we were able to assign to you as a grant.,625,625,No,0,OK
+LC,50,inc,Evening work pay,We were glad you could work with us for the last evening events. It was appreciated. Please accept our thanks.,250,250,No,0,OK

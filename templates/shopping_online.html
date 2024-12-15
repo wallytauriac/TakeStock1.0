@@ -1,0 +1,97 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="container">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PBoard')}}" target="_blank" >Player Board</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_pass')}}" >Decline Play</a>
+                </td>
+
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1 style="background-color: green;"><strong>Current Player: {{user}}</strong></h1>
+            </div>
+
+            <div class="inner-container" style="width: 100%">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div class="custom-table">
+                        <div class="player-info">
+                            <div style="background-color: gold;">PLAYER: <span>{{ data.player_number }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group"  style="verticle-align: top;background-color: green;float: left">
+                        <h2 style="background-color: green;">{{ title  }} at {{ sales[0]['INVITES'] }}</h2>
+
+        {% for row in sales %}
+    <form action="{{ url_for('ts_sub2_bp.travel_request_process') }}" method="post" class="row justify-content-center" id="travelForm">
+
+        <div class="col-lg-3 col-md-6 col-sm-12 data-block" style="border: 1px solid #000;margin-right: 10px; margin-bottom: 10px; background-color: gold;">
+            <h4>{{ row['sales_day'] }}</h4>
+            <p class="small"><strong>Get </strong>{{ row['sales_pct'] }}<strong> - Free Shipping</strong></p>
+            <p class="small" style="color: green;">Product: {{ row['long_description'] }}</p>
+            <p class="small" style="color: green;">Desc: {{ row['short_desc2'] }}</p>
+            <p style="color: green;">Sales Price: ${{ row['sales_price'] }}</p>
+            <p class="small">Reg Price: ${{ row['amount'] }}</p>
+
+            <h6 style="color: black; background-color: green;">Game Points Earned: {{ row['points'] }}</h6>
+            <input type="checkbox" name="selected_items" value="{{ row['id'] }}" class="checkbox" data-requesth="{{ row['long_description'] }}">
+            <input type="hidden" name="titleh" value="{{ title }}">
+        </div>
+
+      {% endfor %}
+        <div class="row col-md-6">
+        <button class="button" style="margin-left: 20px;" type="submit">Submit</button>
+        </div>
+    </form>
+<script>
+console.log("JavaScript is running");
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded and parsed");
+
+    const form = document.getElementById('travelForm');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            console.log("Form submission started");
+
+            // Remove any existing hidden inputs for requesth
+            document.querySelectorAll('input[name="requesth"]').forEach(input => input.remove());
+
+            // Append new hidden inputs for each selected checkbox
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][name="selected_items"]:checked');
+            checkboxes.forEach(checkbox => {
+                const requesthValue = checkbox.getAttribute('data-requesth');
+                if (requesthValue) {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'requesth';
+                    hiddenInput.value = requesthValue;
+                    form.appendChild(hiddenInput);
+
+                    console.log(`Added hidden input with value: ${hiddenInput.value}`);
+                } else {
+                    console.log("No data-requesth value found for this checkbox.");
+                }
+            });
+            console.log('Form submitted with selected items and requesth values.');
+        });
+    } else {
+        console.log("Form not found!");
+    }
+});
+</script>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

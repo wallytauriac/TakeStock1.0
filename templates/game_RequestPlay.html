@@ -1,0 +1,63 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="outer-container">
+    <div class="inner-container">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PBoard')}}" target="_blank" >Player Board</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_pass')}}" >Decline Play</a>
+                </td>
+
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1><strong>Current Player: {{user}}</strong></h1>
+            </div>
+
+            <div class="container">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div class="custom-table">
+                        <div class="player-info">
+                            <div style="background-color: gold;">PLAYER: <span>{{ data.player_number }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group"  style="width: 50%; verticle-align: top; float:left;">
+                    <h4 style="background-color: yellow;">Select Travel Preference</h4>
+                    <form action="{{ url_for('ts_sub2_bp.game_RequestPlay') }}" method="post">
+                        <span>Hover over the items to see a descriptive caption.</span>
+                        <div title="Good for door to door travel." style="background-color: gold;display: flex; align-items: center;"><label><input type="radio" name="travel_mode" value="Cab"> Cab – inexpensive</label></div>
+                        <div title="Fastest mode of travel." style="background-color: gold;display: flex; align-items: center;"><label><input type="radio" name="travel_mode" value="Portal"> Portal – expensive</label></div>
+                        <div title="Relaxing and scenic travel." style="background-color: gold;display: flex; align-items: center;"><label><input type="radio" name="travel_mode" value="Train"> Train – moderate</label></div>
+                        <div title="Good for out of town travel." style="background-color: gold;display: flex; align-items: center;"><label><input type="radio" name="travel_mode" value="Plane"> Plane – low to moderate</label></div>
+
+                    <h4 style="background-color: yellow;">Select Request Category</h4>
+                        <span>Hover over the items to see a descriptive caption.</span>
+                        <div title="Special local adventures or things to accomplish." style="background-color: gold;display: flex; align-items: center;"><label><input type="radio" name="request_category" value="Event"> Event Requests</label></div>
+                        <div title="Buying and selling opportunities." style="background-color: gold;display: flex; align-items: center;"><label><input type="radio" name="request_category" value="Investment"> Investment Requests</label></div>
+                        <div title="Travel related opportunities." style="background-color: gold;display: flex; align-items: center;"><label><input type="radio" name="request_category" value="Travel"> Travel Requests</label></div>
+
+                    <button class="button" type="submit">Next</button>
+                    </form>
+                     </div>
+
+                    <div class="video-container" style="width: 45%; verticle-align: top; float:right;">
+                        <video style="width: 100%; height: 500px; background-color: darkred;" controls autoplay>
+                            <source src="/static/Takestock_RequestPlay.mp4" type="video/mp4">
+                            <source src="movie.ogg" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="container">
+        <div class="jumbotron">
+
+
+    <form action="/process_selection" method="post" class="row justify-content-center">
+        {% for row in data %}
+
+        <div class="col-lg-3 col-md-6 col-sm-12 data-block" style="border: 1px solid #000;margin-right: 10px; margin-bottom: 10px;">
+            <h4>{{ row['short_description'] }}</h4>
+            <p>{{ row['long_description'] }}</p>
+            <p>Price: ${{ row['amount'] }}</p>
+
+            <h6 style="color: yellow; background-color: green;">Click the checkbox to select item.</h6>
+            <input type="checkbox" name="selected_items" value="{{ row['id'] }}" class="checkbox">
+        </div>
+
+        {% endfor %}
+        <div class="row col-md-6">
+        <button class="button" style="margin-left: 20px;" type="submit">Submit</button>
+        </div>
+    </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

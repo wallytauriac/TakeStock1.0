@@ -2,12 +2,30 @@
 
 {% block body %}
 
-<div class="outer-container">
-    <div class="inner-container">
+<div class="outer-container" >
+    <div class="inner-container" style="width: 1200px">
         <div class="jumbotron">
             <table style="width: 100%; background-color: yellow;">
                 <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
-                    <a class="button" href="javascript:history.back()" >Return</a>
+                    <a style="color: white;cursor: pointer;" class="button" onclick="window.close()" >Close</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PReview', review='STCK')}}" >eStock</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PReview', review='BUS')}}" >eBusiness</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PReview', review='PPTY')}}" >eProperty</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PReview', review='COMM')}}" >eCommodity</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PReview', review='LOAN')}}" >eLoans</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PReview', review='RENT')}}" >eRent/ROI</a>
                 </td>
                 <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
                     <a class="button" href="{{url_for('ts_sub1_bp.game_GBoard')}}" >Game Board</a>
@@ -18,8 +36,8 @@
                 <h1><strong>Current Player: {{data.player_name}}</strong></h1>
             </div>
 
-            <div class="container">
-                <div class="form-group">
+            <div class="container" style="width: 1200px">
+                <div class="form-group" style="width: 1200px">
                     {% from "includes/_formhelpers.html" import render_field %}
                     <div class="custom-table">
                         <div class="player-info">
@@ -32,7 +50,7 @@
                         </div>
                         <div class="player-info">
                             <div style="background-color: gold;"><span>{{ data.player_number }}</span></div>
-                            <div style="background-color: yellow;"><span>{{ data.PROP }}</span></div>
+                            <div style="background-color: yellow;"><span>{{ data.PPTY }}</span></div>
                             <div style="background-color: gold;"><span>{{ data.STCK }}</span></div>
                             <div style="background-color: yellow;"><span>{{ data.BUS }}</span></div>
                             <div style="background-color: gold;"><span>{{ data.COMM }}</span></div>
@@ -72,6 +90,7 @@
                           <th scope="col" style="padding: 0px;">DESCRIPTION</th>
                           <th scope="col" style="padding: 25px;">INVESTED</th>
                           <th scope="col" style="padding: 25px;">VALUE</th>
+                          <th scope="col" style="padding: 0px;">OWNRSHP</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -82,6 +101,7 @@
                                     <td style="background-color: gold;">{{ option.opt_desc }}</td>
                                     <td style="background-color: gold; padding: 15px;">{{ option.opt_amt }}</td>
                                     <td style="background-color: gold; padding: 15px;">{{ option.opt_val }}</td>
+                                    <td style="background-color: gold; padding: 15px;">{{ option.opt_own }}</td>
                                 </tr>
 
                             {% endfor %}
@@ -89,9 +109,9 @@
                             </table>
                      </div>
 
-                    <div class="video-container" style="width: 45%; verticle-align: top; float:right;">
+                    <div class="video-container" style="width: 40%; verticle-align: top; float:right;">
                         <video style="width: 100%; height: 500px; background-color: darkred;" controls autoplay>
-                            <source src="/static/Takestock_Intro.mp4" type="video/mp4">
+                            <source src="/static/Takestock_PBoard.mp4" type="video/mp4">
                             <source src="movie.ogg" type="video/ogg">
                             Your browser does not support the video tag.
                         </video>

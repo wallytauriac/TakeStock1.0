@@ -23,6 +23,8 @@ def populate_mysql_table(csv_file_path, db_config, table_name):
         if table_name == "address":
             df = pd.read_csv(csv_file_path, dtype={'Address': str})
         elif table_name == "opportunities":
+            df = pd.read_csv(csv_file_path, dtype={'long_description': str, 'INVITES': str})
+        elif table_name == "shopping":
             df = pd.read_csv(csv_file_path, dtype={'INVITES': str})
         else:
             df = pd.read_csv(csv_file_path)
@@ -98,12 +100,13 @@ def populate_mysql_table(csv_file_path, db_config, table_name):
                     `code` char(5) DEFAULT "{code}",
                     `id` int NOT NULL AUTO_INCREMENT,
                     `type` varchar(10) DEFAULT NULL,
-                    `OWN_code` char(5) DEFAULT " ",
+                    `OWN_code` char(5) DEFAULT NULL,
                     `short_description` varchar(100) DEFAULT NULL,
                     `long_description` varchar(500) DEFAULT NULL,
-                    `INVITES`  varchar(30) DEFAULT " ",
+                    `INVITES`  varchar(30) DEFAULT NULL,
                     `amount` decimal(12,0) DEFAULT 0,
                     `count` decimal(10,0) DEFAULT 0,
+                    `CODE_REQUIREMENTS` varchar(200) DEFAULT NULL,
                     PRIMARY KEY (`id`)
             )
             """
@@ -117,6 +120,58 @@ def populate_mysql_table(csv_file_path, db_config, table_name):
                     `long_description` varchar(500) DEFAULT NULL,
                     `count` decimal(10,0) DEFAULT 0,
                     `amount` decimal(10,0) DEFAULT NULL,
+                    `COH` decimal(14,0) DEFAULT 0,
+                    `investment_adjust` varchar(20) DEFAULT " ",
+                    `investment_type` varchar(20) DEFAULT " ",
+                    `stock_value` varchar(20) DEFAULT " ",
+                    `comm_value` varchar(20) DEFAULT " ",
+                    PRIMARY KEY (`id`)
+            )
+            """
+        elif table_name == "lifecenter":
+            create_table_query = f"""
+            CREATE TABLE IF NOT EXISTS {table_name} (
+                    `code` char(5) DEFAULT "{code}",
+                    `id` int NOT NULL AUTO_INCREMENT,
+                    `type` varchar(10) DEFAULT NULL,
+                    `short_description` varchar(100) DEFAULT NULL,
+                    `long_description` varchar(500) DEFAULT NULL,
+                    `amount` decimal(10,0) DEFAULT NULL,
+                    `COH` decimal(14,0) DEFAULT 0,
+                    `tax_check` varchar(10) DEFAULT " ",
+                    `investment_check` decimal(14,0) DEFAULT 0,
+                    PRIMARY KEY (`id`)
+            )
+            """
+        elif table_name == "jobcenter":
+            create_table_query = f"""
+            CREATE TABLE IF NOT EXISTS {table_name} (
+                    `code` char(5) DEFAULT "{code}",
+                    `id` int NOT NULL AUTO_INCREMENT,
+                    `type` varchar(10) DEFAULT NULL,
+                    `short_description` varchar(100) DEFAULT NULL,
+                    `long_description` varchar(500) DEFAULT NULL,
+                    `amount` decimal(10,0) DEFAULT NULL,
+                    `COH` decimal(14,0) DEFAULT 0,
+                    `job_level` varchar(10) DEFAULT " ",
+                    `salary` varchar(10) DEFAULT " ",
+                    PRIMARY KEY (`id`)
+            )
+            """
+
+        elif table_name == "learncenter":
+            create_table_query = f"""
+            CREATE TABLE IF NOT EXISTS {table_name} (
+                    `code` char(5) DEFAULT "{code}",
+                    `id` int NOT NULL AUTO_INCREMENT,
+                    `type` varchar(10) DEFAULT NULL,
+                    `short_description` varchar(100) DEFAULT NULL,
+                    `long_description` varchar(500) DEFAULT NULL,
+                    `amount` decimal(10,0) DEFAULT NULL,
+                    `COH` decimal(14,0) DEFAULT 0,
+                    `investment` varchar(10) DEFAULT " ",
+                    `degree_level` int DEFAULT 0,
+                    `house_status` varchar(10) DEFAULT " ",
                     PRIMARY KEY (`id`)
             )
             """
@@ -125,11 +180,46 @@ def populate_mysql_table(csv_file_path, db_config, table_name):
             CREATE TABLE IF NOT EXISTS {table_name} (
                     `code` char(5) DEFAULT "{code}",
                     `id` int NOT NULL AUTO_INCREMENT,
-                    `type` varchar(10) DEFAULT NULL,
+                    `type` varchar(10) DEFAULT " ",
                     `short_description` varchar(100) DEFAULT NULL,
                     `long_description` varchar(500) DEFAULT NULL,
                     `INVITES` varchar(30) DEFAULT " ",
-                    `amount` decimal(14,0) DEFAULT NULL,
+                    `amount` decimal(14,0) DEFAULT 0,
+                    `count` decimal(14,0) DEFAULT 0,
+                    `COH` decimal(14,0) DEFAULT 0,
+                    `investment_insert` varchar(10) DEFAULT " ",
+                    `other_investment` varchar(10) DEFAULT " ",
+                    PRIMARY KEY (`id`)
+            )
+            """
+        elif table_name == "bankercycle":
+            create_table_query = f"""
+            CREATE TABLE IF NOT EXISTS {table_name} (
+                    `code` char(5) DEFAULT "{code}",
+                    `id` int NOT NULL AUTO_INCREMENT,
+                    `type` varchar(10) DEFAULT NULL,
+                    `short_description` varchar(100) DEFAULT NULL,
+                    `long_description` varchar(500) DEFAULT NULL,
+                    `amount` decimal(14,0) DEFAULT 0,
+                    `count` decimal(14,0) DEFAULT 0,
+                    `product` varchar(10) DEFAULT " ",
+                    `COH` decimal(14,0) DEFAULT 0,
+                    `investment_insert` varchar(25) DEFAULT " ",
+                    `invest_count` int DEFAULT 0,
+                    `insurance_flag` varchar(10) DEFAULT " ",
+                    PRIMARY KEY (`id`)
+            )
+            """
+        elif table_name == "sellcycle":
+            create_table_query = f"""
+            CREATE TABLE IF NOT EXISTS {table_name} (
+                    `code` char(5) DEFAULT "{code}",
+                    `id` int NOT NULL AUTO_INCREMENT,
+                    `type` varchar(10) DEFAULT NULL,
+                    `short_description` varchar(100) DEFAULT NULL,
+                    `long_description` varchar(500) DEFAULT NULL,
+                    `player_number` int not null DEFAULT 0,
+                    `amount` decimal(14,0) DEFAULT 0,
                     `count` decimal(14,0) DEFAULT 0,
                     PRIMARY KEY (`id`)
             )
@@ -160,6 +250,11 @@ def populate_mysql_table(csv_file_path, db_config, table_name):
             INSERT INTO {table_name} ({', '.join(columns)})
             VALUES (%s, %s, %s, %s, %s, %s, %s)
             """
+        elif table_name == "sellcycle":
+            insert_query = f"""
+            INSERT INTO {table_name} ({', '.join(columns)})
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """
         elif table_name == "commodities":
             insert_query = f"""
             INSERT INTO {table_name} ({', '.join(columns)})
@@ -168,17 +263,37 @@ def populate_mysql_table(csv_file_path, db_config, table_name):
         elif table_name == "opportunities":
             insert_query = f"""
             INSERT INTO {table_name} ({', '.join(columns)})
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
         elif table_name == "stockcenter":
             insert_query = f"""
             INSERT INTO {table_name} ({', '.join(columns)})
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
         elif table_name == "shopping":
             insert_query = f"""
             INSERT INTO {table_name} ({', '.join(columns)})
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+        elif table_name == "learncenter":
+            insert_query = f"""
+            INSERT INTO {table_name} ({', '.join(columns)})
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+        elif table_name == "lifecenter":
+            insert_query = f"""
+            INSERT INTO {table_name} ({', '.join(columns)})
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+        elif table_name == "jobcenter":
+            insert_query = f"""
+            INSERT INTO {table_name} ({', '.join(columns)})
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+        elif table_name == "bankercycle":
+            insert_query = f"""
+            INSERT INTO {table_name} ({', '.join(columns)})
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
         else:
             insert_query = f"""

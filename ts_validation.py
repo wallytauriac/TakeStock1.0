@@ -6,6 +6,7 @@ from passlib.hash import sha256_crypt
 from wtforms.validators import InputRequired, NumberRange, ValidationError
 
 
+
 class ChangePasswordForm(Form):
     old_password = PasswordField('Existing Password')
     new_password = PasswordField('Password', [
@@ -49,57 +50,34 @@ class GameActionForm(Form):
 
 class GameForm(Form):
     action = StringField('Action', [validators.InputRequired()])
-    salary = IntegerField('Salary', [NumberRange(min=1000, max=3000, message='Salary must be between 1000 and 3000')])
+    salary = IntegerField('Salary', [NumberRange(min=0, max=3000, message='Salary must be between 0 and 3000')])
     game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
     choices = [('New', 'New Player'), ('Ready', 'Ready'), ('Paused', 'Paused')]
     status = SelectField('Status', choices=choices)
 
 
 class GameLevelForm(Form):
-    level = IntegerField('Level', [validators.InputRequired(), NumberRange(min=1, max=100)])
-    choices = [('GP', 'Guru Play'),
-               ('CP', 'Challenger Play'),
-               ('EP', 'Easy Play')]
-    glevel = SelectField('Game Level', choices=choices)
-
-    selected_glevel = None
-    choices = [('CA', 'Career Achievement'),
-               ('MA', 'Money Achievement'),
-               ('IA', 'Investment Achievement'),
-               ('AA', 'Acquisitions Achievement')]
-    ggoal = SelectField('Game Goal', choices=choices)
-
-    selected_ggoal = None
-    player_count = IntegerField('Player Count',
-                                [NumberRange(min=1, max=12, message='Number of Players must be between 1 and 12')])
-    choices = [('New', 'New Game'), ('Ready', 'Ready'), ('Paused', 'Paused')]
-    status = SelectField('Status', choices=choices)
+    level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])
+    glevel = SelectField('Game Level', choices=[])
+    ggoal = SelectField('Game Goal', choices=[])
+    player_count = IntegerField('Player Count', [
+        validators.NumberRange(min=1, max=12, message='Number of Players must be between 1 and 12')])
+    status = SelectField('Status', choices=[('New', 'New Game'), ('Ready', 'Active'), ('Paused', 'Paused'), ('End', 'End')])
     game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
     start_date = DateField('Game Start Date', default=date.today)
+    population = DecimalField('Town Population', [
+        validators.NumberRange(min=100000, max=2000000, message='Population must be between 100K and 2M')])
+    population_chg = FloatField('Population Growth Rate', [
+        validators.NumberRange(min=0.05, max=0.15, message='Population rate must be between 0.05 and 0.15')])
 
-    population = DecimalField('Town Population',
-                              [NumberRange(min=100000, max=2000000, message='Population must be between 100K and 2M')])
-    population_chg = FloatField('Population Growth Rate',
-                           [NumberRange(min=0.05, max=0.15, message='Population rate must be between 0.05 and 0.15')])
 
 class GameSetupForm(Form):
-    level = IntegerField('Level', [validators.InputRequired(), NumberRange(min=1, max=100)])
-    choices = [('GP', 'Guru Play'),
-               ('CP', 'Challenger Play'),
-               ('EP', 'Easy Play')]
-    glevel = SelectField('Game Level', choices=choices)
-
-    selected_glevel = None
-    choices = [('CA', 'Career Achievement'),
-               ('MA', 'Money Achievement'),
-               ('IA', 'Investment Achievement'),
-               ('AA', 'Acquisitions Achievement')]
-    ggoal = SelectField('Game Goal', choices=choices)
-
-    selected_ggoal = None
+    level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])
+    glevel = SelectField('Game Level', choices=[])
+    ggoal = SelectField('Game Goal', choices=[])
     player_count = IntegerField('Player Count',
                                 [NumberRange(min=1, max=12, message='Number of Players must be between 1 and 12')])
-    status = SelectField('Status', choices=choices)
+    status = SelectField('Status', choices=[('New', 'New Game'), ('Ready', 'Active'), ('Paused', 'Paused'), ('End', 'End')])
     game_ID = StringField('Game ID', [validators.Length(min=1, max=20)])
     start_date = DateField('Game Start Date', default=date.today)
 

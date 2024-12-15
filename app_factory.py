@@ -1,5 +1,8 @@
 from flask import Flask
 from flask_mysqldb import MySQL
+from flask_session import Session
+from datetime import timedelta
+import redis
 
 mysql = MySQL()
 
@@ -10,5 +13,7 @@ def create_app():
     app.config['MYSQL_PASSWORD'] = 'Evenodd!512'
     app.config['MYSQL_DB'] = 'takestock1.0'
     app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
     mysql.init_app(app)
     return app
+

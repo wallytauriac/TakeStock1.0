@@ -1,0 +1,12 @@
+id,level,level_desc,level_code,goal_desc,goal_code,description,target,disable,pct_achieved
+1,"Easy Play","Easy play with a focus on monetary goals.",EP,"Achieve Monetary Amount",AMA,"The Monetary goal or target is $100,000,000 cash on hand with no loans",100000000,"RP:TP",0.00
+2,"Easy Play","Easy play with a focus on monetary goals.",EP,"Achieve All Stock",AAS,"The Stock goal or target is stocks from all 7 companies (100 stocks each)",100,"RP:TP",0.00
+3,"Challenge Play","Challenge play with diverse goals.",CP,"Achieve Monetary Amount",AMA,"The Monetary goal or target is $100,000,000 cash on hand with no loans",100000000,"RP",0.00
+4,"Challenge Play","Challenge play with diverse goals.",CP,"Achieve Property Value",APV,"The Property Value goal or target is property value with a total of $100,000,000 or more",100000000,"RP",0.00
+5,"Challenge Play","Challenge play with diverse goals.",CP,"Achieve Stock Value",ASV,"The value goal or target is stock value with a total of $75,000,000 or more",75000000,"RP",0.00
+6,"Challenge Play","Challenge play with diverse goals.",CP,"Achieve Business Value",ABV,"The value goal or target is business value with a total of $100,000,000 or more",100000000,"RP",0.00
+7,"Challenge Play","Challenge play with diverse goals.",CP,"Achieve Commodity Value",ACV,"The Value goal or target is commodity value with a total of $75,000,000 or more",75000000,"RP",0.00
+8,"Guru Play","Guru play with high monetary targets.",GP,"Achieve Monetary Amount",AMA,"The Monetary goal or target is $200,000,000 cash on hand with no loans",200000000,"",0.00
+9,"Guru Play","Guru play with high monetary targets.",GP,"Achieve Job Level",AJL,"The goal or target is a job level 5 or greater than 5",5,"",0.00
+10,"Guru Play","Guru play with high monetary targets.",GP,"Achieve Degree Level",ADL,"The goal or target is a degree level 5 or greater than 5",5,"",0.00
+11,"Guru Play","Guru play with high monetary targets.",GP,"Achieve Stock Count",ASC,"The stock count goal or target is to obtain at least 50,000 stocks of any company",50000,"",0.00

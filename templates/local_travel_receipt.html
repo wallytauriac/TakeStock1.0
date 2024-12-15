@@ -1,0 +1,73 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="outer-container">
+    <div class="inner-container">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PBoard')}}" target="_blank" >Player Board</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_pass')}}" >Done</a>
+                </td>
+
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1 style="background-color: green;"><strong>Current Player: {{user}}</strong></h1>
+            </div>
+
+            <div class="inner-container" style="width: 100%">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div class="custom-table">
+                        <div class="player-info">
+                            <div style="background-color: gold;">PLAYER: <span>{{ data.player_number }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group"  style="verticle-align: top;background-color: green;float: left">
+                        <h2 style="background-color: green;">{{ title  }}</h2>
+
+                    <!-- Your table and other HTML here -->
+                    <table style="background-color: gold;">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Destination</th>
+                                <th>Purpose</th>
+                                <th>Cost</th>
+                                <th>Points Earned</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for opt in options %}
+                            <tr>
+                                <td>{{ opt.id }}</td>
+                                <td>{{ opt.short_description }}</td>
+                                <td>{{ opt.purpose }}</td>
+                                <td>$ {{ opt.cost }}</td>
+                                <td>{{ opt.points }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                     </div>
+                    <div class="video-container" style=" verticle-align: top;float: right">
+                        <video style="width: 50%; height: 600px; background-color: darkred;" controls>
+                            <source src="/static/Takestock_PBoard.mp4" type="video/mp4">
+                            <source src="movie.ogg" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

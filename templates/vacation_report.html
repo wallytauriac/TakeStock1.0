@@ -1,0 +1,60 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="outer-container">
+    <div class="inner-container" style="width: 1150px;">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_PBoard')}}" target="_blank" >Player Board</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.game_pass')}}" >Done</a>
+                </td>
+
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1 style="background-color: green;"><strong>Current Player: {{user}}</strong></h1>
+            </div>
+
+            <div class="inner-container" style="width: 100%">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                    <div class="custom-table">
+                        <div class="player-info">
+                            <div style="background-color: gold;">PLAYER: <span>{{ data.player_number }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group"  style="verticle-align: top;background-color: green;float: left">
+                        <h2 style="background-color: green;">{{ title  }}</h2>
+
+                    <div class="wrapper">
+                    <div class="centered" style="margin-top: 80px;">
+
+                        <h1 class="headline centered">The {{ user }} Family Travel Report</h1>
+                    </div>
+                    <div class="newspaper" style="width: 100%; height: 600px">
+                        <div class="section centered text-justify ml-2">
+                            <p class="centered"><strong>The Family Travels to {{ trip.description }}</strong></p>
+                            <p>&nbsp;</p>
+                            <p>{{ trip.custom1 }} This trip was even more than anyone expected. The travel by plane was relaxing even though long. </p>
+                            <p>However, the flight was also interesting. {{ trip.trip }}</p>
+                        </div>
+                        <div class="section centered text-justify mr-2">
+                            <p>On our recent trip to {{ trip.description }}, the whole {{ player_name }} family recalled some sights. {{ trip.sights }} We had an amazing time and were thrilled to have experienced local activities. {{ trip.events }} </p>
+                            <p>In addition, meeting others made the trip even more memorable. {{ trip.people }}</p>
+                            <p>{{ trip.custom2 }}</p>
+                        </div>
+                    </div>
+            </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,51 +1,51 @@
-code,id,type,short_description,long_description,count,amount
-SC,1,inc,Money Market Shares,For fifty cents on the dollar you can buy these money market shares. A deal of a life time.,1000,500
-SC,2,inc,Certificate of Deposit Shares,These shares are worth a dollar per share. Today you can purchase them for $1000.,3000,1000
-SC,3,inc,Silver Trade Shares,These shares are going fast. Act now. You can buy for pennies on the dollar.,1200,200
-SC,4,exp,Oil Stock Loss,"The company declared bankruptcy and will be liquidating some of its assets. You are assessed for liquidation of as much as 1000 shares of OnG stocks, if owned.",-1000,0
-SC,5,inc,Security Bonds,Security Bonds are available for bulk price.,500,500
-SC,6,exp,Robotics Stock Loss,If you own Robotics stocks you must yield 500 shares due to a company reorganization.,-500,0
-SC,7,inc,Commodities Trade Shares,You can make a great deal today on Commodities trading. Buy these shares for cheap.,600,100
-SC,8,exp,Diamond Investment Loss,Diamonds hit a big slump in sales and a shipment was sunk in a nearby skirmish. You only lose if you owned some shares.,-2500,0
-SC,9,inc,Diamond Shares gain,"Whether you own some shares are not, here is a great opportunity to buy into the market.",1500,1000
-SC,10,exp,CD Investment Loss,The bank underwriting this certificate suffered a reorganization. Its strength is compromised. You lose some shares.,-200,0
-SC,11,inc,Mutual Funds,You can buy a bundle of mutual funds today for cheap.,5000,500
-SC,12,inc,Oil Stock Share gain,Increase you OnG stocks for less than the market.,500,100
-SC,13,exp,Silver Trade Loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,14,inc,Stock split request (2 for one on all stocks owned),This company has declared a stock split. Two for one on all of this company's stock owned.,2,0
-SC,15,inc,Robotics Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,16,inc,Gold Bullions gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,17,inc,Paper Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,18,inc,Utility Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,19,inc,Auto Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,20,inc,Airline Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,21,exp,Gold Bullion stock loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,22,exp,Paper Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,23,exp,Utility Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,24,exp,Auto Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,25,exp,Airline Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,26,inc,Money Market Shares,For fifty cents on the dollar you can buy these money market shares. A deal of a life time.,1000,500
-SC,27,inc,Certificate of Deposit Shares,These shares are worth a dollar per share. Today you can purchase them for $1000.,3000,100
-SC,28,inc,Silver Trade Shares,These shares are going fast. Act now. You can buy for pennies on the dollar.,1200,200
-SC,29,exp,Oil Stock Loss,"The company declared bankruptcy and will be liquidating some of its assets. You are assessed for liquidation of as much as 1000 shares of OnG stocks, if owned.",-1000,0
-SC,30,inc,Security Bonds,Security Bonds are available for bulk price.,500,100
-SC,31,exp,Robotics Stock Loss,If you own Robotics stocks you must yield 500 shares due to a company reorganization.,-500,0
-SC,32,inc,Commodities Trade Shares,You can make a great deal today on Commodities trading. Buy these shares for cheap.,600,300
-SC,33,exp,Diamond Investment Loss,Diamonds hit a big slump in sales and a shipment was sunk in a nearby skirmish. You only lose if you owned some shares.,-2500,0
-SC,34,inc,Diamond Shares gain,"Whether you own some shares are not, here is a great opportunity to buy into the market.",1500,1200
-SC,35,exp,CD Investment Loss,The bank underwriting this certificate suffered a reorganization. Its strength is compromised. You lose some shares.,-200,0
-SC,36,inc,Mutual Funds,You can buy a bundle of mutual funds today for cheap.,5000,500
-SC,37,inc,Oil Stock Share gain,Increase your OnG stocks for less than the market.,500,100
-SC,38,exp,Silver Trade Loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,39,inc,Stock split request (2 for one on all stocks owned),This company has declared a stock split. Two for one on all of this company's stock owned.,2,0
-SC,40,inc,Robotics Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,41,inc,Gold Bullions gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,42,inc,Paper Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,43,inc,Utility Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,44,inc,Auto Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,45,inc,Airline Stocks gain,Stock sale purchase through your company. Two for one.,1000,500
-SC,46,exp,Gold Bullion stock loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,47,exp,Paper Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,48,exp,Utility Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,49,exp,Auto Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
-SC,50,exp,Airline Stocks loss,Market glitch. Share loss declared. If you don't have any there is no loss.,-200,0
+code,id,type,short_description,long_description,amount,COH,job_level,salary
+JC,1,inc,Job loss with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,16000,Y,-1,ZERO
+JC,2,exp,Salary garnish - child support,This is an event beyond our control. The government has issued a lien against your wages for child support. Your pay will be lacking this amount.,-600,Y,0,OK
+JC,3,exp,Job loss: due to firing,Due to an oversight we are under command to let you go. You're fired. Last pay calculated.,2000,Y,-1,ZERO
+JC,4,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-1000,Y,0,OK
+JC,5,exp,Budget cut - revoke,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise",-500,Y,0,OK
+JC,6,inc,Salary raise,After a salary review it was decided to grant you a raise. Congratulations!,3200,Y,0,3200
+JC,7,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1000,Y,0,OK
+JC,8,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted.,1000,Y,1,1000
+JC,9,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,3000,Y,0,OK
+JC,10,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-500,Y,0,OK
+JC,11,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,7000,Y,0,OK
+JC,12,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise. Congratulations!,2000,Y,0,2000
+JC,13,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1350,Y,0,OK
+JC,14,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",1500,Y,0,OK
+JC,15,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,5500,Y,0,OK
+JC,16,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary.,10500,Y,0,5000
+JC,17,exp,Demotion requested by management - 1 level,It is unfortunate and we are saddened that we must demote you from your current job position one level.,0,Y,-1,OK
+JC,18,inc,Congratulations: Promotion granted with new pay scale,We congratulate you on your promotion and raise due this pay season. Your job level increases by one and your salary increases by the amount shown.,2000,Y,1,1000
+JC,19,inc,Loss Job with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,8000,Y,-1,OK
+JC,20,exp,Salary garnish - child support,This is an event beyond our control. The government has issued a lien against your wages for child support. Your pay will be lacking this amount.,-1200,Y,0,OK
+JC,21,exp,Loss job due to firing,Due to an oversight we are under command to let you go. You're fired. Accept your final pay.,2500,Y,-1,ZERO
+JC,22,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-2500,Y,0,OK
+JC,23,exp,Budget cut ,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise.",2000,Y,0,OK
+JC,24,inc,Salary raise,After a salary review it was decided to grant you a raise and bonus. Congratulations!,6000,Y,0,3000
+JC,25,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1500,Y,0,OK
+JC,26,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted.,0,Y,0,1200
+JC,27,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,2500,Y,0,OK
+JC,28,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-700,Y,0,OK
+JC,29,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,9000,Y,0,OK
+JC,30,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise and promotion. Congratulations!,2000,Y,1,1000
+JC,31,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1500,Y,0,OK
+JC,32,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",3000,Y,0,OK
+JC,33,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,7500,Y,0,OK
+JC,34,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary.,20000,Y,0,10000
+JC,35,inc,Loss Job with severance,After several meetings and heated discussions we had to make some serious decisions to meet our budget this quarter. We are sorry to inform you of your job termination. But you are receiving severance pay.,8000,Y,-1,ZERO
+JC,36,exp,Salary garnish - child support,This is an event beyond our control. The government has issued a lien against your wages. Your pay will be lacking this amount.,-1200,Y,0,OK
+JC,37,exp,Loss job due to firing,Due to an oversight we are under command to let you go. You're fired. Final pay sent.,2000,Y,-1,ZERO
+JC,38,exp,Travel expense,The company paid most of your travel expenditures. But enclosed you will find outstanding expenses we cannot pay due to policy restrictions.,-2500,Y,0,OK
+JC,39,exp,Budget cut,"This quarter we experienced a budget cut. Therefore, we are revoking your current salary raise.",-1000,Y,0,OK
+JC,40,inc,Salary raise,After a salary review it was decided to grant you a raise and bonus. Congratulations!,6000,Y,0,3000
+JC,41,inc,Travel allowance,"Due to our determination that your upcoming business trip will probably cause you to incur unexpected expenses, we are granting you an allowance to meet the expenses.",1500,Y,0,OK
+JC,42,inc,Time for a job review,We just completed a job review for your department. The result is that you are being promoted with a raise.,1000,Y,1,1000
+JC,43,inc,Tax Refund,This is to inform you that you are receiving a tax refund for this year. It will be added to your account.,2500,Y,0,OK
+JC,44,exp,Food expense,Thank you for ordering your food from our store. Your bill is included.,-700,Y,0,OK
+JC,45,inc,Hazard pay,We would like to thank you for volunteering to work in our graveyard shift this month. Hazard pay is in addition to your salary.,9000,Y,0,OK
+JC,46,inc,Time for a salary review,After a recent salary review it was decided to grant you a raise. Congratulations!,1500,Y,0,1500
+JC,47,exp,Income Taxes,We were finally able to complete your tax papers for this year. You owe the government.,-1500,Y,0,OK
+JC,48,inc,Annual Benefits,"The company experienced some good returns on investments. Therefore, you can expect an additional bonus with your pay.",3000,Y,0,OK
+JC,49,inc,Salary Bonus,The company is declaring a special bonus for this year and you qualify.,7500,Y,0,OK
+JC,50,inc,Gross annual increase,You exceeded our expectations this year. You qualify for a special increase to your salary with a bonus.,20000,Y,0,10000

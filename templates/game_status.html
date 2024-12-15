@@ -1,0 +1,106 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="outer-container">
+    <div class="inner-container" style="width: 1200px; height: 1200px;">
+        <div class="jumbotron">
+            <table style="width: 100%; background-color: yellow;">
+                <tr><td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a style="color: white; cursor: pointer;" class="button" onclick="window.close()" >Close</a>
+                </td>
+                <td style="border-style: none; width: 25px; padding:0; margin-right:1px;">
+                    <a class="button" href="{{url_for('ts_sub1_bp.city_Tour')}}" >City Tour</a>
+                </td>
+                </tr>
+            </table>
+            <div class="text-black">
+                <h1><strong>Game Captain: {{data.user_captain}}</strong></h1>
+            </div>
+
+            <div class="container" style="width: 100%; height: 1100px;">
+                <div class="form-group">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                     <div>
+                        <h3 style="color: yellow;">Game Progress Status</h3>
+                    </div>
+                    <div class="custom-table" style="width: 100%; height: auto;">
+                        <div class="player-info">
+                            <div style="background-color: gold;">GAME ID: <span>{{ data.game_ID }}</span></div>
+                            <div style="background-color: yellow;">ROUND: <span>{{ data.player_round }}</span></div>
+                            <div style="background-color: gold;">MOVE COUNT: <span>{{ data.player_move }}</span></div>
+                        </div>
+                        <div><br><br><br></div>
+                        <div class="player-info" style="font-family: 'Courier New', Courier, monospace; line-height: 1.2; height: 600px; width: 1100px;">
+                            <div class="report-content mw-100">
+                                {% for line in rpt_features['Features'] %}
+                                <div style="text-align: left;color: white;">{{ line }}</div>
+                                {% endfor %}
+
+                                <br>
+                                {% for line in rpt_goals['Goals'] %}
+                                <div class="text-center" style="text-align: center;color: yellow">{{ line }}</div>
+                                {% endfor %}
+
+                                <br>
+                                <h4 class="text-center" style="font-weight: bold;color: black;margin: auto;">Player Status</h4>
+                                <div class="table-responsive-sm" style="width: 100%;">
+
+                                    <table class="table-bordered text-center border-primary" style="color: black;border-color: white;background-color: gold;line-height: 3.5; height: auto;">
+
+                                        <thead class="thead-dark">
+                                        {% if ggoal != "AAS": %}
+                                            <tr class="report-head">
+                                                <th style="width: 20%;">Player</th>
+                                                <th style="width: 20%;">% of Goal</th>
+                                            </tr>
+                                        {% else %}
+                                            <tr class="report-head">
+
+                                                <th style="width: 8%;">Player</th>
+                                                <th style="width: 8%;">% of Goal</th>
+                                                <th style="width: 8%;">(STOCK COUNTS)-></th>
+                                                <th style="width: 8%;">ONG</th>
+                                                <th style="width: 8%;">ROBOTICS</th>
+                                                <th style="width: 8%;">GOLD</th>
+                                                <th style="width: 8%;">PAPER</th>
+                                                <th style="width: 8%;">UTILITY</th>
+                                                <th style="width: 8%;">AUTO</th>
+                                                <th style="width: 8%;">AIRLINE</th>
+                                            </tr>
+                                        {% endif %}
+                                        </thead>
+                                        <tbody class="report-content">
+                                            {% for _, row in player_status.iterrows() %}
+                                            {% if ggoal != "AAS": %}
+                                            <tr class="report-content" style="border-collapse: collapse;">
+                                                <td style="width: 20%;height: auto;margin: auto;">{{ row['Player #'] }}</td>
+                                                <td style="width: 20%;height: auto;margin: auto;">{{ row['% of Goal'] }}</td>
+                                            </tr>
+                                            {% else %}
+                                            <tr>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['Player #'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['% of Goal'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['(STOCK COUNTS)->'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['ONG'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['ROBOTICS'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['GOLD'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['PAPER'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['UTILITY'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['AUTO'] }}</td>
+                                                <td style="width: 8%;height: auto;margin: auto;">{{ row['AIRLINE'] }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
