@@ -243,7 +243,9 @@ def build_inplay_options(cycle_round):
     return desc
 
 def render_insale_options():
-    # This routine has two purposes: Briefly render the INSALE page and update game & player tables
+    # This routine has two purposes:
+    # Briefly render the INSALE page and
+    # update game & player tables
     data = session['data']
     options = session['options']
     user = session['user']
@@ -267,6 +269,8 @@ def render_insale_options():
         data['short_description'] = short_desc
     if cycle['code'] == "SC2":
         INVITES = cycle['INVITES']
+    else:
+        INVITES = "Unknown"
 
     desc = []
     ctgy = ['CYCLE Message', 'PRODUCT', 'AMOUNT', 'COUNT']

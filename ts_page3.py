@@ -53,8 +53,8 @@ def render_request_play_options():
     for i in range(4):
         d['opt_ctgy'] = ctgy[i]
         d['opt_type'] = type[i]
-        d['opt_desc'] = desc[i]
-        d['opt_invest'] = invest[i]
+        #d['opt_desc'] = desc[i]
+        #d['opt_invest'] = invest[i]
         options.append(d)
         d = {}
     return options

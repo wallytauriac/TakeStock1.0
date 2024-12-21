@@ -8,6 +8,8 @@ mysql = MySQL()
 
 def create_app():
     app = Flask(__name__)
+    app.config['SESSION_TYPE'] = 'filesystem'
+    app.config['SECRET_KEY'] = "528491@JOKER"
     app.config['MYSQL_HOST'] = 'localhost'
     app.config['MYSQL_USER'] = 'root'
     app.config['MYSQL_PASSWORD'] = 'Evenodd!512'

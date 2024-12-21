@@ -1,87 +1,88 @@
 import os
-import re
 
-def search_files(directory, search_text):
-    report = {}
+
+def build_class_method_function_mapping(directory):
+    mapping = {}
+
     for root, _, files in os.walk(directory):
-        if not root.startswith(directory):
-            continue
-        for file in files:
+        for file in sorted(files):
             file_path = os.path.join(root, file)
             if not file.endswith(".py"):
                 continue  # Process only Python files
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 lines = f.readlines()
-                current_function = None
                 current_class = None
-                function_content = []
-                for line in lines:
-                    class_match = re.match(r'^\s*class\s+([\w_]+)\s*\(.*?\):', line)
-                    if class_match:
-                        current_class = class_match.group(1)
-                        if search_text in line:
-                            print(f"Found class: {current_class}")  # Debug
-                    function_match = re.match(r'^\s*def\s+([\w_]+)\s*\(.*?\):', line)
-                    if function_match:
-                        if current_function and search_text in '\n'.join(function_content):
-                            if search_text not in report:
-                                report[search_text] = {}
-                            if root not in report[search_text]:
-                                report[search_text][root] = []
-                            report[search_text][root].append((file, current_class, current_function))
-                            print(f"Appending function: {current_function} in class {current_class}")  # Debug
-                        current_function = function_match.group(1)
-                        function_content = []
-                        if search_text in line:
-                            print(f"Found function: {current_function} in class {current_class}")  # Debug
-                    function_content.append(line)
-                if current_function and search_text in '\n'.join(function_content):
-                    if search_text not in report:
-                        report[search_text] = {}
-                    if root not in report[search_text]:
-                        report[search_text][root] = []
-                    report[search_text][root].append((file, current_class, current_function))
-                    print(f"Finalizing function: {current_function} in class {current_class}")  # Debug
-    return report
+                for i, line in enumerate(lines):
+                    stripped_line = line.strip()
+                    if stripped_line.startswith('class '):
+                        current_class = stripped_line.split(' ')[1].split('(')[0]
+                        if file_path not in mapping:
+                            mapping[file_path] = {}
+                        mapping[file_path][current_class] = []
+                    elif stripped_line.startswith('def '):
+                        current_method = stripped_line.split(' ')[1].split('(')[0]
+                        if current_class:
+                            mapping[file_path][current_class].append(current_method)
+                        else:
+                            # Handle standalone functions
+                            if file_path not in mapping:
+                                mapping[file_path] = {}
+                            if 'Standalone' not in mapping[file_path]:
+                                mapping[file_path]['Standalone'] = []
+                            mapping[file_path]['Standalone'].append(current_method)
 
-def generate_report(report, output_file, directory):
-    with open(output_file, 'w') as f:
-        for criteria, paths in report.items():
-            f.write(f"Search Criteria: {criteria}\n")
-            for path, files in paths.items():
-                if path == directory:
-                    f.write(f"Directory Path: {path}\n")
-                    for file, class_name, function in files:
-                        class_info = f", Class: {class_name}" if class_name else ""
-                        f.write(f" - {file}{class_info}, Function: {function}\n")
-                    f.write("\n")
+    return mapping
 
-def generate_list(report, search_text, directory):
-    i = 0
-    print(f"Search Criteria: {search_text}")
-    print("\n")
-    print(f"Directory Path: {directory}")
-    for criteria, paths in report.items():
-        for path, files in paths.items():
-            if path == directory:
-                for file, class_name, function in files:
-                    class_info = f", Class: {class_name}" if class_name else ""
-                    i += 1
-                    print(f"{file}{class_info}, Function: {function}")
-    return i
+
+def detect_references(directory, search_text, mapping):
+    context_info = {}
+
+    for file_path, class_dict in mapping.items():
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            lines = f.readlines()
+            current_class = None
+            current_method = None
+            for i, line in enumerate(lines):
+                stripped_line = line.strip()
+                if stripped_line.startswith('class '):
+                    current_class = stripped_line.split(' ')[1].split('(')[0]
+                elif stripped_line.startswith('def '):
+                    current_method = stripped_line.split(' ')[1].split('(')[0]
+                if search_text in line:
+                    context = ""
+                    #context = f"File: {os.path.basename(file_path)}"
+                    if current_class:
+                        context += f"Class: {current_class} - Method: {current_method}"
+                    elif current_method:
+                        context += f"Function: {current_method}"
+                    if file_path not in context_info:
+                        context_info[file_path] = []
+                    context_info[file_path].append(context)
+
+    return context_info
+
+
+def generate_report(directory, context_info):
+    print(f"Search results in: {directory}\n")
+    for file_path, contexts in context_info.items():
+        print(f"References found in: {os.path.basename(file_path)}")
+        unique_contexts = set(contexts)  # Remove duplicates
+        for context in unique_contexts:
+            print(f"{context}")
+        print("")  # Add a newline for better readability
+
+    for file_path, contexts in context_info.items():
+        print(f"{os.path.basename(file_path)}")
 
 def main():
     directory = "C:/Users/wally/Documents/Python/Demo/Takestock1.0"
-    search_text = "get_table_data"
-    output_file = "C:/Users/wally/Documents/Python/Demo/Takestock1.0/files/whereused.txt"
-    output_target = "P"
-    report = search_files(directory, search_text)
-    if output_target == "F":
-        generate_report(report, output_file, directory)
-        print(f"Report generated: {output_file}")
-    else:
-        cnt = generate_list(report, search_text, directory)
-        print(f"Search generated: {cnt} items.")
+    search_text = "get_new_position"
+
+    mapping = build_class_method_function_mapping(directory)
+    context_info = detect_references(directory, search_text, mapping)
+    print(f"Search Criteria: {search_text}")
+    generate_report(directory, context_info)
+
 
 if __name__ == "__main__":
     main()

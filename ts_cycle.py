@@ -452,6 +452,8 @@ class Billpay:
             if isinstance(data, dict):
                 data1 = []
                 data1.append(data)
+            else:
+                data1 = []
             print("Billpay data1: ", data1)
             for d in data1:
                 # Preset common investment data

@@ -944,7 +944,7 @@ def render_preview_options(rev_type):
     else:
         flash("DB error. Investments table read error.", "error")
 
-    status, investments = db.get_player_investment_history(session['player_number'])
+    status, investments = db.get_table_data(session['player_number'])
 
     if status == "OK":
         print("Investments", investments)

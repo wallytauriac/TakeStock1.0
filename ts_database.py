@@ -1,3 +1,4 @@
+import pickle
 import random
 from random import randint, choice
 
@@ -11,6 +12,7 @@ import mysql.connector
 import random
 from typing import Dict, Any, Optional, Tuple, Set
 from mysql.connector import Error
+from datetime import datetime
 
 db_config = {
     'user': 'root',
@@ -150,20 +152,20 @@ class DB_Mgr:
         return status, result
 
     def put_game_card(self, gc):
-        glevel = gc.glevel
-        ggoal = gc.ggoal
-        player_count = gc.player_count
-        status = gc.status
-        total_spending = gc.total_spending
-        total_earnings = gc.total_earnings
-        game_ID = gc.game_ID
-        population = gc.population
-        pop_chg = gc.pop_chg
+        glevel = gc['game_level']
+        ggoal = gc['game_goal']
+        player_count = gc['player_count']
+        status = gc['status']
+        total_spending = gc['total_spending']
+        total_earnings = gc['total_earnings']
+        game_ID = gc['game_ID']
+        population = gc['population']
+        pop_chg = gc['population_chg']
         cur = self.mysql.connection.cursor()
         q = cur.execute("UPDATE game "
-                        "SET game_level = %s, game_goal = %s player_count = %s,"
-                        " status = %s, total_spending = %s, total_earnings = %s"
-                        " population = %s, pop_chg = %s)"
+                        "SET game_level = %s, game_goal = %s, player_count = %s,"
+                        " status = %s, total_spending = %s, total_earnings = %s,"
+                        " population = %s, population_chg = %s"
                         " WHERE game_id = %s", (glevel, ggoal, player_count, status, total_spending, total_earnings,
                                                 population, pop_chg, game_ID))
         self.mysql.connection.commit()
@@ -446,6 +448,217 @@ class DB_Mgr:
         cur.close()
         status = "OK"
         return status, b
+
+    def get_table_row(self, table_name, row_id):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            # Assuming 'id' is the primary key in the table
+            query = f"SELECT * FROM {table_name} WHERE id = %s"
+            cur.execute(query, (row_id,))
+            result = cur.fetchall()
+            column_names = [desc[0] for desc in cur.description]
+            cur.close()
+            status = "OK"
+            return status, result, column_names
+        except Exception as e:
+            print(f"An get_table_row error occurred: {e}")
+            cur.close()
+            return status, [], []
+
+    def delete_investments_by_code(self, code, player_number):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            query = "DELETE FROM investments WHERE code = %s AND player_number = %s"
+            cur.execute(query, (code, player_number))
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"An Delete_Investments by Code error occurred: {e}")
+            cur.close()
+        return status
+
+    def get_player_by_number(self, player_number):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            query = "SELECT * FROM players WHERE player_number = %s"
+            cur.execute(query, (player_number,))
+            result = cur.fetchall()
+            column_names = [desc[0] for desc in cur.description]
+            cur.close()
+            if result:
+                status = "OK"
+                player_data = dict(zip(column_names, result[0]))
+                return status, player_data
+            else:
+                return status, {}
+        except Exception as e:
+            print(f"An error in get_player_by_ number occurred: {e}")
+            cur.close()
+            return status, {}
+
+    def update_player_by_flag(self, player_data):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            # Dynamically build the query based on provided player_data keys and values
+            set_clause = ", ".join([f"{key} = %s" for key in player_data.keys() if key != 'player_number'])
+            query = f"UPDATE players SET {set_clause} WHERE player_number = %s"
+            values = list(player_data.values())
+            cur.execute(query, values)
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"An error in update_player_by_flag occurred: {e}")
+            cur.close()
+        return status
+
+    def get_positions_data(self, table_name):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            query = f"SELECT * FROM {table_name}"
+            cur.execute(query)
+            result = cur.fetchall()
+            cur.close()
+            status = "OK"
+            return len(result), result
+        except Exception as e:
+            print(f"An error in get_positions_data occurred: {e}")
+            cur.close()
+            return 0, []
+
+    def clear_positions_data(self, table_name):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            query = f"DELETE FROM {table_name}"
+            cur.execute(query)
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"An error in clear_positions_data occurred: {e}")
+            cur.close()
+        return status
+
+    def update_positions_data(self, table_name, visited_positions):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            for pos in visited_positions:
+                query = f"INSERT INTO {table_name} (value) VALUES (%s)"
+                cur.execute(query, (pos,))
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"An error in update_positions_data occurred: {e}")
+            cur.close()
+        return status
+
+    def insert_billpay(self, billpay_data):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            query = """
+            INSERT INTO billpay (bill_type, bill_round, bill_amount, bill_description, player_number, bill_value, invest_id)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (
+                billpay_data['bill_type'],
+                billpay_data['bill_round'],
+                billpay_data['bill_amount'],
+                billpay_data['bill_description'],
+                billpay_data['player_number'],
+                billpay_data['bill_value'],
+                billpay_data['invest_id']
+            )
+            cur.execute(query, values)
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"An error in insert_billpay occurred: {e}")
+            cur.close()
+        return status
+
+    def insert_roi_card(self, roi_data):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            query = """
+            INSERT INTO Investment_return (roi_type, roi_units, roi_rent, roi_BLDG_type, roi_PPTY_type, roi_Property, player_number, roi_price, max_qtrly_roi, ppty_id)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (
+                roi_data['roi_type'],
+                roi_data['roi_units'],
+                roi_data['roi_rent'],
+                roi_data['roi_BLDG_type'],
+                roi_data['roi_PPTY_type'],
+                roi_data['roi_Property'],
+                roi_data['player_number'],
+                roi_data['roi_price'],
+                roi_data['max_qtrly_roi'],
+                roi_data['ppty_id']
+            )
+            cur.execute(query, values)
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"An error in insert_roi_card occurred: {e}")
+            cur.close()
+        return status
+
+    def serialize_value(self, value):
+        if isinstance(value, dict):
+            return {k: self.serialize_value(v) for k, v in value.items()}
+        elif isinstance(value, list):
+            return [self.serialize_value(item) for item in value]
+        elif isinstance(value, tuple):
+            return tuple(self.serialize_value(item) for item in value)
+        elif isinstance(value, (datetime)):
+            return value.isoformat()
+        return value
+
+    def pickle_save(self, session_id, key, value, data_type):
+        serialized_value = pickle.dumps(self.serialize_value(value))
+        cursor = self.mysql.connection.cursor()
+        cursor.execute(
+            "REPLACE INTO sessions (id, session_key, session_value, data_type) VALUES (%s, %s, %s, %s)",
+            (session_id, key, serialized_value, data_type)
+        )
+        self.mysql.connection.commit()
+        cursor.close()
+
+    def deserialize_value(self, value):
+        if isinstance(value, dict):
+            return {k: (datetime.strptime(v, '%a, %d %b %Y %H:%M:%S GMT').strftime('%a, %d %b %Y %H:%M:%S GMT') if k in date_columns else self.deserialize_value(v)) for k, v in value.items()}
+        elif isinstance(value, list):
+            return [self.deserialize_value(item) for item in value]
+        elif isinstance(value, tuple):
+            return tuple(self.deserialize_value(item) for item in value)
+        return value
+
+    def pickle_get(self, session_id):
+        cursor = self.mysql.connection.cursor()
+        cursor.execute("SELECT session_key, session_value, data_type FROM sessions WHERE id = %s", (session_id,))
+        session_data = cursor.fetchall()
+        cursor.close()
+
+        sessions = {}
+        for row in session_data:
+            key = row['session_key']
+            value = pickle.loads(row['session_value'])
+            sessions[key] = self.deserialize_value(value)
+        return sessions
+
 
 """
 # test class
