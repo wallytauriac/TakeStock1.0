@@ -8,13 +8,20 @@ from datetime import datetime, date
 from wtforms import Form
 from app_factory import create_app, mysql
 from functools import wraps
+from ts_page3 import *
+from index_mgr import get_im
 import re
 
 def render_rp_options():
     print("Session RP data: ", session)
     data = session['data']
-    ga = Game_Assets("opportunities")
-    select = ga.get_new_position()
+    # INDEX MANAGER: Set opportunities table row for opportunity offering
+    im = get_im()
+    select = im.get_table_pointer("opportunities")
+    stat = im.reset_table_pointer("opportunities")
+    # ga = Game_Assets("opportunities")
+    # select = ga.get_new_position()
+    # ******************************************
     print(f"OPP row Selection: {select}")
 
     options = []
@@ -65,7 +72,7 @@ def render_rpbuy_options():
             desc.append(option['opt_desc'])
         if option['opt_ctgy'] == "OPPORTUNITY" and option['opt_desc'] != " ":
             desc.append(option['opt_desc'])
-    if result['INVITES'] != None:
+    if result['INVITES'] != "No":
         desc.append(result['INVITES'])
     else:
         desc.append(None)
@@ -217,8 +224,12 @@ def build_inplay_options(cycle_round):
         c = CycleExt()
         desc.append(c.get_cycle_message(invite_cycle))
         table = c.get_cycle_table_name(invite_cycle)
+        # INDEX MANAGER: Based on one of the secondary tables referenced get table current pointer & reset
+        im = get_im()
+        pos = im.get_table_pointer(table)
+        stat = im.reset_table_pointer(table)
         gat = Game_Assets(table)
-        pos = gat.get_new_position()
+        #pos = gat.get_new_position()
         print(f"Cycle row Selection: {pos}")
 
         ga_sel = gat.get_row(pos)
@@ -263,6 +274,8 @@ def render_insale_options():
         cycle = session['cycle2']
     if "invest_description" in cycle:
         short_desc = cycle['invest_description']
+        if "TRIP" in cycle['own_code']:
+            short_desc = short_desc + " " + cycle['own_code']
         data['short_description'] = short_desc
     else:
         short_desc = cycle['short_description']
@@ -402,13 +415,3 @@ def update_insale_options(dataopt):
 
     return resp
 
-def extract_numeric_value(value_str):
-    # Find all digits (including those that might be part of a decimal number)
-    match = re.search(r'[\d.]+', value_str)
-    if match:
-        try:
-            return int(match.group())  # or float(match.group()) if you are sure it is an integer
-        except:
-            return float(match.group())
-
-    return None  # or handle the case where no number is found

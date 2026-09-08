@@ -347,7 +347,10 @@ class Positions:
         q, result = db.get_positions_data(table_name)
         if q > 0:
             for r in result:
-                v_pos.add(r['value'])
+                if table_name == "positions":
+                    v_pos.add(r['value'])
+                else:
+                    v_pos.add(r['id'])
         else:
             pass
 

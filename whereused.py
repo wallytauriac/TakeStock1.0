@@ -76,7 +76,7 @@ def generate_report(directory, context_info):
 
 def main():
     directory = "C:/Users/wally/Documents/Python/Demo/Takestock1.0"
-    search_text = "get_new_position"
+    search_text = "calc_percent"
 
     mapping = build_class_method_function_mapping(directory)
     context_info = detect_references(directory, search_text, mapping)

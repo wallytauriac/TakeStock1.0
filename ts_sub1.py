@@ -180,6 +180,7 @@ def game_SPlay():
     data['player_number'] = session.get('player_number')
     data['player_move'] = session.get('player_move')
     data['player_round'] = session.get('player_round')
+    # Get the Single Play Generated Options to Display on the Single Play Page
     options = render_sp_options()
     session['options'] = options
     user = session['user']

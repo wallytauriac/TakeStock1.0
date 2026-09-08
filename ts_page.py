@@ -3,7 +3,7 @@ from flask import current_app
 from ts_database import *
 from ts_game import *
 from ts_events import *
-from ts_page2 import *
+from ts_page3 import *
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from datetime import datetime, date
 from wtforms import Form
@@ -60,6 +60,7 @@ def render_game_card(session, game_id):
     return data
 
 def process_first_move(game_ID, data):
+
     gb = GameBoard(game_ID)
     # Population growth, GDP & CPI management
     gb.update_gdp()
@@ -183,7 +184,7 @@ def process_end_of_round(session):
     if status == "OK":
         data['gc'] = gc
         session['data'] = data
-        stat = check_game_status()
+        status = check_game_status()
 
     return status
 
@@ -208,6 +209,7 @@ def check_game_status():
     if go == "Go":
         redirect("ts_sub1_bp.game_status")
     stat = "OK"
+    return stat
 
 
 
@@ -338,6 +340,7 @@ def build_sp_options():
     desc.append(sc + " Stocks Count=" + str(cc))
     invest.append("$   " + str(value * cc))  # Calculate stock value and store for display
     # Build Property Selected
+    # INDEX MANAGER: Set address table row for property offering
     pi_ppty = PriceIndex("address")
     pos = pi_ppty.get_new_position()
     row2 = pi_ppty.get_new_row()
@@ -348,6 +351,7 @@ def build_sp_options():
     price = round(row2['Price'], 0)
     invest.append("$  " + str(price))
     # Build Business Selected
+    # INDEX MANAGER: Set business table row for business offering
     pi_bus = PriceIndex("business")
     pos = pi_bus.get_new_position()
     row3 = pi_bus.get_new_row()
@@ -355,6 +359,7 @@ def build_sp_options():
     desc.append(row3['business'])
     invest.append("$  " + str(row3['buy']))
     # Build Commodity Selected
+    # INDEX MANAGER: Set commodities table row for commodities offering
     pi_comm = PriceIndex("commodities")
     commc, cc = pi_comm.choose_stock_brand("COMM")  # COMMC=COMM Choice and CC=Count Choice
     pos = pi_comm.get_new_position()
@@ -683,6 +688,7 @@ def build_tp_options():
     count = [100, 50, 10, 25]
     sc = random.choice(stocks)
     cc = random.choice(count)
+    # INDEX MANAGER: Set Stock table row for Stock offering
     pi_stck = PriceIndex("stocks")
     pos = pi_stck.get_new_position()
     row1 = pi_stck.get_new_row()
@@ -694,6 +700,7 @@ def build_tp_options():
     desc.append(sc + " Stocks Count=" + str(cc))
     invest.append("$   " + str(value * cc))
     # Property Offer
+    # INDEX MANAGER: Set address table row for property offering
     pi_ppty = PriceIndex("address")
     pos = pi_ppty.get_new_position()
     row2 = pi_ppty.get_new_row()
@@ -704,6 +711,7 @@ def build_tp_options():
     price = round(row2['Price'], 0)
     invest.append("$  " + str(price))
     # Business Offer
+    # INDEX MANAGER: Set business table row for business offering
     pi_bus = PriceIndex("business")
     pos = pi_bus.get_new_position()
     row3 = pi_bus.get_new_row()

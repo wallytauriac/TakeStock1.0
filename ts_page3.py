@@ -3,7 +3,7 @@ import decimal
 from ts_database import *
 from ts_game import *
 from ts_events import *
-from ts_page2 import *
+from index_mgr import get_im
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from datetime import datetime, date
 from wtforms import Form
@@ -456,3 +456,14 @@ def process_scheduled_report():
     else:
         trip = tr.select_business_report()
     session['trip'] = trip
+
+def extract_numeric_value(value_str):
+    # Find all digits (including those that might be part of a decimal number)
+    match = re.search(r'[\d.]+', value_str)
+    if match:
+        try:
+            return int(match.group())  # or float(match.group()) if you are sure it is an integer
+        except:
+            return float(match.group())
+
+    return None  # or handle the case where no number is found

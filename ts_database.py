@@ -18,7 +18,7 @@ db_config = {
     'user': 'root',
     'password': 'Evenodd!512',
     'host': 'localhost',
-    'database': 'Takestock1.0'
+    'database': 'takestock1.0'
 }
 
 
@@ -226,7 +226,10 @@ class DB_Mgr:
         stat = "NOK"
         username = dataopt['user']
         data = dataopt['data']
-        buy_type = data['buy_type']
+        if "buy_type" in data:
+            buy_type = data['buy_type']
+        else:
+            buy_type = "OTHR"
         game_ID = gc['game_ID']
         round_count = data['player_round']
         move_count = data['player_move']
@@ -242,8 +245,8 @@ class DB_Mgr:
         self.mysql.connection.commit()
         q = cur.execute('SELECT * FROM players WHERE username = %s', [username])
         result = cur.fetchone()
-        if result['cash_on_hand'] > amount:
-            cash_on_hand = result['cash_on_hand'] - amount
+        if result['cash_on_hand'] > float(amount):
+            cash_on_hand = result['cash_on_hand'] - float(amount)
         stck = result['stock_value']
         ppty = result['property_value']
         bus = result['business_value']
@@ -271,7 +274,41 @@ class DB_Mgr:
         stat = "OK"
         return stat
 
+    def get_investments_by_code(self, code, player_number):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        q = cur.execute("SELECT * FROM investments WHERE invest_type = %s and player_number = %s", [code, player_number])
+        result = cur.fetchall()
+        cur.close()
+        if q > 0:
+            status = "OK"
+        else:
+            print("Database error:", "get_investments_by_code failed")
+        return status, result
 
+    def get_investments_by_desc(self, code, desc, player_number):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        q = cur.execute(
+            "SELECT * FROM investments WHERE invest_type = %s and player_number = %s and invest_description = %s",
+            [code, player_number, desc])
+        result = cur.fetchall()
+        cur.close()
+        if q > 0:
+            status = "OK"
+        else:
+            print("Database error:", "get_investments_by_desc failed")
+        return status, result
+    def update_investment_by_id(self, inv_data):
+        # Investment update code lost...This code needs rebuild
+        status = "OK"
+        return status
+
+
+    def update_goal_by_id(self, goal_data):
+        # Goal update code lost...This code needs rebuild
+        status = "OK"
+        return status
 
 
     def insert_investments_from_sale(self, invest_data):
@@ -443,7 +480,8 @@ class DB_Mgr:
     def get_table_data(self, table_name):
         status = "NOK"
         cur = self.mysql.connection.cursor()
-        q = cur.execute(f"SELECT * FROM {table_name}")
+        sql = "SELECT * FROM " + table_name
+        q = cur.execute(sql)
         b = cur.fetchall()
         cur.close()
         status = "OK"
@@ -470,15 +508,44 @@ class DB_Mgr:
         status = "NOK"
         cur = self.mysql.connection.cursor()
         try:
-            query = "DELETE FROM investments WHERE code = %s AND player_number = %s"
+            query = "DELETE FROM investments WHERE invest_type = %s AND player_number = %s"
             cur.execute(query, (code, player_number))
             self.mysql.connection.commit()
             cur.close()
             status = "OK"
         except Exception as e:
             print(f"An Delete_Investments by Code error occurred: {e}")
+            self.mysql.connection.rollback()
             cur.close()
         return status
+
+    def delete_investment_by_id(self, id):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            query = "DELETE FROM investments WHERE invest_id = %s"
+            cur.execute(query, (id,))
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"Delete_Investment by ID error occurred: {e}")
+            self.mysql.connection.rollback()
+            cur.close()
+        return status
+
+    def get_requests_by_ctgy(self, ctgy):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        q = cur.execute("SELECT * FROM requests WHERE ctgy = %s", [ctgy])
+        result = cur.fetchall()
+        cur.close()
+        if q > 0:
+            status = "OK"
+        else:
+            print("Database error:", "get_requests_by_ctgy failed")
+        return q, result
+
 
     def get_player_by_number(self, player_number):
         status = "NOK"
@@ -533,26 +600,31 @@ class DB_Mgr:
             return 0, []
 
     def clear_positions_data(self, table_name):
-        status = "NOK"
-        cur = self.mysql.connection.cursor()
-        try:
-            query = f"DELETE FROM {table_name}"
-            cur.execute(query)
-            self.mysql.connection.commit()
-            cur.close()
-            status = "OK"
-        except Exception as e:
-            print(f"An error in clear_positions_data occurred: {e}")
-            cur.close()
+        status = "OK"
+        if table_name == "positions":
+            status = "NOK"
+            cur = self.mysql.connection.cursor()
+            try:
+                query = f"DELETE FROM {table_name}"
+                cur.execute(query)
+                self.mysql.connection.commit()
+                cur.close()
+                status = "OK"
+            except Exception as e:
+                print(f"An error in clear_positions_data occurred: {e}")
+                cur.close()
         return status
 
     def update_positions_data(self, table_name, visited_positions):
         status = "NOK"
+        listid = table_name
+
         cur = self.mysql.connection.cursor()
         try:
             for pos in visited_positions:
-                query = f"INSERT INTO {table_name} (value) VALUES (%s)"
-                cur.execute(query, (pos,))
+                query = f"INSERT INTO positions (list_id, value) VALUES (%s, %s)"
+                cur.execute(query, (listid, pos))
+            cur.close()
             self.mysql.connection.commit()
             cur.close()
             status = "OK"
