@@ -233,7 +233,7 @@ def investment_handler():
         addr = session['addr']
         image = "TakeStock City (Main).png"
         return render_template('property_rental.html', data=data, page_name=page_name, user=user, title=title, image=image, addr=addr)
-    if page in ["PPTY", "STCK", "COMM"]:
+    if page in ["PPTY", "STCK", "COMM", "BUS"]:
         page_name = "Investment Sale List Page"
         title = "Sale Opportunity - Investments"
         inv_data = session['inv_data']

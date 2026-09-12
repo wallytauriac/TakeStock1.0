@@ -542,6 +542,14 @@ class ROI_Card:
             d.append(self.roi_data)
         return d
 
+    def select_rental(self, addr_data):
+        d = []
+        for addr in addr_data:
+            if addr['roi_BLDG_type'] == "Condo" or addr['roi_BLDG_type'] == "Apartment":
+                d.append(addr)
+
+        return d
+
     def build_insert_roi(self, addr: dict):
         stat = "NOK"
         roi = Decimal(addr['units']) * Decimal(addr['Rent']) * Decimal(3)

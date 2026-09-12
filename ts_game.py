@@ -828,8 +828,8 @@ class Investment:
         amt = 1.25
         if data['code'] == "LC2":
             self.invest_data['invest_type'] = "OTHR"
-            self.invest_data['invest_amount'] = data['investment_check']
-            self.invest_data['invest_count'] = abs(data['COH'])
+            self.invest_data['invest_count'] = data['investment_check']
+            self.invest_data['invest_amount'] = abs(data['COH'])
         elif data['code'] == "SC":
             self.invest_data['invest_type'] = data['investment_type']
             self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
@@ -979,6 +979,16 @@ class Investment:
             raise Exception("Error Condition: Load Data Investments by type for table failed...")
         for d in data:
             if type == d['invest_type']:
+                if d['invest_type'] == "STCK":
+                    d['invest_description'] = d['invest_description'] + " - "+ str(d['invest_count'])
+                data1.append(d)
+
+        return data1
+
+    def extract_trip_investments(self, data):
+        data1 = []
+        for d in data:
+            if "TRIP" not in d['own_code']:
                 data1.append(d)
         return data1
 

@@ -274,6 +274,18 @@ class DB_Mgr:
         stat = "OK"
         return stat
 
+    def get_investments_by_player(self, player_number):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        q = cur.execute("SELECT * FROM investments WHERE player_number = %s", [player_number])
+        result = cur.fetchall()
+        cur.close()
+        if q > 0:
+            status = "OK"
+        else:
+            print("Database error:", "get_investments_by_player failed")
+        return status, result
+
     def get_investments_by_code(self, code, player_number):
         status = "NOK"
         cur = self.mysql.connection.cursor()

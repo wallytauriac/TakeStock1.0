@@ -219,29 +219,45 @@ def process_investment_requests(req_id):
         print(f"addr2 in process_investment_requests: {addr2} ")
         roi = ROI_Card()
         addr = roi.load_roi_from_addr(addr2, session['player_number'], 0)
-        session['addr'] = addr
-        print(f"addr in process_investment_requests: {addr} ")
-
-    if req_id == '3' or req_id == '4' or req_id == '5':
+        if req_id == '1':
+            addr_rent = roi.select_rental(addr)
+            session['addr'] = addr_rent
+            print(f"addr_rent in process_investment_requests: {addr_rent} ")
+        else:
+            session['addr'] = addr
+            print(f"addr in process_investment_requests: {addr} ")
+    inv_data = []
+    if req_id == '3' or req_id == '4' or req_id == '5' or req_id == '6' or req_id == '7':
         flag = 0
         if req_id == '3':
             inv_type = "PPTY"
         elif req_id == '4':
-            inv_type = "STCK"
+            inv_type = "BUS"
         elif req_id == '5':
             inv_type = "COMM"
-        iv = Investment()
-        inv_data = iv.get_player_investments_by_type(session['player_number'], inv_type)
-        inv_loans = iv.get_player_investments_by_type(session['player_number'], "LOAN")
-        page = inv_type
-        if inv_type == "PPTY" and len(inv_loans) > 1:
-            inv_data = []
-            flash ("Property Sale prohibited, You possess more than 1 loan", "warning")
-            flag = 1
-        if len(inv_data) == 0:
-            flash("Sale prohibited, You possess none of requested investment type.", "warning")
-        if len(inv_data) > 0 and flag != 1:
-            flash("Choose one investment to sell. A buyer may respond.", "success")
+        elif req_id == '6':
+            inv_type = "STCK"
+            # Buy Stocks
+        elif req_id == '7':
+            inv_type = "STCK"
+
+        if req_id != '6':
+            iv = Investment()
+            inv_data = iv.get_player_investments_by_type(session['player_number'], inv_type)
+            if inv_type == "BUS":
+                inv_data = iv.extract_trip_investments(inv_data)
+                print(f"inv_data in process_investment_requests: {inv_data} ")
+
+            inv_loans = iv.get_player_investments_by_type(session['player_number'], "LOAN")
+            page = inv_type
+            if inv_type == "PPTY" and len(inv_loans) > 1:
+                inv_data = []
+                flash ("Property Sale prohibited, You possess more than 1 loan", "warning")
+                flag = 1
+            if len(inv_data) == 0:
+                flash("Sale prohibited, You possess none of requested investment type.", "warning")
+            if len(inv_data) > 0 and flag != 1:
+                flash("Choose one investment to sell. A buyer may respond.", "success")
         session['inv_data'] = inv_data
     return page
 
