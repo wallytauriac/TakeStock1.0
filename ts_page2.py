@@ -393,7 +393,7 @@ def update_insale_options(dataopt):
             stat = iv.parse_row_data(cycle, player_number)
             loan_status = iv.verify_loan(pc.data)
         if cycle['investment'] == "RENT":
-            stat = pc.update_data('other_investments', abs(cycle['amount']), action="A")
+            stat = pc.update_data('other_investments', abs(decimal.Decimal(cycle['amount'])), action="A")
             pc_lstat = pc.verify_living_status()  # un-housed or housed based on player city_addr column
             iv_lstat = iv.verify_living_status(player_number)  # Home Owner, un-housed, Renter statuses
             if pc_lstat == "unhoused" or iv_lstat == "unhoused":

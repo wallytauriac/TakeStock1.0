@@ -3,6 +3,7 @@ import decimal
 from ts_database import *
 from ts_game import *
 from ts_events import *
+from index_mgr import StockMgr
 from index_mgr import get_im
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from datetime import datetime, date
@@ -236,8 +237,14 @@ def process_investment_requests(req_id):
         elif req_id == '5':
             inv_type = "COMM"
         elif req_id == '6':
-            inv_type = "STCK"
+            page = "BUY STCK"
             # Buy Stocks
+            sm = StockMgr()
+            row = sm.set_position(1, 31)
+            stock_row = sm.get_stock_row(row)
+            inv_data = sm.build_stock_array(stock_row, session['player_number'])
+            session['inv_data'] = inv_data
+            print("inv_data in process_investment_requests: ",inv_data )
         elif req_id == '7':
             inv_type = "STCK"
 

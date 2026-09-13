@@ -239,7 +239,12 @@ def investment_handler():
         inv_data = session['inv_data']
         image = "TakeStock City (Main).png"
         return render_template('property_sale.html', data=data, page_name=page_name, user=user, title=title, image=image, inv_data=inv_data)
-
+    if page == "BUY STCK":
+        page_name = "Stock Buy Page"
+        title = "Purchase Company Stocks - Investment"
+        inv_data = session['inv_data']
+        image = "TakeStock City (Main).png"
+        return render_template('stock_sale.html', data=data, page_name=page_name, user=user, title=title, image=image, inv_data=inv_data)
 
     return render_template('move_address.html', data=data, page_name=page_name, user=user)
 
@@ -278,7 +283,7 @@ def investment_request_process():
         image = "TakeStock City (Main).png"
         return render_template('property_rental.html', data=data, page_name=page_name, user=user, title=title, image=image,
                         addr=addr)
-    if req_type in ["PPTY", "STCK", "COMM"]:
+    if req_type in ["PPTY", "STCK", "COMM", "BUS"]:
         inv_data = []
         stat = process_sell_properties(req_id, req_type)
         if stat == "OK":
@@ -292,6 +297,23 @@ def investment_request_process():
         image = "TakeStock City (Main).png"
         return render_template('property_sale.html', data=data, page_name=page_name, user=user, title=title, image=image,
                         inv_data=inv_data)
+    if req_type == "BUY STCK":
+        inv_data = session['inv_data']
+        print("Req_id before invoking store_investment: ", req_id)
+        print("inv_data in investment_request_process: ", inv_data)
+        # Use StockMgr to store recent investment for player
+        sm = StockMgr()
+        status = sm.store_investment(inv_data, req_id, session['player_number'])
+        if status == "OK":
+            flash("Investment Purchase is complete. Check your board.", "success")
+        else:
+            flash("Investment Purchase did not record. Try again later.", "warning")
+        page_name = "Stock Buy Page"
+        title = "Stock Opportunity Result"
+        image = "TakeStock City (Main).png"
+        return render_template('stock_sale.html', data=data, page_name=page_name, user=user, title=title,
+                               image=image,
+                               inv_data=inv_data)
     page_name = "Unknown Page"
     return render_template('move_address.html', data=data, page_name=page_name)
 

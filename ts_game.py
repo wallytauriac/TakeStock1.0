@@ -829,7 +829,7 @@ class Investment:
         if data['code'] == "LC2":
             self.invest_data['invest_type'] = "OTHR"
             self.invest_data['invest_count'] = data['investment_check']
-            self.invest_data['invest_amount'] = abs(data['COH'])
+            self.invest_data['invest_amount'] = abs(decimal.Decimal(data['COH']))
         elif data['code'] == "SC":
             self.invest_data['invest_type'] = data['investment_type']
             self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))

@@ -6,6 +6,7 @@ from app_factory import create_app, mysql
 from flask_mysqldb import MySQL
 import re
 import random
+import decimal
 
 class IndexMgr:
     def __init__(self, tablelist):
@@ -68,8 +69,64 @@ tablelist = ["commodities", "address", "business", "lifecenter",
 
 _im_instance = None
 
+
 def get_im():
     global _im_instance
     if _im_instance is None:
         _im_instance = IndexMgr(tablelist)   # only runs on first real call, not at import
     return _im_instance
+
+
+class StockMgr:
+    def __init__(self):
+        self.table_name = "stocks"
+        self.column_names = []
+        self.stock_data = {
+            'stock_count': 100,
+            'stock_value': decimal.Decimal('0.00'),
+            'stock_description': " ",
+            'stock_cost': decimal.Decimal('0.00')
+            }
+
+    def set_position(self, row1: int, row2: int):
+        rng = random.Random()
+        position = rng.randint(row1, row2)
+        return position
+
+    def get_stock_row(self, row: int):
+        status, result, column_names = db.get_table_row(self.table_name, row)
+        if status == "NOK":
+            raise RuntimeError(f"TakeStock {self.table_name} table read failure or key not found.")
+        self.column_names = column_names
+        return result[0]  # unwrap here, once
+
+    def build_stock_array(self, stock_row, player_number):
+        stock_array = []
+
+        for column, value in stock_row.items():
+            if column != "id":
+                amt = decimal.Decimal(value)
+                entry = self.stock_data.copy()  # start with all current fields
+                entry['stock_value'] = amt
+                entry['stock_cost'] = amt * 100
+                entry['stock_description'] = column
+                stock_array.append(entry)
+
+        return stock_array
+
+    def store_investment(self, stock_data, req_id, player_number):
+        stat = "NOK"
+        ndx = int(req_id) - 1
+        new_value = decimal.Decimal(stock_data[ndx]['stock_cost']) * decimal.Decimal('1.10')
+        invest_data = {
+            'invest_type': "STCK",
+            'invest_count': stock_data[ndx]['stock_count'],
+            'invest_amount': decimal.Decimal(stock_data[ndx]['stock_cost']),
+            'invest_description': stock_data[ndx]['stock_description'],
+            'player_number': player_number,
+            'invest_value': decimal.Decimal(new_value)
+        }
+
+        stat = db.insert_investments_from_sale(invest_data)
+        return stat
+
