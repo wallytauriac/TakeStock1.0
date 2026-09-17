@@ -3,6 +3,7 @@ from flask import current_app
 from ts_database import *
 from ts_game import *
 from ts_events import *
+from index_mgr import GoalMgr
 from ts_page3 import *
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from datetime import datetime, date
@@ -189,6 +190,7 @@ def process_end_of_round(session):
     return status
 
 def check_game_status():
+    """
     glevel = session['glevel']
     ggoal = session['ggoal']
     data = session['data']
@@ -205,9 +207,21 @@ def check_game_status():
             if Decimal(player_status2[i]) >= Decimal(90):
                 flash(f"Player {i} is approaching a WIN status.", "success")
                 go = "Go"
-
+    """
+    mgr = GoalMgr()
+    goal_status = mgr.get_player_percentages()
+    lead_player = mgr.get_lead_player(goal_status)
+    for plyr_number, pct in goal_status:
+        if pct >= 100.0:
+            flash(
+                f"******* We have a Winner >>> {plyr_number} <<< ******* ---> Go to GameBoard and select Game Status!!!", "success")
+            print(f"Player {plyr_number}: {pct}%")
+    if lead_player != "No Lead":
+        flash(f"{lead_player} has taken the LEAD position in this game. Check GameBoard for status.", "success")
+    """
     if go == "Go":
         redirect("ts_sub1_bp.game_status")
+    """
     stat = "OK"
     return stat
 

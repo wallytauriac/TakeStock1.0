@@ -972,14 +972,14 @@ class Investment:
         stat = bp.build_billpay_card(player, idata)
         return stat
 
-    def get_player_investments_by_type(self, player_number, type):
+    def get_player_investments_by_type(self, player_number, type, desc="Y"):
         status, data = db.get_player_investment_history(player_number)
         data1 = []
         if status == "NOK":
             raise Exception("Error Condition: Load Data Investments by type for table failed...")
         for d in data:
             if type == d['invest_type']:
-                if d['invest_type'] == "STCK":
+                if d['invest_type'] == "STCK" and desc == "Y":
                     d['invest_description'] = d['invest_description'] + " - "+ str(d['invest_count'])
                 data1.append(d)
 
@@ -994,12 +994,12 @@ class Investment:
 
     def get_stock_investments(self, player_number):
         stocks = {"oNg": 0, "robotics": 0, "gold": 0, "paper": 0, "utility": 0, "auto": 0, "airline": 0}
-        data = self.get_player_investments_by_type(player_number, "STCK")
+        data = self.get_player_investments_by_type(player_number, "STCK", desc="N")
         stock_count = int(0)
         # Load stocks array
         for stock in data:
-            stocks[stock['invest_description']] = Decimal(stocks[stock['invest_description']]) + Decimal(stock['invest_count'])
-        # Accumulate count of stocks (max 100 per company)
+            stocks[f"{stock['invest_description']}"] += stock['invest_count']
+            # Accumulate count of stocks (max 100 per company)
         for key, value in stocks.items():
             if value >= 100:
                 stock_count += int(100)

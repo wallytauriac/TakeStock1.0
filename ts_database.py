@@ -516,6 +516,59 @@ class DB_Mgr:
             cur.close()
             return status, [], []
 
+    def get_table_row_by_column(self, table_name, column_name, value):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            # table_name and column_name can't be parameterized like values can,
+            # so validate them before interpolating into the query
+            if not self._is_valid_identifier(table_name) or not self._is_valid_identifier(column_name):
+                print(f"Invalid table or column name: {table_name}, {column_name}")
+                cur.close()
+                return status, [], []
+
+            query = f"SELECT * FROM {table_name} WHERE {column_name} = %s"
+            cur.execute(query, (value,))
+            row = cur.fetchall()
+            result = row[0]
+            column_names = [desc[0] for desc in cur.description]
+            cur.close()
+            status = "OK"
+            return status, result, column_names
+        except Exception as e:
+            print(f"A get_table_row_by_column error occurred: {e}")
+            cur.close()
+            return status, [], []
+
+    def get_table_row_by_columns(self, table_name, column_name1, value1, column_name2, value2):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            # table_name and column_name can't be parameterized like values can,
+            # so validate them before interpolating into the query
+            if not self._is_valid_identifier(table_name) or not self._is_valid_identifier(column_name1):
+                print(f"Invalid table or column name: {table_name}, {column_name1}")
+                cur.close()
+                return status, [], []
+
+            query = f"SELECT * FROM {table_name} WHERE {column_name1} = %s and {column_name2} = %s"
+            cur.execute(query, (value1, value2))
+            row = cur.fetchall()
+            result = row[0]
+            column_names = [desc[0] for desc in cur.description]
+            cur.close()
+            status = "OK"
+            return status, result, column_names
+        except Exception as e:
+            print(f"A get_table_row_by_columns error occurred: {e}")
+            cur.close()
+            return status, [], []
+
+    @staticmethod
+    def _is_valid_identifier(name):
+        import re
+        return bool(re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', name))
+
     def delete_investments_by_code(self, code, player_number):
         status = "NOK"
         cur = self.mysql.connection.cursor()

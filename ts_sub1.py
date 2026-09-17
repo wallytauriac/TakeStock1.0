@@ -9,6 +9,7 @@ from ts_game import *
 from ts_events import *
 from ts_database import *
 import pandas as pd
+from index_mgr import GoalMgr
 from flask_mysqldb import MySQL
 from app_factory import create_app, mysql
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, RadioField, SelectField, IntegerField
@@ -544,6 +545,10 @@ def game_status():
     data = session['data']
     data['user_captain'] = session['username']
     result, q = db.get_player_record(session['username'])
+    # =====================================================
+    # Placeholder: GoalMgr Processing
+    GoalMgr()
+    # ======================================================
     data['game_ID'] = result['game_ID']
     flash("There are three game levels and different game goals per level. Get familiar with them", "success")
     gg = GameGoals()
