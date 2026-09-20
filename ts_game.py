@@ -7,6 +7,8 @@ import random
 import re
 import copy
 from typing import Dict, Any, Optional, Tuple, Set
+
+from icecream import ic
 from mysql.connector import Error
 from ts_database import *
 from ts_cycle import *
@@ -434,7 +436,7 @@ class Players:
         # Loads data from the MySQL table into memory.
         # Returns: Player variables as a dictionary or None if no data is fetched
         data, q = db.get_player_record(username)
-        print(f"Fetched data: {data}")  # Debugging line
+        print(f"Fetched Player data: {data}")  # Debugging line
         return data
 
     def get_player_data(self):
@@ -445,12 +447,13 @@ class Players:
         return self.data.get(key, "Player table key not found")
 
     def update_table(self):
-        stat = db.update_player2(self.data)
+        stat = db.update_player3(self.data)
         return stat
 
 
     def update_data(self, key, value, action="U"):
         """PUT-like method to update existing data."""
+        ic(key, value)
         if key not in self.data:
             return "Player table key not found"
         if action == "U":
@@ -462,7 +465,8 @@ class Players:
         return "OK"
 
     def update_table_row(self):
-        q = db.update_player2(self.username)
+        ic(self.data)
+        q = db.update_player3(self.data)
 
     def recalc_salary(self):
         # salary + (salary * degree_level * 0.5) + (salary * job_level * 0.7) rounded to the nearest dollar.
@@ -832,6 +836,12 @@ class Investment:
             self.invest_data['invest_amount'] = abs(decimal.Decimal(data['COH']))
         elif data['code'] == "SC":
             self.invest_data['invest_type'] = data['investment_type']
+            stock_list = ["oNg", "robotics", "gold", "paper", "utility", "auto", "airline"]
+            if data['short_description'] not in stock_list:
+                for stock in stock_list:
+                    if stock in data['short_description']:
+                        self.invest_data['invest_description'] = stock
+
             self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
             self.invest_data['invest_count'] = data['count']
         elif data['code'] == "SC2":
@@ -878,7 +888,7 @@ class Investment:
             self.invest_data['invest_count'] = data['invest_count']
         else:
             self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
-        if data['code'] != "SC2" and data['code'] != "SHP":
+        if data['code'] != "SC2" and data['code'] != "SHP" and self.invest_data['invest_type'] != "STCK":
             self.invest_data['invest_description'] = data['short_description']
         self.invest_data['invest_value'] = round(decimal.Decimal(self.invest_data['invest_amount']) * decimal.Decimal(amt), 2)
         stat = db.insert_investments_from_sale(self.invest_data)

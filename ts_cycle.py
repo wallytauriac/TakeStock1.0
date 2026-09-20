@@ -155,6 +155,7 @@ class CycleExt:
         return cycle_tbl[key]
 
     def get_cycle_tax_code(self, key: str):
+        key = key.rstrip()
         cycle_tbl = {
             "PTAX ON": 1,
             "PTAX OFF": 0,
@@ -255,14 +256,15 @@ class Opportunity:
 
     def set_player_flags(self, player_number):
         stat = "none"
-        result = db.get_player_by_number(player_number)
+        status, result = db.get_player_by_number(player_number)
+        print("player data in set_player_flags: ", result)
         if self.data['short_description'] == "Property_Insurance":
             result['ins_assess'] = 0
-            resp = db.update_player_by_flag(result)
+            resp = db.update_player_by_key(player_number, "ins_assess", result['ins_assess'])
             stat = "done"
         elif self.data['short_description'] == "Promotion":
             result['job_level'] = int(result['job_level']) + int(1)
-            resp = db.update_player_by_flag(result)
+            resp = db.update_player_by_key(player_number, "job_level", result['job_level'])
             stat = "done"
         elif self.data['short_description'] == "Property Sell":
             y = db.delete_investments_by_code("PPTY", player_number)
@@ -275,7 +277,7 @@ class Opportunity:
         result = db.get_player_by_number(player_number)
         if self.data['short_description'] == "Salary increase":
             result['salary'] = decimal.Decimal(result['salary']) + decimal.Decimal(amt)
-            resp = db.update_player_by_flag(result)
+            resp = db.update_player_by_key(player_number, "salary", result['salary'])
             stat = "done"
 
         return stat

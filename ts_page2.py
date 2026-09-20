@@ -1,5 +1,5 @@
 import decimal
-
+import random
 from ts_database import *
 from ts_game import *
 from ts_cycle import *
@@ -13,11 +13,27 @@ from index_mgr import get_im
 import re
 
 def render_rp_options():
+    """
+    This section of code is used for processing the TakeStock Random Play game option
+    The Random Play Option supports up to 3 player game moves or selections per turn
+    -- The primary move is to accept or reject a random opportunity, need, or want
+    -- The secondary and tertiary moves allow for accepting or rejecting losses or gains
+    ---- Rejection of the secondary gain/loss prevents access to the tertiary
+    ---- These gain or loss offers come from a random selection of several cycle tables
+    ---- The cycle tables are stock, shopping, life, learning, job, sell, and banker opportunities
+    When a player rejects the primary opportunity, any INVITES do not appear. The game moves on to the next
+    player.
+    TEST CONTROL: Set select to a number - 1-->70
+    """
     print("Session RP data: ", session)
     data = session['data']
     # INDEX MANAGER: Set opportunities table row for opportunity offering
     im = get_im()
     select = im.get_table_pointer("opportunities")
+    # ************************************
+    # Set following variable for testing purposes
+    select = 7
+    # ************************************
     stat = im.reset_table_pointer("opportunities")
     # ga = Game_Assets("opportunities")
     # select = ga.get_new_position()
@@ -150,9 +166,13 @@ def update_rp_player_game(dataopt):
     # Unload options from the session nested dictionary
     options2 = session['options']
     # Array of values that represent investment items to generate investment rows
-    inv_list = ["Car Purchase", "oNg Stock", "Rest & Recreation Park: Tickets",
+    inv_list = ["Car Purchase", "Stocks", "Rest & Recreation Park: Tickets",
                 "Vacation Resort: Tickets", "TV 80inch"
                 ]
+    stock_list = ["oNg", "robotics", "gold", "paper", "utility", "auto", "airline"]
+    rng = random.Random()
+    stock_index = rng.randint(0, 6)
+    stock_selection = stock_list[stock_index]
     if result['short_description'] in inv_list:
         invest_data['player_number'] = data1['player_number']
         invest_data['invest_amount'] = decimal.Decimal(result['amount']) * decimal.Decimal(-1)
@@ -161,9 +181,11 @@ def update_rp_player_game(dataopt):
         if int(result['count']) == 0:
             invest_data['invest_count'] = 1
         invest_data['invest_description'] = result['short_description']
-        if result['short_description'] == "oNg Stock":
+        if result['short_description'] == "Stocks":
             invest_data['invest_type'] = "STCK"
             invest_data['invest_value'] = float(1000.00)
+            result['short_description'] = stock_selection
+            invest_data['invest_description'] = stock_selection
         else:
             invest_data['invest_value'] = abs(float(result['amount'])) * 1.25
         status = db.insert_investments_from_sale(invest_data)
@@ -194,9 +216,23 @@ def update_rp_player_game(dataopt):
         x = opp.set_player_flags(data2['player_number'])
 
 def render_inplay_options():
+    """
+    This section of code is designed for processing the optional INVITES of the TakeStock game.
+    Two INVITES are possible if the opportunity selected for a player contains an INVITE.
+    As mentioned in the previous section of code, there are several tables that are used for selection.
+    This processing is called INVITES and Cycle of rounds for a player's turn.
+    The cycles are intended to emulate things that accompany local travel around the TakeStock city.
+
+    TEST CONTROL: In BUILD_INPLAY_OPTIONS Set invite_cycle
+    --- Valid values are: "Sell Cycle", "Job Cycle", "Life Cycle", "College Cycle", "Shopping Cycle",
+    --- "Banker Cycle", "Stock Cycle", "No"
+    --- The "No" invite_cycle value causes no INVITE processing. In the previous section select an opportunity
+    --- with no INVITE cycle specification shown in the Opportunities table.
+    """
     options = []
     cycle_round = session['cycle_round']
-    cycle_round += 1
+    if cycle_round < 2:
+        cycle_round += 1
     session['cycle_round'] = cycle_round
 
     ctgy = ['GEN Message', 'CYCLE Message', 'PRODUCT', 'AMOUNT', 'COUNT']
@@ -214,6 +250,10 @@ def build_inplay_options(cycle_round):
                 "or other life opportunities. Take the journey. It will result in two products or adventures, "
                 "or a refusal can cost you a consulting fee.")
     invite_cycle = session['INVITES']
+    # ************************************
+    # Set following variable for testing purposes
+    # invite_cycle = "Stock Cycle"
+    # ************************************
     if invite_cycle == "Sell Cycle":
         player_number = session['player_number']
         sc3 = Sellcycle(player_number)
@@ -227,6 +267,16 @@ def build_inplay_options(cycle_round):
         # INDEX MANAGER: Based on one of the secondary tables referenced get table current pointer & reset
         im = get_im()
         pos = im.get_table_pointer(table)
+        # =========================
+        # For testing purposes - Change POS for Cycle 1 and Cycle 2
+        #
+        if cycle_round == 1:
+            pos = 14
+        else:
+            pos = 12
+        # ==========================
+
+
         stat = im.reset_table_pointer(table)
         gat = Game_Assets(table)
         #pos = gat.get_new_position()
@@ -316,12 +366,13 @@ def update_insale_options(dataopt):
     # Depending on the cycle data in play perform actions to update player and game data
     # CYCLE code, short_description, INVITES define a row
     # Short description and IMVITES can be combined with AT to define action
-    # Code is two are three character mnemonic for cycle type
+    # Code is two or three character mnemonic for cycle type
     msg = " "
     player_number = session['player_number']
     data = dataopt['data']
     user = dataopt['user']
     cycle = dataopt['cycle']
+    print("==========>>> Cycle data : ", cycle)
     options = dataopt['options']
     resp = "nomsg"
     if "invest_id" in cycle:
@@ -368,10 +419,12 @@ def update_insale_options(dataopt):
     if code == "LC2" and ("Tax" in cycle['short_description'] or "tax" in cycle['short_description']):
         col_name, col_value = ce.get_cycle_tax_code(cycle['tax_check'])
         stat = pc.update_data(col_name, col_value)
-        stat = iv.parse_row_data(cycle, player_number)
+        # stat = iv.parse_row_data(cycle, player_number)
+        cycle['amount'] = decimal.Decimal(cycle['amount'])
         stat = pc.update_data('other_investment', abs(cycle['amount']), action="A")
         if stat == "OK":
             msg = ce.get_info_message("flag", code, cycle['tax_check'])
+        stat = pc.update_data('cash_on_hand', abs(cycle['amount']), action="A")
     if code == "SC2" and "Y" in cycle['investment_insert']:
         stat = iv.parse_row_data(cycle, player_number)
         if stat == "OK":
@@ -412,6 +465,6 @@ def update_insale_options(dataopt):
             stat = db.delete_investments_by_code(cycle['product'], player_number)
     if msg != " ":
         resp = msg
-
+    pc.update_table_row()
     return resp
 

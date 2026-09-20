@@ -359,8 +359,8 @@ def game_INPlay():
     user = session['user']
     invites = session['INVITES']
     if session['glevel'] == "EP":
-        flash("Invites not available for Easy Play", "error")
-        return redirect(url_for('game_action'))
+        flash("----------->>>>>>>>>Invites not available for Easy Play<<<<<<<<<<<-------------", "error")
+        return redirect(url_for('ts_sub1_bp.game_action'))
     data = {}
     data['player_number'] = session.get('player_number')
     data['player_move'] = session.get('player_move')
@@ -373,6 +373,7 @@ def game_INPlay():
     db.pickle_save("RandomPlay", "session", session, "cookie")
     print_data(options=options, session=session)
     return render_template('game_INPlay.html', options=options, page_name=page_name, user=user, data=data)
+
 
 @ts_sub1_bp.route('/game_inbuy', methods=['GET', 'POST'])
 # @is_logged_in

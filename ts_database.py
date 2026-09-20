@@ -13,6 +13,8 @@ import random
 from typing import Dict, Any, Optional, Tuple, Set
 from mysql.connector import Error
 from datetime import datetime
+import MySQLdb
+
 
 db_config = {
     'user': 'root',
@@ -233,7 +235,10 @@ class DB_Mgr:
         game_ID = gc['game_ID']
         round_count = data['player_round']
         move_count = data['player_move']
-        total_spending = float(gc['total_spending']) + float(amount)
+        if float(amount) < 0:
+            total_spending = float(gc['total_spending']) - float(amount)
+        else:
+            total_spending = float(gc['total_spending']) + float(amount)
         player_number = data['player_number']
         cash_on_hand = 0
         cur = self.mysql.connection.cursor()
@@ -245,8 +250,7 @@ class DB_Mgr:
         self.mysql.connection.commit()
         q = cur.execute('SELECT * FROM players WHERE username = %s', [username])
         result = cur.fetchone()
-        if result['cash_on_hand'] > float(amount):
-            cash_on_hand = result['cash_on_hand'] - float(amount)
+        cash_on_hand = result['cash_on_hand'] + float(amount)
         stck = result['stock_value']
         ppty = result['property_value']
         bus = result['business_value']
@@ -311,17 +315,70 @@ class DB_Mgr:
         else:
             print("Database error:", "get_investments_by_desc failed")
         return status, result
-    def update_investment_by_id(self, inv_data):
-        # Investment update code lost...This code needs rebuild
-        status = "OK"
-        return status
 
+    def update_investment_by_id(self, inv_data):
+        status = "OK"
+
+        if 'invest_id' not in inv_data:
+            raise ValueError("inv_data must include 'id' to identify the row to update")
+
+        # Pull out the identifier, everything else is a column to update
+        data = dict(inv_data)
+        inv_id = data.pop('invest_id')
+
+        if not data:
+            raise ValueError("inv_data has no fields to update besides 'id'")
+
+        set_clause = ", ".join(f"{key} = %s" for key in data)
+        values = list(data.values()) + [inv_id]
+
+        cur = self.mysql.connection.cursor()
+        try:
+            cur.execute(
+                f"UPDATE investments SET {set_clause} WHERE invest_id = %s",
+                values
+            )
+            self.mysql.connection.commit()
+        except Exception as e:
+            self.mysql.connection.rollback()
+            status = "NOK"
+            raise RuntimeError(f"update_investment_by_id failed for id={inv_id}: {e}") from e
+        finally:
+            cur.close()
+
+        return status
 
     def update_goal_by_id(self, goal_data):
-        # Goal update code lost...This code needs rebuild
         status = "OK"
-        return status
 
+        if 'id' not in goal_data:
+            raise ValueError("goal_data must include 'id' to identify the row to update")
+
+        # Pull out the identifier, everything else is a column to update
+        data = dict(goal_data)
+        goal_id = data.pop('id')
+
+        if not data:
+            raise ValueError("goal_data has no fields to update besides 'id'")
+
+        set_clause = ", ".join(f"{key} = %s" for key in data)
+        values = list(data.values()) + [goal_id]
+
+        cur = self.mysql.connection.cursor()
+        try:
+            cur.execute(
+                f"UPDATE gamegoals SET {set_clause} WHERE id = %s",
+                values
+            )
+            self.mysql.connection.commit()
+        except Exception as e:
+            self.mysql.connection.rollback()
+            status = "NOK"
+            raise RuntimeError(f"update_goals_by_id failed for id={goal_id}: {e}") from e
+        finally:
+            cur.close()
+
+        return status
 
     def insert_investments_from_sale(self, invest_data):
         # Dictionary passed with data to update
@@ -449,6 +506,37 @@ class DB_Mgr:
         cur.close()
         stat = "OK"
         return stat
+
+    def update_player3(self, result):
+        fields = [
+            "salary", "cash_on_hand", "property_value", "stock_value",
+            "business_value", "commodity_value", "other_investments",
+            "job_level", "degree_level", "city_addr", "ptax_assess",
+            "ins_assess", "ftax_assess", "car_assess", "rent_assess", "points"
+        ]
+
+        set_clause = ", ".join(f"{f} = %s" for f in fields)
+        values = [result[f] for f in fields] + [result['username']]
+
+        cur = self.mysql.connection.cursor()
+        try:
+            cur.execute(f"UPDATE players SET {set_clause} WHERE username = %s", values)
+            self.mysql.connection.commit()
+            return "OK"
+        except KeyError as e:
+            cur.close()
+            raise ValueError(f"Missing expected field in result: {e}") from e
+        except MySQLdb.IntegrityError as e:
+            self.mysql.connection.rollback()
+            cur.close()
+            raise ValueError(f"Constraint violation for {result.get('username')}: {e}") from e
+        except MySQLdb.Error as e:
+            self.mysql.connection.rollback()
+            cur.close()
+            raise RuntimeError(f"Database error: {e}") from e
+        finally:
+            cur.close()
+
 
     def update_gp(self, gp):
         stat = "NOK"
@@ -623,8 +711,8 @@ class DB_Mgr:
             cur.close()
             if result:
                 status = "OK"
-                player_data = dict(zip(column_names, result[0]))
-                return status, player_data
+                # player_data = dict(zip(column_names, result[0]))
+                return status, result[0]
             else:
                 return status, {}
         except Exception as e:
@@ -641,6 +729,21 @@ class DB_Mgr:
             query = f"UPDATE players SET {set_clause} WHERE player_number = %s"
             values = list(player_data.values())
             cur.execute(query, values)
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"An error in update_player_by_flag occurred: {e}")
+            cur.close()
+        return status
+
+    def update_player_by_key(self, player_number, key, value):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        set_clause = key + " = " + f"{value}"
+        try:
+            query = f"UPDATE players SET {set_clause} WHERE player_number = %s"
+            cur.execute(query, player_number)
             self.mysql.connection.commit()
             cur.close()
             status = "OK"
