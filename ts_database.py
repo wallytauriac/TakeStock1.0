@@ -672,6 +672,22 @@ class DB_Mgr:
             cur.close()
         return status
 
+    def delete_investments_by_desc(self, desc, player_number):
+        status = "NOK"
+        cur = self.mysql.connection.cursor()
+        try:
+            query = "DELETE FROM investments WHERE invest_description = %s AND player_number = %s"
+            cur.execute(query, (desc, player_number))
+            self.mysql.connection.commit()
+            cur.close()
+            status = "OK"
+        except Exception as e:
+            print(f"An Delete_Investments by Desc error occurred: {e}")
+            self.mysql.connection.rollback()
+            cur.close()
+        return status
+
+
     def delete_investment_by_id(self, id):
         status = "NOK"
         cur = self.mysql.connection.cursor()

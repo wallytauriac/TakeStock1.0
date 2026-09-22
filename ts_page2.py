@@ -32,7 +32,7 @@ def render_rp_options():
     select = im.get_table_pointer("opportunities")
     # ************************************
     # Set following variable for testing purposes
-    select = 7
+    # select = 21
     # ************************************
     stat = im.reset_table_pointer("opportunities")
     # ga = Game_Assets("opportunities")
@@ -270,10 +270,12 @@ def build_inplay_options(cycle_round):
         # =========================
         # For testing purposes - Change POS for Cycle 1 and Cycle 2
         #
+        """
         if cycle_round == 1:
-            pos = 14
-        else:
             pos = 12
+        else:
+            pos = 49
+        """
         # ==========================
 
 
@@ -401,9 +403,20 @@ def update_insale_options(dataopt):
             if stat == "OK":
                 msg = ce.get_info_message("insert", code, cycle['investment_type'])
         elif cycle['investment_adjust'] == "remove":
-            stat = db.delete_investments_by_code(cycle['investment_type'], player_number)
+            stock_list = ["oNg", "robotics", "gold", "paper", "utility", "auto", "airline"]
+            found = 0
+            stat = "NOK"
+            stock_scope = cycle['investment_type']
+            if cycle['short_description'] not in stock_list:
+                for stock in stock_list:
+                    if stock in cycle['short_description']:
+                        stat = db.delete_investments_by_desc(stock, player_number)
+                        stock_scope = stock + " " + stock_scope
+                        found = 1
+            if found == 0:
+                stat = db.delete_investments_by_code(cycle['investment_type'], player_number)
             if stat == "OK":
-                msg = ce.get_info_message("remove", code, cycle['investment_type'])
+                msg = ce.get_info_message("remove", code, stock_scope)
         elif cycle['investment_adjust'] == "double":
             stat = iv.double_stock_investment(cycle['investment_type'], player_number)
             if stat == "OK":

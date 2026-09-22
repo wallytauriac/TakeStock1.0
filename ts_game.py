@@ -917,7 +917,7 @@ class Investment:
             if len(invest_cards) > 0:
                 for investment in invest_cards:
                     investment['invest_count'] = int(investment['invest_count']) * 2
-                    investment['invest_value'] = float(investment['invest_value']) * float(2.00)
+                    investment['invest_value'] += int(investment['invest_count'])
                     stat = db.update_investment_by_id(investment)
             else:
                 status = "NOI"
