@@ -15,6 +15,7 @@ from app_factory import create_app, mysql
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, RadioField, SelectField, IntegerField
 from functools import wraps
 from icecream import ic
+import ast
 
 
 ts_sub1_bp = Blueprint('ts_sub1_bp', __name__, template_folder="templates")
@@ -252,11 +253,13 @@ def game_BuyProd():
 
         try:
             print("Before loading data_json:", data_json)
-            data = json.loads(data_json.replace("'", "\""))
+            # data = json.loads(data_json.replace("'", "\""))
+            data = ast.literal_eval(data_json)
             print("Before loading options_json:", options_json)
-            options = json.loads(options_json.replace("'", "\""))
-        except json.JSONDecodeError as e:
-            return f"JSON decode error: {str(e)}", 400
+            # options = json.loads(options_json.replace("'", "\""))
+            options = ast.literal_eval(options_json)
+        except ast.literal_eval as e:
+            return f"AST decode error: {str(e)}", 400
 
         form = GameBuyForm(request.form)
         buy_type = request.form.get('buy_type')  # Ensure buy_type persists
@@ -442,9 +445,11 @@ def game_TPBuy():
         data_json = request.form.get('data')
         options_json = request.form.get('options')
         # Ensure the JSON strings are properly formatted
-        data = json.loads(data_json.replace("'", "\""))
+        # data = json.loads(data_json.replace("'", "\""))
+        data = ast.literal_eval(data_json)
         print("Options json: ", options_json)
-        options = json.loads(options_json.replace("'", "\""))
+        # options = json.loads(options_json.replace("'", "\""))
+        options = ast.literal_eval(options_json)
 
         print("DATA: ", data)
         print("OPTIONS: ", options)
