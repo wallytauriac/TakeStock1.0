@@ -60,6 +60,16 @@ def render_game_card(session, game_id):
         return f"An error occurred in render game card build: {e}"
     return data
 
+def process_pay_consult_fee(player_number):
+    fee = 3000.00
+    status, result = db.get_player_by_number(player_number)
+    if status == "OK":
+        result['cash_on_hand'] = result['cash_on_hand'] - fee
+        db.update_player3(result)
+
+    return "OK"
+
+
 def process_first_move(game_ID, data):
 
     gb = GameBoard(game_ID)
@@ -341,11 +351,17 @@ def render_sp_options():
 def build_sp_options():
     desc = []
     invest = []
-    pi_stck = PriceIndex("stocks")
+    im = get_im()
+    # pi_stck = PriceIndex("stocks")
     # Build Stock Selected
-    sc, cc = pi_stck.choose_stock_brand("STCK")  # SC=Stock Choice and CC=Count Choice
-    pos = pi_stck.get_new_position()
-    row1 = pi_stck.get_new_row()
+    sc, cc = im.choose_stock_brand("STCK")  # SC=Stock Choice and CC=Count Choice
+    pos = im.get_table_pointer("stocks")
+    # Update the pointer with a new value
+    stat = im.reset_table_pointer("stocks")
+    gat = Game_Assets("stocks")
+    row1 = gat.get_row(pos)
+    # pos = pi_stck.get_new_position()
+    # row1 = pi_stck.get_new_row()
     row1['sc'] = sc
     row1['cc'] = cc
     session['bs'] = row1  # store the stock row in session
@@ -355,9 +371,14 @@ def build_sp_options():
     invest.append("$   " + str(value * cc))  # Calculate stock value and store for display
     # Build Property Selected
     # INDEX MANAGER: Set address table row for property offering
-    pi_ppty = PriceIndex("address")
-    pos = pi_ppty.get_new_position()
-    row2 = pi_ppty.get_new_row()
+    pos = im.get_table_pointer("address")
+    # Update the pointer with a new value
+    stat = im.reset_table_pointer("address")
+    gat = Game_Assets("address")
+    row2 = gat.get_row(pos)
+    #pi_ppty = PriceIndex("address")
+    #pos = pi_ppty.get_new_position()
+    #row2 = pi_ppty.get_new_row()
     session['bp'] = row2
     b_type = row2['BLDG_type']
     p_type = row2['PPTY_type']
@@ -366,18 +387,29 @@ def build_sp_options():
     invest.append("$  " + str(price))
     # Build Business Selected
     # INDEX MANAGER: Set business table row for business offering
-    pi_bus = PriceIndex("business")
-    pos = pi_bus.get_new_position()
-    row3 = pi_bus.get_new_row()
+    pos = im.get_table_pointer("business")
+    # Update the pointer with a new value
+    stat = im.reset_table_pointer("business")
+    gat = Game_Assets("business")
+    row3 = gat.get_row(pos)
+    # pi_bus = PriceIndex("business")
+    # pos = pi_bus.get_new_position()
+    # row3 = pi_bus.get_new_row()
     session['bb'] = row3
     desc.append(row3['business'])
     invest.append("$  " + str(row3['buy']))
     # Build Commodity Selected
     # INDEX MANAGER: Set commodities table row for commodities offering
-    pi_comm = PriceIndex("commodities")
-    commc, cc = pi_comm.choose_stock_brand("COMM")  # COMMC=COMM Choice and CC=Count Choice
-    pos = pi_comm.get_new_position()
-    row4 = pi_comm.get_new_row()
+    # pi_comm = PriceIndex("commodities")
+    commc, cc = im.choose_stock_brand("COMM")  # COMMC=COMM Choice and CC=Count Choice
+    pos = im.get_table_pointer("commodities")
+    # Update the pointer with a new value
+    stat = im.reset_table_pointer("commodities")
+    # pos = pi_comm.get_new_position()
+    # row4 = pi_comm.get_new_row()
+    gat = Game_Assets("commodities")
+    # pos = gat.get_new_position()
+    row4 = gat.get_row(pos)
     row4['commc'] = commc
     row4['cc'] = cc
     session['bc'] = row4
@@ -666,7 +698,7 @@ def build_invest_card(invest_data, product, opt1, opt2, own="FULL"):
     n = opt1
     n = extract_numeric_value(n)
     a = opt2
-    if n is None or n is "None" or n == "":
+    if n is None or n == "None" or n == "":
         n = 1
 
     a = extract_numeric_value(a)
@@ -695,17 +727,22 @@ def render_tp_options():
     return options
 
 def build_tp_options():
+    """
+    # Update the pointer with a new value
+    stat = im.reset_table_pointer("stocks")
+
+    """
     desc = []
     invest = []
     # Stock Offer
-    stocks = ["oNg", "robotics", "gold", "paper", "utility", "auto", "airline"]
-    count = [100, 50, 10, 25]
-    sc = random.choice(stocks)
-    cc = random.choice(count)
+    im = get_im()
+    sc, cc = im.choose_stock_brand("STCK")  # SC=Stock Choice and CC=Count Choice
+    pos = im.get_table_pointer("stocks")
     # INDEX MANAGER: Set Stock table row for Stock offering
-    pi_stck = PriceIndex("stocks")
-    pos = pi_stck.get_new_position()
-    row1 = pi_stck.get_new_row()
+    # Update the pointer with a new value
+    stat = im.reset_table_pointer("stocks")
+    gat = Game_Assets("stocks")
+    row1 = gat.get_row(pos)
     row1['sc'] = sc
     row1['cc'] = cc
     session['bs'] = row1
@@ -715,9 +752,9 @@ def build_tp_options():
     invest.append("$   " + str(value * cc))
     # Property Offer
     # INDEX MANAGER: Set address table row for property offering
-    pi_ppty = PriceIndex("address")
-    pos = pi_ppty.get_new_position()
-    row2 = pi_ppty.get_new_row()
+    pos = im.get_table_pointer("address")
+    gat = Game_Assets("address")
+    row2 = gat.get_row(pos)
     session['bp'] = row2
     b_type = row2['BLDG_type']
     p_type = row2['PPTY_type']
@@ -726,9 +763,9 @@ def build_tp_options():
     invest.append("$  " + str(price))
     # Business Offer
     # INDEX MANAGER: Set business table row for business offering
-    pi_bus = PriceIndex("business")
-    pos = pi_bus.get_new_position()
-    row3 = pi_bus.get_new_row()
+    pos = im.get_table_pointer("business")
+    gat = Game_Assets("business")
+    row3 = gat.get_row(pos)
     session['bb'] = row3
     desc.append(row3['business'])
     invest.append("$  " + str(row3['buy']))

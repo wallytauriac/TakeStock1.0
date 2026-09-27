@@ -30,6 +30,19 @@ def is_logged_in(f):
         return f(*args, **kwargs)
     return decorated_function
 
+@ts_sub1_bp.route('/game_banker', methods=['GET', 'POST'])
+@is_logged_in
+def game_banker():
+    username = session.get('username')
+    if not username:
+        return redirect(url_for('login'))  # Ensure 'login' route is defined in ts_main.py
+    pn = session.get('player_number')
+    status = process_pay_consult_fee(pn)
+    if status == "OK":
+        flash(f"Consultant Fee Assessed for Player {pn}", "warning")
+
+    return gamePass(username)
+
 @ts_sub1_bp.route('/game_pass', methods=['GET', 'POST'])
 @is_logged_in
 def game_pass():

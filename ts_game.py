@@ -589,8 +589,11 @@ class Game_Assets:
         return self.current_position
 
     def get_row(self, id):
-        arr = dict(self.data[id])
-        return arr
+        for row in self.data:
+            if row['id'] == id:
+                return row
+        raise Exception("Sorry, Game Assets get_row failed...")
+
 
     def adjust_object_scope(self, key, value):
         data2 = []

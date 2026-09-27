@@ -250,7 +250,10 @@ class DB_Mgr:
         self.mysql.connection.commit()
         q = cur.execute('SELECT * FROM players WHERE username = %s', [username])
         result = cur.fetchone()
-        cash_on_hand = result['cash_on_hand'] + float(amount)
+        if buy_type != "OTHR":
+            cash_on_hand = result['cash_on_hand'] - float(amount)
+        else:
+            cash_on_hand = result['cash_on_hand'] + float(amount)
         stck = result['stock_value']
         ppty = result['property_value']
         bus = result['business_value']

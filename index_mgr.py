@@ -9,6 +9,14 @@ class IndexMgr:
     def __init__(self, tablelist):
         self.index_table = {}
 
+        player_number = session['player_number']
+        status, result = db.get_player_by_number(player_number)
+        if status != "OK":
+            raise RuntimeError(f"IndexMgr: could not resolve game_ID for player {player_number}")
+        game_ID = result['game_ID']
+
+        self.test_mgr = TestMgr(game_ID)
+
         for table in tablelist:
             self.table_name = table
             self.data = self.load_data()
@@ -20,7 +28,6 @@ class IndexMgr:
             }
 
         print(f"Loaded Index Table data: {self.index_table}")
-
     def load_data(self):
         """
         Loads a row of data from the MySQL table into memory.
@@ -42,10 +49,19 @@ class IndexMgr:
 
         return data
 
+#    def get_table_pointer(self, table_name):
+#        return self.index_table[table_name]["current"]
     def get_table_pointer(self, table_name):
+        forced = self.test_mgr.get_forced_position(table_name)
+        if forced is not None:
+            return forced
         return self.index_table[table_name]["current"]
 
     def reset_table_pointer(self, table_name):
+        if self.test_mgr.test_mode:
+            self.test_mgr.advance_position(table_name)
+            return "OK"
+
         status = "NOK"
         rng = random.Random()
         low_nbr = self.index_table[table_name]["low"]
@@ -55,11 +71,29 @@ class IndexMgr:
         status = "OK"
         return status
 
+    def choose_stock_brand(self, type):
+        # Stock or COMM Offer
+        stocks = ["oNg", "robotics", "gold", "paper", "utility", "auto", "airline"]
+        comm = ["Mutual", "Diamonds", "Grain", "Security", "Silver", "Certificates", "Money"]
+        count = [100, 50, 10, 25, 200, 20]
+
+        if self.test_mgr.test_mode:
+            table_name = "stocks" if type == "STCK" else "commodities"
+            forced_choice, forced_count = self.test_mgr.get_forced_choice(table_name)
+            if forced_choice is not None and forced_count is not None:
+                return forced_choice, forced_count
+
+        cc = random.choice(count)
+        if type == "STCK":
+            choice = random.choice(stocks)
+        else:
+            choice = random.choice(comm)
+        return choice, cc
 
 db = DB_Mgr(mysql)
 tablelist = ["commodities", "address", "business", "lifecenter",
             "stockcenter", "shopping", "jobcenter", "learncenter",
-            "bankercycle", "opportunities"]
+            "bankercycle", "opportunities", "stocks"]
 
 _im_instance = None
 
@@ -281,3 +315,63 @@ class GoalMgr:
                 high_pct = pct
                 lead_player = "Player " + str(plyr)
         return lead_player
+
+class TestMgr:
+    def __init__(self, game_ID):
+        self.game_ID = game_ID
+        self.test_mode = self._load_test_mode()
+        self.sequences = {}   # table_name -> list of positions
+        self.cursors = {}     # table_name -> current index (wraps via modulo)
+        self.choices = {}     # table_name -> (forced_choice, forced_count), if present
+
+        if self.test_mode:
+            self._load_all_controls()
+
+    def _load_test_mode(self):
+        status, game_data, _ = db.get_table_row_by_column("game", "game_ID", self.game_ID)
+        return bool(game_data.get("test_mode")) if status == "OK" else False
+
+    def _load_all_controls(self):
+        for table_name in ["stocks", "address", "business", "commodities"]:
+            status, row, _ = db.get_table_row_by_columns(
+                "test_controls", "game_ID", self.game_ID, "table_name", table_name)
+            if status == "OK" and row is not None:
+                self.sequences[table_name] = self._build_sequence(row)
+                self.cursors[table_name] = 0
+                self.choices[table_name] = (row.get('forced_choice'), row.get('forced_count'))
+
+    def _build_sequence(self, row):
+        mode = row['mode']
+        if mode == 'single':
+            return [row['forced_position']]
+        elif mode == 'range':
+            return list(range(row['range_start'], row['range_end'] + 1))
+        elif mode == 'list':
+            return [int(p.strip()) for p in row['position_list'].split(',')]
+        else:
+            raise ValueError(f"Unknown test_controls mode: {mode}")
+
+    def get_forced_position(self, table_name):
+        seq = self.sequences.get(table_name)
+        if seq is None:
+            return None  # no test_controls row for this table
+        idx = self.cursors[table_name] % len(seq)  # wraps forever, never exhausts
+        return seq[idx]
+
+    def get_forced_choice(self, table_name):
+        return self.choices.get(table_name, (None, None))
+
+    def advance_position(self, table_name):
+        if table_name in self.cursors:
+            self.cursors[table_name] += 1
+
+"""
+IndexMgr.get_table_pointer() would then become something like:
+
+python
+def get_table_pointer(self, table_name):
+    forced = self.test_mgr.get_forced_position(table_name)
+    if forced is not None:
+        return forced
+    return self.index_table[table_name]["current"]
+"""
