@@ -874,7 +874,9 @@ def update_tp_player_game(dataopt):
     status = db.insert_investments_from_sale(invest_card)
     data1['buy_type'] = "bs"
     data1['user'] = session['user']
-    status = db.update_game_player(invest_card['invest_amount'], gc, data1)
+    print("DATA1: ", data1)
+    print("DATAOPT= ", dataopt)
+    status = db.update_game_player(invest_card['invest_amount'], gc, dataopt)
     if status == "OK":
         flash("Good STCK investment!", "success")
     product_data = session['bp']
@@ -883,7 +885,9 @@ def update_tp_player_game(dataopt):
     total_amount = total_amount + invest_card['invest_amount']
     status = db.insert_investments_from_sale(invest_card)
     data1['buy_type'] = "bp"
-    status = db.update_game_player(invest_card['invest_amount'], gc, data1)
+    print("DATA1: ", data1)
+    print("DATAOPT= ", dataopt)
+    status = db.update_game_player(invest_card['invest_amount'], gc, dataopt)
     if status == "OK":
         flash("Good PPTY investment! Real estate is valuable.", "success")
     product_data = session['bb']
@@ -892,7 +896,7 @@ def update_tp_player_game(dataopt):
     total_amount = total_amount + invest_card['invest_amount']
     status = db.insert_investments_from_sale(invest_card)
     data1['buy_type'] = "bb"
-    status = db.update_game_player(invest_card['invest_amount'], gc, data1)
+    status = db.update_game_player(invest_card['invest_amount'], gc, dataopt)
     if status == "OK":
         flash("Good Business investment! You are in business.", "success")
 

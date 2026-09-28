@@ -635,8 +635,6 @@ class DB_Mgr:
         status = "NOK"
         cur = self.mysql.connection.cursor()
         try:
-            # table_name and column_name can't be parameterized like values can,
-            # so validate them before interpolating into the query
             if not self._is_valid_identifier(table_name) or not self._is_valid_identifier(column_name1):
                 print(f"Invalid table or column name: {table_name}, {column_name1}")
                 cur.close()
@@ -645,9 +643,13 @@ class DB_Mgr:
             query = f"SELECT * FROM {table_name} WHERE {column_name1} = %s and {column_name2} = %s"
             cur.execute(query, (value1, value2))
             row = cur.fetchall()
-            result = row[0]
             column_names = [desc[0] for desc in cur.description]
             cur.close()
+
+            if not row:
+                return "NOK", [], column_names
+
+            result = row[0]
             status = "OK"
             return status, result, column_names
         except Exception as e:
