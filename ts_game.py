@@ -819,7 +819,8 @@ class Investment:
             'invest_amount': decimal.Decimal('0.00'),
             'invest_description': " ",
             'player_number': 0,
-            'invest_value': decimal.Decimal('0.00')
+            'invest_value': decimal.Decimal('0.00'),
+            'own_code': "FULL"
         }
 
     def build_row_data(self, key, value):
@@ -852,6 +853,8 @@ class Investment:
             self.invest_data['invest_amount'] = abs(decimal.Decimal(data['amount']))
             self.invest_data['invest_count'] = int(1)
             self.invest_data['invest_description'] = data['long_description']
+            if "trip" in data['long_description']:
+                self.invest_data['own_code'] = "TRIP" + ":" + data['INVITES']
         elif data['code'] == "VAC":
             self.invest_data['invest_type'] = "OTHR"
             self.invest_data['invest_amount'] = round(decimal.Decimal(data['pkg_price']), 2)

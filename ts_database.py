@@ -393,6 +393,9 @@ class DB_Mgr:
         invest_description = invest_data['invest_description']
         player_number = invest_data['player_number']
         invest_value = invest_data['invest_value']
+        own_code = "FULL"
+        if "own_code" in invest_data:
+            own_code = invest_data['own_code']
        # insert_clause = ', '.join((f"{keys}" for keys in invest_data.keys()))
        # insert_clause = ', '.join(
        #     [f"'{values}'" if i in [0, 3] else f"{values}" for i, values in enumerate(invest_data.values())])
@@ -400,10 +403,10 @@ class DB_Mgr:
 
         sql = (
             "INSERT INTO investments (invest_type, invest_count, invest_amount, invest_description, player_number,"
-            " invest_value) VALUES(%s, %s, %s, %s, %s, %s)")
+            " invest_value, own_code) VALUES(%s, %s, %s, %s, %s, %s, %s)")
         print("Query ", sql)
 
-        val = (invest_type, invest_count, invest_amount, invest_description, player_number, invest_value)
+        val = (invest_type, invest_count, invest_amount, invest_description, player_number, invest_value, own_code)
         print("Value ", val)
         cur.execute(sql, val)
 
@@ -621,7 +624,10 @@ class DB_Mgr:
             query = f"SELECT * FROM {table_name} WHERE {column_name} = %s"
             cur.execute(query, (value,))
             row = cur.fetchall()
-            result = row[0]
+            if len(row) < 2:
+                result = row[0]
+            else:
+                result = row
             column_names = [desc[0] for desc in cur.description]
             cur.close()
             status = "OK"

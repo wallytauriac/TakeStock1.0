@@ -437,7 +437,7 @@ def update_insale_options(dataopt):
         stat = pc.update_data('other_investment', abs(cycle['amount']), action="A")
         if stat == "OK":
             msg = ce.get_info_message("flag", code, cycle['tax_check'])
-        stat = pc.update_data('cash_on_hand', abs(cycle['amount']), action="A")
+        # stat = pc.update_data('cash_on_hand', cycle['amount'], action="A")
     if code == "SC2" and "Y" in cycle['investment_insert']:
         stat = iv.parse_row_data(cycle, player_number)
         if stat == "OK":
@@ -446,7 +446,7 @@ def update_insale_options(dataopt):
         msg = ce.get_info_message(cycle['amount'], code, cycle['salary'])
         if int(cycle['job_level']) > 0:
             msg = msg + "Congratulations on your promotion!"
-        if cycle['job_level'] != "0":
+        if int(cycle['job_level']) != 0:
             jl = int(cycle['job_level'])
             stat = pc.update_data('job_level', jl, action="A")
         pc.adjust_salary_amount(cycle['salary'])

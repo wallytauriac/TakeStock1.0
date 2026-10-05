@@ -332,13 +332,14 @@ class TestMgr:
         return bool(game_data.get("test_mode")) if status == "OK" else False
 
     def _load_all_controls(self):
-        for table_name in ["stocks", "address", "business", "commodities"]:
-            status, row, _ = db.get_table_row_by_columns(
-                "test_controls", "game_ID", self.game_ID, "table_name", table_name)
-            if status == "OK" and row is not None:
-                self.sequences[table_name] = self._build_sequence(row)
-                self.cursors[table_name] = 0
-                self.choices[table_name] = (row.get('forced_choice'), row.get('forced_count'))
+        status, rows, _ = db.get_table_row_by_column("test_controls", "game_ID", self.game_ID)
+        if status != "OK":
+            return
+        for row in rows:
+            table_name = row['table_name']
+            self.sequences[table_name] = self._build_sequence(row)
+            self.cursors[table_name] = 0
+            self.choices[table_name] = (row.get('forced_choice'), row.get('forced_count'))
 
     def _build_sequence(self, row):
         mode = row['mode']
