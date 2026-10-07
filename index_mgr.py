@@ -265,6 +265,7 @@ class GoalMgr:
 
         self.game_level = game_data['game_level']
         self.game_goal_code = game_data['game_goal']
+        self.game_target = game_data['game_target']
 
         stat, game_data2, column_names2 = db.get_table_row_by_columns(
              self.table_name1, "level_code", self.game_level,
@@ -272,10 +273,15 @@ class GoalMgr:
         if stat == "OK":
             ic(game_data2)
             self.game_goal = game_data2['goal']
+        if self.game_target == 0:
             self.game_target = game_data2['target']
-            ic(self.game_goal)
-            ic(self.game_target)
-            ic(stat)
+        else:
+            if self.game_target != game_data2['target']:
+                self.game_goal = self.game_goal + " (Adjusted)"
+
+        ic(self.game_goal)
+        ic(self.game_target)
+        ic(stat)
         return stat
 
     def update_player_counts(self):

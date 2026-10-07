@@ -261,6 +261,7 @@ def render_game_settings(form):
     form.population_chg.data = 0.06
     form.glevel.data = "Easy Play"
     form.ggoal.data = "AMA"
+    form.gtarget.data = 0
     return form
 
 def render_gametable_settings(form, result):
@@ -278,6 +279,15 @@ def render_gametable_settings(form, result):
         form.population_chg.data = result['population_chg']
     form.glevel.data = result['game_level']
     form.ggoal.data = result['game_goal']
+    # Determine what is the source to display target
+    form.gtarget.data = result['game_target']
+    if result['game_target'] == 0:
+        status, gg, _ = db.get_table_row_by_columns("gamegoals", "level_code", result['game_level'],
+                                    "goal_code", result['game_goal'])
+        if status == "OK":
+            form.gtarget.data = gg['target']
+        else:
+            raise RuntimeError("Game goals table access failure in render_gametable_settings.")
     #form.process()  # Apply the defaults
     return form
 

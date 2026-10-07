@@ -156,6 +156,7 @@ class DB_Mgr:
     def put_game_card(self, gc):
         glevel = gc['game_level']
         ggoal = gc['game_goal']
+        gtarget = gc['game_target']
         player_count = gc['player_count']
         status = gc['status']
         total_spending = gc['total_spending']
@@ -165,10 +166,11 @@ class DB_Mgr:
         pop_chg = gc['population_chg']
         cur = self.mysql.connection.cursor()
         q = cur.execute("UPDATE game "
-                        "SET game_level = %s, game_goal = %s, player_count = %s,"
+                        "SET game_level = %s, game_goal = %s, player_count = %s, game_target = %s,"
                         " status = %s, total_spending = %s, total_earnings = %s,"
                         " population = %s, population_chg = %s"
-                        " WHERE game_id = %s", (glevel, ggoal, player_count, status, total_spending, total_earnings,
+                        " WHERE game_id = %s", (glevel, ggoal, player_count, gtarget,
+                                                status, total_spending, total_earnings,
                                                 population, pop_chg, game_ID))
         self.mysql.connection.commit()
         cur.close()
@@ -186,6 +188,7 @@ class DB_Mgr:
         username = session.get('username')
         population = form.population.data
         population_chg = form.population_chg.data
+        game_target = form.gtarget.data
 
         stat = "NOK"
         cur = self.mysql.connection.cursor()
@@ -193,9 +196,10 @@ class DB_Mgr:
         q = cur.execute("UPDATE game "
                         "SET game_level = %s, game_goal = %s, player_count = %s,"
                         " status = %s, start_date = %s, username = %s,"
-                        " population = %s, population_chg = %s "
+                        " population = %s, population_chg = %s, game_target = %s "
                         " WHERE game_id = %s",
-                        (glevel, ggoal, player_count, status, start_date, username, population, population_chg, game_ID)
+                        (glevel, ggoal, player_count, status, start_date, username, population, population_chg,
+                         game_target, game_ID)
                         )
         self.mysql.connection.commit()
         cur.close()
@@ -205,6 +209,7 @@ class DB_Mgr:
     def update_game_from_setup(self, form):
         glevel = form.glevel.data
         ggoal = form.ggoal.data
+        gtarget = form.gtarget.data
         player_count = form.player_count.data
         game_ID = form.game_ID.data
 
@@ -215,9 +220,9 @@ class DB_Mgr:
 
         q = cur.execute("UPDATE game "
                         "SET game_level = %s, game_goal = %s, player_count = %s,"
-                        " gdp = %s "
+                        " gdp = %s, game_target = %s "
                         " WHERE game_id = %s",
-                        (glevel, ggoal, player_count, gdp, game_ID)
+                        (glevel, ggoal, player_count, gdp, gtarget, game_ID)
                         )
         self.mysql.connection.commit()
         cur.close()
@@ -417,9 +422,11 @@ class DB_Mgr:
 
     def add_game(self, form):
         status = "NOK"
+        q = 0
         cur = self.mysql.connection.cursor()
         glevel = form.glevel.data
         ggoal = form.ggoal.data
+        gtarget = form.gtarget.data
         player_count = form.player_count.data
         status = form.status.data
         game_ID = form.game_ID.data
@@ -430,9 +437,10 @@ class DB_Mgr:
         gs_gdp = form.population.data * 100
         try:
             q = cur.execute("INSERT INTO game(username, game_ID, player_count, start_date, status, population, pop_chg,"
-                            " game_level, game_goal, gs_gdp) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                            " game_level, game_goal, gs_gdp, game_target) "
+                            "VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                             (username, game_ID, player_count, start_date, status, population, population_chg,
-                             glevel, ggoal, gs_gdp))
+                             glevel, ggoal, gs_gdp, gtarget))
             self.mysql.connection.commit()
             cur.close()
             status = "OK"
@@ -708,6 +716,7 @@ class DB_Mgr:
             self.mysql.connection.commit()
             cur.close()
             status = "OK"
+            print("====> Deleted Investments row #: ", id)
         except Exception as e:
             print(f"Delete_Investment by ID error occurred: {e}")
             self.mysql.connection.rollback()

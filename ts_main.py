@@ -239,7 +239,7 @@ def gameDash(username):
         selected_goal = form.ggoal.data
 
         if status == "OK":
-            if result>0:
+            if result > 0:
                 q, status = db.update_game(form)
                 app.logger.info(q)
                 flash('Game card updated successfully', 'success')

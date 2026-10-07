@@ -144,7 +144,7 @@ def gameAction(username):
     ggoal = session['ggoal']
     result, q = db.get_player_record(username)
     inh = 0.00
-    if q>0:
+    if q > 0:
         status, players = db.get_players_game_card(result["game_ID"], allcolumn="Y")
         print("Action Players: ", players)
         session['game_ID'] = result["game_ID"]
@@ -562,6 +562,8 @@ def game_status():
     glevel = session['glevel']
     ggoal = session['ggoal']
     data = session['data']
+    gc = data['gc']
+    gtarget = gc['game_target']
     data['user_captain'] = session['username']
     result, q = db.get_player_record(session['username'])
     # =====================================================
@@ -571,7 +573,8 @@ def game_status():
     data['game_ID'] = result['game_ID']
     flash("There are three game levels and different game goals per level. Get familiar with them", "success")
     gg = GameGoals()
-    features, goals, player_status1, player_status2, player_status3 = gg.build_status_report(glevel, ggoal, session['username'])
+    features, goals, player_status1, player_status2, player_status3 = gg.build_status_report(glevel, ggoal, gtarget,
+                                                                                             session['username'])
     ic(features, goals, player_status1, player_status2, player_status3)
 
     rpt_features = {

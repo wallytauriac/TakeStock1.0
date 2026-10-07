@@ -533,7 +533,7 @@ class GameGoals:
                 break
         return desc
 
-    def build_status_report(self, glevel, ggoal, username):
+    def build_status_report(self, glevel, ggoal, gtarget, username):
         goal_selected = {}
         # search and point to goal selected by captain
         for row in self.data:
@@ -545,6 +545,9 @@ class GameGoals:
         trailer = " "
 
         goal_name = self.get_goal_name(ggoal)
+        if goal_selected['target'] != gtarget:
+            goal_selected['target'] = gtarget
+            goal_name = goal_name + " (Adjusted)"
         level_name = self.get_level_name(glevel)
         features = [
             "Features Legend:",
@@ -558,7 +561,7 @@ class GameGoals:
         goals.append(f"Active Game Level & Goal: {level_name} | {goal_name}")
 
         if goal_selected['target'] > 50001:
-            value = str(goal_selected['target'])
+            value = str(gtarget)
             if ggoal == "AMA":
                 trailer = "Cash on Hand"
             else:

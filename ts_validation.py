@@ -69,7 +69,7 @@ class GameLevelForm(Form):
         validators.NumberRange(min=100000, max=2000000, message='Population must be between 100K and 2M')])
     population_chg = FloatField('Population Growth Rate', [
         validators.NumberRange(min=0.05, max=0.15, message='Population rate must be between 0.05 and 0.15')])
-
+    gtarget = IntegerField('Game Target', default=0)
 
 class GameSetupForm(Form):
     level = IntegerField('Level', [validators.InputRequired(), validators.NumberRange(min=1, max=100)])

@@ -258,8 +258,9 @@ def build_inplay_options(cycle_round):
         player_number = session['player_number']
         sc3 = Sellcycle(player_number)
         desc, iv_data = sc3.build_investment_for_sellcycle(desc)
+        # ******************************************
         ga_sel = iv_data
-        print(f"INPLAY IV Data: {ga_sel}")
+        print(f"INPLAY SELL Data: {ga_sel}")
     else:
         c = CycleExt()
         desc.append(c.get_cycle_message(invite_cycle))
@@ -391,7 +392,8 @@ def update_insale_options(dataopt):
     if code == "SC3":
         pc.update_data('cash_on_hand', cycle['invest_value'], action="A")
         sc3 = Sellcycle(player_number)
-        iv_sold = sc3.get_row(cycle['rnum'])
+        iv_sold = cycle
+        # iv_sold = sc3.get_row(cycle['rnum'])
         invest_id = cycle['invest_id']
         stat = sc3.delete_row(iv_sold)
     else:
@@ -474,7 +476,7 @@ def update_insale_options(dataopt):
         if cycle['investment_insert'] == "Y":
             stat = iv.parse_row_data(cycle, player_number)
             stat = pc.update_data('other_investments', abs(decimal.Decimal(cycle['amount'])), action="A")
-        if cycle['investment_insert'] == "remove":
+        if cycle['investment_insert'] == "Remove":
             stat = db.delete_investments_by_code(cycle['product'], player_number)
     if msg != " ":
         resp = msg

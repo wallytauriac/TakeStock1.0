@@ -1257,7 +1257,8 @@ class Sellcycle:
 
         if status == "NOK":
             raise Exception("Error Condition: Load investment table failed...")
-        filtered_data = [row for row in result if row["invest_type"] != "RENT" or row["invest_type"] != "INS"]
+        filtered_data = [row for row in result if row["invest_type"] != "RENT" or row["invest_type"] != "INS"
+                         or row["invest_type"] != "BILL"]
 
         return filtered_data
 
@@ -1295,7 +1296,7 @@ class Sellcycle:
                 print(f"rnum: {rnum}")
 
         if rcount == 0:
-            return "No data", rcount
+            return {}, rcount
         else:
             return self.data[rnum], rcount
 
